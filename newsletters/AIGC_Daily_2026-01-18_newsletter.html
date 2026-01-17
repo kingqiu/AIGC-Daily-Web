@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-01-18">
+    <title>AIGC Daily #88 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+
+            .header {
+                flex-direction: row;
+                justify-content: flex-start;
+                text-align: left;
+                gap: var(--space-sm);
+            }
+
+            .header-text {
+                text-align: left;
+            }
+
+            .logo {
+                width: 48px;
+                height: 48px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) -20px var(--space-md);
+                border-radius: 0;
+            }
+
+            .section {
+                margin-bottom: 40px;
+            }
+
+            .article {
+                margin-bottom: 20px;
+                padding: var(--space-sm);
+            }
+
+            .article-summary {
+                margin-left: 0;
+                margin-top: var(--space-xs);
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-01-18 星期日</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-01-18_hero.png" alt="AIGC Daily 88 Hero Image">
+            <p class="hero-caption">本期关注：MCP服务器赋能本地LLM实现苹果硅100%离线运行，提供内存、文件访问及治理能力；KoboldCpp v1.106集成MCP支持成Claude替代品；DeepSeek Engram推出静态记忆单元，以O(1)复杂度优化LLMs知识检索与推理性能，推动AI离线实用性与效率提升。</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/LocalLLaMA/comments/1qfgiq1/mcp_server_that_gives_local_llms_memory_file/" target="_blank" rel="noopener noreferrer">MCP服务器，为本地LLM提供内存、文件访问和“良知”——100%在苹果硅上离线运行</a>
+                    </div>
+                </div>
+                <p class="article-summary">近日，一位Reddit用户u/TheTempleofTwo分享了一项创新技术：MCP服务器，该服务器旨在为本地大型语言模型（LLM）提供内存、文件访问以及“良知”，实现100%离线运行于Apple Silicon平台。<br><br>该技术的核心在于解决当前本地LLM的三大问题：无状态、缺乏治理以及缺乏实际操作能力。通过构建一个运行在Mac Studio M2 Ultra上的完整技术栈，包括LM Studio（聊天界面）、Hermes-3-Llama-3.1-8B（MLX，4位）和Temple Bridge（MCP服务器），MCP服务器为LLM提供了文件读写、命令执行等功能，并引入了治理协议，确保AI在执行任务时遵循一定的规则。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/LocalLLaMA/comments/1qfb0gk/koboldcpp_v1106_finally_adds_mcp_server_support/" target="_blank" rel="noopener noreferrer">KoboldCpp v1.106终于添加了对MCP服务器的支持，Claude桌面版的直接替代品</a>
+                    </div>
+                </div>
+                <p class="article-summary">KoboldCpp v1.106版本正式加入了对MCP服务器的支持，成为Claude Desktop的便捷替代品。这一新功能标志着KoboldCpp的持续发展和创新。MCP（Multi-Channel Protocol）支持使得KoboldCpp能够无缝连接所有提供的MCP服务器，包括HTTP和STDIO传输方式，并自动将AI选择的工具请求转发至相应的MCP服务器。这一改进不仅提升了KoboldCpp的兼容性，也为第三方客户端提供了便利。<br><br>KoboldCpp v1.106的MCP桥接功能，使得用户可以轻松获取所有服务器上的工具列表，选择AI使用的工具，并可选择性地启用工具调用API。这一更新对AI领域具有重要意义，它不仅丰富了AI工具的多样性，也为AI应用的开发提供了更多可能性。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/LocalLLaMA/comments/1qf5oj0/deepseek_engram_a_static_memory_unit_for_llms/" target="_blank" rel="noopener noreferrer">DeepSeek Engram：LLMs的静态记忆单元</a>
+                    </div>
+                </div>
+                <p class="article-summary">DeepSeek AI近期发布了一篇名为《通过可扩展查找实现条件记忆：大型语言模型的新稀疏维度》的论文，提出了Engram这一静态记忆单元。该技术的核心思想是，通过在LLMs中引入原生记忆查找功能，避免每次通过昂贵的transformer层重新计算静态知识（如实体、事实或模式）。这可以理解为将“记忆”与“推理”分离。与传统的MoE模型专注于条件计算不同，Engram引入了条件记忆，使得LLMs能够进行更深层次的推理，更好地处理长文本，并将早期层的计算任务从GPU上卸载。<br><br>Engram的关键亮点包括：知识查找的时间复杂度为O(1)，而非重新计算；使用显式的参数化记忆而非隐式权重；提升推理、数学和代码性能；实现大规模内存扩展。这一技术的提出对于AI领域具有重要意义，它不仅为大型语言模型提供了一种更高效的知识存储和检索方式，还有助于提升LLMs在处理复杂任务时的性能。对于AI从业者而言，Engram的问世无疑为LLMs的发展开辟了新的方向，有望推动AI技术的进一步突破。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="http://arxiv.org/abs/2601.10527v1" target="_blank" rel="noopener noreferrer">关于GPT-5.2、Gemini 3 Pro、Qwen3-VL、Doubao 1.8、Grok 4.1 Fast、Nano Banana Pro和Seedream 4.5的安全报告</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 对前沿大型语言模型和多模态大型语言模型的安全评估进行了综合分析，提出了针对多模态模型的安全评估框架。<br><br>**与AI Agent的关联**: 为AI Agent的安全性和可靠性提供了评估标准，有助于推动多智能体系统在多模态环境下的应用。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=46658773" target="_blank" rel="noopener noreferrer">展示HN：视频到网格 - 使用一次视觉API调用分析视频</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN: Video-to-Grid是一款基于Vision API的视频分析工具，它可以将视频转化为2D缩略图网格，类似于接触式胶片。该产品利用VAM Seek技术，将视频内容浓缩成一张包含48帧的图片，全面展现视频内容。这种格式不仅适用于人类视频导航，也适用于AI分析。Video-to-Grid原型设计简洁高效，为视频分析提供了一种创新的方法，帮助用户快速、直观地了解视频内容。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=46658143" target="_blank" rel="noopener noreferrer">展示HN：使用Lua（无需客户端代码）的OSS服务器渲染多人游戏</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN：一款基于Lua的开放源代码服务器端渲染多人游戏引擎。该引擎无需客户端代码，旨在为开发者提供高效、便捷的游戏开发解决方案。通过使用Lua语言，开发者可以轻松实现游戏逻辑，降低开发难度。该产品可解决传统游戏开发中客户端与服务器之间数据交互复杂、开发周期长等问题，助力开发者快速构建高质量游戏。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=46658016" target="_blank" rel="noopener noreferrer">展示HN：针对Blackwell (SM_120)优化的vLLM – 在DeepSeek-R1上59T/S</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN: Optimized vLLM for Blackwell (SM_120) – 59T/S on DeepSeek-R1是一款针对Blackwell (SM_120)的优化版vLLM，采用Kernel 6.14，针对RTX 5090进行优化。通过FlashInfer技术，在DeepSeek-R1平台上实现了59 t/s的高性能。该产品旨在为用户提供高效、稳定的AI计算解决方案，有效解决大规模数据处理和计算难题，助力技术从业者提升工作效率。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-01-18 00:22:51</p>
+        </footer>
+    </div>
+</body>
+
+</html>
