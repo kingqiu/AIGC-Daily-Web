@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-01-18">
-    <title>AIGC Daily #88 | 两克伴AIGC日报</title>
+    <title>AIGC Daily #90 | 两克伴AIGC日报</title>
 
     <style>
         /* ==================== CSS Variables ==================== */
@@ -313,8 +313,8 @@
 
         <!-- Hero Image -->
         <div class="hero-image">
-            <img src="../images/AIGC_Daily_2026-01-18_hero.png" alt="AIGC Daily 88 Hero Image">
-            <p class="hero-caption">本期关注：MCP服务器推动本地LLM实现离线运行与功能扩展，KoboldCpp v1.106支持MCP成为Claude替代品，DeepSeek Engram通过静态记忆单元提升LLM推理与性能，三者共同助力AI本地化、实用化发展。</p>
+            <img src="../images/AIGC_Daily_2026-01-18_hero.png" alt="AIGC Daily 90 Hero Image">
+            <p class="hero-caption">本期关注：PyTorch从零实现GPT模型深入理解LLM架构，MCP服务器为本地LLM提供内存文件访问及“良知”实现100%离线运行，KoboldCpp新增MCP支持成Claude Desktop替代品，推动AI技术实用化与自主化发展。</p>
         </div>
 
         <!-- Content Sections -->
@@ -324,28 +324,41 @@
                 <div class="article-title-wrapper">
                     <span class="article-icon">🔸</span>
                     <div class="article-title">
+                        <a href="https://www.reddit.com/r/LocalLLaMA/comments/1qfcap8/i_implemented_a_gptstyle_model_from_scratch_using/" target="_blank" rel="noopener noreferrer">我阅读Sebastian Raschka的书籍时，从头开始使用PyTorch实现了一个GPT风格的模型。</a>
+                    </div>
+                </div>
+                <p class="article-summary">近日，Reddit用户u/Bthreethree分享了自己基于PyTorch从头开始构建GPT风格大型语言模型（LLM）的实践经验。该项目旨在深入理解LLM的架构，从数据与分词、注意力机制到指令微调的全生命周期实现。作者遵循Sebastian Raschka的《从头构建LLM》一书，构建了一个涵盖数据、分词、注意力机制等关键组件的完整项目。其中，作者自行实现了SimpleTokenizerV2和GPTDatasetV1，以支持高效的自动回归训练。此外，作者手动实现了MultiHeadAttention，以深入理解张量数学。这一实践对于AI领域具有重要意义，它不仅有助于研究者更好地理解LLM的内部机制，也为PyTorch框架下的LLM开发提供了宝贵的参考案例。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
                         <a href="https://www.reddit.com/r/LocalLLaMA/comments/1qfgiq1/mcp_server_that_gives_local_llms_memory_file/" target="_blank" rel="noopener noreferrer">MCP服务器，为本地LLM提供内存、文件访问和“良知”——100%在苹果硅上离线运行</a>
                     </div>
                 </div>
-                <p class="article-summary">近日，一位Reddit用户u/TheTempleofTwo分享了一项创新技术：MCP服务器，该服务器旨在为本地大型语言模型（LLM）提供内存、文件访问以及“良知”，实现100%离线运行于Apple Silicon平台。<br><br>该技术的核心在于解决当前本地LLM的三大问题：无状态、缺乏治理以及缺乏实际操作能力。通过构建一个运行在Mac Studio M2 Ultra上的完整技术栈，包括LM Studio（聊天界面）、Hermes-3-Llama-3.1-8B（MLX，4位）和Temple Bridge（MCP服务器），MCP服务器为LLM提供了文件读写、命令执行等功能，并引入了治理协议，确保AI在执行任务时遵循一定的规则。</p>
+                <p class="article-summary">近日，一位Reddit用户u/TheTempleofTwo在社区分享了一项创新技术——一款运行在Mac Studio M2 Ultra上的MCP服务器，旨在为本地LLM（大型语言模型）提供内存、文件访问和“良知”，实现100%离线运行。该服务器通过整合LM Studio（聊天界面）、Hermes-3-Llama-3.1-8B（MLX，4位）和Temple Bridge（MCP服务器）等技术，解决了本地LLM无状态、缺乏治理和交互能力不足的问题。<br><br>这项技术的核心在于为LLM提供持久的记忆和执行任务的权限，同时通过“良知”机制限制其行为。AI能够读取/写入沙盒目录中的文件，执行允许列表中的命令（如pytest、git、ls等），并咨询“阈值协议”来确保其行为符合预期。</p>
             </article>
             <article class="article">
                 <div class="article-title-wrapper">
                     <span class="article-icon">🔸</span>
                     <div class="article-title">
-                        <a href="https://www.reddit.com/r/LocalLLaMA/comments/1qfb0gk/koboldcpp_v1106_finally_adds_mcp_server_support/" target="_blank" rel="noopener noreferrer">KoboldCpp v1.106终于添加了对MCP服务器的支持，Claude桌面版的直接替代品</a>
+                        <a href="https://www.reddit.com/r/LocalLLaMA/comments/1qfb0gk/koboldcpp_v1106_finally_adds_mcp_server_support/" target="_blank" rel="noopener noreferrer">KoboldCpp v1.106终于增加了MCP服务器支持，Claude桌面版的直接替代品</a>
                     </div>
                 </div>
-                <p class="article-summary">KoboldCpp v1.106版本正式加入了对MCP服务器的支持，成为Claude Desktop的便捷替代品。这一新功能标志着KoboldCpp的持续发展和创新。MCP（Multi-Channel Protocol）支持使得KoboldCpp能够无缝连接所有提供的MCP服务器，包括HTTP和STDIO传输方式，并自动将AI选择的工具请求转发至相应的MCP服务器。这一改进不仅提升了KoboldCpp的兼容性，也为第三方客户端提供了便利。<br><br>KoboldCpp v1.106的MCP桥接功能，使得用户可以轻松获取所有服务器上的工具列表，选择AI使用的工具，并可选择性地启用工具调用API。这一更新对AI领域具有重要意义，它不仅丰富了AI工具的多样性，也为AI应用的开发提供了更多可能性。</p>
+                <p class="article-summary">KoboldCpp v1.106版本近日迎来重大更新，新增原生MCP服务器支持，成为Claude Desktop的完美替代品。这一更新意味着KoboldCpp在保持原有功能的同时，进一步提升了用户体验和兼容性。MCP（Modular Client Protocol）桥接功能支持HTTP和STDIO两种传输方式，可自动将AI工具请求转发至对应MCP服务器，为第三方客户端提供便利。<br><br>此次更新对AI领域具有重要意义。首先，KoboldCpp的MCP支持将极大丰富AI工具的选择，提高AI应用的灵活性。其次，MCP桥接功能简化了工具调用过程，降低了开发者门槛，有助于推动AI技术的发展和应用。此外，KoboldCpp的兼容性优化，将为AI从业者提供更便捷的开发环境。</p>
             </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
             <article class="article">
                 <div class="article-title-wrapper">
                     <span class="article-icon">🔸</span>
                     <div class="article-title">
-                        <a href="https://www.reddit.com/r/LocalLLaMA/comments/1qf5oj0/deepseek_engram_a_static_memory_unit_for_llms/" target="_blank" rel="noopener noreferrer">DeepSeek Engram：LLMs的静态记忆单元</a>
+                        <a href="https://blog.bytebytego.com/p/ep198-best-resources-to-learn-ai" target="_blank" rel="noopener noreferrer">EP198：2026年学习人工智能的最佳资源</a>
                     </div>
                 </div>
-                <p class="article-summary">DeepSeek AI近期发布了一篇名为《通过可扩展查找实现条件记忆：大型语言模型的新稀疏维度》的论文，提出了Engram这一静态记忆单元。该技术的核心思想是，通过在LLMs中引入原生记忆查找功能，避免每次通过昂贵的transformer层重新计算静态知识（如实体、事实或模式）。这可以理解为将“记忆”与“推理”分离。与传统的MoE模型专注于条件计算不同，Engram引入了条件记忆，使得LLMs能够进行更深层次的推理，更好地处理长文本，并将早期层的计算任务从GPU上卸载。<br><br>Engram的关键亮点包括：知识查找的时间复杂度为O(1)，而非重新计算；使用显式的参数化记忆而非隐式权重；提升推理、数学和代码性能；实现大规模内存扩展。这一技术的提出对于AI领域具有重要意义，它不仅为大型语言模型提供了一种更高效的知识存储和检索方式，还有助于提升LLMs在处理复杂任务时的性能。对于AI从业者而言，Engram的问世无疑为LLMs的发展开辟了新的方向，有望推动AI技术的进一步突破。</p>
+                <p class="article-summary">本文由ByteByteGo撰写，深入探讨了2026年学习人工智能的最佳资源。文章将AI学习资源分为多种类型，包括在线课程、书籍、研究论文、开源项目和社区论坛等。作者通过详尽的分析，为读者揭示了各类资源的优缺点，并提供了具体的学习路径和建议。文章不仅涵盖了基础知识，还深入探讨了深度学习、自然语言处理等前沿领域。通过结合实际案例和行业动态，作者展现了独特的见解和深度，为AI从业者提供了宝贵的参考。阅读本文，读者不仅能获得全面的学习资源指南，还能对AI领域的最新发展趋势有更深入的理解。</p>
             </article>
         </section>
 
@@ -358,7 +371,7 @@
                         <a href="http://arxiv.org/abs/2601.10527v1" target="_blank" rel="noopener noreferrer">关于GPT-5.2、Gemini 3 Pro、Qwen3-VL、Doubao 1.8、Grok 4.1 Fast、Nano Banana Pro和Seedream 4.5的安全报告</a>
                     </div>
                 </div>
-                <p class="article-summary">**核心贡献**: 对前沿大型语言模型和多模态大型语言模型的安全评估进行了综合分析，提出了针对多模态模型的安全评估框架。<br><br>**与AI Agent的关联**: 为AI Agent的安全性和可靠性提供了评估标准，有助于推动多智能体系统在多模态环境下的应用。</p>
+                <p class="article-summary">**核心贡献**: 对前沿大型语言模型和多模态大型语言模型进行了综合安全评估，探讨了模型在推理、感知和生成能力方面的进步与安全性的关系。<br><br>**与AI Agent的关联**: 为AI Agent的安全性和可靠性提供了评估框架，对多智能体系统中的安全控制有实际指导意义。</p>
             </article>
         </section>
 
@@ -368,10 +381,10 @@
                 <div class="article-title-wrapper">
                     <span class="article-icon">🔸</span>
                     <div class="article-title">
-                        <a href="https://news.ycombinator.com/item?id=46658773" target="_blank" rel="noopener noreferrer">展示HN：视频到网格 - 使用一次视觉API调用分析视频</a>
+                        <a href="https://news.ycombinator.com/item?id=46658773" target="_blank" rel="noopener noreferrer">展示HN：视频到网格 - 通过一次视觉API调用分析视频</a>
                     </div>
                 </div>
-                <p class="article-summary">Show HN: Video-to-Grid是一款基于Vision API的视频分析工具，它可以将视频转化为2D缩略图网格，类似于接触式胶片。该产品利用VAM Seek技术，将视频内容浓缩成一张包含48帧的图片，全面展现视频内容。这种格式不仅适用于人类视频导航，也适用于AI分析。Video-to-Grid原型设计简洁高效，为视频分析提供了一种创新的方法，帮助用户快速、直观地了解视频内容。<br><br>---</p>
+                <p class="article-summary">Show HN: Video-to-Grid是一款基于Vision API的视频分析工具，它将视频转换为2D缩略图网格，实现48帧视频内容在一幅图像中呈现，如同传统接触式胶片。该产品基于VAM Seek技术，专为人类视频导航设计，现发现同样适用于AI。通过一次API调用，即可快速分析视频内容，为用户提供高效的视频内容概览，解决视频内容检索和分析难题。该产品目前处于原型阶段，欢迎技术从业者提供反馈。<br><br>---</p>
             </article>
             <article class="article">
                 <div class="article-title-wrapper">
@@ -380,23 +393,23 @@
                         <a href="https://news.ycombinator.com/item?id=46658143" target="_blank" rel="noopener noreferrer">展示HN：使用Lua（无需客户端代码）的OSS服务器渲染多人游戏</a>
                     </div>
                 </div>
-                <p class="article-summary">Show HN：一款基于Lua的开放源代码服务器端渲染多人游戏引擎。该引擎无需客户端代码，旨在为开发者提供高效、便捷的游戏开发解决方案。通过使用Lua语言，开发者可以轻松实现游戏逻辑，降低开发难度。该产品可解决传统游戏开发中客户端与服务器之间数据交互复杂、开发周期长等问题，助力开发者快速构建高质量游戏。<br><br>---</p>
+                <p class="article-summary">Show HN：一款基于Lua的开放源代码服务器端渲染多人游戏引擎。该引擎无需客户端代码，通过服务器端渲染实现游戏逻辑和界面展示，有效降低开发成本和复杂度。该产品为开发者提供了一套高效、易用的游戏开发工具，助力游戏快速上线。通过开源方式，用户可以自由修改和扩展引擎功能，实现个性化游戏体验。适用于技术爱好者、独立游戏开发者以及中小型游戏工作室。<br><br>---</p>
             </article>
             <article class="article">
                 <div class="article-title-wrapper">
                     <span class="article-icon">🔸</span>
                     <div class="article-title">
-                        <a href="https://news.ycombinator.com/item?id=46658016" target="_blank" rel="noopener noreferrer">展示HN：针对Blackwell (SM_120)优化的vLLM – 在DeepSeek-R1上59T/S</a>
+                        <a href="https://news.ycombinator.com/item?id=46658016" target="_blank" rel="noopener noreferrer">展示HN：针对Blackwell（SM_120）优化的vLLM – 在DeepSeek-R1上59T/S</a>
                     </div>
                 </div>
-                <p class="article-summary">Show HN: Optimized vLLM for Blackwell (SM_120) – 59T/S on DeepSeek-R1是一款针对Blackwell (SM_120)的优化版vLLM，采用Kernel 6.14，针对RTX 5090进行优化。通过FlashInfer技术，在DeepSeek-R1平台上实现了59 t/s的高性能。该产品旨在为用户提供高效、稳定的AI计算解决方案，有效解决大规模数据处理和计算难题，助力技术从业者提升工作效率。</p>
+                <p class="article-summary">Show HN: Optimized vLLM for Blackwell (SM_120) – 59T/S on DeepSeek-R1是一款针对Blackwell (SM_120)的优化版本vLLM，搭载Kernel 6.14，专为RTX 5090优化。通过FlashInfer技术，在DeepSeek-R1平台上实现了59 t/s的高性能。该产品旨在提升AI模型在深度学习任务中的处理速度和效率，特别适用于对计算性能有较高要求的场景，为技术从业者提供强大的AI解决方案。</p>
             </article>
         </section>
 
         <!-- Footer -->
         <footer class="footer">
             <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
-            <p style="margin-top: 8px;">生成时间：2026-01-18 00:27:36</p>
+            <p style="margin-top: 8px;">生成时间：2026-01-18 00:40:30</p>
         </footer>
     </div>
 </body>
