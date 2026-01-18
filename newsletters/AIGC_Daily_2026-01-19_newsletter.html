@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-01-19">
+    <title>AIGC Daily #106 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-01-19 星期一</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-01-19_hero.png" alt="AIGC Daily 106 Hero Image">
+            <p class="hero-caption">本期关注：隐私保护AI替代品Confer发布，上海“十五五”规划推动AI全栈创新（智算芯片、语料、集群），Cursor AI用GPT 5.2代理一周构建300万行代码浏览器，PolyMCP简化MCP服务器与AI代理开发。</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/01/18/moxie-marlinspike-has-a-privacy-conscious-alternative-to-chatgpt/" target="_blank" rel="noopener noreferrer">莫克西·马尔林斯派克（Moxie Marlinspike）提供了一种对ChatGPT的隐私意识替代方案。</a>
+                    </div>
+                </div>
+                <p class="article-summary">Moxie Marlinspike推出隐私意识强的ChatGPT替代品Confer，对话内容不会被用于训练或广告。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.finextra.com/blogposting/30603/deep-dive-breaking-down-shopify-and-googles-universal-commerce-protocol" target="_blank" rel="noopener noreferrer">深度解析：剖析Shopify与谷歌的通用商业协议：由Sam Boboev - Finextra研究</a>
+                    </div>
+                </div>
+                <p class="article-summary">Shopify与Google推出通用商业协议（UCP），旨在简化电子商务流程。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://openai.com/index/ai-for-human-agency" target="_blank" rel="noopener noreferrer">人工智能助力自我赋能</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI探讨AI如何通过缩小能力差距，提升人类、企业和国家的生产力和增长。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://openai.com/index/a-business-that-scales-with-the-value-of-intelligence" target="_blank" rel="noopener noreferrer">一家与智力价值同步发展的企业</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI商业模式随智能价值增长，涵盖订阅、API、广告、商业和计算，ChatGPT应用推动增长。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3645519092878982?f=rss" target="_blank" rel="noopener noreferrer">上海“十五五”规划建议：推动人工智能全栈创新，加强高性能智算芯片、高质量语料、高效能智算集群协同发展</a>
+                    </div>
+                </div>
+                <p class="article-summary">《中共上海市委关于制定上海市国民经济和社会发展第十五个五年规划的建议》提出，上海将全力推动人工智能全栈创新，重点发展高性能智算芯片、高质量语料和高效能智算集群。此举旨在加快基础大模型迭代升级和具身智能技术熟化，深入实施“人工智能+”行动，推进“模塑申城”工程，深化垂类模型应用和多智能体开发，以及加强人工智能治理。<br><br>这一规划建议的重要性在于，它将为上海乃至全国的人工智能产业发展提供明确的方向和强有力的政策支持。在当前全球人工智能技术竞争日益激烈的背景下，上海此举有助于提升我国在人工智能领域的国际竞争力，推动产业升级和经济转型。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/singularity/comments/1qgb1j5/cursor_ai_ceo_shares_gpt_52_agents_building_a_3m/" target="_blank" rel="noopener noreferrer">Cursor AI首席执行官分享了一周内构建了300万行代码的网页浏览器的GPT 5.2代理。</a>
+                    </div>
+                </div>
+                <p class="article-summary">Cursor AI首席执行官Michael Truell在Reddit上分享了一段视频，展示了由GPT 5.2驱动的多智能体系统在一周内构建了一个完整的网络浏览器。该项目产生了超过300万行代码，包括自定义渲染引擎和JavaScript虚拟机。虽然该项目目前处于实验阶段，尚未达到生产级别，但它展示了自主编码智能体在持续运行下的扩展能力。可视化结果显示，智能体实时协调和演进代码库。这一突破性进展不仅展示了AI在软件开发领域的巨大潜力，也为AI领域的研究和应用提供了新的思路和方向。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=46672385" target="_blank" rel="noopener noreferrer">展示HN：PolyMCP – 使用Python或TypeScript构建MCP服务器和AI代理</a>
+                    </div>
+                </div>
+                <p class="article-summary">PolyMCP是一款创新的工具，允许开发者使用Python或TypeScript构建MCP（Model Context Protocol）服务器和AI代理。该工具的核心优势在于其简洁的API和一致的编程模式，使得开发者能够快速暴露工具，无论是通过HTTP、进程内还是stdio。PolyMCP还提供实时调试和监控工具调用的功能，通过交互式检查器实现，极大提升了开发效率。<br><br>此外，PolyMCP支持将代理与大型语言模型（LLMs）集成，实现工具的自动发现和编排，这对于AI领域尤为重要。这一特性有助于简化工作流程，提高AI系统的智能化水平。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.lennysnewsletter.com/p/the-non-technical-pms-guide-to-building-with-cursor" target="_blank" rel="noopener noreferrer">非技术型项目经理的Cursor构建指南 | Zevi Arnovitz（Meta）</a>
+                    </div>
+                </div>
+                <p class="article-summary">Meta产品经理Zevi Arnovitz在本文中分享了其针对非技术背景构建者的完整AI工作流程，并详细介绍了实现这一流程的斜杠命令。文章强调，当前正是科技领域初学者的最佳时机。Arnovitz通过深入剖析AI工具的运用，揭示了非技术背景人员在AI构建中的潜力和机遇。本文对于AI从业者而言，不仅具有极高的阅读价值，更提供了独特的见解和实用的指导，有助于拓宽非技术背景人员在AI领域的视野。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/singularity/comments/1qg8uc5/goldman_sachs_ai_could_automate_25_of_all_work/" target="_blank" rel="noopener noreferrer">高盛：人工智能可能自动化25%的所有工作时间</a>
+                    </div>
+                </div>
+                <p class="article-summary">高盛分析师重新审视了人工智能自动化工作可能导致人类职业变迁的观点，但结论并不极端。他们分析认为，人工智能可能自动化全球约25%的工作时间，但仅有约6-7%的职位可能被永久取代。文章指出，历史上的技术变革并未消除劳动力，而是改变了其形态。如今，约40%的职位在85年前并不存在，这表明随着旧职位的消亡，新角色也可能随之产生。文章深入探讨了人工智能最终是取代工作还是重新定义工作本质的问题，为AI从业者提供了独特的视角和深入思考。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=46671905" target="_blank" rel="noopener noreferrer">展示HN：停止在Claude、Cursor和Codex之间手动同步规则</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN: Stop manually syncing rules between Claude, Cursor, and Codex<br><br>AI Global是一款旨在解决AI工具配置碎片化问题的创新产品。它通过统一管理不同AI助手（如Claude、Cursor、Windsurf等）的规则和指令，消除用户在切换工具时手动同步规则的繁琐与错误。AI Global的核心功能是简化AI工具配置，提高工作效率，特别适用于需要频繁切换AI工具的技术从业者。通过AI Global，用户可以轻松实现自定义指令和项目规则的跨平台共享，大幅提升工作效率和准确性。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=46672593" target="_blank" rel="noopener noreferrer">展示HN：我以1美元的价格出售AI医疗账单审核，仍然赚取60倍利润</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN：一款创新的AI医疗账单审查服务，仅需1美元即可使用前沿模型或代理，无需跟踪或广告。该平台基于Anthropic/OpenAI模型和Codex/Claude Code/Goose，所有操作均在沙箱中进行，保障用户隐私。产品旨在为用户提供高效、便捷的医疗账单审查服务，解决医疗账单复杂、繁琐的问题，降低用户时间和经济成本。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=46671770" target="_blank" rel="noopener noreferrer">展示HN：并行智能体机器工作流引擎</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN：这是一款针对并行智能体机器人的工作流引擎。该产品通过高效并行处理，实现智能体机器人的协同作业，提升工作效率。它为用户提供了强大的AI能力，通过优化工作流程，解决复杂任务中的并行处理难题，有效提升企业自动化水平。这款工作流引擎适用于技术从业者，助力企业实现智能化、高效化运营。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-01-19 07:23:38</p>
+        </footer>
+    </div>
+</body>
+
+</html>
