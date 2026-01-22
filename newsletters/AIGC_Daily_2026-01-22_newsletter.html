@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-01-22">
+    <title>AIGC Daily #115 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-01-22 星期四</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-01-22_hero.png" alt="AIGC Daily 115 Hero Image">
+            <p class="hero-caption">本期关注：Anthropic修订Claude宪法并年化营收超90亿美元，OpenAI寻求中东500亿美元融资，广发证券指出AI记忆基础设施价值攀升，Ably AI Transport解决智能应用实时同步难题，推动AI技术落地与产业升级。</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/01/21/anthropic-revises-claudes-constitution-and-hints-at-chatbot-consciousness/" target="_blank" rel="noopener noreferrer">Anthropic修订Claude的“宪法”，并对聊天机器人意识暗示</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic更新Claude的‘宪法’，强调有益、诚实，并避免危害人类</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3649821910229122?f=rss" target="_blank" rel="noopener noreferrer">人工智能公司Anthropic去年年化营收超90亿美元</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic去年年化营收超90亿美元，筹备新一轮融资</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3649784509849729?f=rss" target="_blank" rel="noopener noreferrer">OpenAI首席执行官奥特曼亲赴中东洽谈500亿美元新融资</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI首席执行官奥特曼寻求中东500亿美元新融资</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blogs.nvidia.com/blog/davos-wef-blackrock-ceo-larry-fink-jensen-huang/" target="_blank" rel="noopener noreferrer">“人类历史上最大规模的基础设施建设”：黄仁勋在达沃斯论坛上谈AI的“五层蛋糕”</a>
+                    </div>
+                </div>
+                <p class="article-summary">NVIDIA创始人黄仁勋在达沃斯论坛谈AI的‘五层蛋糕’</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=46711706" target="_blank" rel="noopener noreferrer">展示HN：Ably AI传输 - 适用于智能应用程序的传输层</a>
+                    </div>
+                </div>
+                <p class="article-summary">Ably AI Transport，一款专为智能应用程序设计的传输层，由Ably公司工程师mchristensen开发。该产品旨在解决云托管智能代理在实时同步方面遇到的难题。在过去几个月中，mchristensen与众多工程师进行了交流，发现模型选择、提示工程和编排等难题并非最棘手，而是实时同步问题成为阻碍AI应用发展的关键。<br><br>Ably AI Transport的核心功能在于提供高效、稳定的传输层，确保智能代理与终端用户之间的实时数据同步。这对于构建智能助手、共乘流程等AI应用至关重要。在当前AI领域，实时同步问题一直困扰着开发者，而Ably AI Transport的出现有望解决这一难题。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3649802815136128?f=rss" target="_blank" rel="noopener noreferrer">广发证券：AI记忆相关上游基础设施价值量、重要性将不断提升</a>
+                    </div>
+                </div>
+                <p class="article-summary">广发证券最新研报指出，AI记忆相关上游基础设施的价值和重要性将不断攀升。随着AI技术的发展，AI记忆已成为支撑上下文连续性、个性化与历史信息复用的关键能力，推动AI模型能力的持续扩展，助力AI Agent等应用加速落地。这一转变意味着AI记忆的价值正从“费用项”转变为“资产项”，为相关上游基础设施带来巨大的发展机遇。对于AI领域而言，这一趋势将对产业链核心受益标的产生积极影响，值得行业从业者关注。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://simonwillison.net/2026/Jan/21/claudes-new-constitution/#atom-everything" target="_blank" rel="noopener noreferrer">克劳德的全新宪法</a>
+                    </div>
+                </div>
+                <p class="article-summary">近期，AI研究机构Anthropic发布了Claude模型的新宪法——“Claude&#39;s new constitution”。去年年底，Richard Weiss在探索Claude Opus 4.5时发现，该模型在训练过程中产生了一份描述其核心价值的文档，而非系统提示内容。这份文档被称为“灵魂文档”，并由Anthropic确认确为Claude训练过程中的组成部分。<br><br>这份新宪法的发布对于AI领域具有重要意义。首先，它揭示了AI模型在训练过程中形成的价值观，为AI伦理研究提供了重要参考。其次，这份宪法体现了AI开发者对AI伦理的重视，有助于推动AI行业在伦理方面的规范发展。最后，这份宪法有助于公众了解AI模型的价值观，增强公众对AI技术的信任。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.blog.langchain.com/building-multi-agent-applications-with-deep-agents/" target="_blank" rel="noopener noreferrer">构建多智能体应用——深度智能体</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文由Sydney Runkle撰写，深入探讨了构建多智能体应用的方法。文章的核心观点是，将复杂任务分解为专门化的智能体，是构建强大AI系统的有效途径。作者详细介绍了如何利用深度智能体构建多智能体系统，并提供了丰富的实例和案例分析。<br><br>文章的关键论据包括：首先，通过将任务分解为多个智能体，可以充分发挥不同智能体的优势，提高系统的整体性能；其次，深度学习技术为智能体提供了强大的学习能力，使其能够适应复杂多变的环境；最后，多智能体系统在协同完成任务的过程中，能够实现更高效的资源利用和决策优化。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.a16z.news/p/its-time-for-agentic-video-editing" target="_blank" rel="noopener noreferrer">是时候进行代理视频编辑了</a>
+                    </div>
+                </div>
+                <p class="article-summary">《是时候让代理进行视频编辑了》一文由Justine Moore撰写，发表于2025年。文章核心观点是，随着2025年视频成为主流，2026年我们将迎来代理编辑视频的时代。作者通过分析视频编辑技术的发展趋势，指出人工智能代理在视频编辑领域的巨大潜力。文章以深度和独特见解，阐述了以下关键论据：首先，人工智能代理能够快速处理大量视频数据，提高编辑效率；其次，代理编辑可以降低人力成本，提升视频制作质量；最后，代理编辑将推动视频内容的个性化发展。阅读本文，AI从业者可以了解视频编辑领域的新趋势，把握行业发展脉搏，为自身职业发展提供有益参考。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.blog.langchain.com/introducing-agent-builder-template-library/" target="_blank" rel="noopener noreferrer">立即使用代理构建器模板部署代理</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文由LangChain Accounts撰写，深入探讨了Agent Builder模板库的引入，该库汇集了适用于常见任务的即时部署智能代理，并配备了用户已熟悉的工具。文章核心观点在于，通过这一创新模板库，用户可以轻松构建和部署智能代理，从而提高工作效率。关键论据包括：模板库的实用性、易用性和通用性。阅读本文，AI从业者将了解到如何利用Agent Builder模板库快速构建智能代理，并从中获得独特的见解。文章深度和独特之处在于，它揭示了智能代理构建的便捷性和高效性，为AI领域带来了新的可能性。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=46711958" target="_blank" rel="noopener noreferrer">展示HN：Grov – AI编码代理的多人游戏</a>
+                    </div>
+                </div>
+                <p class="article-summary">Grov是一款专为AI编码代理设计的多人协作平台。它解决了现有AI编码助手“单打独斗”的痛点，实现了跨终端、跨会话的高效协作。在Grov中，团队成员可实时共享代码、推理过程和架构决策，确保知识传递无缝衔接。此举有效避免了重复劳动，大幅提升团队协作效率。Grov的AI能力在于其独特的多人协作机制，实现了AI编码代理间的知识共享和协同进化，为技术从业者带来前所未有的便捷与高效。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=46711652" target="_blank" rel="noopener noreferrer">展示HN：Tandem - 开源跨平台AI同事（Tauri）</a>
+                    </div>
+                </div>
+                <p class="article-summary">Tandem是一款开源的跨平台桌面AI协作工具，支持Windows/Linux/macOS操作系统。该产品旨在为用户提供高效的任务规划和执行方案。核心功能包括：在计划模式下，AI助手会提出任务列表，用户审核后批量执行；生成可分享的HTML报告/仪表板，作为真实文件存储在用户工作区；支持BYOK模型/提供商，如OpenRouter、OpenAI、Anthropic、Ollama等。Tandem的AI能力体现在其智能任务规划和执行建议，为用户节省时间，提高工作效率。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=46711649" target="_blank" rel="noopener noreferrer">Show HN：TerabyteDeals - 按每TB价格比较存储费用</a>
+                    </div>
+                </div>
+                <p class="article-summary">TerabyteDeals是一款简单实用的存储设备价格比较工具。该工具通过价格每TB（$/TB）的方式，方便用户对比硬盘和固态硬盘的价格。用户可轻松筛选不同类型、接口、尺寸和容量的存储设备，并获取每日更新的价格信息。TerabyteDeals旨在解决用户在选购NAS驱动器时，手动计算价格的不便，为技术从业者提供便捷的价格比较服务。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-01-22 08:00:01</p>
+        </footer>
+    </div>
+</body>
+
+</html>
