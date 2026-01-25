@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-01-25">
+    <title>AIGC Daily #121 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-01-25 星期日</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-01-25_hero.png" alt="AIGC Daily 121 Hero Image">
+            <p class="hero-caption">本期关注：AI代码生成领域竞争加剧，Anthropic的Claude Code走红吸引非编码者，OpenAI将发布智能体循环技术的Codex项目挑战对手，同时Gemini强化图像生成能力，Claude Code创造者更宣称AI已编写其100%代码，推动AI工具向更高效、普惠化发展。</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/tech/866931/gemini-personal-intelligence-ai" target="_blank" rel="noopener noreferrer">Gemini与个人智能非常熟悉</a>
+                    </div>
+                </div>
+                <p class="article-summary">Gemini推出Personal Intelligence，强化AI生成图像能力</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://fortune.com/2026/01/24/anthropic-boris-cherny-claude-code-non-coders-software-engineers/" target="_blank" rel="noopener noreferrer">克劳德代码为Anthropic带来病毒式时刻 - 幸运杂志</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic的 Claude Code工具走红，吸引非编码者关注</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://thenextweb.com/news/mews-raises-e255m-to-accelerate-ai-and-automation-in-hospitality" target="_blank" rel="noopener noreferrer">Mews筹集了2.55亿欧元，以加速酒店行业的AI和自动化发展。</a>
+                    </div>
+                </div>
+                <p class="article-summary">Mews获得2550万欧元融资，加速酒店业AI和自动化</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/01/24/former-google-trio-is-building-an-interactive-ai-powered-learning-app-for-kids/" target="_blank" rel="noopener noreferrer">前谷歌员工试图用一款AI驱动的学习应用吸引孩子。</a>
+                    </div>
+                </div>
+                <p class="article-summary">前谷歌员工开发AI学习应用，旨在教育孩子现代概念</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/01/24/a-new-test-for-ai-labs-are-you-even-trying-to-make-money/" target="_blank" rel="noopener noreferrer">人工智能实验室的新考验：你们甚至尝试赚钱了吗？</a>
+                    </div>
+                </div>
+                <p class="article-summary">AI实验室面临新考验：是否在努力盈利？</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.jiqizhixin.com/articles/2026-01-24-5" target="_blank" rel="noopener noreferrer">挑战Claude Code？OpenAI Codex发布月将至，今先揭秘智能体循环</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI即将发布其备受瞩目的Codex项目，这无疑是对Claude Code的又一挑战。据悉，Codex将采用智能体循环技术，实现更高效、更智能的代码生成。这一技术突破对于AI领域具有重要意义，它不仅将推动代码生成技术的发展，还将对编程教育、软件开发等领域产生深远影响。<br><br>智能体循环技术，即通过训练智能体在代码生成过程中不断学习和优化，从而实现代码生成的智能化。这一技术有望解决当前代码生成中存在的诸多问题，如代码质量参差不齐、生成效率低下等。在AI领域，这一技术的突破意味着代码生成将更加高效、准确，为开发者提供更多便利。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/singularity/comments/1qlw1ca/the_claude_code_creator_says_ai_writes_100_of_his/" target="_blank" rel="noopener noreferrer">克劳德代码的创造者表示，现在AI编写了他100%的代码。</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic的Claude Code创造者Boris Cherny宣称，他已经两个月没有手动编写代码了。在30天内提交了259个Pull Request（PR）。在Reddit上，用户u/jpcaparas对此表示怀疑，并观看了完整访谈并核实了实际情况。访谈中，Boris透露了他的工作流程：首先进入计划模式（不断迭代直到计划正确），然后自动接受。他认为：“一旦计划正确，代码就会是好的。”这引发了人们的不安：每天谁在审查10多个PR？该消息对AI领域具有重要意义，它展示了AI在软件开发中的应用潜力，同时也引发了关于AI在代码审查和项目管理中角色的讨论。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/LocalLLaMA/comments/1qm3xxm/dual_3090s_glm47flash_1st_prompt_is_great_then/" target="_blank" rel="noopener noreferrer">双3090s与GLM-4.7-Flash：第一个提示很棒，然后逻辑崩溃。本地AI的5美元/天的电费值得吗？</a>
+                    </div>
+                </div>
+                <p class="article-summary">近日，Reddit用户u/Merstin分享了其家庭升级显卡后，利用闲置部件搭建的本地AI设备的使用体验。该设备采用i7 14700K处理器、64GB DDR5内存和双RTX 3090显卡，旨在实现隐私保护、智能家居集成以及“vibe coding”等目标。然而，在实际使用过程中，该设备高昂的电费成为了其价值的制约因素。据估算，若频繁使用，该设备每日电费可能高达5美元。与订阅云服务相比，本地AI设备的成本效益似乎并不明显。这一案例引发了业界对本地AI设备成本效益的讨论，对AI领域的发展产生了重要影响。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://simonwillison.net/2026/Jan/24/jasmine-sun/#atom-everything" target="_blank" rel="noopener noreferrer">引用贾丝敏·孙的话</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文由Jasmine Sun撰写，深入探讨了人们对于软件问题的认知误区。文章指出，大多数人面对问题时，往往不会意识到这些问题可以通过软件解决方案来解决。作者以“如果你告诉朋友他们现在可以立即创建任何应用程序，他们可能会说‘酷！现在我需要想一个想法。’然后他们会忘记这件事，永远不会去构建任何东西。”为例，揭示了人们对于软件创新认知的局限性。<br><br>文章进一步分析了程序员与普通人的思维差异。程序员习惯于将所有问题视为软件问题，并倾向于自动化重复性任务。然而，这种思维方式却让普通人忽视了软件解决方案的可能性。作者以“重命名上周所有IMG_*.jpg文件为hawaii2025_*.jpg”为例，说明了程序员如何通过脚本自动化解决这一问题，而普通人则可能通过繁琐的手动操作来完成。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://simonwillison.net/2026/Jan/24/dont-trust-the-process/#atom-everything" target="_blank" rel="noopener noreferrer">不要“相信过程”</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文探讨了设计流程的局限性，作者Jenny Wen，Anthropic设计负责人兼前Figma设计总监，在柏林Hatch Conference上发表了引人深思的演讲。她认为，传统的用户研究、角色扮演、用户旅程和线框图等设计流程，在当今“人人皆可创造”的世界中已显得过时。<br><br>Wen提出，在当今时代，选择和筛选所创造内容的能力比流程本身更为重要。她主张设计师应转向原型设计，而AI技术的进步使得原型设计更加便捷和高效。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.jiqizhixin.com/articles/2026-01-24-6" target="_blank" rel="noopener noreferrer">估值35亿美元，LeCun创业公司官宣核心方向，掀起对Next-token范式的「叛变」</a>
+                    </div>
+                </div>
+                <p class="article-summary">LeCun创业公司近日宣布其核心发展方向，估值高达35亿美元，此举标志着对Next-token范式的重大“叛变”。文章深入剖析了这一变革背后的原因和影响，揭示了LeCun团队在人工智能领域的独特见解和创新实践。<br><br>核心观点在于，LeCun团队通过其创新技术，挑战了传统的Next-token范式，提出了一种全新的数据处理和模型构建方法。这一方法不仅提高了数据处理效率，还显著提升了模型的性能和泛化能力。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.jiqizhixin.com/articles/2026-01-24-4" target="_blank" rel="noopener noreferrer">不止于Prompt：揭秘「神经网络可重编程性」</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文深入探讨了神经网络的“可重编程性”这一前沿话题。文章指出，神经网络并非一成不变，而是可以通过重新编程实现多样化的功能。作者通过详实的实验数据和理论分析，揭示了神经网络可重编程性的关键论据，包括网络结构的动态调整、参数的灵活配置以及学习算法的优化等。文章不仅对神经网络的可重编程性进行了全面阐述，还探讨了其潜在的应用前景和挑战。对于AI从业者而言，本文提供了宝贵的理论指导和实践参考，有助于推动神经网络技术的发展和应用。阅读本文，将有助于读者深入了解神经网络的可重编程性，拓展视野，提升专业素养。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=46748284" target="_blank" rel="noopener noreferrer">展示HN：我将Claude嵌入到一个正在运行的Node应用程序中</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN: I embedded Claude inside a running Node app是一款创新性的AI产品，核心功能是将AI嵌入运行时环境。通过集成Claude Agent SDK，该产品实现了“Claude Code as a library”，不仅能够处理异常，还能自动扫描文档、调整响应。它为开发者提供了一种全新的解决方案，有效解决了API失败、代码编辑等难题，极大提高了开发效率和代码质量。这款产品以其AI能力和创新点，为技术从业者带来了极大的便利。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=46747609" target="_blank" rel="noopener noreferrer">展示HN：从Slack创建小型公关稿件的AI代理</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN：一款基于Slack的AI代理，旨在帮助非工程师轻松创建小型PR和变更。该产品通过自动化流程，有效节省工程师的时间和切换成本，提高团队协作效率。AI代理具备智能处理能力，可快速识别和生成所需内容，为用户提供便捷、高效的解决方案。欢迎技术从业者体验并分享宝贵意见。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=46747037" target="_blank" rel="noopener noreferrer">展示HN：DocuDeeper – 私密文档AI助手，100%离线，符合GDPR规定</a>
+                    </div>
+                </div>
+                <p class="article-summary">DocuDeeper是一款专为处理敏感文档（PDF/TXT）的专业人士设计的本地AI工具。该产品基于Ollama（llama3.2）运行，100%离线操作，确保数据安全。DocuDeeper具备自动语言检测功能，支持法语、英语和德语。其开源核心遵循MIT许可，轻量快速，以隐私保护为首要原则。适用于律师、会计师、审计师及对隐私保护有高度要求的欧洲团队。该产品有效解决了敏感文档处理过程中的数据安全问题，为用户带来高效、安全的工作体验。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-01-25 09:01:42</p>
+        </footer>
+    </div>
+</body>
+
+</html>
