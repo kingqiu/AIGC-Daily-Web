@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-01-27">
+    <title>AIGC Daily #125 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-01-27 星期二</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-01-27_hero.png" alt="AIGC Daily 125 Hero Image">
+            <p class="hero-caption">本期关注：阿里发布千问旗舰模型Qwen3-Max-Thinking，性能媲美GPT-5.2、Gemini 3 Pro创全球新纪录；同时推出首个自主AI工程代理NEO，解决ML长流程工作流难题，推动AI技术突破与工程效率提升。</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/news/867673/claude-mcp-app-interactive-slack-figma-canva" target="_blank" rel="noopener noreferrer">MCP将Claude聊天与Slack、Figma和Canva等应用相结合</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic的Claude聊天机器人通过MCP扩展，可直接在聊天中与Slack、Figma等应用互动。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/01/26/anthropic-launches-interactive-claude-apps-including-slack-and-other-workplace-tools/" target="_blank" rel="noopener noreferrer">Anthropic推出交互式Claude应用程序，包括Slack和其他办公工具。</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic推出Claude聊天机器人交互式应用，包括Slack等办公工具。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/news/868239/x-grok-sexualized-deepfakes-eu-investigation" target="_blank" rel="noopener noreferrer">X因Grok的性化深度伪造面临欧盟调查</a>
+                    </div>
+                </div>
+                <p class="article-summary">X因Grok AI聊天机器人生成的性化deepfake面临欧盟调查。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://aibusiness.com/data-centers/nvidia-invests-2b-in-coreweave-expands-partnership" target="_blank" rel="noopener noreferrer">英伟达投资20亿美元于CoreWeave，扩大合作</a>
+                    </div>
+                </div>
+                <p class="article-summary">Nvidia投资20亿美元于CoreWeave，扩大合作，加强其在AI基础设施市场的地位。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.leiphone.com/category/industrynews/k0Evef8ezEtSdgHk.html" target="_blank" rel="noopener noreferrer">阿里千问最强模型重磅亮相！性能媲美GPT-5.2、Gemini 3 Pro</a>
+                    </div>
+                </div>
+                <p class="article-summary">阿里近日正式发布千问旗舰推理模型Qwen3-Max-Thinking，该模型在多项权威评测中创下全球新纪录，性能媲美GPT-5.2、Gemini 3 Pro，成为国内最强AI大模型。Qwen3-Max-Thinking采用总参数、强化学习、推理计算的极致规模扩展，刷新了科学知识、数学推理、代码编程等多项关键性能基准测试的全球纪录。<br><br>该模型的发布对AI领域具有重要意义。首先，它标志着我国在AI大模型领域取得了重大突破，有助于提升我国在全球AI领域的竞争力。其次，Qwen3-Max-Thinking的性能提升将为各行业带来更多创新应用，推动AI技术在实际场景中的落地。最后，该模型在推理能力上的突破，为AI领域的研究提供了新的思路和方法。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=46771982" target="_blank" rel="noopener noreferrer">展示HN：首个自主机器学习和人工智能工程代理</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN：首个人工智能与机器学习工程代理NEO，由svij137创始人打造。NEO旨在解决现有工具在处理长流程、状态性和反馈驱动的AI和ML工程工作流时的局限性。传统工具适用于短期、线性任务，但在实际ML工作中，工程师需要探索数据、训练模型、评估结果、调整假设、重新运行实验、比较指标、生成工件并迭代，这一过程可能持续数小时甚至数天。NEO的出现对于AI领域具有重要意义，它通过提供更加高效、智能的工作流解决方案，极大地提升了AI和ML工程师的工作效率，推动了AI技术的快速发展和应用。该代理的推出，标志着AI工程领域迈入了一个新的阶段，为从业者带来了更为便捷、高效的工具，有望进一步推动人工智能技术的创新与突破。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://simonwillison.net/2026/Jan/26/chatgpt-containers/#atom-everything" target="_blank" rel="noopener noreferrer">ChatGPT容器现在可以运行bash、安装pip/npm包以及下载文件。</a>
+                    </div>
+                </div>
+                <p class="article-summary">ChatGPT近期迎来了重大更新，其容器功能得到了显著增强。自三年前推出ChatGPT代码解释器以来，这一功能经历了多次升级，但一直缺乏详细的文档记录。最新一轮的更新中，ChatGPT容器功能实现了多项突破性进展。<br><br>首先，ChatGPT现在可以直接运行Bash命令，而不再是仅限于Python代码。这一变化使得用户能够更灵活地执行各种命令，极大地扩展了其应用场景。其次，ChatGPT新增了对Node.js的支持，并可以直接运行JavaScript，进一步丰富了其编程语言生态。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.technologyreview.com/2026/01/26/1131728/inside-openais-big-play-for-science/" target="_blank" rel="noopener noreferrer">在OpenAI对科学的重大布局中</a>
+                    </div>
+                </div>
+                <p class="article-summary">自ChatGPT惊艳亮相以来，OpenAI的技术颠覆了众多日常活动。本文深入探讨了OpenAI如何将目光投向科学领域。文章指出，OpenAI在过去的三年里，其技术已经深刻影响了家庭、工作、学校等各个领域。如今，OpenAI明确表示要为科学家们提供支持。在2023年10月，该公司宣布推出了一项针对科学家的计划，旨在利用其先进的人工智能技术，推动科学研究的创新与发展。文章通过详实的论据，揭示了OpenAI在科学领域的战略布局，为AI从业者和科研人员提供了宝贵的参考。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blog.bytebytego.com/p/how-cursor-shipped-its-coding-agent" target="_blank" rel="noopener noreferrer">如何Cursor将编码代理部署到生产环境中</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文深入探讨了Cursor团队在构建Composer及其编码代理并成功推向生产环境的过程中所面临的工程挑战及其解决方案。文章详细剖析了Cursor工程团队在技术实现过程中所遇到的难题，包括系统架构设计、性能优化、稳定性保障等方面，并分享了他们如何通过创新思维和严谨的工程实践克服这些挑战。文章不仅提供了宝贵的工程经验，还展现了Cursor团队在AI领域的技术深度和独特见解，对于AI从业者而言，无疑具有极高的阅读价值。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=46772592" target="_blank" rel="noopener noreferrer">Show HN：Debba.sql – 使用Tauri和Rust构建的轻量级SQL管理器</a>
+                    </div>
+                </div>
+                <p class="article-summary">Debba.sql是一款基于Tauri和Rust构建的轻量级跨平台数据库管理工具。该产品旨在为用户提供快速、高效的数据库编辑体验，摆脱传统Electron或Java IDE的沉重负担。通过AI代理实现自动化搭建，Debba.sql可快速完成SSH隧道、模式内省和数据编辑等功能，极大提升工作效率。该产品适用于需要轻量级、快速数据库管理的开发者，有效解决传统数据库管理工具的繁琐与低效问题。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=46772462" target="_blank" rel="noopener noreferrer">展示HN：使用Claude Code寻找工程类职位</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN: Use Claude Code to find engineering jobs 是一款基于 Claude AI 的工程职位搜索工具。该工具通过分析招聘网站和职位页面，帮助开发者快速筛选出符合自身需求的职位。用户只需安装 Claude Code，即可通过简单命令查询特定公司的最高薪酬职位、特定地点的职位机会等。目前，该工具支持查询少数几家知名公司的职位信息，为技术从业者提供便捷的求职助手。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=46770554" target="_blank" rel="noopener noreferrer">展示HN：PolyMCP技能 - 基于MCP的AI代理的可扩展工具组织</a>
+                    </div>
+                </div>
+                <p class="article-summary">PolyMCP Skills是一款针对MCP服务器规模扩展的技能组织工具。该产品通过引入技能系统，有效解决了大规模MCP服务器中工具管理、发现和加载的问题。Skill系统将MCP工具结构化，并提供详细文档，使代理仅需加载所需技能而非完整工具方案，从而降低资源消耗。此外，Skill系统通过智能发现和生成工具，实现了工具的有序管理，解决了工具发现噪声、不同代理需求不同工具集等问题，提高了MCP服务器的运行效率和用户体验。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-01-27 07:36:14</p>
+        </footer>
+    </div>
+</body>
+
+</html>
