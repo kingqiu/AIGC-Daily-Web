@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-01-28">
+    <title>AIGC Daily #127 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-01-28 星期三</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-01-28_hero.png" alt="AIGC Daily 127 Hero Image">
+            <p class="hero-caption">本期关注：开源AI代理Moltbot走红，Airtable推出Superagent入局；Google AI Plus全球扩展提供Gemini 3 Pro，OpenAI上线科学家免费工作台Prism，Anthropic融资超百亿美元估值3.5万亿美元，AI代理与巨头服务布局加速。</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/report/869004/moltbot-clawdbot-local-ai-agent" target="_blank" rel="noopener noreferrer">Moltbot，这个“真正做事”的AI代理，成为了科技界的新宠。</a>
+                    </div>
+                </div>
+                <p class="article-summary">开源AI代理Moltbot走红，用于管理提醒、记录健康数据和客户沟通。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/01/27/googles-ai-plus-plan-rolls-out-to-all-markets-including-the-u-s/" target="_blank" rel="noopener noreferrer">谷歌更实惠的AI Plus计划在全球所有市场推出，包括美国。</a>
+                    </div>
+                </div>
+                <p class="article-summary">Google AI Plus计划全球推出，包括美国，提供Gemini 3 Pro等AI工具。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3658300483166850?f=rss" target="_blank" rel="noopener noreferrer">OpenAI推出面向科学家的免费AI原生工作台Prism</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI推出面向科学家的免费AI原生工作台Prism，支持无限项目和协作者。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3658274203739013?f=rss" target="_blank" rel="noopener noreferrer">Anthropic最新一轮融资超百亿美元，或将继续扩大</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic最新一轮融资超百亿美元，估值达3.5万亿美元。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blog.google/products-and-platforms/products/google-one/google-ai-plus-availability/" target="_blank" rel="noopener noreferrer">Google AI Plus现在在我们提供AI计划的任何地方都可用，包括美国。</a>
+                    </div>
+                </div>
+                <p class="article-summary">Google AI Plus在35个新国家和地区推出，包括美国。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/01/27/airtables-valuation-fell-by-7-million-its-founder-thinks-that-was-just-the-warm-up/" target="_blank" rel="noopener noreferrer">Airtable 加入 AI 代理游戏，推出 Superagent</a>
+                    </div>
+                </div>
+                <p class="article-summary">Airtable近日宣布推出其首款独立产品——SuperAgent，标志着该公司在13年发展历程中迈出了重要一步。SuperAgent的问世不仅彰显了Airtable在人工智能领域的雄心壮志，也反映了当前AI时代的现实：所有严肃的软件玩家都在竞相证明自己能够交付智能代理。<br><br>SuperAgent作为Airtable的AI代理产品，旨在为用户提供高效、智能的数据处理和自动化服务。它的推出，意味着Airtable正式加入了AI代理的竞争行列，与Salesforce、IBM等企业展开角逐。这一举措对于AI领域具有重要意义，一方面，它推动了AI代理技术的进一步发展；另一方面，也加速了AI技术在企业级应用中的普及。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3658275158401673?f=rss" target="_blank" rel="noopener noreferrer">谷歌在美国在内的35个新市场推出AI Plus订阅计划</a>
+                    </div>
+                </div>
+                <p class="article-summary">谷歌近日宣布将Google AI Plus订阅服务扩展至包括美国在内的35个新市场。该服务在美国的月费为7.99美元，订阅用户可在Gemini应用中体验Gemini 3 Pro和Nano Banana Pro，同时Flow将新增AI影视制作工具，NotebookLM则提供研究和写作辅助。此外，用户最多可与五名家庭成员共享服务。<br><br>此次扩展标志着谷歌在AI领域的进一步布局，对AI领域具有重要意义。一方面，Google AI Plus的推出有助于推动AI技术的普及和应用，为更多用户提供便捷的AI服务；另一方面，谷歌通过提供多样化的AI工具，助力用户在影视制作、研究写作等领域实现创新。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/singularity/comments/1qoojio/open_source_kimik25_is_now_beating_claude_opus_45/" target="_blank" rel="noopener noreferrer">开源的Kimi-K2.5现在在包括编码在内的许多基准测试中击败了Claude Opus 4.5。</a>
+                    </div>
+                </div>
+                <p class="article-summary">近日，开源AI模型Kimi-K2.5在多个基准测试中击败了Claude Opus 4.5，其中包括编码能力。这一突破性进展引起了广泛关注。Kimi-K2.5是由中国研究团队开发的开源预训练语言模型，其性能的提升得益于团队在模型架构和训练方法上的创新。这一成果不仅展示了开源AI模型的潜力，也为AI领域的发展带来了新的启示。<br><br>Kimi-K2.5在多个基准测试中击败Claude Opus 4.5，表明开源AI模型在性能上已经可以与商业模型相媲美。这一突破对于AI领域具有重要意义。首先，它证明了开源模型在技术上的可行性，为AI研究者提供了更多选择。其次，开源模型的性能提升有助于推动AI技术的普及和应用，降低AI研发门槛。最后，这一成果有助于促进全球AI领域的合作与交流，推动AI技术的健康发展。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://simonwillison.net/2026/Jan/27/kimi-k25/#atom-everything" target="_blank" rel="noopener noreferrer">基米K2.5：视觉代理智能</a>
+                    </div>
+                </div>
+                <p class="article-summary">Kimi K2.5：视觉自主智能，是继Kimi K2和Kimi K2 Thinking之后的又一力作。Kimi K2.5在Kimi K2的基础上，经过约15T混合视觉和文本的预训练，成为一款原生多模态模型。它不仅具备业界领先的编码和视觉能力，还引入了“自主智能群”范式，显著提升了长序列工具调用和任务分解效率。<br><br>文章指出，Kimi K2.5的核心优势在于其多模态处理能力。通过融合视觉和文本信息，K2.5能够更全面地理解和处理复杂任务。此外，自主智能群范式使得K2.5能够将任务分解为多个子任务，并分配给多个智能体同时执行，从而大幅提升处理效率。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.technologyreview.com/2026/01/27/1131793/openais-latest-product-lets-you-vibe-code-science/" target="_blank" rel="noopener noreferrer">OpenAI的最新产品让您感受代码科学的韵味。</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI近日发布了其内部团队OpenAI for Science的最新成果——一款名为Prism的免费工具。该工具将ChatGPT嵌入文本编辑器中，旨在为科学家们提供撰写科学论文的便捷。Prism的核心观点是将ChatGPT这一强大的AI工具与科学家的日常工作紧密结合，以提高科研效率。文章通过深入剖析Prism的功能和设计理念，展示了OpenAI在推动科学研究和AI技术融合方面的独特见解。阅读本文，AI从业者可以了解到OpenAI如何将前沿技术应用于实际场景，以及这一创新工具如何助力科学家们提升科研效率。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://simonwillison.net/2026/Jan/27/one-human-one-agent-one-browser/#atom-everything" target="_blank" rel="noopener noreferrer">一人 + 一代理 = 从零开始的一浏览器</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文探讨了使用AI代理从零开始构建浏览器的可能性。作者embedding-shapes对Cursor的FastRender浏览器项目所引发的炒作感到愤怒，从而激发了他们使用编码代理构建浏览器的灵感。他们成功地将一个Codex CLI代理驱动，在三天内构建了20,000行Rust代码，成功渲染HTML+CSS，且无需任何Rust crate依赖。尽管使用了Windows、macOS和Linux系统框架进行图像和文本渲染，但这一成果令人印象深刻。文章深入探讨了AI在浏览器构建中的应用，为AI从业者提供了独特的见解和思考。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=46787034" target="_blank" rel="noopener noreferrer">展示HN：Git-Watchtower – 快速管理5+个Claude代码在网页线程上</a>
+                    </div>
+                </div>
+                <p class="article-summary">Git-Watchtower是一款基于终端的用户界面工具，旨在帮助用户高效管理多个Claude Code在线分支。该产品通过实时监控远程仓库，当任何分支有新提交时，用户会收到视觉和可选的音频通知。Git-Watchtower有效解决了在GitHub和终端之间频繁切换标签页以跟踪更新变化的问题，大幅提升了代码协作的效率。对于需要同时处理多个分支的技术从业者来说，Git-Watchtower是一款不可或缺的辅助工具。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=46786610" target="_blank" rel="noopener noreferrer">展示HN：ML-Ralph - 机器学习实验的自主代理循环</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN: ML-Ralph是一款针对机器学习实验的自主代理循环工具。它能够自动执行实验，包括形成假设、训练模型、评估结果和迭代证据。ML-Ralph集成了W&amp;B，支持长时间运行的任务，并提供完整的审计跟踪。在Kaggle Higgs Boson竞赛中，ML-Ralph仅用数小时便进入前30名。该产品处于早期阶段，仍有大量改进空间，欢迎反馈。ML-Ralph通过其AI能力和创新点，为机器学习研究者提供高效、便捷的实验平台，有效解决实验流程中的繁琐问题。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=46786581" target="_blank" rel="noopener noreferrer">展示HN：MikeBrain - 人工智能代理治理框架</a>
+                    </div>
+                </div>
+                <p class="article-summary">MikeBrain是一款专为AI代理构建的治理框架，旨在为AI系统提供全面的管理与控制。该框架通过提供一系列工具和机制，确保AI代理在执行任务时遵守预设的规则和标准。MikeBrain的核心功能包括权限管理、数据监控、风险评估等，帮助用户解决AI应用中的治理难题。其AI能力和创新点在于，通过智能算法优化治理流程，提高AI代理的执行效率和安全性。对于技术从业者而言，MikeBrain是提升AI应用治理水平的理想选择。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-01-28 07:56:42</p>
+        </footer>
+    </div>
+</body>
+
+</html>
