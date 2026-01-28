@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-01-29">
+    <title>AIGC Daily #129 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-01-29 星期四</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-01-29_hero.png" alt="AIGC Daily 129 Hero Image">
+            <p class="hero-caption">本期关注：Meta预告2026年推出个人超级智能AI及代理商业工具，Chrome整合Gemini推出自主任务代理与“自动浏览”功能，Google Gemini 3 Flash上线Agentic Vision实现视觉推理与代码执行融合，Composer浏览器代理在真实任务基准测试中夺冠，凸显AI...</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/01/28/zuckerberg-teases-agentic-commerce-tools-and-major-ai-rollout-in-2026/" target="_blank" rel="noopener noreferrer">扎克伯格暗示2026年将推出代理商业工具和重大人工智能部署</a>
+                    </div>
+                </div>
+                <p class="article-summary">Zuckerberg预告2026年将推出个人超级智能AI工具</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/01/28/chrome-takes-on-ai-browsers-with-tighter-gemini-integration-agentic-features-for-autonomous-tasks/" target="_blank" rel="noopener noreferrer">Chrome通过更紧密的Gemini集成，引入了用于自主任务的代理功能，挑战AI浏览器。</a>
+                    </div>
+                </div>
+                <p class="article-summary">Chrome浏览器整合Gemini AI，推出自主任务代理功能</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/news/869731/google-gemini-ai-chrome-auto-browse" target="_blank" rel="noopener noreferrer">谷歌为Chrome添加了Gemini AI驱动的“自动浏览”功能</a>
+                    </div>
+                </div>
+                <p class="article-summary">Google Chrome推出Gemini AI驱动的‘自动浏览’功能</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/news/869882/mark-zuckerberg-meta-earnings-q4-2025" target="_blank" rel="noopener noreferrer">马克·扎克伯格全力押注人工智能作为新的社交媒体。</a>
+                    </div>
+                </div>
+                <p class="article-summary">Zuckerberg将AI视为新社交媒体，取代元宇宙梦想</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/singularity/comments/1qpn3bo/google_introduces_agentic_vision_in_gemini_3_flash/" target="_blank" rel="noopener noreferrer">谷歌在Gemini 3闪存中引入了Agentic Vision。</a>
+                    </div>
+                </div>
+                <p class="article-summary">Google近日在Gemini 3 Flash中推出了Agentic Vision这一新功能。Agentic Vision将视觉推理与代码执行相结合，通过视觉证据来确保答案的准确性。这一创新技术的核心在于将视觉信息与代码逻辑相结合，从而在处理图像数据时提供更加精确和可靠的答案。<br><br>Agentic Vision的推出对于AI领域具有重要意义。首先，它标志着视觉AI技术迈向了一个新的阶段，即视觉推理与代码执行的深度融合。这种结合不仅提高了AI在处理视觉信息时的准确性，也为AI在现实世界中的应用提供了更多可能性。其次，Agentic Vision有望推动AI在各个领域的应用，如自动驾驶、医疗影像分析、安防监控等，为人类生活带来更多便利。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/singularity/comments/1qpj51p/composer_new_ai_browser_agent_ranks_1_on_major/" target="_blank" rel="noopener noreferrer">作曲家：新AI浏览器代理在真实任务的主要网络基准测试中排名第一</a>
+                    </div>
+                </div>
+                <p class="article-summary">近日，一款名为Composer的自主浏览器代理软件在多个重要网络基准测试中脱颖而出，位列第一。Composer旨在执行端到端的长期、真实世界知识工作。根据公开评估，Composer在规划、工具使用、持续性和执行质量等方面均优于ChatGPT Atlas、Claude for Chrome、Perplexity Comet和Manus等工具。这些测试侧重于多步骤研究、资料搜集和扩展的浏览器工作流程，而非简短的提示响应。Composer能够自主运行数小时，处理需要持续记忆、适应性决策和浏览器内数千次模型调用的复杂工作流程。该项目由前麻省理工学院研究员领导，其突破性表现不仅凸显了其在现实任务中的强大能力，也为AI领域带来了新的启示，预示着自主AI代理在知识工作中的应用前景广阔。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/01/28/tiny-startup-arcee-ai-built-a-400b-open-source-llm-from-scratch-to-best-metas-llama/" target="_blank" rel="noopener noreferrer">小型初创公司Arcee AI从头开始构建了一个4000亿参数的开源大型语言模型（LLM），以超越Meta的Llama。</a>
+                    </div>
+                </div>
+                <p class="article-summary">Arcee AI，一家仅有30人的初创企业，近日发布了名为Trinity的400B参数开源大型语言模型（LLM）。这一模型不仅规模庞大，更是美国公司中最大的开源基础模型之一。Trinity的问世，标志着Arcee AI在人工智能领域的重大突破，其核心内容概述如下：<br><br>Trinity的发布对AI领域具有重要意义。首先，它展示了小型初创企业也能够在AI领域取得显著成就，为行业注入了新的活力。其次，作为开源模型，Trinity将有助于推动AI技术的普及和交流，降低技术门槛，让更多研究者能够参与到AI研究中来。此外，Trinity的性能与Meta的Llama相当，甚至有所超越，这表明了Arcee AI在模型构建和优化方面的实力。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.technologyreview.com/2026/01/28/1131003/rules-fail-at-the-prompt-succeed-at-the-boundary/" target="_blank" rel="noopener noreferrer">规则在提示时失效，在边界时生效。</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文探讨了AI Agent在网络安全中的新攻击向量。文章以Gemini Calendar prompt-injection attack和Anthropic的Claude code为例，分析了黑客如何利用AI Agent进行攻击，并强调了人类在AI Agent中的角色以及完全自主的AI Agent工作流程所带来的风险。文章深入分析了AI Agent在网络安全领域的应用和挑战，对理解AI Agent的安全性和风险管理有重要价值。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.blog.langchain.com/context-management-for-deepagents/" target="_blank" rel="noopener noreferrer">深度智能体上下文管理</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文探讨了随着AI代理可执行任务长度的增加，有效管理上下文变得至关重要的议题。作者Chester Curme和Mason Daugherty指出，为了避免上下文漂移和管理LLMs有限的内存限制，有效的上下文管理变得尤为关键。文章深入分析了LangChain的Deep Agents SDK，这是一个开源的、功能齐全的代理工具包，旨在解决上述问题。文章强调了上下文管理在AI代理发展中的重要性，并提出了有效的解决方案，对于AI从业者和研究者具有重要的阅读价值。本文深度剖析了上下文管理在AI领域的独特见解，为读者提供了宝贵的参考。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.jiqizhixin.com/articles/2026-01-28-11" target="_blank" rel="noopener noreferrer">字节跳动李航博士新作：AI智能体的通用框架</a>
+                    </div>
+                </div>
+                <p class="article-summary">字节跳动李航博士新作《AI智能体的通用框架》深入探讨了人工智能领域的前沿问题。文章核心观点在于构建一个通用的AI智能体框架，以实现跨领域的智能应用。李航博士通过详实的案例和深入的分析，阐述了通用智能体框架的必要性和可行性。<br><br>文章以深度学习、强化学习等关键技术为支撑，提出了一个包含感知、决策、执行三个核心模块的通用框架。其中，感知模块负责获取环境信息，决策模块负责根据感知信息进行决策，执行模块负责将决策转化为实际行动。这一框架旨在实现智能体在不同场景下的自适应和迁移学习。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=46801543" target="_blank" rel="noopener noreferrer">展示HN：Ziva – Godot游戏引擎的光标</a>
+                    </div>
+                </div>
+                <p class="article-summary">Ziva是一款针对Godot游戏引擎的Cursor工具，旨在提升游戏开发效率。该产品基于50余款MCP工具，支持代码、动画、地图、场景生成等功能，有效解决现有AI插件性能不足的问题。Ziva的推出，为Godot游戏引擎用户提供了更强大的功能支持，助力开发者快速构建高质量游戏。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=46802977" target="_blank" rel="noopener noreferrer">展示HN：Frame – 管理Claude Code的项目、任务和上下文</a>
+                    </div>
+                </div>
+                <p class="article-summary">Frame是一款专为Claude Code项目设计的管理工具，旨在提升项目与任务规划效率，减少信息丢失。该产品支持本地运行，无需API配置，可直接在Frame终端运行Claude Code。Frame摒弃传统IDE，以用户为中心，提供定制化项目管理界面，助力开发者优化工作流程，提高工作效率。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=46802686" target="_blank" rel="noopener noreferrer">展示HN：Vultrino – 允许AI代理在不查看凭证的情况下使用它们</a>
+                    </div>
+                </div>
+                <p class="article-summary">Vultrino是一款创新的AI凭证代理产品，旨在解决AI代理在执行需要凭证的操作时，无法直接看到凭证的秘密。该产品通过在AI代理与操作之间建立安全桥梁，确保凭证不被泄露。Vultrino的核心功能是代理AI代理的凭证请求，使其无需直接接触敏感信息，从而提高安全性。对于技术从业者而言，Vultrino能够有效保护API密钥、PGP密钥等敏感信息，避免泄露风险，确保AI代理操作的安全性和合规性。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-01-29 07:44:46</p>
+        </footer>
+    </div>
+</body>
+
+</html>
