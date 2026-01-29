@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-01-30">
+    <title>AIGC Daily #131 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-01-30 星期五</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-01-30_hero.png" alt="AIGC Daily 131 Hero Image">
+            <p class="hero-caption">本期关注：微软CEO纳德拉披露Copilot AI使用数据反驳传言，马斯克旗下SpaceX/Tesla/xAI拟合并整合资源，OpenAI计划四季度上市并将于2月退役多款GPT模型，谷歌推出AI赋能Chrome变革搜索体验，推动AI代理在搜索领域应用。</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/01/29/satya-nadella-insists-people-are-using-microsofts-copilot-ai-a-lot/" target="_blank" rel="noopener noreferrer">萨蒂亚·纳德拉坚持表示人们大量使用微软的Copilot人工智能。</a>
+                    </div>
+                </div>
+                <p class="article-summary">微软CEO Satya Nadella分享Copilot AI的使用数据，反驳无人使用AI的传言。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/01/29/elon-musk-spacex-tesla-xai-merger-talks-ipo-reuters/" target="_blank" rel="noopener noreferrer">据报道，埃隆·马斯克的SpaceX、Tesla和xAI正在商谈合并事宜。</a>
+                    </div>
+                </div>
+                <p class="article-summary">Elon Musk的SpaceX、Tesla和xAI可能合并，整合Grok聊天机器人、Starlink卫星和SpaceX火箭。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/tech/870380/elon-musk-space-x-xai-merger" target="_blank" rel="noopener noreferrer">伊隆·马斯克可能会将SpaceX与Tesla或xAI合并。</a>
+                    </div>
+                </div>
+                <p class="article-summary">Elon Musk考虑将SpaceX与Tesla或xAI合并，以推进太空数据中心计划。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3661111866729345?f=rss" target="_blank" rel="noopener noreferrer">OpenAI计划四季度上市，已聘请新高管筹备IPO</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI计划第四季度上市，已聘请新高管筹备IPO。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://aibusiness.com/agentic-ai/google-s-ai-powered-chrome" target="_blank" rel="noopener noreferrer">谷歌的AI驱动Chrome进一步变革搜索</a>
+                    </div>
+                </div>
+                <p class="article-summary">Google近期推出的AI赋能Chrome浏览器新功能，标志着其搜索体验的又一次重大变革。这一更新与Anthropic的计算机使用工具和OpenAI的Atlas类似，均体现了从传统搜索格式向融入AI代理的搜索模式的转变。<br><br>这一变化的重要性在于，它不仅提升了搜索的效率和准确性，还为用户提供了更加个性化和智能的搜索体验。通过AI技术的应用，Chrome浏览器能够更好地理解用户意图，提供更加精准的搜索结果，从而在信息爆炸的时代帮助用户快速找到所需信息。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/singularity/comments/1qqlmgq/openai_will_retire_gpt4o_gpt41_gpt41_mini_and/" target="_blank" rel="noopener noreferrer">OpenAI将于2月13日从ChatGPT中停用GPT-4o、GPT-4.1、GPT-4.1 mini和o4-mini。</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI宣布将于2月13日从ChatGPT中退役GPT-4o、GPT-4.1、GPT-4.1 mini和o4-mini。这一决定标志着OpenAI对现有AI模型的优化与更新。此举的重要性在于，它反映了OpenAI对AI技术不断进步的追求，以及对用户体验的持续关注。<br><br>此次退役的模型在AI领域具有重要影响。GPT-4o、GPT-4.1、GPT-4.1 mini和o4-mini作为OpenAI的代表性模型，在自然语言处理、文本生成等方面取得了显著成果。然而，随着技术的不断发展，这些模型在性能和效率上已无法满足用户需求。退役这些模型，有助于OpenAI集中资源研发更先进的AI技术，推动AI领域的创新与发展。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.byhand.ai/p/building-multi-agents-from-paper" target="_blank" rel="noopener noreferrer">从纸张上手工构建多智能体 📝</a>
+                    </div>
+                </div>
+                <p class="article-summary">《Building Multi-Agents from Paper》一文由AI by Hand Research Lab的Tom Yeh教授撰写，深入探讨了从纸面上构建多智能体的创新方法。文章核心观点在于，通过手工制作的方式，可以有效地模拟和实现多智能体系统，从而为AI领域的研究提供新的视角和思路。<br><br>文章以丰富的案例和实验数据为关键论据，详细阐述了如何从简单的纸片和胶带等材料出发，通过精心设计的物理结构，实现智能体的感知、决策和行动。这种独特的方法不仅降低了多智能体系统的构建成本，还极大地提高了系统的灵活性和可扩展性。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.technologyreview.com/2026/01/29/1131938/dhs-is-using-google-and-adobe-ai-to-make-videos/" target="_blank" rel="noopener noreferrer">DHS正在使用谷歌和Adobe的AI制作视频</a>
+                    </div>
+                </div>
+                <p class="article-summary">美国国土安全部（DHS）正利用谷歌和Adobe的AI视频生成技术制作和编辑面向公众的内容，这一信息由一份新文件披露。随着移民机构在社交媒体上大量发布内容以支持特朗普总统的大规模遣返议程，其中部分内容似乎由AI制作，这一做法引发了广泛关注。本文深入探讨了DHS利用AI技术制作视频的背景、目的和潜在影响，揭示了人工智能在政府部门中的应用趋势，为AI从业者和政策制定者提供了宝贵的参考。文章揭示了AI在视频制作领域的应用潜力，同时也提出了对AI伦理和监管的思考，具有很高的阅读价值。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://huggingface.co/blog/nvidia/cosmos-policy-for-robot-control" target="_blank" rel="noopener noreferrer">介绍NVIDIA Cosmos高级机器人控制策略</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文深入探讨了NVIDIA Cosmos Policy在高级机器人控制领域的应用。文章核心观点在于，NVIDIA Cosmos Policy通过引入先进的深度学习技术，为机器人控制提供了更为智能和灵活的策略制定方法。关键论据包括：<br><br>1. Cosmos Policy能够通过深度学习算法，从大量数据中提取关键特征，从而实现机器人对复杂环境的快速适应和决策。
+2. 该策略支持多模态输入，包括视觉、听觉和触觉等，使得机器人能够更全面地感知周围环境。
+3. 通过强化学习，Cosmos Policy能够不断优化机器人行为，提高其在实际应用中的表现。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=46817066" target="_blank" rel="noopener noreferrer">展示HN：用于创建、验证和打包AI代理技能的Ruby宝石</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN：这是一款基于Ruby语言的gem，旨在创建、验证和打包AI代理技能。该产品通过简化AI技能的开发流程，为开发者提供便捷的技能管理工具。它支持技能的快速创建、验证和打包，帮助用户轻松构建和部署AI代理。特别强调其AI能力和创新点，为技术从业者提供高效、专业的解决方案。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=46817508" target="_blank" rel="noopener noreferrer">展示HN：Claude的重构技能</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN: Refactoring Skill for Claude是一款专注于代码重构的AI工具。该产品通过分析代码，自动识别并优化代码结构，帮助开发者提高代码质量和可维护性。它能够有效解决代码冗余、复杂度高等问题，提升开发效率。作为一款AI驱动工具，Refactoring Skill for Claude具备强大的代码理解能力，能够智能识别代码模式，实现高效重构。对于技术从业者而言，这款产品将极大提升代码质量，降低开发成本，助力项目成功。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=46816648" target="_blank" rel="noopener noreferrer">展示HN：Yanna Cursor，但用于文档（草案→编辑→红线→电子签名）</a>
+                    </div>
+                </div>
+                <p class="article-summary">Yanna Cursor是一款创新的文档编辑工具，集成了AI智能辅助功能。它将AI技术融入文档编辑流程，实现从起草、修订到标注、电子签署的一站式服务。用户无需切换多个平台，即可在编辑器内完成文档的整个生命周期。Yanna Cursor的AI能力可帮助用户高效地生成内容、发现潜在问题，并简化签署流程，极大地提升了工作效率和用户体验。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-01-30 07:25:05</p>
+        </footer>
+    </div>
+</body>
+
+</html>
