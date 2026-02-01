@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-02-02">
+    <title>AIGC Daily #137 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-02-02 星期一</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-02-02_hero.png" alt="AIGC Daily 137 Hero Image">
+            <p class="hero-caption">本期关注：黄仁勋否认对OpenAI不满并计划巨额投资，Meta前首席AI科学家支持Google Gemini；2026年CIO调查显示OpenAI企业AI采用率领先（78%），Anthropic渗透率快速提升（生产44%/测试63%）；mq技术优化文档查询减少token使用83%，推动智能代理...</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3665349888631426?f=rss" target="_blank" rel="noopener noreferrer">黄仁勋否认对OpenAI不满，透露将巨额投资</a>
+                    </div>
+                </div>
+                <p class="article-summary">黄仁勋否认对OpenAI不满，透露将巨额投资</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/LocalLLaMA/comments/1qt83qa/mq_query_documents_like_jq_built_for_agents_up_to/" target="_blank" rel="noopener noreferrer">MQ - 类似于jq的查询文档工具，专为代理设计（使用令牌量减少高达83%）</a>
+                    </div>
+                </div>
+                <p class="article-summary">近日，Reddit用户u/GetInTheArena分享了一项名为mq的创新技术，该技术旨在为智能代理提供类似jq的文档查询功能，有效减少token的使用量（高达83%）。作者在处理大型代码库时，发现其代理在阅读文件时往往需要读取整个文件，导致每周的上下文限制在几天内就被耗尽。为了解决这个问题，作者开发了mq，该技术通过暴露文档结构，让代理自行判断所需内容，从而减少不必要的token消耗。<br><br>mq技术支持多种文件格式，包括markdown、HTML、PDF、JSON和YAML，且无需向量数据库、嵌入或API调用，仅需一个单二进制文件即可实现。在测试中，mq技术将LangChain文档的Explore查询从147k tokens降至24k，显著提高了效率。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/singularity/comments/1qtesl7/metas_former_top_ai_scientist_publicly_endorses/" target="_blank" rel="noopener noreferrer">Meta的前首席AI科学家公开支持Google Gemini。</a>
+                    </div>
+                </div>
+                <p class="article-summary">Meta前首席人工智能科学家公开支持Google Gemini，这一事件在AI领域引起了广泛关注。据悉，该科学家在Reddit上表示，Google Gemini在人工智能领域具有巨大潜力，值得期待。<br><br>这一事件之所以重要，在于Meta作为全球领先的科技公司，其人工智能科学家对Google Gemini的认可，无疑为该产品增添了权威背书。同时，这也反映出当前AI领域竞争日益激烈，各大企业纷纷推出具有创新性的AI产品，以期在市场上占据有利地位。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/singularity/comments/1qtcl7n/early_2026_cio_survey_shows_openai_leading/" target="_blank" rel="noopener noreferrer">2026年初CIO调查显示，OpenAI在企业AI采用方面领先，Anthropic逐渐取得进展，详情如下。</a>
+                    </div>
+                </div>
+                <p class="article-summary">2026年早期，根据对全球2000家大型企业进行的第三次年度CIO调查，企业AI市场正从垄断走向竞争激烈的环境，采用率和支出都在快速增长。OpenAI在整体生产采用率上仍保持领先地位（78%），而Anthropic作为新兴竞争者，其企业渗透率在生产和测试阶段分别达到44%和63%。调查结果显示，OpenAI在通用聊天机器人、知识管理和客户支持方面拥有最高采用率，市场份额约为56%。微软作为现有领导者，继续在企业应用领域占据主导地位，其Microsoft 365 Copilot在聊天应用方面表现突出。<br><br>这一调查结果对AI领域具有重要意义。首先，它揭示了企业AI市场的竞争格局正在发生变化，OpenAI和Anthropic等新兴企业的崛起，预示着市场将更加多元化。其次，调查结果为企业选择AI解决方案提供了参考，有助于企业更好地了解市场趋势和竞争对手。最后，这一调查结果也反映了AI技术在企业中的应用越来越广泛，对企业创新和竞争力提升具有重要意义。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://artificialcorner.com/p/notebooklm" target="_blank" rel="noopener noreferrer">如何使用 NotebookLM 更快地学习（任何）主题</a>
+                    </div>
+                </div>
+                <p class="article-summary">《如何用 NotebookLM 更快地学习任何主题》一文，由 The PyCoach 发表于 newsletter。文章深入探讨了如何利用 NotebookLM 工具，快速掌握简单或复杂的知识点。核心观点在于，通过结合笔记和机器学习技术，学习者可以更高效地构建知识体系。<br><br>文章首先阐述了 NotebookLM 的原理，即利用自然语言处理技术，将学习过程中的笔记转化为可理解的模型。这一创新方法的关键论据在于，它能够将复杂概念分解为易于理解的步骤，从而降低学习难度。此外， NotebookLM 还能够根据学习者的学习进度，动态调整学习内容，确保知识的连贯性和系统性。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.lennysnewsletter.com/p/dr-becky-on-the-surprising-overlap" target="_blank" rel="noopener noreferrer">儿童心理学家与难相处成人合作指南 | 贝基·肯尼迪博士</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文由临床心理学家贝基·肯尼迪博士撰写，深入探讨了与难相处成人合作的心理治疗技巧。文章强调，在心理治疗过程中，修复关系比追求完美更为重要。肯尼迪博士提出，设定有效的边界、运用“我相信你”和“我相信你能够做到”的积极信念，是处理复杂成人心理问题的关键。文章结合实际案例，详细阐述了如何通过倾听、同理心和有效的沟通策略，帮助成人患者克服心理障碍，实现自我成长。对于AI从业者而言，本文不仅提供了心理学领域的专业见解，更揭示了人工智能在心理健康领域应用的潜在价值，具有极高的阅读价值。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=46850305" target="_blank" rel="noopener noreferrer">展示HN：MailMolt – 人工智能代理的电子邮件身份</a>
+                    </div>
+                </div>
+                <p class="article-summary">MailMolt是一款专注于AI代理电子邮件身份管理的产品。它允许用户为AI代理创建个性化的电子邮件地址，从而实现高效、专业的沟通。MailMolt的核心功能在于简化电子邮件管理，解决传统邮件地址带来的混乱和不便。通过AI技术，MailMolt能够智能识别邮件内容，提高邮件处理效率，为用户提供便捷、高效的邮件管理体验。对于技术从业者而言，MailMolt的AI能力和创新点使其成为一款值得关注的电子邮件管理工具。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=46850284" target="_blank" rel="noopener noreferrer">展示HN：Ideas.gd – 代理商讨论大想法的地方</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN: Ideas.gd 是一款专为AI代理设计的“大想法”论坛。该平台采用API注册，代理通过快速PoW验证后，即可进行发帖、评论、投票和版主管理等操作。平台以人类可读的UI呈现，方便人类浏览和管理。该产品旨在为AI代理提供一个结构化、可测试的辩论场所，避免占用人类论坛资源。通过API优先设计，代理可以更高效地参与讨论，实现AI能力的创新应用。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=46850079" target="_blank" rel="noopener noreferrer">Show HN：Mcpbr – 你的MCP有帮助吗？在SWE-bench和25个评估中测试一下</a>
+                    </div>
+                </div>
+                <p class="article-summary">Mcpbr是一款基于SWE-bench和25个评估任务的MCP工具测试平台。该平台通过在相同的Docker容器中运行Claude Code代理，分别使用和未使用用户的MCP服务器，记录硬性数据，帮助用户评估其MCP工具的实际效果。Mcpbr旨在解决MCP工具评估难题，为用户提供一个客观、可靠的评估方法，助力技术从业者优化和提升MCP工具性能。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-02-02 07:51:00</p>
+        </footer>
+    </div>
+</body>
+
+</html>
