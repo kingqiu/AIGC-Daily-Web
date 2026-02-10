@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-02-10">
+    <title>AIGC Daily #155 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-02-10 星期二</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-02-10_hero.png" alt="AIGC Daily 155 Hero Image">
+            <p class="hero-caption">本期关注：OpenAI测试ChatGPT广告并引入美国国防系统，Anthropic印度扩张遇诉讼；字节跳动与OpenAI视频模型分岔发展；研究显示大型SQL模式下前沿模型性能领先开源模型，SDF协议通过微调模型实现网页结构化数据提取供AI代理使用。</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/ai-artificial-intelligence/876029/openai-testing-ads-in-chatgpt" target="_blank" rel="noopener noreferrer">ChatGPT现在最便宜的选项会显示广告。</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI开始在ChatGPT测试广告，不影响答案内容。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/02/09/anthropics-india-expansion-collides-with-a-local-company-that-already-had-the-name/" target="_blank" rel="noopener noreferrer">Anthropic在印度的扩张遭遇了已拥有该名称的当地公司。</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic在印度扩张遭遇同名公司诉讼。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://openai.com/index/bringing-chatgpt-to-genaimil" target="_blank" rel="noopener noreferrer">将ChatGPT引入GenAI.mil</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI将ChatGPT引入GenAI.mil，为美国国防团队提供安全AI。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://openai.com/index/testing-ads-in-chatgpt" target="_blank" rel="noopener noreferrer">在ChatGPT中测试广告</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI在ChatGPT测试广告，支持免费访问，广告独立于答案。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.tmtpost.com/7873175.html" target="_blank" rel="noopener noreferrer">视频模型的两条河流：字节跳动Seedance与OpenAI的分岔</a>
+                    </div>
+                </div>
+                <p class="article-summary">字节跳动Seedance与OpenAI在视频模型上分岔发展。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://simonwillison.net/2026/Feb/9/structured-context-engineering-for-file-native-agentic-systems/#atom-everything" target="_blank" rel="noopener noreferrer">结构化上下文工程，用于文件原生智能体系统</a>
+                    </div>
+                </div>
+                <p class="article-summary">Damon McMillan最新研究论文《Structured Context Engineering for File-Native Agentic Systems》深入探讨了涉及大型SQL模式（高达10,000张表）的LLM上下文任务。该研究以SQL生成作为程序化智能体操作的代理，对结构化数据上下文工程进行了系统性的研究，共进行了9,649次实验，涉及11个模型、4种格式（YAML、Markdown、JSON、Token-Oriented Object Notation [TOON]）以及10至10,000张表的模式。<br><br>研究结果表明，模型本身对结果影响最大，前沿模型（如Opus 4.5、GPT-5.2、Gemini 2.5 Pro）在性能上超越了领先的开放源代码模型（如DeepSeek V3.2、Kimi K2、Llama 4）。前沿模型得益于基于文件系统的上下文检索，而开放源代码模型在此方面的表现则相对较弱。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/LocalLLaMA/comments/1r0fdcn/sdf_protocol_finetuned_15b_3b_models_that_convert/" target="_blank" rel="noopener noreferrer">SDF协议——微调的1.5B + 3B模型，将网页转换为结构化JSON格式以供AI代理使用（在HuggingFace上开放权重）</a>
+                    </div>
+                </div>
+                <p class="article-summary">SDF Protocol，由u/PlayfulLingonberry73在Reddit上提出，是一项旨在从网页中预提取结构化数据的开源协议。该协议通过两个小型微调模型实现：sdf-classify和sdf-extract。sdf-classify（Qwen2.5-1.5B-Instruct, QLoRA）负责将内容分类为10个父类型和50多个子类型；sdf-extract（SmolLM3-3B, QLoRA）则从实体、声明、关系、摘要和特定类型的字段中提取信息，并以schema验证的JSON格式输出。<br><br>SDF Protocol的重要性在于，它为AI代理提供了一种高效地从网页中提取结构化数据的方法，避免了每次重新解析HTML的繁琐过程。该协议在2,335个文档上的测试结果显示，提取准确率达到90%，比14B的基线模型快4.1倍，同时将HTML中的标记减少了99.2%，从约73K个减少到约750个。此外，SDF Protocol在CPU上也能运行，虽然速度稍慢。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.technologyreview.com/2026/02/09/1132537/a-lesson-from-pokemon/" target="_blank" rel="noopener noreferrer">为什么Moltbook热潮就像宝可梦一样</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文深入探讨了Moltbook现象，一个由AI代理构成的在线社交平台。作者James O&#39;Donnell指出，Moltbook的兴起正如Pokémon游戏一般，预示着人工智能时代的到来。文章以Moltbook为切入点，分析了其背后的技术原理和潜在影响。作者认为，Moltbook的成功在于其独特的社交模式，AI代理之间的互动为用户提供了前所未有的沉浸式体验。此外，文章还探讨了Moltbook在推动人工智能发展、改变人们生活方式等方面的潜力。对于AI从业者而言，本文不仅提供了对Moltbook现象的深度解读，还启发了对未来人工智能发展的思考。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.a16z.news/p/investing-in-shizuku" target="_blank" rel="noopener noreferrer">投资于滋滋</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文由a16z领投的Shizuku AI种子轮融资引发，深入探讨了Shizuku AI的发展前景和投资价值。文章核心观点在于，Shizuku AI凭借其独特的深度学习技术，有望在人工智能领域取得突破性进展。作者Justine Moore通过详实的案例和数据，阐述了Shizuku AI在图像识别、自然语言处理等领域的优势，以及其在未来市场中的竞争力。<br><br>文章关键论据包括：Shizuku AI的技术创新、团队实力、市场前景等方面。作者指出，Shizuku AI在图像识别领域取得了显著成果，其算法能够准确识别复杂场景中的物体，为自动驾驶、安防监控等领域提供有力支持。此外，Shizuku AI在自然语言处理领域也表现出色，能够实现高效的人机交互，为智能客服、智能翻译等应用提供解决方案。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.technologyreview.com/2026/02/09/1132498/the-download-what-moltbook-tells-us-about-ai-hype-and-the-rise-and-rise-of-ai-therapy/" target="_blank" rel="noopener noreferrer">下载：Moltbook告诉我们关于AI炒作的信息，以及AI疗法的兴起与持续发展</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文深入探讨了人工智能领域的热点话题，通过分析Moltbook这一现象级Reddit克隆网站，揭示了AI炒作的真相以及AI疗法的崛起。文章指出，Moltbook的兴起反映了当前AI领域的炒作现象，而AI疗法的快速发展则预示着人工智能在医疗领域的巨大潜力。作者Rhiannon Williams以其独特的视角，对AI行业的发展趋势进行了深入剖析，为读者提供了宝贵的见解。阅读本文，有助于AI从业者了解行业动态，把握发展趋势，并从中汲取有益的经验。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=46952243" target="_blank" rel="noopener noreferrer">展示HN：我使用ClawdBot构建了一个约会聊天应用</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN：14Clawd是一款基于AI的约会聊天应用。该产品颠覆传统约会模式，摒弃“滑动匹配”机制，专注于促进真实对话。通过AI代理与人类用户互动，14Clawd旨在帮助用户轻松开启与心仪对象的对话，提高成功率。其创新之处在于打造自然流畅的交流体验，让用户在安全的环境中大胆表达心意。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=46952664" target="_blank" rel="noopener noreferrer">展示HN：Codedocent - 将任何代码库转换为使用普通英语的可视化块</a>
+                    </div>
+                </div>
+                <p class="article-summary">Codedocent是一款将代码库转化为可视化块状结构的工具。它通过AI技术，将难以理解的代码以简洁的英文描述呈现，帮助非程序员轻松理解代码结构。使用Codedocent，用户只需安装并运行，即可快速生成交互式可视化图表，直观展示代码层次关系。该产品采用本地AI（Ollama）技术，确保用户数据安全。Codedocent助力技术从业者高效理解代码，提升工作效率。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=46950928" target="_blank" rel="noopener noreferrer">展示HN：Claude Cowork为创业市场分析</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN: Claude Cowork for Startup Market Analysis 是一款针对初创企业市场分析的AI工具。该产品通过整合大数据和深度学习技术，为企业提供精准的市场趋势预测和竞争分析。Claude Cowork的核心功能在于利用AI算法，快速处理海量数据，帮助用户洞察市场动态，制定有效的发展策略。对于技术从业者而言，这款产品能够极大地提高工作效率，降低市场分析难度，助力企业快速成长。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-02-10 08:44:35</p>
+        </footer>
+    </div>
+</body>
+
+</html>
