@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-02-11">
+    <title>AIGC Daily #157 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-02-11 星期三</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-02-11_hero.png" alt="AIGC Daily 157 Hero Image">
+            <p class="hero-caption">本期关注：ChatGPT新增文档查看器，前GitHub CEO获6000万美元种子轮融资，亚马逊拟建媒体内容AI交易市场，黑石增持Anthropic至10亿美元，欧盟警告Meta不得阻止WhatsApp竞争AI机器人，同时Llama.cpp支持MCP测试、AI代理用Ghidra从二进制文件找后...</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/ai-artificial-intelligence/876775/openai-deep-research-chatgpt-full-screen-report-viewer" target="_blank" rel="noopener noreferrer">ChatGPT的深度研究工具新增了内置文档查看器，让您可以阅读其报告。</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI更新ChatGPT工具，新增文档查看器功能。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/02/10/former-github-ceo-raises-record-60m-dev-tool-seed-round-at-300m-valuation/" target="_blank" rel="noopener noreferrer">前GitHub首席执行官在3亿美元估值下筹集了创纪录的6000万美元开发者工具种子轮融资</a>
+                    </div>
+                </div>
+                <p class="article-summary">前GitHub CEO创立新公司，获得6000万美元种子轮融资。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/02/10/amazon-may-launch-a-marketplace-where-media-sites-can-sell-their-content-to-ai-companies/" target="_blank" rel="noopener noreferrer">亚马逊可能推出一个市场，媒体网站可以在其中将他们的内容卖给AI公司。</a>
+                    </div>
+                </div>
+                <p class="article-summary">亚马逊计划推出媒体内容与AI公司交易的市场。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3678145223303817?f=rss" target="_blank" rel="noopener noreferrer">黑石参投Anthropic融资轮，持股规模升至10亿美元</a>
+                    </div>
+                </div>
+                <p class="article-summary">黑石参投Anthropic融资轮，持股规模达10亿美元。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://aibusiness.com/ai-policy/eu-warns-meta-not-to-block-rival-ai-bots" target="_blank" rel="noopener noreferrer">欧盟警告Meta不要阻止WhatsApp上的竞争对手AI机器人</a>
+                    </div>
+                </div>
+                <p class="article-summary">欧盟警告Meta不得阻止WhatsApp上的竞争AI机器人。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/LocalLLaMA/comments/1r1czgk/mcp_support_in_llamacpp_is_ready_for_testing/" target="_blank" rel="noopener noreferrer">MCP在llama.cpp中的支持已准备就绪，可供测试。</a>
+                    </div>
+                </div>
+                <p class="article-summary">近日，Reddit用户u/jacek2023宣布，经过一个多月的开发，Llama.cpp中的MCP（Message Control Protocol）支持功能已准备就绪，可供测试。此次更新引入了一系列令人印象深刻的新特性，包括：向对话中添加系统消息、在现有对话中注入系统消息、CORS代理、MCP服务器选择器设置、工具调用、Agentic Loop Logic UI、处理统计信息、提示检测逻辑、提示选择器、提示参数表单、聊天表单和聊天消息中的附件、资源浏览器、搜索和文件树视图、资源附件和预览对话框等。<br><br>这一更新对于AI领域具有重要意义。首先，MCP支持将有助于提高Llama.cpp的交互性和功能丰富度，为用户提供更加便捷和高效的AI服务。其次，新增的CORS代理、服务器选择器设置等功能，将进一步提升系统的稳定性和安全性。此外，资源浏览器和预览对话框的引入，将极大地方便用户获取和处理信息。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/singularity/comments/1r1fdf4/we_gave_ai_agents_access_to_ghidra_and_tasked/" target="_blank" rel="noopener noreferrer">我们为AI代理提供了Ghidra的访问权限，并让他们负责在服务器中寻找隐藏的后门——仅从二进制文件中工作，没有任何访问源代码的权限。</a>
+                    </div>
+                </div>
+                <p class="article-summary">近日，Reddit用户u/likeastar20在quesma.com博客上发布了一项引人注目的研究。该研究将AI代理赋予对Ghidra工具的访问权限，并要求它们仅从服务器二进制文件中寻找隐藏的后门，而无需访问源代码。这一创新性实验不仅揭示了AI在网络安全领域的巨大潜力，也为AI领域的研究提供了新的视角。<br><br>这项研究的核心内容是，通过利用AI代理对Ghidra工具的深入理解，研究人员成功地在服务器二进制文件中发现了隐藏的后门。这一成果表明，AI在网络安全领域具有强大的分析能力，能够从大量数据中快速识别潜在的安全威胁。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/LocalLLaMA/comments/1r14h9u/train_moe_models_12x_faster_with_30_less_memory/" target="_blank" rel="noopener noreferrer">使用30%更少的内存，将MoE模型训练速度提升12倍！（&lt;15GB VRAM）</a>
+                    </div>
+                </div>
+                <p class="article-summary">近日，Reddit用户u/danielhanchen发布了一项关于Mixture of Experts (MoE)模型训练的突破性进展。通过定制Triton内核和数学优化，该技术实现了MoE模型训练速度提升约12倍，同时减少35%的VRAM使用量，并延长了上下文长度约6倍，且不损失精度。这一成果主要得益于Unsloth库的更新，该库现支持包括gpt-oss、Qwen3、DeepSeek R1/V3和GLM等MoE架构的快速训练。例如，gpt-oss-20b模型在12.8GB VRAM下进行微调，而Qwen3-30B-A3B（16位LoRA）模型则仅需63GB VRAM。此外，该技术适用于数据中心、消费级和老旧GPU（如RTX 3090），以及FFT、LoRA和QLoRA等模型。随着模型规模和上下文长度的增加，Unsloth内核带来的内存节省效果将更加显著。这一突破性进展将对AI领域产生深远影响，提高MoE模型训练的效率和可扩展性。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://secondthoughts.ai/p/clawdbot-and-moltbook" target="_blank" rel="noopener noreferrer">我们刚刚窥见了一个由AI代理构成的世界可能有多么疯狂。</a>
+                    </div>
+                </div>
+                <p class="article-summary">在最新的科技洞察文章《We Just Got a Peek at How Crazy a World With AI Agents May Be》中，作者Steve Newman深入探讨了独立人工智能代理的未来可能性。文章以Clawdbot和Moltbook这两个虚拟角色为例，揭示了人工智能在自主决策、社会互动和道德伦理等方面的潜在挑战。通过对这两个角色的行为分析，Newman指出，随着AI技术的发展，一个由独立AI代理构成的世界将充满不确定性，甚至可能变得混乱无序。文章的核心观点是，尽管AI代理在提高效率、优化决策方面具有巨大潜力，但其自主性和不可预测性也可能带来一系列难以预料的问题。阅读这篇文章，不仅有助于AI从业者了解独立AI代理的潜在风险，还能激发对AI伦理和未来社会结构的深入思考。文章的深度和独特见解，为读者提供了对未来AI世界的全新视角。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://newsletter.pragmaticengineer.com/p/steve-yegge-on-ai-agents-and-the" target="_blank" rel="noopener noreferrer">史蒂夫·耶格关于AI代理和软件工程未来的观点</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文探讨了AI在软件工程中的应用及其未来发展趋势。作者Steve Yegge深入剖析了AI采纳的八个层次，揭示了大型企业可能面临的困境，并阐述了为何众多AI采纳者在使用AI代理时感到疲惫。文章以独特的视角，揭示了AI在软件工程中的潜在影响，为AI从业者和相关领域的研究者提供了宝贵的思考素材。阅读本文，读者将深入了解AI在软件工程中的应用现状，洞察未来发展趋势，并从中获得启发。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://research.google/blog/beyond-one-on-one-authoring-simulating-and-testing-dynamic-human-ai-group-conversations/" target="_blank" rel="noopener noreferrer">超越一对一：创作、模拟和测试动态人机群组对话</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文探讨了人工智能在模拟和测试动态人机群组对话中的应用。文章核心观点在于，通过构建人机交互模型，可以实现更丰富、更自然的群组对话体验。作者从多个角度分析了人机群组对话的挑战，包括对话的连贯性、情感表达、角色扮演等，并提出了相应的解决方案。<br><br>文章以关键论据支撑其观点，如通过引入多模态信息处理技术，提高对话的连贯性和自然度；通过情感计算模型，实现更丰富的情感表达；通过角色扮演机制，模拟不同角色在群组对话中的互动。这些论据展示了作者在人工智能领域的深度和独特见解。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://simonwillison.net/2026/Feb/10/showboat-and-rodney/#atom-everything" target="_blank" rel="noopener noreferrer">介绍Showboat和Rodney，以便代理商可以演示他们所构建的内容。</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文探讨了与编码智能体合作时面临的挑战，即如何测试和展示智能体构建的软件。作者提出了解决这一问题的两个新工具：Showboat和Rodney。Showboat能够帮助智能体生成文档以展示其工作成果，而Rodney则是一款适用于Showboat的命令行浏览器自动化工具。文章深入分析了代码验证的重要性，并提供了实际案例和独特见解，对AI从业者具有重要的参考价值。阅读本文，读者可以了解到如何利用这些工具提高智能体代码的质量和可展示性，从而更好地推进AI技术的发展。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=46968635" target="_blank" rel="noopener noreferrer">展示HN：多智能体-Shogun - tmux和YAML邮箱用于并行AI智能体</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN: Multi-agent-shogun是一款基于tmux和YAML的并行AI代理邮箱系统。该产品通过tmux实现多窗口管理，支持YAML格式配置，方便用户创建和管理多个AI代理。Multi-agent-shogun旨在解决并行AI代理的复杂配置和协同问题，提高AI应用的开发效率和稳定性。其创新点在于将tmux和YAML技术应用于AI代理管理，为技术从业者提供便捷的并行AI代理开发环境。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=46968257" target="_blank" rel="noopener noreferrer">展示HN：Agentplatform.app - 基于插件的LLM工作流程</a>
+                    </div>
+                </div>
+                <p class="article-summary">Agentplatform.app是一款基于插件式大型语言模型（LLM）工作流程构建平台。该平台旨在为用户提供深度集成应用全生命周期的技能，并实现插件模块化，便于跨应用复用。平台支持用户创建自定义插件并获取收益，有效激发创新活力。通过AI技术赋能，Agentplatform.app助力开发者构建高效、可扩展的智能应用。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-02-11 08:29:00</p>
+        </footer>
+    </div>
+</body>
+
+</html>
