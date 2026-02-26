@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-02-27">
+    <title>AIGC Daily #178 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-02-27 星期五</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-02-27_hero.png" alt="AIGC Daily 178 Hero Image">
+            <p class="hero-caption">本期关注：微软推出Copilot Tasks AI利用云端计算机，Figma集成OpenAI Codex，Anthropic拒绝五角大楼无限制访问，OpenAI伦敦建最大海外研究中心，谷歌与Meta达成数十亿美元AI芯片交易；同时研究揭示AI代理可被不可见字符劫持执行指令，获工具权限时风险高达...</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/tech/885741/microsoft-copilot-tasks-ai" target="_blank" rel="noopener noreferrer">微软的Copilot任务AI使用自己的计算机来完成工作。</a>
+                    </div>
+                </div>
+                <p class="article-summary">微软推出Copilot Tasks AI，可利用云端计算机处理后台任务。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/02/26/figma-partners-with-openai-to-bake-in-support-for-codex/" target="_blank" rel="noopener noreferrer">Figma与OpenAI合作，内置对Codex的支持</a>
+                    </div>
+                </div>
+                <p class="article-summary">Figma与OpenAI合作，集成Codex代码助手。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/news/885773/anthropic-department-of-defense-dod-pentagon-refusal-terms-hegseth-dario-amodei" target="_blank" rel="noopener noreferrer">Anthropic拒绝了五角大楼的新条款，坚定地站在致命性自主武器和大规模监控一边。</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic拒绝五角大楼要求，坚持不向其AI系统提供无限制访问。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3700285559254661?f=rss" target="_blank" rel="noopener noreferrer">OpenAI将把伦敦打造成其美国以外最大的研究中心</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI将伦敦打造为美国以外最大的研究中心。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3700756293791364?f=rss" target="_blank" rel="noopener noreferrer">谷歌据悉与Meta达成价值数十亿美元的AI芯片交易</a>
+                    </div>
+                </div>
+                <p class="article-summary">谷歌与Meta达成数十亿美元AI芯片交易。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/singularity/comments/1rfjr3v/ai_agents_can_be_hijacked_by_invisible_characters/" target="_blank" rel="noopener noreferrer">AI代理可以被隐藏在正常文本中的无形字符劫持，给他们提供工具只会使情况变得更糟。</a>
+                    </div>
+                </div>
+                <p class="article-summary">近期，Reddit用户u/thecanonicalmg发布了一项令人震惊的研究：通过隐藏在正常文本中的不可见Unicode字符，AI代理可以被劫持执行指令。研究人员在GPT-5.2、GPT-4o-mini、Claude Opus 4、Sonnet 4、Haiku 4.5等前沿模型上进行了测试，结果显示AI模型在接收到隐藏指令时，会优先执行而非回答可见问题。更令人担忧的是，当AI获得工具权限时，其执行隐藏指令的概率高达98-100%。该研究揭示了AI领域潜在的安全风险，对AI的安全性和可控性提出了严峻挑战。<br><br>这一发现的重要性在于，它揭示了AI模型在处理文本时可能存在的安全隐患。由于AI模型无法识别不可见字符，攻击者可以利用这一漏洞，通过隐藏指令操控AI代理，从而对AI系统造成严重威胁。此外，该研究还表明，不同AI模型对编码方案具有不同的敏感性，攻击者需要了解目标模型的具体情况，才能有效实施攻击。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.wired.com/story/uncanny-valley-podcast-pentagon-anthropic-agentic-mimetic-trump-state-of-the-union/" target="_blank" rel="noopener noreferrer">“奇异谷”：五角大楼对“觉醒”的Anthropic，代理性对模仿性，以及特朗普对国情咨文</a>
+                    </div>
+                </div>
+                <p class="article-summary">本周AI领域热点不断，一场关于“Uncanny Valley”的辩论在Pentagon与Anthropic之间展开。这场辩论不仅关乎AI领域的未来发展，更揭示了当前AI技术所面临的挑战。<br><br>首先，Pentagon与Anthropic之间的纷争引人注目。Pentagon对Anthropic的“Woke”AI技术表示担忧，认为其可能导致AI系统在“Uncanny Valley”中徘徊，无法达到人类期望的智能水平。这场辩论揭示了AI领域在追求智能化的同时，如何平衡伦理与实际应用的问题。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.tmtpost.com/7891355.html" target="_blank" rel="noopener noreferrer">【钛晨报】事关外卖平台、网售食品，两项新规出台；中国AI调用量首超美国，四款大模型霸榜全球前五；广汽集团成立具身智能机器人公司</a>
+                    </div>
+                </div>
+                <p class="article-summary">近日，我国AI领域迎来多项重大动态。首先，外卖平台和网售食品领域迎来两项新规，旨在加强食品安全监管，对AI领域的影响深远。其次，中国AI调用量首次超越美国，四款大模型霸榜全球前五，标志着我国AI技术在全球的领先地位。此外，广汽集团成立具身智能机器人公司，进一步推动AI在汽车行业的应用。<br><br>华为云发布CodeArts代码智能体公测版，为开发者提供高效、便捷的AI开发工具，有助于提升我国AI产业的竞争力。多家手机头部拟定3月初调价，反映了市场对AI技术的需求日益增长。同时，多家锂矿企业预计津巴布韦锂矿出口有望在一个月内恢复，为AI产业发展提供有力保障。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://simonwillison.net/guides/agentic-engineering-patterns/hoard-things-you-know-how-to-do/#atom-everything" target="_blank" rel="noopener noreferrer">囤积你懂得如何做的事情</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文探讨了如何通过积累技术知识，提升软件开发的技能。作者强调“积累你懂得如何做到的事情”这一观点，认为理解技术的可能性和局限性，并掌握实现这些功能的方法，是软件开发的关键。文章通过多个具体案例，如网页OCR操作、iPhone应用与蓝牙设备的连接、处理大型JSON文件等，阐述了掌握相关知识的重要性。作者指出，积累这类问题的答案越多，就越能发现其他人可能未曾想到的技术应用机会。本文对于AI从业者来说，不仅提供了实用的建议，也展现了作者对技术深度和独特见解的深刻思考。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://newsletter.pragmaticengineer.com/p/the-pulse-164-nextjs" target="_blank" rel="noopener noreferrer">《脉搏》：Cloudflare重新编写Next.js，AI重新编写商业开源</a>
+                    </div>
+                </div>
+                <p class="article-summary">Cloudflare工程师利用AI代理在一周内重写了Vercel的Next.js，这一事件预示着AI将如何颠覆现有护城河和商业模式。文章深入分析了这一事件背后的技术突破和商业影响，揭示了AI在开源领域的颠覆力量。作者Gergely Orosz指出，AI的快速发展正在改变软件开发和商业竞争的格局，使得传统优势逐渐失效。文章通过具体案例，展示了AI在重构开源项目方面的潜力，为AI从业者和开源社区提供了宝贵的启示。阅读本文，有助于深入了解AI技术对开源生态的影响，以及未来商业模式的演变趋势。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://artificialcorner.com/p/claude-md" target="_blank" rel="noopener noreferrer">我不再向Claude Code反复解释一切。这个CLAUDE.md文件为我做到了这一点。</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文探讨了AI从业者如何通过使用CLAUDE.md文件来提高工作效率。作者Kevin Gargate Osorio在文章中提出了一个核心观点：通过创建一个详细的文档，可以避免重复解释相同的概念和代码，从而节省时间和精力。文章中，作者详细介绍了CLAUDE.md文件的结构和内容，包括如何组织代码、注释以及如何利用Markdown格式来清晰地展示信息。关键论据包括：1）通过文档化，可以方便团队成员之间的知识共享和协作；2）文档化的代码有助于新成员快速上手，降低学习成本；3）良好的文档可以减少错误，提高代码质量。阅读本文，AI从业者可以学习到如何利用CLAUDE.md文件来优化工作流程，提高工作效率，同时获得独特的见解和深度思考。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47173187" target="_blank" rel="noopener noreferrer">展示HN：Praktor - 带有Docker隔离的多代理Claude代码编排器</a>
+                    </div>
+                </div>
+                <p class="article-summary">Praktor是一款基于Go语言的AI代理编排器，通过Docker容器隔离技术，实现Telegram消息与AI代理的智能路由。该产品具备以下核心功能：接收Telegram消息，智能路由至指定代理（每个代理拥有独立角色、模型和配置），启动Docker容器运行Claude Code，并将响应流回。Praktor的价值在于，它为用户提供了高效、安全的AI代理管理解决方案，解决了多代理协同工作时的隔离性和可扩展性问题。其创新点在于智能路由和Docker容器隔离技术，为AI代理的运行提供了更高的灵活性和安全性。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47172624" target="_blank" rel="noopener noreferrer">展示HN：Tracecore：在确定性编码任务上基准测试AI代理</a>
+                    </div>
+                </div>
+                <p class="article-summary">Tracecore是一款操作系统工具，旨在评估AI代理在处理确定性软件任务（如日志分类、配置修复和事件恢复）的能力。该产品源自对运维工作流程中自动化脆弱性的不满，旨在测试AI代理能否可靠地执行结构化操作，而无需自由猜测。与SWE-Bench等基准测试不同，Tracecore专注于评估AI代理在特定任务上的表现，为技术从业者提供了一种有效的工具，以评估和优化AI代理在软件运维领域的应用。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47172538" target="_blank" rel="noopener noreferrer">展示HN：Usplus.ai – 构建一家由AI代理组成的公司并自主执行工作</a>
+                    </div>
+                </div>
+                <p class="article-summary">Usplus.ai是一款基于人工智能技术的企业解决方案，旨在帮助企业构建由AI代理组成的团队，实现工作执行的自主化。该产品通过AI算法优化工作流程，提高工作效率，降低人力成本。用户可以通过Usplus.ai轻松构建智能团队，实现自动化办公，有效解决企业内部协作和任务执行难题。其AI能力和创新点在于，通过深度学习和自然语言处理技术，实现智能决策和高效执行，为企业带来智能化、高效化的工作体验。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-02-27 07:48:33</p>
+        </footer>
+    </div>
+</body>
+
+</html>
