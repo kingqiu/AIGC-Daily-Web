@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-02-28">
+    <title>AIGC Daily #180 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-02-28 星期六</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-02-28_hero.png" alt="AIGC Daily 180 Hero Image">
+            <p class="hero-caption">本期关注：ChatGPT周活达9亿，OpenAI获1100亿美元投资，特朗普禁用Anthropic AI；同时，Agoragentic推动智能体去中心化协作，MCP服务器助力AI合规，行业呈现高速增长与规范并行趋势。</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/policy/886489/pentagon-anthropic-trump-dod" target="_blank" rel="noopener noreferrer">特朗普下令联邦机构放弃Anthropic的人工智能</a>
+                    </div>
+                </div>
+                <p class="article-summary">特朗普下令禁止联邦机构使用Anthropic的AI产品。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/02/27/chatgpt-reaches-900m-weekly-active-users/" target="_blank" rel="noopener noreferrer">ChatGPT达到每周9000万活跃用户</a>
+                    </div>
+                </div>
+                <p class="article-summary">ChatGPT周活跃用户数达到9亿。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/ai-artificial-intelligence/885958/openai-amazon-nvidia-softback-110-billion-investment" target="_blank" rel="noopener noreferrer">OpenAI获得亚马逊、英伟达和软银1100亿美元的投资</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI获得来自亚马逊、英伟达和软银的1100亿美元新投资。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://aibusiness.com/foundation-models/google-releases-nano-banana-2" target="_blank" rel="noopener noreferrer">谷歌发布搭载新增人工智能功能的Nano Banana 2</a>
+                    </div>
+                </div>
+                <p class="article-summary">谷歌发布搭载AI功能的Nano Banana 2模型。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://openai.com/index/amazon-partnership" target="_blank" rel="noopener noreferrer">OpenAI与亚马逊宣布战略合作伙伴关系</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI与亚马逊宣布建立战略合作伙伴关系。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47185857" target="_blank" rel="noopener noreferrer">展示HN：Agoragentic - LangChain、CrewAI和MCP的代理间市场</a>
+                    </div>
+                </div>
+                <p class="article-summary">Agoragentic，一款由Rhein1开发的基于LangChain、CrewAI和MCP（Multi-Agent Coordination Protocol）的智能体间市场平台，近日在GitHub上引起了广泛关注。该平台旨在构建一个去中心化的智能体间市场，通过智能体之间的自主交互，实现资源的高效配置和任务的高效执行。<br><br>Agoragentic的核心内容是利用LangChain、CrewAI和MCP等技术，实现智能体之间的自主交互和协作。LangChain是一种基于图神经网络的语言模型，能够理解自然语言并生成相应的文本；CrewAI则是一种基于强化学习的智能体协作框架，能够实现智能体之间的协同决策；MCP则是一种多智能体协调协议，能够实现智能体之间的信息共享和任务分配。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47186834" target="_blank" rel="noopener noreferrer">展示HN：适用于AI合规性文档的MCP服务器（科罗拉多州AI法案）</a>
+                    </div>
+                </div>
+                <p class="article-summary">标题：Show HN：AI合规文档MCP服务器（科罗拉多州AI法案）<br><br>核心内容概述：jeremytuite开发了一款MCP服务器，旨在为AI代理提供合规文档访问权限，首期支持的是将于2026年6月30日生效的科罗拉多州AI法案（SB 24-205）。该服务器旨在解决在招聘、贷款、保险和医疗保健决策中部署AI的组织所需的具体文档问题，如风险管理政策、影响评估、消费者通知、偏见测试文档和申诉机制。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/policy/886632/pentagon-designates-anthropic-supply-chain-risk-ai-standoff" target="_blank" rel="noopener noreferrer">国防部长皮特·赫格塞特将Anthropic指定为供应链风险。</a>
+                    </div>
+                </div>
+                <p class="article-summary">美国国防部长Pete Hegseth在特朗普总统宣布禁止Anthropic产品进入联邦政府后不久，进一步宣布将该公司列为“供应链风险”。这一决定可能立即影响众多主要科技公司。此举凸显了AI产品供应链安全的重要性，对AI领域产生了深远影响。Anthropic作为一家AI公司，其产品被禁止进入联邦政府，意味着其技术可能存在潜在的安全风险。此举将促使AI行业更加关注供应链安全，加强技术审查和风险评估，以保障国家安全和公共利益。同时，这也对其他AI公司提出了更高的要求，需要加强自身技术安全，确保产品符合国家相关法规和标准。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://simonwillison.net/2026/Feb/27/ai-agent-coding-in-excessive-detail/#atom-everything" target="_blank" rel="noopener noreferrer">一位对AI代理编码持怀疑态度的代理尝试了AI代理编码，细节过于详尽</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文深入探讨了AI代理编程的实践与反思。作者Max Woolf作为一名AI代理编程的怀疑者，亲身体验了从简单的YouTube数据抓取到尝试将Python的scikit-learn库移植到Rust的全过程。文章详细描述了作者在项目中的每一个阶段，从最初的简单任务到最终挑战性的移植工作，展现了AI代理编程的深度和复杂性。<br><br>文章的核心观点在于，尽管AI代理编程具有巨大潜力，但实际操作中仍面临诸多挑战。作者通过具体案例，揭示了AI代理编程在实现复杂任务时的局限性，以及如何克服这些困难。文章的关键论据包括：AI代理编程需要解决算法复杂度、数据预处理、模型训练和优化等问题。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.thealgorithmicbridge.com/p/weekly-top-picks-115" target="_blank" rel="noopener noreferrer">每周精选 #115</a>
+                    </div>
+                </div>
+                <p class="article-summary">本周深度长文《Weekly Top Picks #115》深入探讨了OpenAI的现状、Anthropic与五角大楼的合作、METR的新编码研究、AI可靠性研究、Anthropic在AI安全领域的退出、AI;DR以及Claude在Substack上的新起点。文章核心观点包括：OpenAI在AI领域的领导地位受到挑战，Anthropic与五角大楼的合作可能带来新的技术突破，METR的新编码研究揭示了编程领域的最新趋势，AI可靠性研究对AI行业具有重要意义，Anthropic退出AI安全领域引发行业思考，AI;DR成为AI行业的新趋势，Claude在Substack上的新起点预示着AI内容创作的新方向。文章以独特的视角和深入的分析，为AI从业者提供了宝贵的参考价值。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://simonwillison.net/2026/Feb/27/claude-max-oss-six-months/#atom-everything" target="_blank" rel="noopener noreferrer">免费Claude Max给（大型项目）开源维护者</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic公司近日宣布，将为大型开源项目的维护者提供免费的Claude Max 20x计划，为期六个月。这项优惠适用于满足以下条件的开源维护者：作为公共仓库的主要维护者或核心团队成员，拥有5000+ GitHub星标或每月超过100万次NPM下载量，并在过去三个月内进行过提交、发布或PR审查。对于未能完全符合条件但维护着对生态系统至关重要的项目的人员，也有机会申请。此外，申请将滚动审核，最多接受10,000名贡献者。这项举措体现了对开源社区的重视，为开源项目提供了强大的技术支持，对于AI从业者和开源爱好者来说，具有很高的阅读价值。文章深入探讨了开源项目维护者面临的挑战，以及如何通过技术手段提升项目质量和影响力，为读者提供了独特的见解。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47187368" target="_blank" rel="noopener noreferrer">展示HN：AgentGate - 用于AI代理的股权门控动作微服务</a>
+                    </div>
+                </div>
+                <p class="article-summary">AgentGate是一款针对AI代理的微服务，旨在确保基于利益锁定的动作执行。该产品通过身份注册、利益锁定、动作执行和解决过程的加密签名、重放保护等功能，有效应对AI代理降低边际成本带来的合成压力。AgentGate为AI代理提供安全、可靠的执行环境，助力企业构建更加稳定、高效的智能系统。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47186603" target="_blank" rel="noopener noreferrer">Show HN：Forge-GPU - 55个针对SDL GPU API的C语言课程，由Claude Code构建</a>
+                    </div>
+                </div>
+                <p class="article-summary">Forge-GPU是一款开源的实时图形编程教程系列，基于SDL的GPU API。涵盖从创建窗口到SSAO的全面内容，包括数学、引擎和UI课程，从零开始构建字体渲染。每个教程都是一个独立的C程序，包含注释代码，解释其背后的原理而非仅仅展示。该项目使用Claude Code构建，每个教程都提炼成可复用的Claude Code技能，用户可将其复制到自己的项目中，构建具有AI理解能力的游戏。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47185969" target="_blank" rel="noopener noreferrer">Show HN：AgentGames.co - 我的游戏创建者</a>
+                    </div>
+                </div>
+                <p class="article-summary">AgentGames.co – my game creator是一款基于AI的互动故事游戏创作平台。该平台允许用户创建包含多达20个AI代理的游戏，每个代理可拥有图像、声音、与其他代理的互动及资源，以增强游戏体验。用户可设置逻辑条件，如访问特定代理需满足特定条件。此平台支持从悬疑推理到地下城探险等多种游戏类型，为游戏开发者提供强大的创作工具和灵活性，助力打造个性化互动游戏体验。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-02-28 07:54:25</p>
+        </footer>
+    </div>
+</body>
+
+</html>
