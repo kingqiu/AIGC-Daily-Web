@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-03-05">
+    <title>AIGC Daily #189 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-03-05 星期四</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-03-05_hero.png" alt="AIGC Daily 189 Hero Image">
+            <p class="hero-caption">本期关注：CollectivIQ多模型集成提升AI问答准确性，Google NotebookLM升级转化研究笔记为动画视频，Gemini Canvas AI模式向美国用户开放，Meta组建新AI引擎推进“超级智能”；同时，Reddit用户开展AI自主编码实验展现自我进化能力，开源防火墙Kvla...</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/03/04/one-startups-pitch-to-provide-more-reliable-ai-answers-crowdsource-the-chatbots/" target="_blank" rel="noopener noreferrer">一家初创公司提出提供更可靠AI回答的方案：众包聊天机器人</a>
+                    </div>
+                </div>
+                <p class="article-summary">CollectivIQ推出多模型集成聊天机器人，提升AI问答准确性。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/ai-artificial-intelligence/889475/notebooklm-can-now-summarize-research-in-cinematic-video-overviews" target="_blank" rel="noopener noreferrer">笔记本LM现在可以总结“电影式”视频概述中的研究内容。</a>
+                    </div>
+                </div>
+                <p class="article-summary">Google NotebookLM升级，将研究笔记转化为动画视频。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/03/04/https-techcrunch-com-2026-03-04-google-search-rolls-out-geminis-canvas-in-ai-mode-to-all-us-users/" target="_blank" rel="noopener noreferrer">谷歌搜索向所有美国用户推出Gemini画布的AI模式。</a>
+                    </div>
+                </div>
+                <p class="article-summary">Google Search推出Gemini Canvas AI模式，面向美国用户。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3708783361225090?f=rss" target="_blank" rel="noopener noreferrer">Meta悄然组建新人工智能引擎，朝着“超级智能”目标推进</a>
+                    </div>
+                </div>
+                <p class="article-summary">Meta组建新AI引擎团队，推进“超级智能”目标。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/LocalLLaMA/comments/1rkzsrq/im_running_a_truman_show_for_an_ai_agent_it/" target="_blank" rel="noopener noreferrer">我正在为一名AI代理举办一场《楚门的世界》。它自己编写代码，自己提交bug，而且不知道你在观察它。</a>
+                    </div>
+                </div>
+                <p class="article-summary">近日，Reddit用户u/liyuanhao分享了一项令人瞩目的AI实验：他利用Rust语言编写了一个200行的编码代理，并赋予其一个目标——进化成与Claude Code相媲美的存在。实验过程中，他停止了代码的干预，让代理每8小时自主醒来，阅读源代码、日记以及GitHub上的问题，并自行决定改进方向。若改进通过测试，则提交更改；否则，撤销更改。这一过程完全无需人工干预，犹如一场AI版的《楚门世界》。<br><br>该实验的核心在于，代理通过自我学习和改进，实现了代码的优化和功能扩展。在短短4天内，代理已展现出令人惊讶的能力：自主整理代码结构，尝试通过搜索Anthropic的价格来添加成本跟踪功能，尽管遇到困难，但依然不断尝试，最终通过硬编码实现了目标。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47255351" target="_blank" rel="noopener noreferrer">展示HN：Kvlar – 适用于AI代理工具调用的开源防火墙</a>
+                    </div>
+                </div>
+                <p class="article-summary">Kvlar是一款开源的防火墙政策引擎，旨在为AI代理工具调用提供安全保障。该引擎位于AI代理与工具（MCP服务器）之间，通过YAML安全策略对每个工具调用进行评估，确保在执行前符合安全标准。<br><br>在AI领域，AI代理的使用日益广泛，但随之而来的是安全问题。传统方法如Claude Desktop虽然提供基本批准/拒绝机制，但缺乏持久性规则、自动化和审计跟踪。Kvlar的出现填补了这一空白，为AI代理工具调用提供了更为严格的安全边界。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blog.langchain.com/langsmith-cli-skills/" target="_blank" rel="noopener noreferrer">LangSmith CLI &amp; 技能</a>
+                    </div>
+                </div>
+                <p class="article-summary">LangChain Accounts近日发布了一款名为LangSmith CLI的新工具及其首批技能集，旨在为AI编码代理提供在LangSmith生态系统中的专业知识。该工具集包括对代理的追踪、执行理解、测试集构建以及性能评估等功能。在评估集中，LangSmith CLI显著提升了Claude Code的性能。<br><br>这一发布对于AI领域具有重要意义。首先，LangSmith CLI的推出为AI编码代理提供了更为强大的工具，有助于提升其执行效率和准确性。其次，通过追踪和评估代理的执行过程，研究人员和开发者可以更好地理解AI代理的行为，从而优化其算法和模型。此外，LangSmith CLI的推出还将推动AI编码领域的发展，为相关研究和应用提供更多可能性。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/LocalLLaMA/comments/1rl0bvq/yuanlabaiyuan30ultra_huggingface/" target="_blank" rel="noopener noreferrer">元实验室AI/元3.0-超强 • Hugging Face</a>
+                    </div>
+                </div>
+                <p class="article-summary">YuanLabAI最新发布的Yuan3.0-Ultra模型，是一款基于MoE架构的多模态大型模型。该模型支持文本、图像、表格和文档等多种模态输入，并在RAG、复杂表格理解和长文档分析及摘要生成等关键企业级场景中展现出卓越性能。Yuan3.0-Ultra拥有万亿参数，且100%开源，效率方面，其1010B总参数中，激活参数高达68.8B。采用突破性的LAEP算法，模型尺寸缩减33.3%，预训练效率提升49%。RIRM机制有效抑制AI“过思考”，实现快速、简洁的推理和深度思考。此外，Yuan3.0-Ultra还具备企业级代理引擎，在RAG和MRAG任务上取得了SOTA性能。这款模型的发布，标志着多模态AI技术在企业级应用上的重大突破，对AI领域的发展具有重要意义。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blog.langchain.com/langchain-skills/" target="_blank" rel="noopener noreferrer">LangChain 技能</a>
+                    </div>
+                </div>
+                <p class="article-summary">LangChain Accounts近日发布了一篇深度长文，题为“LangChain Skills”。文章核心观点是推出一套技能，旨在赋予AI编码代理在开源LangChain生态系统中的专业知识。这些技能包括利用LangChain、LangGraph和Deep Agents构建智能代理。通过实验评估，这些技能将Claude Code在这些任务上的表现从29%提升至95%。文章深入探讨了LangChain生态系统的应用，突出了其在AI编码领域的独特见解，对于AI从业者具有重要的阅读价值。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://newsletter.pragmaticengineer.com/p/building-claude-code-with-boris-cherny" target="_blank" rel="noopener noreferrer">构建克劳德代码与鲍里斯·切尔尼</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文深入探讨了Claude Code的创造者Boris Cherny关于构建AI驱动的编码工具、并行代理以及工程师角色在AI优先世界中的演变。文章核心观点在于，随着AI技术的飞速发展，工程师的角色正在发生根本性变化。Cherny分享了他在构建AI编码工具过程中遇到的挑战和解决方案，强调了并行代理在提高开发效率中的关键作用。此外，他还深入剖析了AI优先世界中工程师所需具备的新技能和思维方式。阅读本文，AI从业者将获得对AI驱动开发工具的深刻理解，以及对未来工程师角色演变的独特见解。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://simonwillison.net/guides/agentic-engineering-patterns/anti-patterns/#atom-everything" target="_blank" rel="noopener noreferrer">反模式：应避免的事项</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文深入探讨了在“代理工程”这一新兴领域中的反模式，即应避免的行为。文章指出，将未经审查的代码强加给协作伙伴是一种常见且令人沮丧的反模式。作者强调，开发者不应提交未经自己审查的代码，因为这实际上是将工作转嫁给他人。文章进一步阐述，开发者需要对自己提交的代码有信心，确保其功能正常，并承担起初步审查的责任。本文不仅揭示了代理工程领域中的潜在问题，还提供了宝贵的见解，对于AI从业者和开发者来说，阅读本文有助于提高对代理工程实践的认识，避免陷入反模式，提升工作效率和质量。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2603.03202" target="_blank" rel="noopener noreferrer">代码到数学：您的代码智能体能否有效通过探索进化数学问题？</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出了一种利用代码智能体进行数学实验的方法，通过代码执行来扩展数学问题的训练和评估环境。<br><br>**与AI Agent的关联**: 为AI Agent在数学问题解决和探索中的应用提供了新的思路，有助于提升智能体的数学推理能力。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2603.03205" target="_blank" rel="noopener noreferrer">学习何时行动或拒绝：保护智能推理模型进行安全的多步工具使用</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 研究了在多步工具使用中，如何通过保护智能推理模型来确保安全，提出了针对动态决策、对抗性工具反馈和过度自信问题的解决方案。<br><br>**与AI Agent的关联**: 为多智能体系统和工具使用中的安全性和鲁棒性提供了新的方法，对AI Agent的实际应用有重要价值。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2603.02637" target="_blank" rel="noopener noreferrer">StitchCUDA：基于评分的智能体强化学习的自动化多智能体端到端GPU编程框架</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 开发了一个自动化多智能体端到端GPU编程框架，通过智能体强化学习优化GPU程序性能，解决了现代机器学习工作负载中GPU性能挑战。<br><br>**与AI Agent的关联**: 为AI Agent在GPU编程中的应用提供了创新框架，有助于提升智能体在资源管理和性能优化方面的能力。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47255340" target="_blank" rel="noopener noreferrer">展示HN：AI代理与任何桌面UI交互的通用协议</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN：一款面向AI代理的通用协议，旨在实现与任何桌面UI的交互。该协议通过标准化接口，让AI代理能够无缝地与各种桌面应用程序进行交互，极大地提升了AI在复杂环境中的应用能力。此产品为开发者提供了便捷的解决方案，有效解决了传统AI在桌面交互中的局限性，为AI与人类用户之间的沟通搭建了桥梁。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47254845" target="_blank" rel="noopener noreferrer">Show HN：Agentica - 拥有更多模型、更低成本的开放源代码编码代理</a>
+                    </div>
+                </div>
+                <p class="article-summary">Agentica是一款开源的编码代理工具，旨在为用户提供更经济实惠的替代方案。该产品提供多种模型，包括Deca模型和其他开源模型，免费用户每日可获得100次请求。通过降低成本，Agentica解决了传统代理服务高昂费用的问题，为开发者提供高效、便捷的编码支持。其AI能力和创新点在于，通过开源模型和丰富的功能，满足不同用户的需求，助力技术从业者提升工作效率。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47254449" target="_blank" rel="noopener noreferrer">展示HN：Athena Flow – Claude Code的工作流运行时，带有终端用户界面</a>
+                    </div>
+                </div>
+                <p class="article-summary">Athena Flow是一款基于终端UI的 Claude Code 工作流运行时。它通过钩子系统封装 Claude Code，接收事件流，应用工作流和插件逻辑，并以交互式终端UI和实时事件流的形式呈现。该产品旨在解决复杂多步骤任务的自动化难题，用户只需定义一次工作流，包括提示模板、循环、插件包和结构化生命周期钩子，即可应用于任何项目。Athena Flow的AI能力体现在其智能化的工作流管理和自动化执行，为技术从业者提供高效、便捷的自动化解决方案。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-03-05 07:56:01</p>
+        </footer>
+    </div>
+</body>
+
+</html>
