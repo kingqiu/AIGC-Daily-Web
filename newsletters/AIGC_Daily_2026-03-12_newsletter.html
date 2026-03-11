@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-03-12">
+    <title>AIGC Daily #203 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-03-12 星期四</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-03-12_hero.png" alt="AIGC Daily 203 Hero Image">
+            <p class="hero-caption">本期关注：Meta收购Moltbook、OpenAI集成Sora、NVIDIA推Nemotron 3 Super提升代理吞吐量，多巨头布局AI代理赛道，芯片、模型、API技术突破推动广告、商业、客户服务等场景加速落地。</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/03/11/metas-moltbook-deal-points-to-a-future-built-around-ai-agents/" target="_blank" rel="noopener noreferrer">Meta的Moltbook交易预示着一个围绕AI代理构建的未来。</a>
+                    </div>
+                </div>
+                <p class="article-summary">Meta收购Moltbook，布局AI代理在广告和商业的未来。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/ai-artificial-intelligence/893189/openai-chatgpt-sora-integration" target="_blank" rel="noopener noreferrer">据报道，OpenAI的Sora视频生成器即将推出ChatGPT。</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI的Sora视频生成器可能即将成为ChatGPT的内置功能。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3718697070163336?f=rss" target="_blank" rel="noopener noreferrer">Meta发布四款全新AI芯片，与英伟达、AMD竞争升级</a>
+                    </div>
+                </div>
+                <p class="article-summary">Meta发布四款全新AI芯片，与英伟达、AMD竞争升级。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://openai.com/index/rakuten" target="_blank" rel="noopener noreferrer">乐天利用Codex将问题解决速度提高了一倍。</a>
+                    </div>
+                </div>
+                <p class="article-summary">Rakuten利用OpenAI的Codex，将软件发布速度提高50%。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://openai.com/index/equip-responses-api-computer-environment" target="_blank" rel="noopener noreferrer">从模型到代理：为响应API配备计算机环境</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI通过Responses API构建代理运行时，实现安全、可扩展的代理。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blogs.nvidia.com/blog/nemotron-3-super-agentic-ai/" target="_blank" rel="noopener noreferrer">新NVIDIA Nemotron 3超级处理器为智能体AI提供5倍更高的吞吐量</a>
+                    </div>
+                </div>
+                <p class="article-summary">NVIDIA近日发布了全新Nemotron 3 Super模型，这是一款拥有120亿参数的开放模型，其中12亿参数处于活跃状态，旨在大规模运行复杂的代理AI系统。该模型结合了先进的推理能力，能够以高精度高效完成任务，为自主代理提供强大支持。NVIDIA Nemotron 3 Super的推出，标志着AI领域在代理AI系统方面的重大突破，对于推动AI技术的发展具有重要意义。<br><br>Nemotron 3 Super的核心优势在于其高吞吐量，相比前代产品，其吞吐量提升了5倍。这意味着在处理大规模代理AI系统时，Nemotron 3 Super能够更快地完成任务，提高效率。这对于AI-Native公司来说，意味着可以更快速地开发出具有更高性能的AI产品，满足市场需求。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/03/11/zendesk-acquires-agentic-customer-service-startup-forethought/" target="_blank" rel="noopener noreferrer">Zendesk 收购了客户服务初创公司 Forethought。</a>
+                    </div>
+                </div>
+                <p class="article-summary">近日，客户服务领域的领军企业Zendesk宣布收购了具有前瞻性的客户服务初创公司Forethought。Forethought成立于2015年，曾荣获2018年TechCrunch Battlefield大赛的冠军。该公司以其独特的客户服务理念和技术创新，在客户服务领域独树一帜。<br><br>此次收购对Zendesk而言意义重大，它不仅有助于公司进一步拓展客户服务市场，更体现了Zendesk对AI技术的重视。Forethought的核心技术在于利用人工智能和机器学习算法，为客户提供个性化的服务体验。这一技术优势将有助于Zendesk提升客户服务质量，增强客户满意度。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.tmtpost.com/7910068.html" target="_blank" rel="noopener noreferrer">【钛晨报】防范“龙虾”开源智能体安全风险，工信部发布“六要六不要”建议；国际能源署成员国同意释放4亿桶石油；超算互联网向每位OpenClaw用户免费发放1000万Tokens</a>
+                    </div>
+                </div>
+                <p class="article-summary">近日，工信部发布“六要六不要”建议，旨在防范“龙虾”开源智能体安全风险。国际能源署成员国同意释放4亿桶石油，以应对全球能源供应紧张。此外，超算互联网向每位OpenClaw用户免费发放1000万Tokens，助力AI领域发展。<br><br>OpenAI计划在ChatGPT中接入视频生成工具Sora，进一步拓展AI应用场景。央行强调深化业技融合，稳妥推进金融领域人工智能应用。美国2月CPI同比上涨2.4%，市场预计美联储或将在7月降息，对全球经济产生影响。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://newsletter.pragmaticengineer.com/p/from-ides-to-ai-agents-with-steve" target="_blank" rel="noopener noreferrer">从集成开发环境到AI代理与Steve Yegge</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文深入探讨了AI对软件工程的影响，以及“vibe coding”的兴起。作者Steve Yegge指出，随着AI技术的飞速发展，软件工程领域正经历着一场深刻的变革。他强调，开发者必须适应这一快速变化的行业，并积极拥抱新技术。文章中，Yegge提出了几个关键论据：首先，AI正在改变软件开发的流程和工具，IDEs（集成开发环境）将逐渐被AI代理取代；其次，AI将推动“vibe coding”的发展，即通过感知和适应开发者的情绪和风格来提高编程效率；最后，开发者需要不断学习新技能，以应对AI带来的挑战。本文为AI从业者提供了独特的见解，有助于他们更好地理解行业趋势，把握未来发展方向。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://artificialcorner.com/p/claude-code-memory" target="_blank" rel="noopener noreferrer">如何将我的AI聊天历史转化为Claude代码项目记忆</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文由Kevin Gargate Osorio撰写，发表于 newsletter，深入探讨了如何将AI聊天历史转化为Claude Code项目记忆，以避免每次启动时从零开始。文章的核心观点是，通过有效整合聊天历史，可以构建一个持续学习的AI模型，从而提高工作效率和项目质量。作者详细阐述了如何利用聊天历史中的数据，通过数据清洗、特征提取和模型训练等步骤，将历史信息转化为可复用的代码库。关键论据包括：1）通过分析聊天历史，可以发现并解决项目中的常见问题；2）将历史数据转化为代码库，有助于快速定位和修复bug；3）这种方法有助于建立更加智能和自适应的AI系统。阅读本文，AI从业者可以获得独特的见解，了解如何将聊天历史转化为项目记忆，从而提升AI模型的实用性和效率。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blog.langchain.com/autonomous-context-compression/" target="_blank" rel="noopener noreferrer">自主上下文压缩</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文探讨了在Deep Agents SDK（Python）和CLI中新增的自动上下文压缩工具。该工具允许模型在适当的时机压缩其上下文窗口，从而降低工作记忆中的信息量。文章的核心观点是，通过上下文压缩，模型可以更高效地处理信息，提高性能。关键论据包括：上下文压缩可以减少模型处理的数据量，降低计算复杂度，并提高响应速度。阅读本文，AI从业者可以了解到上下文压缩在深度学习中的应用，以及如何利用该工具优化模型性能。文章深度和独特见解体现在对上下文压缩机制的深入分析和实际应用案例的探讨。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47341829" target="_blank" rel="noopener noreferrer">展示HN：基于HDC的功能调用者排名BFCL V4中位列第2 – $2.08比Opus的$87低</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN: HDC-based function caller ranks #2 on BFCL V4 – $2.08 vs. Opus at $87，这是Glyphh——一款基于超维度计算（HDC）的运行时环境。该产品通过在构建时运行LLM生成意图示例，并在运行时使用纯HDC向量数学进行函数路由，实现毫秒级响应、零令牌消耗和确定性输出。Claude Haiku负责参数提取，模型代码完全开源。在BFCL V4排行榜上，其整体准确率高达74.50%，在代理性方面表现最佳。产品旨在为开发者提供高效、可靠的函数调用解决方案，解决传统方法在性能和成本方面的瓶颈。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47342943" target="_blank" rel="noopener noreferrer">展示HN：一个Markdown DSL，用于阻止AI代理产生幻觉的UI代码</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN：Markdown DSL，旨在防止AI生成UI代码时的幻觉。该产品通过Markdown语法构建UI代码，有效降低AI在代码生成过程中产生错误的可能性。对于技术从业者而言，Markdown DSL能够提高开发效率，降低因代码错误导致的调试成本，确保UI代码的准确性和一致性。该产品充分利用AI技术，为开发者提供了一种创新的解决方案。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47342575" target="_blank" rel="noopener noreferrer">展示HN：我制作了一个支持Claude Code中复杂任务的DAG MCP</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN：I made a DAG MCP that supports complex tasks in Claude Code。该产品是一款支持在Claude Code中执行复杂任务的DAG（有向无环图）管理平台。通过结合DAG和MCP（多进程控制）技术，该平台能够高效地管理和调度复杂任务，提高开发效率和代码执行速度。特别适用于与Dew插件协同使用，为技术从业者提供强大的任务执行和管理能力。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-03-12 07:34:37</p>
+        </footer>
+    </div>
+</body>
+
+</html>
