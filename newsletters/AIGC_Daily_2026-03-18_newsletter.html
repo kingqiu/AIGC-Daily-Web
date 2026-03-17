@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-03-18">
+    <title>AIGC Daily #215 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-03-18 星期三</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="placeholder.jpg" alt="AIGC Daily 215 Hero Image">
+            <p class="hero-caption">本期关注：OpenAI发布GPT-5.4 mini和nano模型，性能提升且价格更低，推动AI普及；阿里巴巴推出企业级AI代理平台，加剧市场竞争，加速产业智能化。</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/03/17/why-garry-tans-claude-code-setup-has-gotten-so-much-love-and-hate/" target="_blank" rel="noopener noreferrer">为什么Garry Tan的Claude Code设置如此受到喜爱和厌恶</a>
+                    </div>
+                </div>
+                <p class="article-summary">Garry Tan的Claude Code在GitHub上受到广泛关注，引发爱恨交织的讨论。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/03/17/world-launches-tool-to-verify-humans-behind-ai-shopping-agents/" target="_blank" rel="noopener noreferrer">世界推出验证AI购物代理背后人类身份的工具</a>
+                    </div>
+                </div>
+                <p class="article-summary">Altman的初创公司推出工具验证AI购物代理背后的真实人类。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/ai-artificial-intelligence/896107/google-expands-personal-intelligence" target="_blank" rel="noopener noreferrer">现在美国所有人都在使用谷歌的个性化Gemini AI。</a>
+                    </div>
+                </div>
+                <p class="article-summary">Google宣布所有美国用户将获得个性化Gemini AI服务。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/news/895963/microsoft-copilot-leadership-changes-consumer-commercial" target="_blank" rel="noopener noreferrer">微软在AI领导层动荡之后任命了新的Copilot负责人</a>
+                    </div>
+                </div>
+                <p class="article-summary">微软重组AI领导团队，任命新Copilot负责人。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://simonwillison.net/2026/Mar/17/mini-and-nano/#atom-everything" target="_blank" rel="noopener noreferrer">GPT-5.4 mini 和 GPT-5.4 nano，可描述76,000张照片，价格为52美元</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI近日发布了GPT-5.4 mini和nano两款模型，这两款模型是继GPT-5.4发布两周后的新成员。据OpenAI自述的基准测试显示，在最大推理努力下，新的5.4-nano模型在性能上超越了之前的GPT-5 mini模型，而新的mini模型的速度也比之前的mini快了两倍。<br><br>在定价方面，GPT-5.4 nano的性价比尤为突出，其价格甚至低于谷歌的Gemini 3.1 Flash-Lite。具体来看，GPT-5.4 mini和nano的价格分别为每百万个token 0.75美元和0.075美元，而GPT-5.4的价格为每百万个token 2.50美元。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://aibusiness.com/agentic-ai/alibaba-launches-enterprise-ai-agent-platform" target="_blank" rel="noopener noreferrer">阿里巴巴推出企业AI代理平台</a>
+                    </div>
+                </div>
+                <p class="article-summary">阿里巴巴近日正式推出企业级AI代理平台，这一举措正值中国代理人工智能市场竞争加剧之际。随着Nvidia和Meta等公司也纷纷加入个人代理领域的竞争，阿里巴巴的入局无疑将加剧这一领域的竞争态势。<br><br>此次推出的企业级AI代理平台旨在为企业提供智能化的解决方案，通过整合阿里巴巴在云计算、大数据和人工智能领域的优势，帮助企业实现智能化升级。该平台的核心功能包括智能客服、智能营销、智能决策等，旨在提升企业的运营效率和客户体验。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.leiphone.com/category/industrynews/18CNWqBj1xWtulC8.html" target="_blank" rel="noopener noreferrer">首个中国版“Grok+FSD”量产上车，千里科技推进舱驾融合发展</a>
+                    </div>
+                </div>
+                <p class="article-summary">在2026年NVIDIA GTC大会上，吉利汽车集团宣布在舱驾融合领域取得突破，携手千里科技、阶跃星辰共同打造的“超级Eva+G-ASD 4.0”即将量产上车。这一创新成果标志着中国智能汽车领域迈向新高度，其核心在于将智能座舱、智能辅助驾驶与数字生态深度融合，实现对话式舱驾协同和全场景服务联动。<br><br>这一突破的重要性在于，它不仅推动了舱驾融合成为2026年汽车智能体发展的核心趋势，而且预示着智能汽车将从单一功能向综合服务转变。超级Eva与千里浩瀚G-ASD的结合，不仅与特斯拉Grok和FSD方案理念相近，更在技术上实现了快速迭代和深度融合，为用户带来颠覆性的人车交互体验。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://newsletter.pragmaticengineer.com/p/are-ai-agents-actually-slowing-us" target="_blank" rel="noopener noreferrer">人工智能代理实际上是否让我们减速了？</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文探讨了随着AI代理在日常软件工程师中的应用日益广泛，为何反而出现了软件质量下降、故障频发、发货速度减缓等问题。作者Gergely Orosz指出，虽然AI代理提高了开发效率，但同时也带来了忽视代码质量、过度依赖自动化工具等问题。文章深入分析了AI代理在软件开发过程中的潜在风险，并提出了相应的解决方案。阅读本文，AI从业者将了解到AI代理在软件开发中的利弊，以及如何正确使用AI工具，提高软件质量和开发效率。本文以独特的视角，对AI代理在软件开发中的应用进行了深度剖析，具有较高的阅读价值。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://simonwillison.net/guides/agentic-engineering-patterns/subagents/#atom-everything" target="_blank" rel="noopener noreferrer">子代理</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文探讨了大型语言模型（LLMs）在处理复杂任务时的局限性，即其工作内存的上下文限制。文章指出，尽管LLMs在能力上取得了显著进步，但它们的工作内存容量却增长有限，通常在100万token左右，且在200,000token以下能获得更好的结果。为了有效利用模型，管理上下文以适应这些限制至关重要。文章提出了“子代理”这一概念，通过将自身复制以实现特定目标，并赋予子代理一个新的上下文窗口，从而实现处理更大任务的目的。这一独特见解为AI从业者提供了新的思路，有助于更高效地利用LLMs处理复杂任务。阅读本文，读者将深入了解LLMs的上下文限制，并学习如何利用子代理技术突破这一瓶颈。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.technologyreview.com/2026/03/17/1134351/the-pentagon-is-planning-for-ai-companies-to-train-on-classified-data-defense-official-says/" target="_blank" rel="noopener noreferrer">五角大楼计划让AI公司对机密数据进行训练，国防部官员表示。</a>
+                    </div>
+                </div>
+                <p class="article-summary">美国国防部正计划为生成式AI公司建立安全环境，以便在保密数据上训练针对军事特定版本的模型。据MIT Technology Review报道，此举旨在提升AI在军事领域的应用能力。目前，如Anthropic的Claude等AI模型已在保密环境中用于回答问题，包括分析伊朗目标。然而，允许模型在保密数据上训练，将带来前所未有的挑战和机遇。本文深入探讨了这一计划的核心观点、关键论据及其对AI行业的影响，为AI从业者提供了宝贵的参考。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47417740" target="_blank" rel="noopener noreferrer">展示HN：AI代理协议之间的中间件</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN：一款AI代理协议翻译中间件。该产品旨在解决多智能体系统中代理间互操作性不足的问题。通过提供协议间的schema感知翻译和语义映射功能，它能够有效解决不同代理间因协议、意图结构不一致而导致的通信障碍。使用该中间件，开发者无需编写繁琐的粘合代码，即可实现智能体间的顺畅通信，大幅提升多智能体系统的构建效率和稳定性。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47418454" target="_blank" rel="noopener noreferrer">展示HN：Wuobly - 一款在实时网络中搜索B2B潜在客户的AI代理</a>
+                    </div>
+                </div>
+                <p class="article-summary">Wuobly是一款基于AI的B2B线索搜索工具。其核心功能是通过自然语言输入，实时搜索并验证潜在客户信息，包括邮箱、电话、LinkedIn资料和公司详情，并提供详细的匹配理由。Wuobly利用AI技术，模拟销售代表的工作方式，在搜索过程中进行推理分析，有效提高线索质量，帮助用户节省时间和精力，提升销售效率。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47417594" target="_blank" rel="noopener noreferrer">展示HN：SkeptAI - 挑战LLM输出的对抗性推理代理</a>
+                    </div>
+                </div>
+                <p class="article-summary">SkeptAI是一款基于对抗推理的AI产品，旨在挑战大型语言模型（LLM）的输出。该产品通过其自定义框架CRIT，对LLM输出进行四次结构化对抗测试，并提供评分结果。SkeptAI采用跨模型批评机制，如Claude输出被GPT-4o挑战，反之亦然，以防止自我参考偏差。该产品提供免费试玩和开源框架，可视为“数字魔鬼代言人”。SkeptAI帮助用户识别LLM输出的潜在错误，提高信息准确性，适用于技术从业者。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-03-18 07:29:20</p>
+        </footer>
+    </div>
+</body>
+
+</html>
