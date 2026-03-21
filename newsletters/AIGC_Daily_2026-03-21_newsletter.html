@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-03-21">
+    <title>AIGC Daily #221 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-03-21 星期六</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-03-21_hero.png" alt="AIGC Daily 221 Hero Image">
+            <p class="hero-caption">本期关注：WordPress.com 允许AI代理撰写、发布和管理您的网站。、微软撤销了其在Windows上的一些Copilot AI冗余功能、星巴克推出了一款真正能做事的人工智能银行助手、在Nvidia GTC大会上发生了什么：NemoClaw、机器人Olaf和一场价值1万亿美元的赌注</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://thenextweb.com/news/wordpress-com-mcp-write-capabilities-ai-agent" target="_blank" rel="noopener noreferrer">WordPress.com 允许AI代理撰写、发布和管理您的网站。</a>
+                    </div>
+                </div>
+                <p class="article-summary">WordPress.com新增AI功能，允许AI代理撰写、发布和管理网站内容。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/03/20/microsoft-rolls-back-some-of-its-copilot-ai-bloat-on-windows/" target="_blank" rel="noopener noreferrer">微软撤销了其在Windows上的一些Copilot AI冗余功能</a>
+                    </div>
+                </div>
+                <p class="article-summary">微软缩减Windows上Copilot AI的入口点，从照片、小部件、记事本等应用开始。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://thenextweb.com/news/starling-assistant-agentic-ai-financial-assistant-uk" target="_blank" rel="noopener noreferrer">星巴克推出了一款真正能做事的人工智能银行助手</a>
+                    </div>
+                </div>
+                <p class="article-summary">英国挑战性银行Starling推出AI银行助手，提供实际服务。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/video/what-happened-at-nvidia-gtc-nemoclaw-robot-olaf-and-a-1-trillion-bet/" target="_blank" rel="noopener noreferrer">在Nvidia GTC大会上发生了什么：NemoClaw、机器人Olaf和一场价值1万亿美元的赌注</a>
+                    </div>
+                </div>
+                <p class="article-summary">英伟达GTC大会上，黄仁勋预测到2027年AI芯片销售额将达1万亿美元。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3731248353083401?f=rss" target="_blank" rel="noopener noreferrer">Eightco对OpenAI追加投资4000万美元</a>
+                    </div>
+                </div>
+                <p class="article-summary">Eightco向OpenAI追加投资4000万美元，总投资额达9000万美元。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/03/20/wordpress-com-now-lets-ai-agents-write-and-publish-posts-and-more/" target="_blank" rel="noopener noreferrer">WordPress.com 现在允许AI代理撰写和发布文章，以及更多功能。</a>
+                    </div>
+                </div>
+                <p class="article-summary">WordPress.com近日推出全新AI代理功能，允许AI自动撰写和发布文章，此举有望降低内容发布的门槛，同时推动网络中机器生成内容的增长。这一创新举措的核心在于，通过AI代理的辅助，用户可以更轻松地创作和发布内容，从而打破传统内容创作的壁垒。这一变化对AI领域具有重要意义，不仅展示了AI在内容创作领域的应用潜力，也为AI技术在互联网内容生态中的角色提供了新的可能性。WordPress.com的AI代理功能有望推动AI技术在内容创作领域的进一步发展，为用户带来更加便捷、高效的内容创作体验。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/singularity/comments/1rz3et1/i_asked_the_ai_roundtable_if_ai_companies_should/" target="_blank" rel="noopener noreferrer">我询问了人工智能圆桌会议，是否应该允许人工智能公司基于道德理由拒绝军事合同。</a>
+                    </div>
+                </div>
+                <p class="article-summary">在Anthropic与五角大楼的争议背景下，Reddit用户u/facethef通过其构建的AI Roundtable工具，对Grok 4.1、GPT-5.4、Kimi K2.5、Claude Opus 4.6、Gemini 3.1 Pro和GLM-5等六款AI模型进行了调查，探讨AI公司是否应基于伦理立场拒绝军事合同。结果显示，所有模型一致投票支持AI公司有权拒绝此类合同。这一调查结果揭示了AI领域对军事合同伦理问题的关注，对AI公司而言，拒绝军事合同可能成为其未来决策的重要考量因素。同时，这一调查也引发了业界对AI伦理的深入思考，对推动AI行业的健康发展具有重要意义。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.latent.space/p/dreamer" target="_blank" rel="noopener noreferrer">梦想家：个人代理操作系统 —— 大卫·辛格顿</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文深入探讨了Dreamer：个人代理操作系统（Personal Agent OS）的愿景与实现路径。作者David Singleton揭示了其背后的核心观点：通过构建一个全新的操作系统，实现个人智能代理的全面赋能。文章以$10,000奖金激励新工具的开发，并为Latent Space订阅者提供特别通道，展示了其独特的创新精神。<br><br>关键论据包括：Dreamer旨在打破传统操作系统的局限，实现个人智能代理的自主学习和决策能力；通过引入新的工具和功能，提升个人工作效率和生活品质；同时，文章强调了Latent Space订阅者的重要地位，为读者提供了深入了解Dreamer的机会。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.technologyreview.com/2026/03/20/1134448/the-download-openai-building-fully-automated-researcher-psychedelic-drug-trial/" target="_blank" rel="noopener noreferrer">下载：OpenAI正在构建一个全自动研究员，以及一个迷幻药物试验盲点</a>
+                    </div>
+                </div>
+                <p class="article-summary">《The Download：OpenAI打造全自动研究员，发现迷幻药物试验盲点》一文由Thomas Macaulay撰写，深入探讨了OpenAI在人工智能领域的最新进展。文章核心观点是，OpenAI正致力于打造一个全自动的研究员，该系统基于人工智能技术，能够自主解决复杂问题。文章以OpenAI的全新挑战为切入点，详细阐述了这一项目的进展和潜在影响。<br><br>文章的关键论据包括：OpenAI正投入大量资源研发全自动研究员，这一系统有望在解决复杂问题方面发挥重要作用。此外，文章还揭示了迷幻药物试验中存在的盲点，为相关研究提供了新的视角。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2603.18122" target="_blank" rel="noopener noreferrer">为领域专家构建低成本的AI代理工作流程的交互式无代码笔记本：Skele-Code</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出了一种基于自然语言和图形界面的无代码工作流程构建工具，允许非技术用户通过交互式笔记本风格进行开发，通过代码生成和错误恢复来调用代理，而不涉及编排或任务执行。<br><br>**与AI Agent的关联**: 为非技术用户提供了一种构建AI代理工作流程的新方法，降低了技术门槛，对AI Agent的普及和应用具有实际价值。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2603.18631" target="_blank" rel="noopener noreferrer">D-Mem：为LLM代理提供双过程记忆系统</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出了一种双过程记忆系统，旨在为长期推理提供高保真的记忆访问，解决了现有检索式记忆框架的增量处理范式问题。<br><br>**与AI Agent的关联**: 为LLM代理提供了更有效的记忆系统，有助于提高长期推理能力，对AI Agent的研究和应用有重要意义。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2603.18718" target="_blank" rel="noopener noreferrer">通过多智能体推理和就地自我进化协调记忆周期：MemMA</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出了一种协调记忆周期的多智能体推理和就地自我进化方法，解决了现有系统中记忆构建、检索和利用作为孤立子程序的问题。<br><br>**与AI Agent的关联**: 为记忆增强型LLM代理提供了更有效的记忆管理策略，有助于提高智能体在长期交互中的表现，对AI Agent的研究和应用有重要价值。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47461338" target="_blank" rel="noopener noreferrer">展示HN：代理使用界面（AUI）——让用户携带自己的AI代理</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN: Agent Use Interface (AUI) 是一款轻量级、开放规范的AI应用接口，旨在让用户将个人AI代理带入任何应用程序。AUI简化了AI集成过程，特别适用于已采用URL参数驱动的简单应用。通过AUI，用户无需复杂配置，即可实现个人AI代理在应用中的便捷操作，提升用户体验。该产品为技术从业者提供了一种高效、便捷的AI集成解决方案。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47459997" target="_blank" rel="noopener noreferrer">Show HN：OpenHarness - 用于构建AI代理的开源TypeScript SDK</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenHarness是一款开源的TypeScript SDK，专为构建AI代理而设计。该产品基于Vercel的AI SDK 5，支持任何该SDK所支持的模型。核心功能包括从AGENTS.md文件加载代理指令、MCP服务器连接工具、子代理（代理委托给子代理）等。OpenHarness旨在解决现有AI代理SDK“重”和不可定制的问题，为开发者提供灵活、高效的AI代理构建解决方案。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47459713" target="_blank" rel="noopener noreferrer">展示HN：Qwack - 基于OpenCode构建的AI代理协作导航</a>
+                    </div>
+                </div>
+                <p class="article-summary">Qwack是一款基于OpenCode的AI编码代理协同控制工具。该产品旨在解决AI代理使用过程中，多人协作时难以实时互动的问题。用户可通过Qwack实现多人实时共享编码环境，共同指导AI代理完成编码任务。核心功能包括：多人实时协作、共享编码环境、同步输出结果。Qwack的AI能力和创新点在于，它通过构建协同控制机制，有效提升了AI代理在复杂场景下的表现，为技术从业者提供了便捷的AI编码协作解决方案。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-03-21 08:00:20</p>
+        </footer>
+    </div>
+</body>
+
+</html>
