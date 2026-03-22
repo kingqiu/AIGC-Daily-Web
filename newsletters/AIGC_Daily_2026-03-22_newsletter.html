@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-03-22">
+    <title>AIGC Daily #223 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-03-22 星期日</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-03-22_hero.png" alt="AIGC Daily 223 Hero Image">
+            <p class="hero-caption">本期关注：小模型通过结构化提示与推理技巧逼近大模型效果，AI应用引发内容合规与伦理争议，开源工具ClawMem推动代理持久记忆发展，行业在技术突破与风险管控中探索平衡。</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/03/21/publisher-pulls-horror-novel-shy-girl-over-ai-concerns/" target="_blank" rel="noopener noreferrer">出版社因AI担忧撤回恐怖小说《害羞的女孩》</a>
+                    </div>
+                </div>
+                <p class="article-summary">Hachette Book Group因AI生成文本担忧，决定不出版《Shy Girl》小说。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/03/21/delve-accused-of-misleading-customers-with-fake-compliance/" target="_blank" rel="noopener noreferrer">深挖被指控以“虚假合规”误导客户</a>
+                    </div>
+                </div>
+                <p class="article-summary">匿名指控合规初创公司Delve误导客户，声称其符合隐私和安全法规。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/tech/898282/gemini-task-automation-uber-doordash-hands-on" target="_blank" rel="noopener noreferrer">双子座任务自动化速度慢，操作笨拙，但非常令人印象深刻。</a>
+                    </div>
+                </div>
+                <p class="article-summary">Gemini在Pixel 10 Pro和Galaxy S26 Ultra上测试新任务自动化功能，初显成效。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/entertainment/897923/ghost-in-the-machine-valerie-veatch-interview" target="_blank" rel="noopener noreferrer">通用人工智能的Kool-Aid味道像优生学</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI的Sora文本到视频生成AI模型引发担忧，被指有优生学倾向。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/LocalLLaMA/comments/1s05thz/llama_8b_matching_70b_on_multihop_qa_with/" target="_blank" rel="noopener noreferrer">llama 8B 在多跳问答任务中与 70B 模型进行匹配，采用结构化提示，无需微调。</a>
+                    </div>
+                </div>
+                <p class="article-summary">在多跳问答任务中，研究者通过Graph RAG（KET-RAG）对Llama 3.1 8B模型进行了实验，发现检索问题基本得到解决，答案在上下文中出现的概率高达77%至91%。然而，推理成为瓶颈，73%至84%的错误答案源于模型未能连接信息点，而非信息缺失。实验发现，通过两种推理时间技巧可以缩小差距：一是将问题分解为图查询模式，形成结构化的思维链；二是通过图遍历压缩检索到的上下文，压缩率约为60%，无需额外调用LLM。结果表明，经过这些增强的Llama 3.1 8B模型在三个常用基准测试中与Llama 3.3 70B模型相当或更优，成本仅为后者的1/12。这一研究对于AI领域具有重要意义，它揭示了推理在问答任务中的关键作用，并为小型模型在推理能力上的提升提供了有效途径。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47472965" target="_blank" rel="noopener noreferrer">展示HN：ClawMem – 具有SOTA本地GPU检索的开源代理内存</a>
+                    </div>
+                </div>
+                <p class="article-summary">标题：Show HN：ClawMem – 开源AI代理持久记忆与SOTA本地GPU检索<br><br>ClawMem是一款开源的上下文引擎，旨在为AI编码代理提供跨会话的持久记忆功能。该引擎与Claude Code（钩子和MCP）以及OpenClaw（上下文引擎插件和REST API）兼容，并支持使用相同的SQLite存储库，使得CLI代理和语音/聊天代理能够在无需同步的情况下共享相同的记忆。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47472268" target="_blank" rel="noopener noreferrer">Show HN：Signet-eval 为 Claude Code 提供确定性策略执行</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN近日发布了一款名为Signet-eval的新工具，旨在为Claude Code提供确定性政策执行。该工具通过正则表达式和简单条件对工具调用进行评估，确保执行前的合规性。其工作原理是：首先匹配成功，即可执行，从而避免了提示注入的风险。Signet-eval的启动速度约为60毫秒，评估速度小于1毫秒，极大地提高了执行效率。<br><br>这一创新对于AI领域具有重要意义。首先，它为AI系统的安全性和稳定性提供了有力保障。通过在执行前进行政策规则评估，可以有效防止恶意操作和潜在的安全风险。其次，Signet-eval的快速响应速度有助于提高AI系统的整体性能，为用户提供更加流畅、高效的体验。此外，该工具的推出也为AI开发者提供了新的思路和工具，有助于推动AI技术的进一步发展。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://simonwillison.net/guides/agentic-engineering-patterns/using-git-with-coding-agents/#atom-everything" target="_blank" rel="noopener noreferrer">使用Git与编码代理</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文深入探讨了Git在编码代理中的应用。文章指出，Git作为版本控制工具，对于记录代码变化、调查和回滚错误至关重要。编码代理对Git的基本和高级功能都十分熟练，这使得我们能够更加大胆地使用Git。作者强调，我们不需要死记硬背Git的使用方法，而是要关注Git的无限可能，充分利用其全部功能。<br><br>文章详细介绍了Git的基本概念，如仓库、提交和提交信息。每个Git项目都存在于一个仓库中，该仓库记录了项目文件的变化。这些变化以提交的形式存在，每个提交都包含一系列文件更改和一个描述这些更改的提交信息。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://simonwillison.net/2026/Mar/21/profiling-hacker-news-users/#atom-everything" target="_blank" rel="noopener noreferrer">基于用户评论对Hacker News用户进行画像</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文探讨了基于Hacker News用户评论进行用户画像的方法。作者通过使用Algolia Hacker News API获取用户过去1000条评论，并利用这些数据构建用户画像。文章首先介绍了如何通过API获取用户评论，并强调了API的开放性。接着，作者分享了如何利用这些评论来分析用户的兴趣、观点和价值观。文章的核心观点是，通过对用户评论的深入分析，可以构建出较为准确的用户画像，从而更好地了解用户行为和需求。<br><br>本文具有以下阅读价值：首先，文章揭示了基于用户评论进行用户画像的可行性和有效性；其次，作者展示了如何利用API获取用户数据，为AI从业者提供了实际操作指导；最后，文章提出了对用户画像构建的独特见解，有助于推动相关领域的研究和发展。本文深度剖析了用户画像构建的方法，为AI从业者提供了宝贵的参考。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blog.bytebytego.com/p/ep207-top-12-github-ai-repositories" target="_blank" rel="noopener noreferrer">EP207：GitHub AI Top 12 仓库</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文由ByteByteGo撰写，深入探讨了GitHub上最受欢迎的12个AI开源项目。文章基于项目整体受欢迎程度和GitHub星标数量进行精选，旨在为AI从业者提供一份全面的项目指南。文章不仅揭示了这些项目的核心技术和应用场景，还深入分析了它们在AI领域的独特见解和贡献。通过阅读本文，读者可以了解到当前GitHub上最受欢迎的AI项目，为自身的研究和开发提供有益的参考。此外，文章还探讨了这些项目在推动AI技术发展方面的作用，为读者提供了宝贵的行业洞察。总之，本文是一篇深度长文，对于关注AI领域的专业人士来说，具有极高的阅读价值。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/MachineLearning/comments/1rztzib/r_seeing_arxiv_endorser_eessiv_or_cscv_ct_lung/" target="_blank" rel="noopener noreferrer">使用物理引导的采集参数扰动进行MONAI RetinaNet肺结节检测器的部署后敏感性分析</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出了一种基于物理引导的采集参数扰动方法，用于评估MONAI RetinaNet肺结节检测器的敏感性，并分析了切片厚度和剂量降低对检测性能的影响。<br><br>**与AI Agent的关联**: 该研究为AI Agent在医学图像处理中的应用提供了新的思路，特别是在处理复杂场景和参数调整方面，对多智能体系统和规划推理有潜在价值。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47472719" target="_blank" rel="noopener noreferrer">展示HN：我为Switchboard构建了网格视图 - Claude Code CLI管理器</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN: I Built Grid View for Switchboard – Claude Code CLI Manager是一款基于CLI的代码管理工具。该产品通过引入网格视图，优化了代码的展示和管理方式，极大地提升了用户的工作效率。它能够帮助开发者快速定位代码，简化代码查找过程，有效解决传统CLI工具在代码管理上的不便。这款工具适用于技术从业者，特别是那些需要频繁处理大量代码的开发人员。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47471573" target="_blank" rel="noopener noreferrer">展示HN：旅行黑客工具包 - 基于AI的积分搜索和行程规划</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN: Travel Hacking Toolkit是一款基于AI的旅行积分搜索与行程规划工具。该产品通过整合多个航空里程计划，提供实时查询、现金价格、积分余额、转移伙伴比例等数据，帮助用户快速比较使用积分或现金支付的成本。其核心功能包括7项技能和6个MCP服务器，通过AI技术实现自动化操作，解决用户手动跨多个标签页进行积分查询的繁琐问题。Travel Hacking Toolkit旨在为技术从业者提供高效、便捷的旅行规划解决方案。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47472735" target="_blank" rel="noopener noreferrer">展示HN：我为你们编写了一个筷子礼仪错误应用，这样你们就无需亲自体验了</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN：I vibe-coded the chopsticks faux pas app for you so you don&#39;t have to，这是一款基于Hacker News的热门话题，通过AI技术将话题转化为调查问卷的应用。该产品旨在帮助用户了解并避免使用筷子时的不当行为，提供专业指导，提升用餐礼仪。通过简洁直观的界面和智能算法，用户可以轻松参与调查，获取个性化反馈，提升用餐体验。这款AI驱动的应用，以其创新性和实用性，为技术从业者提供了一款实用工具。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-03-22 08:50:22</p>
+        </footer>
+    </div>
+</body>
+
+</html>
