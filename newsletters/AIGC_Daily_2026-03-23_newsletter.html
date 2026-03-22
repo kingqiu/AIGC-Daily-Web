@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-03-23">
+    <title>AIGC Daily #225 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-03-23 星期一</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-03-23_hero.png" alt="AIGC Daily 225 Hero Image">
+            <p class="hero-caption">本期关注：Cursor承认新编码模型基于Moonshot AI的Kimi构建，15岁开发者用Llama 3.1 8B和CrewAI本地搭建自主AI法庭实现代理协作辩论，ClaudeRank开源为Claude Code提供token并发工具，OpenAI联合创始人Karpathy称数月未写代码处...</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/03/22/cursor-admits-its-new-coding-model-was-built-on-top-of-moonshot-ais-kimi/" target="_blank" rel="noopener noreferrer">Cursor承认其新的编码模型是在Moonshot AI的Kimi之上构建的</a>
+                    </div>
+                </div>
+                <p class="article-summary">Cursor承认其新编码模型基于Moonshot AI的Kimi构建</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/03/22/do-you-want-to-build-a-robot-snowman/" target="_blank" rel="noopener noreferrer">你想建造一个机器人雪人吗？</a>
+                    </div>
+                </div>
+                <p class="article-summary">NVIDIA CEO黄仁勋在GTC大会上讨论了NVIDIA的未来</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/games/897982/gdc-2026-ai-game-developer-conference" target="_blank" rel="noopener noreferrer">在游戏界的大型开发者大会上，AI无处不在——除了在游戏中。</a>
+                    </div>
+                </div>
+                <p class="article-summary">AI在游戏开发者大会上无处不在，但游戏本身却未涉及AI</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://fortune.com/2026/03/21/andrej-karpathy-openai-cofounder-ai-agents-coding-state-of-psychosis-openclaw/" target="_blank" rel="noopener noreferrer">OpenAI联合创始人表示他数月来没有编写过一行代码，并处于“精神错乱”状态——《财富》</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI联合创始人Karpathy表示自己已数月未编写代码，处于‘精神错乱’状态</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/LocalLLaMA/comments/1s0z1vi/i_built_an_autonomous_ai_courtroom_using_llama_31/" target="_blank" rel="noopener noreferrer">我使用Llama 3.1 8B和CrewAI在我的5070 Ti上本地运行，构建了一个自主AI法庭。代理通过情境协作相互辩论。</a>
+                    </div>
+                </div>
+                <p class="article-summary">15岁的开发者Ali Suat利用本地硬件成功构建了一个名为“AI-Court Supreme”的自主AI法庭系统，该系统基于Llama 3.1 8B和CrewAI框架运行。该系统通过上下文协作，实现了三位自主代理——首席检察官、辩护律师和首席审判长之间的辩论。该项目旨在评估本地大型语言模型在复杂法律和技术流程中的表现。Ali Suat采用CrewAI框架建立了分层工作流程，通过模拟法庭审判过程，探讨了多代理推理在AI领域的应用潜力。这一创新实践不仅展示了深度学习在法律领域的应用前景，也为AI领域提供了新的研究思路和案例，对推动AI在司法领域的应用具有重要意义。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47481106" target="_blank" rel="noopener noreferrer">展示HN：ClaudeRank – Claude Code的开源令牌和并发小部件</a>
+                    </div>
+                </div>
+                <p class="article-summary">近日，一位名为ymaws的开发者推出了名为ClaudeRank的开源项目，该项目旨在为Claude Code提供一种基于token和并发功能的工具。ClaudeRank项目位于https://www.clauderank.com/，旨在为开发者提供一种高效、便捷的代码开发工具。<br><br>ClaudeRank的核心内容是提供了一种基于token的并发控制机制，旨在提高代码的执行效率和稳定性。在多线程编程中，并发控制是至关重要的，而ClaudeRank通过引入token机制，实现了对并发操作的精细化管理，有效避免了死锁、竞态条件等问题。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47480855" target="_blank" rel="noopener noreferrer">展示HN：自主代理根据一个提示构建了视频管道</a>
+                    </div>
+                </div>
+                <p class="article-summary">近日，一位名为V_Shukla的AI研究者展示了其构建的视频处理流水线的成果。该流水线由一个简单的提示词驱动，实现了从数据预处理到视频生成的全流程自动化。这一突破性进展不仅展示了AI在视频处理领域的强大能力，也为AI领域的进一步发展提供了新的思路。<br><br>这一成果的重要性在于，它标志着AI在视频处理领域的应用迈出了重要一步。传统的视频处理流程复杂且耗时，需要大量的人工干预。而通过这一流水线，AI能够自动完成从数据预处理到视频生成的整个过程，极大地提高了效率，降低了成本。这对于视频制作、视频分析等领域具有重要的应用价值。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.interconnects.ai/p/lossy-self-improvement" target="_blank" rel="noopener noreferrer">损失性自我提升</a>
+                    </div>
+                </div>
+                <p class="article-summary">Nathan Lambert在《Lossy self-improvement》一文中，深入探讨了自我提升的真实性与局限性。文章的核心观点是，尽管自我提升是真实存在的，但它并不能带来快速的突破。作者通过一系列关键论据，如人类认知的局限性、技能提升的缓慢过程以及环境因素的制约，阐述了自我提升并非一条通往快速成功的捷径。<br><br>文章的深度和独特见解体现在对自我提升这一普遍现象的深入剖析。作者指出，虽然自我提升有助于个人成长，但过度的追求可能导致焦虑和压力，甚至影响身心健康。此外，文章还从心理学、社会学等多个角度，对自我提升的内在机制进行了探讨。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://artificialcorner.com/p/cowork-dispatch" target="_blank" rel="noopener noreferrer">克劳德调度：给电脑发短信。回到已完成的工作。</a>
+                    </div>
+                </div>
+                <p class="article-summary">在Frank Andrade的《Claude Dispatch: Text Your Computer. Come Back to Finished Work》一文中，作者揭示了 Cowork 任务的新操作方式，即通过手机远程控制电脑工作。这一创新的核心观点在于，用户无需守在电脑前，即可启动并监控任务执行，电脑在用户离开后仍能持续工作。文章通过具体案例和深入分析，展示了这一技术的关键论据，包括提高工作效率、增强远程工作灵活性以及降低对物理设备依赖等。对于AI从业者而言，这篇文章不仅提供了对新兴技术的洞察，还探讨了人工智能在提升人机交互体验方面的独特见解。其深度和独特性使得阅读此文对于了解未来工作模式和技术发展趋势具有重要价值。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47481605" target="_blank" rel="noopener noreferrer">展示HN：Git-surgeon – Git add -p 为AI代理</a>
+                    </div>
+                </div>
+                <p class="article-summary">Git-surgeon是一款基于Git的智能代码管理工具，其核心功能是提供类似于`git add -p`的交互式文件添加功能，但通过AI技术实现。该产品能够帮助用户更高效地管理代码变更，特别是对于大文件或复杂变更，Git-surgeon能够自动识别并推荐合适的变更操作，极大提升代码提交的效率和准确性。对于技术从业者而言，Git-surgeon能够有效解决代码管理中的痛点，提高团队协作效率，同时其AI能力的创新点为代码管理带来了全新的解决方案。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47483064" target="_blank" rel="noopener noreferrer">展示HN：P-book - 一本关于推荐算法的儿童互动书籍</a>
+                    </div>
+                </div>
+                <p class="article-summary">P-book是一款针对儿童的互动式书籍，旨在通过个性化阅读体验，向孩子们介绍推荐算法的工作原理，包括建议、隐私、过滤泡和公平性等概念。该产品采用开源的互动书籍格式，允许用户通过任务、浏览、阅读或地图等多种方式探索同一主题，从而实现个性化学习。P-book的AI能力在于其个性化推荐和探索方式，旨在帮助孩子们更好地理解复杂的技术概念，提升他们的科技素养。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47482955" target="_blank" rel="noopener noreferrer">展示HN：我构建了一个AI原生链接树应用</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN：AI原生链接树应用——一款现代、简洁且AI友好的Linktree替代应用。该产品旨在为用户打造一个干净、高效的链接管理平台。通过AI技术，该应用能够智能地优化链接布局，提升用户体验。相比传统链接树，Show HN在界面设计、功能优化等方面均有显著提升，为用户提供更加便捷的链接管理服务。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-03-23 06:58:58</p>
+        </footer>
+    </div>
+</body>
+
+</html>
