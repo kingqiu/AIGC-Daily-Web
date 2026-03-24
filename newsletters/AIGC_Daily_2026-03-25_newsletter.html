@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-03-25">
+    <title>AIGC Daily #229 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-03-25 星期三</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-03-25_hero.png" alt="AIGC Daily 229 Hero Image">
+            <p class="hero-caption">本期关注：Anthropic推出Claude Code平衡AI自主权与安全，Arm芯片合作Meta数据中心，OpenAI与Google竞逐AI购物功能，Origin推出AI代码追踪工具，MIT电子书探讨AI代理自主权风险。</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/03/24/anthropic-hands-claude-code-more-control-but-keeps-it-on-a-leash/" target="_blank" rel="noopener noreferrer">Anthropic赋予Claude更多控制权，但将其控制在一定范围内。</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic推出Claude Code新功能，赋予AI更多自主权，同时通过内置安全措施平衡速度与安全。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/ai-artificial-intelligence/899823/arm-agi-cpu-meta" target="_blank" rel="noopener noreferrer">Arm的首款CPU将于今年晚些时候接入Meta的AI数据中心。</a>
+                    </div>
+                </div>
+                <p class="article-summary">Arm推出首款自产CPU，将用于Meta的AI数据中心，标志着Arm从仅提供芯片设计转向生产。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/ai-artificial-intelligence/899677/openai-google-gemini-ai-shopping-features" target="_blank" rel="noopener noreferrer">ChatGPT和Gemini正在争夺成为销售商品的AI机器人。</a>
+                    </div>
+                </div>
+                <p class="article-summary">Google和OpenAI在聊天机器人购物功能上展开竞争，Google与Gap合作，让Gemini AI助手代购衣物。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://thenextweb.com/news/openai-open-source-teen-safety-policies-developers" target="_blank" rel="noopener noreferrer">OpenAI在面临有关ChatGPT死亡事件的不断诉讼中，向开发者开源了青少年安全政策。</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI开源青少年安全政策，应对ChatGPT相关死亡案件诉讼。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/03/24/openais-plans-to-make-chatgpt-more-like-amazon-arent-going-so-well/" target="_blank" rel="noopener noreferrer">OpenAI计划让ChatGPT更像亚马逊，但进展并不顺利。</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI放弃Instant Checkout功能，不再允许用户直接通过ChatGPT购买商品。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47510254" target="_blank" rel="noopener noreferrer">展示HN：Origin – AI代理的Git blame（追踪每行代码的AI作者）</a>
+                    </div>
+                </div>
+                <p class="article-summary">Origin是一款由dolobanko团队开发的AI代码追踪工具，旨在解决团队在代码出现问题时难以确定是哪位AI助手编写了特定代码段的问题。Origin与Claude Code、Cursor、Gemini和Codex等AI代码生成工具集成，通过在每个提交中标记出是哪个AI助手、哪个提示词、哪个模型以及其成本，实现了对AI代码的追踪。<br><br>Origin的核心功能是类似于Git的blame命令，但针对的是AI代码。用户只需运行`origin blame`命令，即可在任何文件中看到每行代码对应的AI助手或人类用户。所有数据都存储在git notes中，无需服务器支持，支持离线工作，避免了数据锁定。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.technologyreview.com/2026/03/24/1134531/exclusive-ebook-are-we-ready-to-hand-ai-agents-the-keys/" target="_blank" rel="noopener noreferrer">独家电子书：我们准备好将AI代理的钥匙交出去了吗？</a>
+                    </div>
+                </div>
+                <p class="article-summary">《独家电子书：我们准备好将AI代理的钥匙交出去了吗？》由MIT Technology Review发布，深入探讨了AI代理逐渐获得实际自主权的问题。该书的核心内容概述了随着AI技术的进步，我们正逐步赋予AI代理更多的自主性，然而，这种趋势是否已经准备好应对可能随之而来的挑战和风险。<br><br>这本书的重要性在于，它引发了关于AI未来发展的深刻讨论。在当前的技术发展路径下，Grace Huckins等专家警告，如果我们继续这样下去，实际上是在玩一场与人类命运相关的俄罗斯轮盘赌。这一观点强调了在AI领域，我们必须谨慎对待AI代理的自主权问题，因为这不仅关系到技术的进步，更关乎人类社会的未来。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.wired.com/story/pentagons-attempt-to-cripple-anthropic-is-troublesome-judge-says/" target="_blank" rel="noopener noreferrer">五角大楼“试图削弱”Anthropic令人不安，法官表示</a>
+                    </div>
+                </div>
+                <p class="article-summary">在周二的一次听证会上，一位地区法院法官对国防部将Claude AI开发者Anthropic列为供应链风险的动机表示质疑。这一事件引发了广泛关注，因为它揭示了政府对AI领域的监管态度。Anthropic是一家专注于开发高级AI技术的初创公司，其产品在学术界和工业界都享有盛誉。此次事件表明，政府对AI技术的监管可能存在过度干预的风险，这将对AI领域的创新和发展产生负面影响。<br><br>这一事件的重要性在于，它揭示了政府监管与市场创新之间的潜在冲突。在AI技术迅速发展的背景下，政府需要制定合理的监管政策，以保障国家安全和公共利益。然而，过度干预可能导致创新受阻，阻碍AI技术的进步。对于AI从业者来说，这一事件提醒他们关注政府监管政策的变化，并积极参与政策制定，以确保AI技术的健康发展。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blog.langchain.com/how-moda-builds-production-grade-ai-design-agents-with-deep-agents/" target="_blank" rel="noopener noreferrer">如何使用深度智能体构建生产级别的AI设计代理</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文探讨了Moda如何利用基于深度代理的多代理系统，通过LangSmith技术实现非设计师也能创作和迭代专业级视觉作品。文章核心观点在于，Moda通过创新的技术手段，打破了传统设计领域的壁垒，让更多人参与到专业视觉创作中。关键论据包括Moda所采用的深度代理技术和LangSmith的追踪机制，这些技术使得非设计师能够轻松地创建和优化视觉作品。阅读本文，AI从业者可以了解到如何利用深度学习技术实现跨领域应用，以及如何通过技术创新推动设计领域的发展。文章深度和独特见解体现在对多代理系统和深度代理技术的深入剖析，为AI在视觉设计领域的应用提供了新的思路。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.bensbites.com/p/agents-should-interview-you" target="_blank" rel="noopener noreferrer">代理商应面试您</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文探讨了人工智能领域一个引人深思的观点：AI代理应具备面试人类的能力。作者提出，这种能力不仅有助于AI更好地理解人类，还能促进AI与人类之间的互动。文章的核心论据在于，通过模拟面试过程，AI可以学习人类的语言、情感和价值观，从而在服务人类时更加精准和人性化。<br><br>文章深入剖析了这一观点的独到之处，指出传统AI在处理复杂问题时往往显得力不从心，而具备面试能力的AI则能通过不断学习，不断提升自身解决问题的能力。此外，文章还探讨了如何培养AI的面试能力，以及这一能力在实际应用中的潜在价值。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://research.google/blog/mapping-the-modern-world-how-s2vec-learns-the-language-of-our-cities/" target="_blank" rel="noopener noreferrer">映射现代世界：S2Vec如何学习我们城市的语言</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文深入探讨了S2Vec算法在理解现代城市语言方面的应用。核心观点在于，S2Vec通过将城市空间信息转化为向量表示，能够有效地捕捉城市地理、人口、经济等多维度特征，从而实现对城市语言的精准建模。文章以大量实证数据为关键论据，展示了S2Vec在识别城市空间关系、预测城市发展趋势等方面的卓越性能。<br><br>文章的独特见解在于，S2Vec不仅能够处理传统的文本数据，还能处理地理空间数据，这使得它在城市语言研究上具有革命性的突破。通过将城市空间与语言相结合，S2Vec为理解城市动态、优化城市规划提供了新的视角和方法。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47510292" target="_blank" rel="noopener noreferrer">展示HN：Palettepoint.com，拥有超过120K个精选调色板的AI调色板生成器</a>
+                    </div>
+                </div>
+                <p class="article-summary">PalettePoint是一款基于AI的色彩调色板生成工具。用户可通过输入文字描述或上传图片，快速生成个性化色彩调色板，并获取命名颜色及可访问性对比数据。该工具支持持续对话，可像与ChatGPT对话一样，不断调整和优化结果。PalettePoint拥有超过12万精选调色板，为设计师、艺术家等用户提供便捷的色彩灵感与创作支持。其AI技术实现智能化色彩生成，助力用户高效完成色彩搭配。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47510721" target="_blank" rel="noopener noreferrer">展示HN：我用按时间顺序排列的新帖子列表替换了Substack的算法</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN: I replaced Substack&#39;s algorithm with a chronological feed of new posts，是一款旨在解决Substack算法推荐问题的新产品。该产品通过去除推荐功能，回归基本的时间线式内容展示，让用户能够更直观地浏览到高质量、原创的图文内容。产品维护了约13万份出版物列表，并每日至少检查一次，确保内容的时效性和准确性。对于追求深度阅读和个性化体验的技术从业者而言，这款产品无疑提供了更优质的阅读体验。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47510367" target="_blank" rel="noopener noreferrer">Show HN：Lexplain - 智能化Linux内核变更解释</a>
+                    </div>
+                </div>
+                <p class="article-summary">Lexplain是一款基于AI的Linux内核变更解释工具。它通过智能分析内核版本间的差异，帮助非内核开发者理解内核变更对系统的影响。Lexplain利用AI技术，自动解析git仓库中的变更记录，提供直观易懂的解释，降低理解内核变更的门槛。对于工程师而言，Lexplain能够帮助他们提前发现潜在问题，避免系统故障，提高工作效率。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-03-25 07:10:07</p>
+        </footer>
+    </div>
+</body>
+
+</html>
