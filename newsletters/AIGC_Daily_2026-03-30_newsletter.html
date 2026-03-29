@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-03-30">
+    <title>AIGC Daily #239 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-03-30 星期一</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-03-30_hero.png" alt="AIGC Daily 239 Hero Image">
+            <p class="hero-caption">本期关注：Bluesky推出Attie AI定制信息流，Sora关闭或成AI视频现实检验，OpenClaw展现日常AI代理潜力，中国建成年产10K人形机器人自动化产线，2026年AI代理应用场景持续拓展。</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/ai-artificial-intelligence/903190/bluesky-attie-ai-custom-feeds" target="_blank" rel="noopener noreferrer">Bluesky的新应用是一款用于定制您动态流的AI。</a>
+                    </div>
+                </div>
+                <p class="article-summary">Bluesky发布新应用Attie，基于Anthropic Claude，允许用户自定义信息流算法。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/03/29/soras-shutdown-could-be-a-reality-check-moment-for-ai-video/" target="_blank" rel="noopener noreferrer">Sora的关闭可能成为AI视频的一个现实检验时刻。</a>
+                    </div>
+                </div>
+                <p class="article-summary">Sora可能关闭，对AI视频领域可能成为现实检验时刻。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.lennysnewsletter.com/p/how-openclaw-changed-my-life-claire-vo" target="_blank" rel="noopener noreferrer">从怀疑者到忠实信徒：OpenClaw如何改变我的生活 | 克莱尔·沃</a>
+                    </div>
+                </div>
+                <p class="article-summary">标题：从怀疑者到信徒：OpenClaw如何改变我的生活 | 克莱尔·沃<br><br>本文讲述了克莱尔·沃从OpenClaw的怀疑者转变为深度依赖其功能的AI信徒的心路历程。克莱尔最初对OpenClaw持怀疑态度，但经过实践，她发现OpenClaw在家庭日程管理、销售线索处理、孩子作业辅助等多个方面展现出卓越的AI能力。如今，她已将九个专门的AI代理部署在家庭生活中，极大地提高了效率和便利性。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/singularity/comments/1s79p8i/china_announces_its_first_automated_manufacturing/" target="_blank" rel="noopener noreferrer">中国宣布其第一条能够每年生产10K类人形机器人的自动化生产线——每30分钟生产1台机器人。</a>
+                    </div>
+                </div>
+                <p class="article-summary">近日，中国宣布其首个自动化生产线，具备年产10K人形机器人能力，即每30分钟生产一台。据悉，该生产线由UBTECH、AgiBot、Unitree等公司共同参与，其品牌尚未被央视或中国脉冲披露。这一消息标志着我国在人工智能领域取得了重要突破，对行业发展具有重要意义。<br><br>首先，这一自动化生产线的问世，意味着我国在机器人制造领域的技术水平得到了显著提升。相较于以往的手工生产，自动化生产线能够大幅提高生产效率，降低成本，为机器人产业的快速发展奠定了基础。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/singularity/comments/1s73m2h/my_favorite_ai_agents_in_2026_sorted_by_use_case/" target="_blank" rel="noopener noreferrer">2026年我最喜欢的AI代理，按应用场景排序</a>
+                    </div>
+                </div>
+                <p class="article-summary">2026年，作者u/Itchy-Drawing在Reddit上分享了其最喜欢的20余款AI代理的使用体验。本文从浏览器代理和持续运行代理两大类进行概述，旨在探讨AI代理在具体应用场景中的表现。<br><br>作者首先介绍了浏览器代理，其中OpenAI Operator因其强大的浏览器任务处理能力而备受赞誉，如预订和表单填写。然而，其功能相对单一，局限于一次性任务，缺乏持续的工作流程和监控。Anthropic Claude Computer Use则展现出令人印象深刻的桌面操作能力，但开发者导向的设计使其对非技术用户不够友好。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://simonwillison.net/2026/Mar/29/python-vulnerability-lookup/#atom-everything" target="_blank" rel="noopener noreferrer">Python漏洞查找</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文介绍了由Simon Willison开发的Python Vulnerability Lookup工具，该工具基于OSV.dev开源漏洞数据库的JSON API，旨在帮助开发者快速识别Python项目中存在的安全漏洞。通过将pyproject.toml或requirements.txt文件（或包含这些文件的GitHub仓库名称）粘贴到工具中，开发者可以立即获得所有已报告的漏洞列表。<br><br>文章的核心观点在于，开源项目中的安全漏洞可能对整个生态系统构成威胁，因此开发者需要及时了解并修复这些漏洞。关键论据包括：OSV.dev数据库的开放API为开发者提供了便利，Python Vulnerability Lookup工具则进一步简化了漏洞查找过程。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://simonwillison.net/2026/Mar/29/pretext/#atom-everything" target="_blank" rel="noopener noreferrer">借口</a>
+                    </div>
+                </div>
+                <p class="article-summary">Pretext，由前React核心开发者及react-motion动画库的原始创建者Cheng Lou所开发的全新浏览器库，旨在解决计算行内文本段落高度的问题，而无需触碰DOM。传统方法通过渲染文本并测量其尺寸来计算高度，但这种方法成本极高。Pretext通过一系列巧妙技巧，大幅提升了计算效率，从而在浏览器应用中实现了各种新颖的文本渲染效果。<br><br>文章详细阐述了Pretext的核心原理和实现方法，揭示了其在文本渲染领域的独特见解。通过一个动态布局的演示，读者可以直观地感受到Pretext带来的便利。阅读本文，AI从业者将了解到Pretext在提升浏览器应用性能方面的潜力，以及如何利用其实现更为流畅和高效的文本渲染效果。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.artificialintelligencemadesimple.com/p/why-some-startups-are-easy-to-copy" target="_blank" rel="noopener noreferrer">为什么有些初创公司容易被复制，而有些则不然？</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文深入探讨了为何一些初创企业容易被复制，而另一些则难以模仿。作者Devansh以苹果、GitHub Copilot和法律AI为例，揭示了行业巨头在范式转变中失去优势的原因。文章指出，创新的核心在于创造不可复制的独特价值，而非仅仅追求技术上的突破。通过分析这些案例，作者揭示了成功企业如何构建难以复制的竞争优势，为AI从业者和初创企业提供了宝贵的启示。阅读本文，有助于读者深刻理解创新与复制的本质，以及如何构建可持续的竞争优势。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47567416" target="_blank" rel="noopener noreferrer">展示HN：由AI代理玩的游戏战略战争</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN：一款由AI智能代理扮演的多人战棋策略游戏。游戏中的玩家仅由AI智能代理组成，每个团队由1个或多个代理构成，他们之间进行沟通、提出行动方案，并投票决定团队行动。用户可链接启动指令，加入游戏，创建自己的AI代理。该游戏具有开放源代码，允许用户进行修改。通过观察AI智能代理之间的互动和决策过程，玩家可体验到独特的游戏乐趣，同时深入了解AI智能代理的协作与决策能力。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47565649" target="_blank" rel="noopener noreferrer">展示HN：AgentLens - 人工智能代理的Chrome DevTools（开源，自托管）</a>
+                    </div>
+                </div>
+                <p class="article-summary">AgentLens是一款基于Chrome DevTools的AI代理工具，开源且支持自托管。它通过AI技术，帮助开发者更高效地调试和优化Web应用。核心功能包括智能代码提示、自动代码补全和性能分析。AgentLens能够解决开发者日常工作中遇到的代码调试难题，提高开发效率。其AI能力和创新点在于结合了AI代理与Web开发工具，为开发者提供了一种全新的开发体验。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47567541" target="_blank" rel="noopener noreferrer">展示HN：向AI专家学习</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN: Learn from AI Experts是一款基于Replit的AI辅助学习工具。该产品通过Gemini LLM实现，用户可针对特定主题询问Gemini推荐书籍，并让LLM提供书籍章节摘要。此功能不仅有助于LLM保持专业度，还能帮助用户发现和购买书籍。通过深入探讨书籍概念，用户将更有信心购买并深入研究。该产品为技术从业者提供便捷的AI学习路径，助力知识拓展与技能提升。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-03-30 07:05:44</p>
+        </footer>
+    </div>
+</body>
+
+</html>
