@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-04-02">
+    <title>AIGC Daily #245 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-04-02 星期四</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-04-02_hero.png" alt="AIGC Daily 245 Hero Image">
+            <p class="hero-caption">本期关注：OpenAI融资后估值达8520亿美元，微软10亿美元投资泰国AI；Anthropic意外撤回GitHub泄露源代码，Meta拟用天然气发电供Hyperion数据中心；Claude Code纯Python重写开源支持本地模型，Qwen3.5-9b微调提升智能体表现。</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://aibusiness.com/generative-ai/openai-valued-852b-after-new-funding-round" target="_blank" rel="noopener noreferrer">OpenAI 在最新一轮融资后估值达到 8520 亿美元</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI融资后估值达8520亿美元</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://aibusiness.com/generative-ai/microsoft-commits-1b-thailand-s-ai-future" target="_blank" rel="noopener noreferrer">微软承诺投资10亿美元于泰国的人工智能未来</a>
+                    </div>
+                </div>
+                <p class="article-summary">微软承诺投资10亿美元支持泰国AI发展</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/04/01/anthropic-took-down-thousands-of-github-repos-trying-to-yank-its-leaked-source-code-a-move-the-company-says-was-an-accident/" target="_blank" rel="noopener noreferrer">Anthropic关闭了数千个GitHub仓库，试图撤回其泄露的源代码——该公司表示这是一次意外行为。</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic撤回大量GitHub仓库下架通知，称是意外操作</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/04/01/metas-natural-gas-binge-could-power-south-dakota/" target="_blank" rel="noopener noreferrer">Meta的天然气狂欢可能为南达科他州供电</a>
+                    </div>
+                </div>
+                <p class="article-summary">Meta计划在Hyperion AI数据中心使用10个新天然气发电厂</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/LocalLLaMA/comments/1s9u1eg/new_qwen359b_full_and_gguf_quantized_finetuned/" target="_blank" rel="noopener noreferrer">新Qwen3.5-9b（完整和GGUF量化）针对代理利用（OpenClaw、AgentScope）微调，源自Copaw-9B（Qwen官方代理利用）+ Opus 4.6推理 - 感谢您的快速测试（使用推荐生成参数）</a>
+                    </div>
+                </div>
+                <p class="article-summary">近日，Reddit用户u/yehyakar发布了一项关于AI模型Qwen3.5-9b的最新研究成果。该研究基于Copaw-9B（Qwen官方的智能体套件）和Opus 4.6推理，对Qwen3.5-9b进行了微调和GGUF量化，旨在提高其在智能体应用中的表现。<br><br>这项研究的重要之处在于，它为AI领域带来了新的突破。首先，通过微调和量化，Qwen3.5-9b在智能体应用中的表现得到了显著提升，为AI在智能体领域的应用提供了有力支持。其次，该研究借鉴了Copaw-9B和Opus 4.6推理的优点，进一步丰富了AI模型的应用场景。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47606768" target="_blank" rel="noopener noreferrer">展示HN：CAUM – 分析了80K个AI代理会话。88.7%的循环失败。AUC=0.814</a>
+                    </div>
+                </div>
+                <p class="article-summary">标题：Show HN：CAUM – 80K AI agent sessions分析，88.7%循环失败，AUC=0.814<br><br>核心内容概述：Caum系统近日发布了一份关于其AI代理的实验报告，分析了80,000个AI代理会话。报告显示，在这些会话中，高达88.7%的循环失败，平均AUC（曲线下面积）为0.814。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blog.langchain.com/march-2026-langchain-newsletter/" target="_blank" rel="noopener noreferrer">2026年3月：LangChain通讯</a>
+                    </div>
+                </div>
+                <p class="article-summary">2026年3月，LangChain Newsletter带来了一系列令人振奋的消息。文章核心观点聚焦于LangChain社区的最新进展，包括NVIDIA的深度集成、Interrupt 2026的票务销售以及LangSmith Fleet（前身为Agent Builder）的发布。<br><br>文章详细介绍了NVIDIA与LangChain的深度合作，这一整合将为AI开发者提供更强大的工具和资源，助力他们在LangChain生态系统中实现更高的创新。同时，Interrupt 2026的票务销售也标志着AI领域重要盛事的临近，吸引了众多业内人士的关注。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.lennysnewsletter.com/p/listen-openclaw-a-power-users-guide" target="_blank" rel="noopener noreferrer">倾听：OpenClaw：ChatGPT以来最强大的个人AI工具的高级用户指南</a>
+                    </div>
+                </div>
+                <p class="article-summary">《Listen: OpenClaw: A power-user&#39;s guide to the most powerful personal AI tool since ChatGPT》一文，由Lenny Rachitsky撰写，深入探讨了OpenClaw这一个人AI工具的强大功能及其在AI领域的重要地位。文章核心观点在于，OpenClaw不仅是继ChatGPT之后又一革命性的个人AI工具，更是为高级用户量身定制的利器。<br><br>文章详细介绍了OpenClaw的多种高级功能，包括智能数据分析、自动化任务处理、以及个性化内容生成等。通过关键论据，如案例研究和技术分析，作者展示了OpenClaw如何帮助用户提高工作效率、拓展知识边界，甚至实现创新。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.technologyreview.com/2026/04/01/1134993/the-download-gig-workers-training-humanoids-better-ai-benchmarks/" target="_blank" rel="noopener noreferrer">下载：零工培训人形机器人，以及更好的AI基准</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文深入探讨了人工智能领域的最新动态，聚焦于临时工在家训练人形机器人以及更先进的AI基准测试。文章以尼日利亚一名医学生Zeus为例，揭示了临时工在人工智能领域的积极作用。Zeus利用业余时间在家训练人形机器人，这一现象不仅展示了人工智能技术的普及，也体现了临时工在人工智能发展中的重要作用。此外，文章还介绍了更先进的AI基准测试，为人工智能研究提供了新的参考标准。本文深度剖析了人工智能领域的最新进展，为AI从业者提供了宝贵的参考资料，具有极高的阅读价值。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47607227" target="_blank" rel="noopener noreferrer">展示HN：持续优化Claude代码计划</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN: Continuously Improve Claude Code Plans是一款专注于持续优化Claude代码计划的AI工具。该产品通过分析代码，提供智能化的改进建议，帮助开发者提升代码质量和效率。其核心功能包括代码分析、智能优化和性能提升。通过利用先进的AI技术，Claude Code Plans能够快速识别代码中的潜在问题，并提出针对性的解决方案，有效解决开发者面临的代码优化难题。对于技术从业者而言，这款产品能够显著提高工作效率，降低开发成本，助力项目顺利推进。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47606946" target="_blank" rel="noopener noreferrer">Show HN：Mkdnsite – 适用于人类（HTML）和代理（md）的原生Markdown网络服务器</a>
+                    </div>
+                </div>
+                <p class="article-summary">Mkdnsite是一款开源的Markdown原生Web服务器，专为人类和智能代理设计。它无需构建步骤，即可将Markdown文件转换为功能网站。支持Bun/Node/Deno运行，可作为独立可执行文件或Docker容器使用。Mkdnsite通过内容协商，为浏览器提供HTML，为智能代理提供Markdown，极大简化了Markdown文件到网站的转换过程，是新时代最便捷的Markdown网站构建工具。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47605590" target="_blank" rel="noopener noreferrer">展示HN：基于并行AI代理的4D商业分析（受AofA启发）</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN: 4D business analysis with parallel AI agents（AofA-inspired）是一款创新的4D商业分析工具。该产品通过同时运行四个AI代理，利用代理输出之间的矛盾作为信号，提供深入的业务洞察。这款工具旨在解决复杂商业问题，通过并行AI代理的协同工作，帮助用户快速识别关键信息，提高决策效率。其独特的AI能力和创新性，为技术从业者提供了一种全新的分析视角。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-04-02 07:29:47</p>
+        </footer>
+    </div>
+</body>
+
+</html>
