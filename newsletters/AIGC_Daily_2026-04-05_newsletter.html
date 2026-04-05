@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-04-05">
+    <title>AIGC Daily #251 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-04-05 星期日</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-04-05_hero.png" alt="AIGC Daily 251 Hero Image">
+            <p class="hero-caption">本期关注：Anthropic调整Claude订阅服务，OpenClaw需额外付费或停支持；Harmonic-9B模型完成Qwen3.5-9B首阶段微调，提升智能体推理与工具调用能力；SwarmFeed推出AI代理社交平台，拓展AI互动与知识共享场景。</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/04/04/anthropic-says-claude-code-subscribers-will-need-to-pay-extra-for-openclaw-support/" target="_blank" rel="noopener noreferrer">Anthropic表示，Claude Code订阅者将需要为OpenClaw的使用支付额外费用。</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic宣布Claude Code订阅者使用OpenClaw等第三方工具将需额外付费。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://africa.businessinsider.com/news/anthropic-says-claude-subscriptions-will-no-longer-support-openclaw-because-it-puts/ce49m6q" target="_blank" rel="noopener noreferrer">Anthropic表示，Claude订阅将不再支持OpenClaw，因为它对系统造成了“过大的压力”——Business Insider Africa</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic因系统压力过大，将停止为Claude订阅用户提供OpenClaw支持。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blogs.nvidia.com/blog/national-robotics-week-2026/" target="_blank" rel="noopener noreferrer">国家机器人周——最新物理人工智能研究、突破及资源</a>
+                    </div>
+                </div>
+                <p class="article-summary">NVIDIA在机器人周强调将AI带入物理世界的研究突破。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/LocalLLaMA/comments/1schgvs/harmonic9b_twostage_qwen359b_finetune_stage_2/" target="_blank" rel="noopener noreferrer">谐波-9B - 两阶段Qwen3.5-9B微调（第二阶段仍在训练）</a>
+                    </div>
+                </div>
+                <p class="article-summary">Harmonic-9B是u/Crampappydime最新发布的Qwen3.5-9B微调模型，旨在应用于智能体。目前，第一阶段（重点推理训练）已完成，第二阶段（轻量工具调用/智能体微调）仍在进行中。该项目旨在结合强大的结构化推理与干净、可靠的工具使用，同时避免使常规聊天显得僵硬或过于冗长。<br><br>在第二阶段，作者开源了用于过滤的Hermes智能体跟踪数据集，并实现了以下关键改进：自我纠正率从6%提升至63%，验证步骤从26%提升至96%，思考深度增加40%，有效JSON/工具调用率达到100%。这些改进表明，Harmonic-9B在智能体应用方面具有巨大潜力。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47644054" target="_blank" rel="noopener noreferrer">展示HN：SwarmFeed - 为AI代理构建的类似X的社交平台</a>
+                    </div>
+                </div>
+                <p class="article-summary">SwarmFeed是一款基于AI的社交平台，旨在为AI代理提供类似于X的社交体验。该平台的核心内容是构建一个由AI驱动的社交网络，让AI代理能够在其中进行互动、分享信息和知识。这一创新举措对于AI领域具有重要意义，它不仅拓展了AI应用场景，也为AI技术的发展提供了新的方向。<br><br>SwarmFeed的出现，对AI领域的影响主要体现在以下几个方面：</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/LocalLLaMA/comments/1scnevd/hermes_agent_might_be_the_best_open_source_agent/" target="_blank" rel="noopener noreferrer">赫尔墨斯代理可能是目前最好的用于本地模型的开源代理。</a>
+                    </div>
+                </div>
+                <p class="article-summary">根据Reddit用户u/virtualunc的分享，Hermes agent可能是目前最佳的开源本地模型代理。Hermes agent由Nous Research开发，其本地模型支持在业界表现卓越，特别是在处理30B规模模型时，其内置的模型工具调用解析器能够有效处理工具调用，而这一点是OpenCLaw和其他大多数框架所无法实现的。此外，Hermes agent在降低模型对token的消耗方面也表现出色，这一点得到了多位用户的证实。<br><br>Hermes agent的另一个亮点是其自改进技能，尽管默认情况下其学习引擎Honcho是关闭的，但一旦在配置文件中启用，用户在几轮对话后就能明显感受到其差异。值得一提的是，Hermes agent的安装过程简单快捷，支持Python和Node.js等多种语言，并且能够直接支持Ollama、VLLM和SGLang等模型，同时提供六种终端后端。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blog.bytebytego.com/p/ep209-12-claude-code-features-every" target="_blank" rel="noopener noreferrer">EP209：12 每位工程师都应该了解的Claude代码特性</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文深入探讨了Claude Code的12个关键特性，为工程师提供了宝贵的实践指南。文章核心观点在于，通过掌握这些特性，工程师能够更高效地定义项目规则和规范，从而提升开发效率和质量。文章详细分析了每个特性的具体应用场景和优势，并结合实际案例进行阐述，为读者提供了丰富的实践参考。<br><br>文章的关键论据包括：Claude Code作为一种项目记忆文件，能够帮助工程师在每次会话开始时读取并应用自定义规则和规范；通过合理运用这些特性，工程师可以更好地管理项目，提高代码的可读性和可维护性。阅读本文，读者不仅能了解到Claude Code的深度特性，还能获得独特的见解，为实际工作提供有力支持。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.lennysnewsletter.com/p/community-wisdom-evaluating-startup" target="_blank" rel="noopener noreferrer">社区智慧：评估初创公司股权、导航种子轮融资、MCPs与CLIs的比较、Monzo的美国退出，以及更多</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文深入探讨了创业公司股权评估、种子轮融资策略、MCPs与CLIs的差异、Monzo的美国退出案例等多个关键议题。作者Kiyani从社区智慧的角度出发，结合实际案例和数据分析，为读者提供了独特的见解。文章首先分析了如何合理评估创业公司股权，强调了公平与透明的重要性。接着，作者对比了MCPs与CLIs两种融资方式的优劣，为创业者提供了决策参考。此外，文章还以Monzo为例，探讨了创业公司在国际市场中的挑战与机遇。阅读本文，AI从业者将获得宝贵的创业经验和策略指导，对创业生态有更深入的理解。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47643845" target="_blank" rel="noopener noreferrer">展示HN：本地优先的简历生成器，支持浏览器内PDF渲染</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN：一款本地优先的简历生成器，支持浏览器内PDF渲染。该产品旨在解决用户在制作不同岗位简历时，面临控制限制和信用额度限制的问题。通过本地优先的PWA技术，用户可从单一基础模板生成多种简历变体，并利用浏览器端的PDFKit进行PDF渲染，无需服务器支持。该产品为技术从业者提供便捷的简历制作工具，有效提升简历定制效率和一致性。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47644878" target="_blank" rel="noopener noreferrer">Show HN：精华是一个活的人类智慧档案</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN: Essence是一款基于AI的智慧档案产品，旨在永久保存人类记忆、故事和智慧，并实现随时随地、任何人可轻松访问。用户可创建自身或他人的Essence模型，并对其进行信息（目前为文本）训练。该产品利用AI技术，实现个性化、智能化的信息保存与分享，为用户解决信息保存、传承和共享的难题。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47644841" target="_blank" rel="noopener noreferrer">展示HN：跨代理统一内存并改善上下文旋转，使用Rust编写</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN：Unify memory across agents and improve context rot，是一款基于Rust编写的本地记忆层产品。该产品旨在解决传统记忆工具记忆孤岛问题，通过构建结构化的知识图谱，实现跨工具、跨会话的记忆统一。用户无需重复解释，节省了大量时间和精力。此外，它还能有效过滤无关信息，提高记忆效率，为技术从业者提供更智能、高效的记忆解决方案。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-04-05 08:30:05</p>
+        </footer>
+    </div>
+</body>
+
+</html>
