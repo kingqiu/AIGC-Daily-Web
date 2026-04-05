@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-04-06">
+    <title>AIGC Daily #253 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-04-06 星期一</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-04-06_hero.png" alt="AIGC Daily 253 Hero Image">
+            <p class="hero-caption">本期关注：微软Copilot定位娱乐，谷歌地图Gemini规划表现优异，日本加速AI机器人填补劳动力缺口；ACE基准量化AI代理攻击成本，Gemma 4以31B参数低成本击败多数模型。</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/04/05/copilot-is-for-entertainment-purposes-only-according-to-microsofts-terms-of-service/" target="_blank" rel="noopener noreferrer">Copilot仅作“娱乐用途”，根据微软的使用条款所述。</a>
+                    </div>
+                </div>
+                <p class="article-summary">微软声明Copilot仅供娱乐，用户不应盲目信任模型输出。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/tech/907015/gemini-google-maps-hands-on" target="_blank" rel="noopener noreferrer">我让谷歌地图中的Gemini帮我规划一天，结果出乎意料地顺利。</a>
+                    </div>
+                </div>
+                <p class="article-summary">谷歌地图的Gemini功能在规划日程中表现出色。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/ai-artificial-intelligence/906896/sunos-copyright-ai-music-covers" target="_blank" rel="noopener noreferrer">苏诺是一个音乐版权噩梦</a>
+                    </div>
+                </div>
+                <p class="article-summary">AI音乐平台Suno在版权问题上遭遇挑战。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/04/05/japan-is-proving-experimental-physical-ai-is-ready-for-the-real-world/" target="_blank" rel="noopener noreferrer">在日本，机器人不是来抢你的工作的；它是来填补那些无人愿意做的岗位。</a>
+                    </div>
+                </div>
+                <p class="article-summary">日本因劳动力短缺，加速AI机器人实际应用。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://africa.businessinsider.com/news/anthropic-says-claude-subscriptions-will-no-longer-support-openclaw-because-it-puts/ce49m6q" target="_blank" rel="noopener noreferrer">Anthropic表示，Claude订阅将不再支持OpenClaw，因为它对系统造成了“过大的压力”——Business Insider Africa</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic宣布将停止支持OpenClaw，因其对系统造成过大压力。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47654123" target="_blank" rel="noopener noreferrer">展示HN：ACE – 一种动态基准，用于衡量破解AI代理的成本</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN: ACE – A dynamic benchmark measuring the cost to break AI agents<br><br>Adversarial Cost to Exploit (ACE) 是一项由 zachdotai 发起的创新性基准测试，旨在量化攻击者为了突破大型语言模型（LLM）代理所需的代币消耗。与传统的二分制通过/失败测试不同，ACE 通过美元价值来量化对抗性攻击的努力，从而为游戏理论分析提供了攻击在经济上是否合理的依据。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/LocalLLaMA/comments/1sdcotc/gemma_4_just_casually_destroyed_every_model_on/" target="_blank" rel="noopener noreferrer">Gemma 4只是随意摧毁了我们排行榜上的所有模型，除了Opus 4.6和GPT-5.2。31B参数，每运行0.20美元。</a>
+                    </div>
+                </div>
+                <p class="article-summary">近日，Reddit用户u/Disastrous_Theme5906在论坛上分享了关于Gemma 4模型的一项惊人测试结果。该模型在基准测试中表现出色，以31亿参数量轻松击败了榜单上除Opus 4.6和GPT-5.2之外的所有模型。在0.20美元/次的运行成本下，Gemma 4实现了100%的存活率，5次运行中有5次盈利，平均回报率高达1144%。与GPT-5.2（4.43美元/次）、Gemini 3 Pro（2.95美元/次）、Sonnet 4.6（7.90美元/次）等知名模型相比，Gemma 4在性能上具有显著优势。此外，Gemma 4还轻松击败了所有已测试的中国开源模型，包括Qwen 3.5 397B、Qwen 3.5 9B、DeepSeek V3.2、GLM-5等。唯一能与之抗衡的模型是Opus 4.6，但后者每次运行成本高达36美元，是Gemma 4的180倍。这一测试结果对AI领域产生了重要影响，凸显了Gemma 4在性能和成本方面的优势，为AI从业者提供了新的选择。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blog.langchain.com/continual-learning-for-ai-agents/" target="_blank" rel="noopener noreferrer">持续学习的人工智能代理</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文深入探讨了AI代理的持续学习问题，作者Harrison Chase指出，传统持续学习讨论往往集中于模型权重的更新，但对于AI代理而言，学习可发生在模型、约束和上下文三个层面。这种观点的转变有助于我们重新思考如何构建能够随时间不断进步的系统。文章详细阐述了这三个主要层面的学习机制，并强调了理解它们之间的差异对于构建高效AI代理的重要性。阅读本文，读者将获得对持续学习在AI代理应用中的独特见解，对于AI从业者和研究者具有重要的参考价值。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.lennysnewsletter.com/p/anthropics-1b-to-19b-growth-run" target="_blank" rel="noopener noreferrer">Anthropic的10亿至190亿美元增长历程：Claude如何成为历史上增长最快的AI产品 | Amol Avasare</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文深入探讨了Anthropic公司如何通过大胆的赌注、有意识的用户导入摩擦、深度专注和CASH（一个用于自主增长实验的内部AI系统）等策略，在14个月内将年收入从10亿美元增长到190亿美元。文章揭示了Anthropic如何通过精心设计的增长策略，将Claude打造成为史上增长最快的AI产品。作者Lenny Rachitsky分享了Anthropic增长团队的内部见解，强调了在快速扩张过程中保持专注和实验精神的重要性。文章不仅提供了对Anthropic成功增长路径的详细分析，还为AI从业者和企业提供了宝贵的增长策略和内部系统构建的启示，展现了深度和独特的见解。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://simonwillison.net/2026/Apr/5/chengpeng-mou/#atom-everything" target="_blank" rel="noopener noreferrer">引用穆成鹏的话</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文基于匿名化的美国ChatGPT数据，揭示了人工智能在医疗领域应用的现状。作者Chengpeng Mou，OpenAI商业财务负责人，指出，每周有约200万条关于医疗保险的信息在ChatGPT平台上产生，其中生活在“医院荒漠”地区（距离最近的医院开车需30分钟）的人发送的关于医疗保健的信息每周约60万条。值得注意的是，70%的信息是在诊所外发送的。这一发现揭示了人工智能在医疗领域应用的深度和广度，以及其在解决医疗资源不均衡问题上的潜力。文章对于AI从业者和医疗行业从业者具有重要的阅读价值，有助于深入了解人工智能在医疗领域的应用现状和发展趋势。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47654500" target="_blank" rel="noopener noreferrer">Show HN：Grug - 受Grug脑开发者启发的Claude代码技能</a>
+                    </div>
+                </div>
+                <p class="article-summary">Grug是一款受“原始大脑开发者”启发的Claude代码技能。该产品通过GitHub平台开源，旨在帮助开发者提升代码编写效率。Grug的核心功能是提供一种独特的代码编写方式，激发开发者潜能，提高编程速度和质量。对于技术从业者来说，Grug能够有效解决编程过程中遇到的难题，提升工作效率，助力开发者实现创新。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47654495" target="_blank" rel="noopener noreferrer">展示HN：TermHub - 为AI代理构建的开源终端控制网关</a>
+                    </div>
+                </div>
+                <p class="article-summary">TermHub是一款开源的终端控制网关，专为AI代理构建。该产品通过提供高效的终端交互接口，使得AI代理能够更便捷地与外部系统进行交互。TermHub的核心功能是简化AI代理的终端控制操作，提高交互效率。对于技术从业者而言，TermHub能够有效解决AI代理在复杂环境下的交互难题，降低开发成本，加速AI应用落地。此外，TermHub的AI能力和创新点在于其智能化的终端控制策略，能够根据不同场景动态调整交互方式，进一步提升AI代理的适应性和灵活性。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47654398" target="_blank" rel="noopener noreferrer">展示HN：看看你是如何与Claude Code交谈的</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN: See How You Talk to Claude Code 是一款基于 Claude Code 的AI交互平台。该产品通过分析用户与 Claude Code 的对话内容，帮助用户了解自己的情感状态。它利用AI技术，对用户与 Claude Code 的对话进行情感分析，为用户提供个性化的反馈和建议。这款产品特别适合技术从业者，能够帮助他们更好地了解自己的情绪变化，提高沟通效率。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-04-06 06:56:41</p>
+        </footer>
+    </div>
+</body>
+
+</html>
