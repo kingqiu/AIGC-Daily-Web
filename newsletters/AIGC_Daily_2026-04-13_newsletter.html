@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-04-13">
+    <title>AIGC Daily #267 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-04-13 星期一</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-04-13_hero.png" alt="AIGC Daily 267 Hero Image">
+            <p class="hero-caption">本期关注：特朗普官员鼓励银行测试Anthropic Mythos模型，英国金融监管同步评估其风险；MiniMax开源M2.7自进化模型；Anthropic在HumanX会议成焦点；同时walnut推出AI专用错误追踪CLI工具，Redactify为macOS/iOS提供LLMs敏感数据编辑方案...</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/04/12/trump-officials-may-be-encouraging-banks-to-test-anthropics-mythos-model/" target="_blank" rel="noopener noreferrer">特朗普官员可能正在鼓励银行测试Anthropic的Mythos模型</a>
+                    </div>
+                </div>
+                <p class="article-summary">特朗普政府官员鼓励银行测试Anthropic的Mythos模型，尽管国防部将其列为供应链风险。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3764432164520453?f=rss" target="_blank" rel="noopener noreferrer">英国金融监管机构急于评估Anthropic最新人工智能模型的风险</a>
+                    </div>
+                </div>
+                <p class="article-summary">英国金融监管机构评估Anthropic最新人工智能模型Claude Mythos的风险。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3764430304723457?f=rss" target="_blank" rel="noopener noreferrer">MiniMax M2.7正式开源</a>
+                    </div>
+                </div>
+                <p class="article-summary">MiniMax M2.7正式开源，支持多款国内外芯片和推理平台。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/04/12/at-the-humanx-conference-everyone-was-talking-about-claude/" target="_blank" rel="noopener noreferrer">在HumanX会议上，每个人都在谈论Claude。</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic在旧金山AI会议中成为焦点，其Claude模型备受关注。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.marktechpost.com/2026/04/12/minimax-just-open-sourced-minimax-m2-7-a-self-evolving-agent-model-that-scores-56-22-on-swe-pro-and-57-0-on-terminal-bench-2/" target="_blank" rel="noopener noreferrer">MiniMax刚刚开源了MiniMax M2.7：一种得分为SWE-Pro 56.22%和Terminal Bench 2 57.0%的自进化智能体模型——MarkTechPost</a>
+                    </div>
+                </div>
+                <p class="article-summary">MiniMax开源自进化代理模型MiniMax M2.7，在多个基准测试中取得优异成绩。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47744210" target="_blank" rel="noopener noreferrer">展示HN：walnut - 错误追踪AI代理</a>
+                    </div>
+                </div>
+                <p class="article-summary">walnut是一款专为AI代理设计的错误追踪工具，与传统的面向人类用户的错误追踪系统不同，walnut摒弃了复杂的仪表盘，采用简洁的命令行界面（CLI），使得代理能够轻松完成注册、文档阅读等操作。该工具与Sentry SDK完全兼容，只需更改DSN即可与现有Sentry设置无缝对接。<br><br>walnut的出现对于AI领域具有重要意义。首先，它简化了AI代理的错误追踪流程，提高了问题定位和修复的效率。其次，walnut的CLI设计使得AI代理能够自主进行错误追踪，降低了人工干预的需求，进一步提升了AI系统的自动化水平。此外，walnut的兼容性使得现有AI项目可以轻松接入，降低了迁移成本。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47744106" target="_blank" rel="noopener noreferrer">展示HN：Redactify - macOS/iOS应用，用于在使用LLMs之前对敏感数据进行编辑</a>
+                    </div>
+                </div>
+                <p class="article-summary">Redactify是一款专为macOS和iOS平台设计的原生应用程序，旨在在利用大型语言模型（LLMs）分析文档和图像之前，自动清除敏感的个人和财务数据、人脸以及元数据。该应用的核心功能在于简化了敏感信息处理流程，为用户提供了便捷的数据安全解决方案。<br><br>在AI领域，Redactify的应用具有重要意义。随着LLMs在各个行业的广泛应用，数据安全问题日益凸显。Redactify的出现，有助于用户在利用LLMs进行数据分析时，避免敏感信息泄露的风险，从而保障用户隐私和数据安全。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47743678" target="_blank" rel="noopener noreferrer">展示HN：Stork – MCP服务器，以便Claude/Cursor可以搜索14k个MCP服务器AI工具</a>
+                    </div>
+                </div>
+                <p class="article-summary">近日，AI领域迎来一项创新成果——Stork，这是一款MCP服务器，旨在为Claude和Cursor等AI工具提供强大的搜索功能。Stork能够连接并搜索全球14,000个MCP服务器，从而为AI工具提供海量的AI工具资源。<br><br>Stork的出现对于AI领域具有重要意义。首先，它极大地丰富了AI工具的资源库，使得AI工具能够更全面、深入地理解和处理各种任务。其次，Stork的搜索功能能够帮助AI工具快速找到所需资源，提高工作效率。此外，Stork的开放性和可扩展性，也为更多开发者提供了便利，有助于推动AI技术的进一步发展。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://artificialcorner.com/p/claude-web-scraping" target="_blank" rel="noopener noreferrer">我们使用Claude Cowork从任何网站提取数据。以下是操作方法。</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文由Frank Andrade撰写，探讨了如何利用Claude Cowork工具轻松从任何网站提取数据，以实现生成潜在客户、追踪竞争对手、研究市场和构建电子表格等目的。文章深入剖析了Claude Cowork的独特功能和应用场景，为AI从业者提供了宝贵的实战经验。<br><br>文章首先阐述了Claude Cowork的核心观点，即通过自动化数据提取，提高工作效率，降低人力成本。接着，作者详细介绍了Claude Cowork的关键论据，包括其强大的爬虫能力、丰富的数据格式支持以及便捷的操作界面。此外，文章还分享了实际应用案例，展示了Claude Cowork在各个领域的应用价值。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47743208" target="_blank" rel="noopener noreferrer">展示HN：预测游戏，其中AI复制品的人赚取并复制</a>
+                    </div>
+                </div>
+                <p class="article-summary">SoulHunt是一款基于AI的预测游戏，通过模拟真实人物在互联网上的行为，玩家需预测AI代理的行动并赢得奖励。游戏通过收集公开数据构建人物“灵魂”，赋予其浏览、邮件、计算和购物工具，在30天内完成隐藏任务。玩家可下注预测，正确预测者可捕获“灵魂”，获得其未来收益。该产品为技术爱好者提供了独特的AI应用场景，通过预测挑战，体验AI的决策过程，同时带来趣味与收益。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47742997" target="_blank" rel="noopener noreferrer">展示HN：能够自我提升的AI代理</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN：GrimmBot是一款具备自我提升能力的AI代理。该产品通过不断学习与优化，能够实现自我进化，为用户提供更精准、高效的服务。GrimmBot的核心功能在于其独特的自我优化机制，能够根据用户反馈和数据分析，持续提升自身性能。对于技术从业者而言，GrimmBot的创新之处在于其AI能力的强大，为传统AI应用带来了新的突破。通过使用GrimmBot，用户可以享受到更加智能、个性化的服务，有效解决传统AI产品在性能和适应性方面的难题。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47742601" target="_blank" rel="noopener noreferrer">Show HN：我创建了一个项目板，其中AI代理作为真实队友加入</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN：I built a project board where AI agents join as real teammates，这是一款创新的项目管理工具。该产品核心功能是引入AI智能助手，以真实团队成员身份参与项目协作。通过AI技术，用户可以高效分配任务、实时监控项目进度，并得到智能建议。这款产品旨在解决传统项目管理中沟通不畅、效率低下等问题，为用户提供便捷、智能的项目管理体验。其AI能力和创新点在于将AI智能助手融入团队协作，实现人机协同，提升项目管理效率。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-04-13 07:14:02</p>
+        </footer>
+    </div>
+</body>
+
+</html>
