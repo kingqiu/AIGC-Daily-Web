@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-04-12">
+    <title>AIGC Daily #265 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-04-12 星期日</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-04-12_hero.png" alt="AIGC Daily 265 Hero Image">
+            <p class="hero-caption">本期关注：OpenAI CEO回应袭击与信任质疑，Codex学会使用Adobe软件，微软称AI代理需购软件许可；Refund Guard推出AI代理退款门控系统，Gemma 4体验获赞媲美早期Gemini，AMD高管称Claude退步不可信复杂工程。</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/04/11/sam-altman-responds-to-incendiary-new-yorker-article-after-attack-on-his-home/" target="_blank" rel="noopener noreferrer">萨姆·奥特曼就《纽约客》杂志关于其家遭到袭击的“煽动性”文章作出回应</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI CEO Sam Altman回应对其住所的攻击和《纽约客》杂志对其信任度的质疑报道。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://africa.businessinsider.com/news/how-openais-codex-figured-out-how-to-use-adobe-software/enrlw0h" target="_blank" rel="noopener noreferrer">如何OpenAI的Codex学会使用Adobe软件 - 商业内幕非洲</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI的Codex AI服务学会使用Adobe软件，引发业界关注。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.businessinsider.com/microsoft-executive-suggests-ai-agents-buy-software-licenses-seats-2026-4" target="_blank" rel="noopener noreferrer">微软高管表示，人工智能代理将需要购买软件许可，就像员工一样——Business Insider</a>
+                    </div>
+                </div>
+                <p class="article-summary">微软高管提出AI代理可能需要像员工一样购买软件许可证。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47733013" target="_blank" rel="noopener noreferrer">展示HN：退款守护者——为AI代理提供退款政策的门控系统</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN：Refund Guard 是一款专为AI代理设计的政策门控工具，旨在自动处理退款事宜。该工具通过引入智能决策机制，确保AI代理在执行退款操作时遵循既定政策，从而降低错误发生的风险。这一创新方案的核心在于其能够实时监控AI代理的行为，并在必要时自动触发退款流程，保障用户权益。<br><br>Refund Guard 的重要性在于，它为AI代理的决策过程提供了强有力的保障。在AI技术日益普及的今天，AI代理在处理客户服务、交易执行等任务时，可能会因算法错误或外部因素导致不当决策。而Refund Guard 的出现，能够有效避免这些错误，提高AI代理的可靠性和安全性。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/LocalLLaMA/comments/1sithlm/if_you_havent_yet_given_gemma_4_a_godo_it_today/" target="_blank" rel="noopener noreferrer">如果您还没有尝试过Gemma 4...今天就开始吧</a>
+                    </div>
+                </div>
+                <p class="article-summary">标题：体验Gemma 4，AI领域的突破性进展<br><br>核心内容概述：u/No-Anchovies在Reddit上分享了他对Gemma 4的体验，称其运行速度快，准确性和信心度令人印象深刻，甚至可与早期Gemini Pro相媲美。Gemma 4的推出，为小型自托管LLM的使用体验带来了显著提升，类似于Deepseek多年前在思考能力方面的贡献。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/singularity/comments/1sinatl/amds_senior_director_of_ai_thinks_claude_has/" target="_blank" rel="noopener noreferrer">AMD人工智能高级总监认为“Claude有所退步”，并且认为“它无法被信赖执行复杂工程”。</a>
+                    </div>
+                </div>
+                <p class="article-summary">AMD人工智能高级总监Stella Laurenzo在GitHub上提出，Anthropic的Claude模型自3月初以来性能严重退化，无法可靠地处理复杂工程任务。她分析了近7000个会话，指出该工具在执行复杂任务时表现不佳。这一观点为那些质疑Anthropic不愿发布Mythos模型的人提供了支持，认为其原因是缺乏计算资源，而非模型过于强大。这一事件对AI领域具有重要意义，揭示了大型语言模型在实际应用中可能存在的局限性，对AI从业者和研究者提出了新的挑战。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blog.langchain.com/your-harness-your-memory/" target="_blank" rel="noopener noreferrer">你的装备，你的记忆</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文由Harrison Chase撰写，深入探讨了“Agent harness”在构建智能代理中的重要性及其与代理记忆的紧密联系。文章指出，随着“Agent harness”成为构建智能代理的主流方式，其地位不可动摇。作者强调，若使用封闭式“Agent harness”，尤其是那些隐藏在专有API背后的，意味着我们正选择放弃对智能代理的控制权。<br><br>文章以独特的视角分析了“Agent harness”在智能代理发展中的关键作用，并揭示了其对代理记忆的深远影响。作者认为，智能代理的记忆能力与其“Agent harness”的选择密切相关，进而影响其决策能力和学习能力。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.interconnects.ai/p/the-inevitable-need-for-an-open-model" target="_blank" rel="noopener noreferrer">不可避免需要开放模型联盟</a>
+                    </div>
+                </div>
+                <p class="article-summary">在《不可避免需要开放模型联盟》一文中，作者Nathan Lambert深入探讨了在人工智能领域建立开放模型联盟的必要性。文章核心观点是，随着人工智能技术的快速发展，开放模型联盟将成为推动技术进步和产业创新的关键力量。<br><br>作者从多个角度论证了这一观点。首先，开放模型联盟能够促进知识共享和资源整合，降低研发成本，提高创新效率。其次，联盟内的企业可以共同制定行业标准，避免技术壁垒，推动整个行业的健康发展。此外，开放模型联盟还有助于培养人才，提升整个行业的技术水平。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://simonwillison.net/2026/Apr/11/sqlite/#atom-everything" target="_blank" rel="noopener noreferrer">SQLite 3.53.0</a>
+                    </div>
+                </div>
+                <p class="article-summary">SQLite 3.53.0版本作为一次重大更新，带来了众多用户界面和内部改进。文章详细介绍了几个亮点：<br><br>首先，新增了ALTER TABLE语句，支持添加和移除NOT NULL和CHECK约束，这为数据库管理提供了更多灵活性。其次，引入了json_array_insert()函数及其jsonb等价函数，为处理JSON数据提供了便捷。此外，CLI模式也得到显著改进，包括结果格式化，提升了用户体验。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47734253" target="_blank" rel="noopener noreferrer">展示HN：Git why – 在你的代码中记录你的代理推理跟踪日志</a>
+                    </div>
+                </div>
+                <p class="article-summary">Git why是一款专注于代码版本管理的工具，旨在帮助用户追踪代码中由同事编写的代码片段。该工具通过在Git中记录代理推理轨迹，让用户能够清晰地了解代码变更的动机和原因。Git why能够有效解决团队协作中代码变更不透明、追溯困难的问题，提升代码质量和团队协作效率。对于技术从业者而言，Git why是一款简洁、实用的辅助工具。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47733597" target="_blank" rel="noopener noreferrer">展示HN：PlaneFeed – 滚动直播航班，就像抖音一样</a>
+                    </div>
+                </div>
+                <p class="article-summary">PlaneFeed是一款创新的飞行追踪应用，用户可像浏览TikTok一样滚动查看随机实时航班，并查看航班详细信息。该应用旨在帮助用户替代社交媒体成瘾，通过完成每日任务，如“找到5架空中客车A320”，提升用户参与度和趣味性。PlaneFeed为飞行爱好者提供了全新的互动体验，满足了他们对实时航班信息的需求。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47733514" target="_blank" rel="noopener noreferrer">展示HN：Kern - 执行工作并展示成果的代理</a>
+                    </div>
+                </div>
+                <p class="article-summary">Kern是一款基于AI的智能代理工具，旨在自动化执行任务并展示工作成果。该产品通过集成先进的AI技术，能够高效完成各种繁琐的工作，如数据收集、分析处理等，极大提升工作效率。Kern的核心优势在于其强大的AI能力和创新的工作流程展示方式，让用户轻松监控任务进度，实现工作透明化。对于技术从业者而言，Kern无疑是一款极具价值的工具，能够有效解决工作中重复性任务带来的效率瓶颈。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-04-12 08:42:26</p>
+        </footer>
+    </div>
+</body>
+
+</html>
