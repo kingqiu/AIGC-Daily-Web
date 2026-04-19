@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-04-20">
+    <title>AIGC Daily #280 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-04-20 星期一</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-04-20_hero.png" alt="AIGC Daily 280 Hero Image">
+            <p class="hero-caption">本期关注：微软开放Windows 11任务栏支持第三方AI代理桌面操作，Nyx推出AI代理自主测试框架，Scepsy优化代理工作流程，代理微物理聚焦生成式AI安全，推动AI代理在桌面、测试、流程及安全领域的深化应用。</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://wccftech.com/microsoft-continues-with-its-plan-to-bring-ai-agents-to-windows-11/" target="_blank" rel="noopener noreferrer">微软悄然开放Windows 11任务栏，允许第三方AI代理在您的桌面上进行操作 - Wccftech</a>
+                    </div>
+                </div>
+                <p class="article-summary">微软悄然开放Windows 11任务栏，支持第三方AI代理操作桌面。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.startupecosystem.ca/news/anthropic-engages-with-trump-administration-amid-pentagon-dispute/" target="_blank" rel="noopener noreferrer">Anthropic在五角大楼争议中与特朗普政府展开合作 - 加拿大创业生态系统</a>
+                    </div>
+                </div>
+                <p class="article-summary">尽管五角大楼将其列为供应链风险，Anthropic仍与特朗普政府进行AI技术讨论。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47827802" target="_blank" rel="noopener noreferrer">展示HN：Nyx - 多轮、自适应、针对AI代理的进攻性测试工具</a>
+                    </div>
+                </div>
+                <p class="article-summary">Nyx，一款由zachdotai开发的AI测试工具，旨在解决AI代理在构建过程中遇到的难题。AI代理在逻辑、推理和边缘情况等方面与传统软件存在差异，这使得传统软件的测试方法无法完全覆盖AI代理的潜在问题。Nyx作为一款自主测试框架，能够深入探测AI代理，提前发现潜在故障，确保AI代理在用户使用前达到最佳状态。<br><br>Nyx的核心功能包括：寻找逻辑错误、指令执行失败、代理行为中的边缘情况，以及进行红队安全测试（如越狱、提示注入、工具劫持等）。通过Nyx，开发者可以全面评估AI代理的稳定性和安全性，降低潜在风险。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47827162" target="_blank" rel="noopener noreferrer">Show HN：Lmcli v0.5.0 - 一个适用于LLM简约主义者的可用工具</a>
+                    </div>
+                </div>
+                <p class="article-summary">标题：Show HN：Lmcli v0.5.0 – 适用于LLM简约主义者的实用工具<br><br>Lmcli v0.5.0，一款由Go语言编写的工具，专为LLM（大型语言模型）简约主义者打造。开发者wolttam投入大量时间打造此工具，使其成为其所有LLM相关工作，包括编码的得力助手。该工具的核心优势在于其简洁的设计，避免了在用户与模型之间设置过多的抽象层，从而提高了使用效率。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="http://arxiv.org/abs/2604.15186v1" target="_blank" rel="noopener noreferrer">Scepsy：使用聚合LLM管道提供代理工作流程</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出了一种名为Scepsy的新系统，用于高效地执行复杂的代理工作流程，通过优化LLM和工具的协同工作来提高吞吐量和降低延迟。<br><br>**与AI Agent的关联**: 该论文对AI Agent领域具有重要意义，因为它提供了一种新的方法来处理和优化多智能体系统中的复杂任务执行，特别是在资源受限的环境中。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="http://arxiv.org/abs/2604.15236v1" target="_blank" rel="noopener noreferrer">代理微物理：生成式AI安全的宣言</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出了一个方法论框架，用于研究具有规划、记忆、工具使用、持久身份和持续交互能力的代理AI的安全性。<br><br>**与AI Agent的关联**: 该论文对AI Agent领域具有重要意义，因为它强调了在多智能体系统中进行安全研究的方法论，特别是在代理AI的集体行为和交互方面。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="http://arxiv.org/abs/2604.15244v1" target="_blank" rel="noopener noreferrer">从标记到步骤：用于高效多步推理的验证感知投机解码</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出了SpecGuard，一个验证感知的投机解码框架，通过在步骤级别进行验证来提高大型语言模型推理的效率和准确性。<br><br>**与AI Agent的关联**: 该论文对AI Agent领域具有重要意义，因为它提供了一种新的推理方法，可以增强AI Agent在多步推理任务中的表现。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47826799" target="_blank" rel="noopener noreferrer">展示HN：我找不到任何无废话的二维码生成器，所以我创建了一个</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN：I couldn&#39;t find any BS-free QR code generator, so I built one是一款专注于隐私保护的免费QR码生成工具。该产品解决了现有二维码生成器功能冗余、隐私泄露等问题。用户只需在浏览器中操作，无需与服务器交换数据，确保信息安全。此外，该工具还融入了海盗主题，为用户带来独特体验。<br><br>***</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47826104" target="_blank" rel="noopener noreferrer">展示HN：Faceoff - 一款用于跟踪NHL比赛的终端用户界面</a>
+                    </div>
+                </div>
+                <p class="article-summary">Faceoff是一款基于Python的终端用户界面(TUI)应用，旨在实时追踪NHL比赛，浏览排名和统计数据。该应用灵感来源于HN上曾介绍的类似TUI应用Playball，专为MLB比赛设计。Faceoff通过不断使用和优化，实现了功能增强和bug修复，满足了用户在终端环境中享受体育赛事的需求。通过简单的命令`uvx faceoff`即可启动应用（需安装uv）。Faceoff为技术爱好者提供了便捷的终端体验，帮助他们高效地获取NHL比赛信息。<br><br>***</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47826053" target="_blank" rel="noopener noreferrer">Show HN：Alodb – 我厌倦了将我的Postgres模式粘贴到ChatGPT中</a>
+                    </div>
+                </div>
+                <p class="article-summary">Alodb是一款专注于Postgres数据库管理的在线工具。它通过智能解析和可视化展示，帮助用户轻松管理数据库架构。Alodb的核心功能是将Postgres数据库的schema直接导入，用户无需手动粘贴，节省了大量时间和精力。此外，Alodb还具备强大的AI解析能力，能够自动识别和优化数据库结构，提升数据库性能。对于技术从业者来说，Alodb是一个高效、便捷的数据库管理工具，能够有效解决数据库架构管理难题。<br><br>***</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-04-20 07:21:36</p>
+        </footer>
+    </div>
+</body>
+
+</html>
