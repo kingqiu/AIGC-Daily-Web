@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-04-19">
+    <title>AIGC Daily #278 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-04-19 星期日</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-04-19_hero.png" alt="AIGC Daily 278 Hero Image">
+            <p class="hero-caption">本期关注：Anthropic推出Claude Design挑战Figma/Canva，DeepSeek陷人才困境与融资抉择，Meta启动8000人裁员，OpenAI高管离职；同时Claude系统提示透明化升级、Git时间线研究及硬件工具布局成焦点，反映AI行业竞争加剧与生态演进。</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://thenewstack.io/anthropic-claude-design-launch/" target="_blank" rel="noopener noreferrer">Anthropic推出Claude Design，一款基于Claude构建的Figma和Canva的竞争对手。</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic推出Claude Design，与Figma和Canva竞争</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.tmtpost.com/7958318.html" target="_blank" rel="noopener noreferrer">当核心人才可以被精准定价：DeepSeek遭遇人才困局</a>
+                    </div>
+                </div>
+                <p class="article-summary">DeepSeek面临人才困境，国产AI硬科技初创公司受巨头压力</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3771824203530756?f=rss" target="_blank" rel="noopener noreferrer">Meta计划于5月20日启动今年首轮大规模裁员</a>
+                    </div>
+                </div>
+                <p class="article-summary">Meta计划5月20日启动首轮大规模裁员，约8000人受影响</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.tmtpost.com/7958205.html" target="_blank" rel="noopener noreferrer">DeepSeek 首次融资，AGI 理想向资本低头？</a>
+                    </div>
+                </div>
+                <p class="article-summary">DeepSeek首次融资，AI行业面临理想与商业现实的抉择</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.wired.com/story/openai-executive-kevin-weil-is-leaving-the-company/" target="_blank" rel="noopener noreferrer">OpenAI执行副总裁凯文·韦尔即将离职公司。</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI高管Kevin Weil离职，将AI科学应用整合入Codex</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://simonwillison.net/2026/Apr/18/opus-system-prompt/#atom-everything" target="_blank" rel="noopener noreferrer">系统提示词在Claude Opus 4.6和4.7之间的变化</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic近期发布了Claude Opus 4.6至4.7的系统提示更新，这是AI领域的一大重要事件。Anthropic作为唯一一家公开发布其面向用户聊天系统的系统提示的顶级AI实验室，其系统提示档案可追溯至2024年7月的Claude 3版本。此次Opus 4.7的发布，标志着系统提示的又一次重要更新。<br><br>此次系统提示的更新对AI领域具有重要意义。首先，系统提示的公开有助于推动AI领域的透明度和可解释性。通过分析系统提示的演变过程，研究者可以更深入地了解AI模型的工作原理，从而促进AI技术的进步。其次，系统提示的更新有助于提高AI模型的表现。通过优化系统提示，可以提高AI模型在不同任务上的性能，从而为用户提供更好的服务。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://simonwillison.net/2026/Apr/18/extract-system-prompts/#atom-everything" target="_blank" rel="noopener noreferrer">克劳德系统提示作为Git时间线</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic近期发布了Claude聊天系统的系统提示文档，并将其以Markdown格式公开。Simon Willison利用这一资源，通过Claude Code将其转换为每个模型和模型家族的独立文件，并添加了伪造的git提交日期，从而实现了通过GitHub提交视图浏览变更的历史。这一创新方法为AI领域的研究者提供了一个全新的视角，即以Git时间线的方式审视系统提示的演变。这一做法不仅有助于研究者深入了解模型的变化，而且为AI系统的可追溯性和透明度提供了新的解决方案。对于AI从业者而言，这一研究具有极高的参考价值，有助于推动AI技术的进一步发展和应用。<br><br>***</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.wired.com/story/schematik-is-cursor-for-hardware-anthropic-wants-in-on-it/" target="_blank" rel="noopener noreferrer">Schematik是“硬件的游标”。Anthropic想加入其中。</a>
+                    </div>
+                </div>
+                <p class="article-summary">Schematik，被誉为“硬件的游标”，是一款旨在辅助用户编写物理设备代码的程序。这款软件的核心功能是通过简化编程过程，降低硬件开发门槛，让更多非专业人士也能轻松参与硬件创新。其重要性在于，它有望推动硬件开发领域的普及化，让更多人享受到科技带来的便利。<br><br>Schematik的出现对AI领域产生了深远影响。首先，它为AI硬件的开发提供了便捷的工具，使得AI设备的设计和制造更加高效。其次，Schematik的普及将促进AI技术的应用，让更多行业受益于AI技术。此外，Schematik还可能激发更多创新思维，推动AI领域的技术进步。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.tmtpost.com/7956493.html" target="_blank" rel="noopener noreferrer">三层防御仍然不够，一条PR标题就能偷走你的API密钥：AI Agent安全裂痕再现</a>
+                    </div>
+                </div>
+                <p class="article-summary">近日，硅谷Tech news报道，三大主流AI编程Agent——GPT-3、BERT和Jasper均曝出“评论与控制”漏洞，凭证窃取攻击已获多家厂商确认。这一安全裂痕表明，即便采用三层防御措施，仍不足以保障API密钥的安全。此次事件的核心内容是，攻击者通过精心设计的PR标题，成功窃取了API密钥，对AI领域造成了严重影响。<br><br>这一事件的重要性在于，它揭示了AI编程Agent在安全防护方面的脆弱性。在AI技术日益普及的今天，API密钥被视为企业的重要资产，一旦泄露，将可能导致严重的经济损失和声誉损害。此次事件对AI领域的影响不容忽视，它提醒了AI从业者和企业，在追求技术创新的同时，必须高度重视安全防护。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.lennysnewsletter.com/p/community-wisdom-sharing-claude-code" target="_blank" rel="noopener noreferrer">社区智慧：在组织中共享Claude Code技能，为什么lennysjobs.com关闭了，开设有限责任公司进行兼职工作，AI助力中小企业销售，以及更多</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文深入探讨了AI领域的多个热点话题。首先，作者Kiyani强调了社区智慧在AI技能分享中的重要性，提倡组织内部共享Claude Code技能，以促进团队协作和创新。其次，文章分析了lennysjobs.com关闭的原因，揭示了在线招聘平台面临的挑战和机遇。此外，作者还探讨了开设有限责任公司进行兼职工作的可行性，为读者提供了创业指导。针对中小企业，文章探讨了如何利用AI技术提升销售业绩，为中小企业提供切实可行的解决方案。最后，文章以独特的视角展望了AI技术的发展趋势，为AI从业者提供了宝贵的参考。本文内容丰富、观点独到，对AI从业者具有重要的阅读价值。<br><br>&lt;br /&gt;</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="http://arxiv.org/abs/2604.15186v1" target="_blank" rel="noopener noreferrer">Scepsy：通过聚合大型语言模型管道提供智能工作流程</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出了一种名为Scepsy的新系统，该系统能够高效地管理和执行由多个大型语言模型和工具组成的智能工作流程，解决了GPU资源过度订阅的问题。<br><br>**与AI Agent的关联**: 该论文与AI Agent领域紧密相关，因为它提出了一个针对复杂任务执行的高效系统，这对于理解和开发自主智能体和工具使用有重要意义。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="http://arxiv.org/abs/2604.15236v1" target="_blank" rel="noopener noreferrer">智能体微物理：生成式AI安全的宣言</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出了一种新的方法论，用于研究具有规划、记忆、工具使用、持久身份和持续交互能力的智能体，强调了在智能体群体层面进行安全分析的重要性。<br><br>**与AI Agent的关联**: 该论文对于AI Agent领域的研究具有重要意义，因为它强调了智能体交互和群体行为对AI安全的影响，为智能体设计和应用提供了新的安全视角。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.darkreading.com/vulnerabilities-threats/every-old-vulnerability-ai-vulnerability" target="_blank" rel="noopener noreferrer">每个旧漏洞现在都变成了AI漏洞 - 暗读</a>
+                    </div>
+                </div>
+                <p class="article-summary">《Every Old Vulnerability Is Now an AI Vulnerability - Dark Reading》是一款专注于AI安全风险分析的产品。该产品揭示了AI时代下，传统应用漏洞被AI赋能后，产生自主行动能力的新风险。通过分析AI增强下的漏洞，产品帮助安全团队识别并提升AI应用中漏洞的优先级，确保安全防护措施得以有效实施。产品具备强大的AI分析能力，能够为技术从业者提供专业、简洁的风险评估解决方案。<br><br>***</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.accountingtoday.com/list/tech-news-xero-announces-xeroos" target="_blank" rel="noopener noreferrer">科技新闻：Xero宣布推出XeroOS - 会计今日</a>
+                    </div>
+                </div>
+                <p class="article-summary">Xero推出XeroOS，一款会计领域的新产品。Tieout宣布推出基于AI的员工福利计划审计自动化平台，可快速完成审计工作。MyCPE One推出AI驱动的HRMS 247解决方案，简化海外团队管理。Baseware推出AI培训计划，助力AP专业人士。TaxStatus与Advice.ai达成独家合作，为财务顾问和CPAs提供IRS数据支持。XeroOS等新产品的推出，将为会计行业带来高效、智能的解决方案，助力企业提升运营效率。<br><br>&lt;br /&gt;</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-04-19 08:15:42</p>
+        </footer>
+    </div>
+</body>
+
+</html>
