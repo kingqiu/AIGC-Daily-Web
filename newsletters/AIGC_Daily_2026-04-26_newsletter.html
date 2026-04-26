@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-04-26">
+    <title>AIGC Daily #293 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-04-26 星期日</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-04-26_hero.png" alt="AIGC Daily 293 Hero Image">
+            <p class="hero-caption">本期关注：DeepSeek-V4开源突破算力限制展现1M上下文处理能力，美军Maven系统加速目标定位，谷歌云展示Agentic AI旅行用例，马斯克与Altman诉讼开庭，凸显AI技术突破与行业动态交织。</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/ai-artificial-intelligence/917996/project-maven-military-ai-katrina-manson" target="_blank" rel="noopener noreferrer">如何项目Maven教会军事部门爱上人工智能</a>
+                    </div>
+                </div>
+                <p class="article-summary">美军利用AI加速伊朗袭击目标定位，Maven系统发挥关键作用。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/ai-artificial-intelligence/917755/musk-altman-openai-xai-gossip" target="_blank" rel="noopener noreferrer">马斯克对阿尔特曼，这场对决即将展开，将会变得混乱不堪。</a>
+                    </div>
+                </div>
+                <p class="article-summary">马斯克与Altman的OpenAI诉讼案将于4月27日在加州奥克兰开庭。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://skift.com/2026/04/25/google-cloud-ai-agents-enterprise-platform-virgin-voyages/" target="_blank" rel="noopener noreferrer">谷歌云通过旅行展示代理人工智能的实际功能 - Skift</a>
+                    </div>
+                </div>
+                <p class="article-summary">Google Cloud Next大会展示旅行作为Agentic AI测试案例，推出Gemini平台。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://letsdatascience.com/news/google-cloud-demonstrates-agentic-ai-with-travel-use-cases-41e1a57c" target="_blank" rel="noopener noreferrer">谷歌云展示了具有旅行用例的代理式人工智能 - 让我们数据科学</a>
+                    </div>
+                </div>
+                <p class="article-summary">DeepSeek开源DeepSeek-V4，尽管算力受限但仍开源。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.tmtpost.com/7967294.html" target="_blank" rel="noopener noreferrer">算力受限，DeepSeek-V4凭什么开源？</a>
+                    </div>
+                </div>
+                <p class="article-summary">近日，DeepSeek-V4开源项目引起了广泛关注。尽管其算力受限，但凭借其独特的上下文处理能力，DeepSeek-V4在1M上下文范围内展现出卓越的表现。这一开源项目的推出，不仅体现了我国在AI领域的创新实力，也对整个AI领域产生了深远影响。<br><br>DeepSeek-V4的核心内容概述在于其上下文处理能力。在算力受限的情况下，DeepSeek-V4通过优化算法，实现了对大量信息的有效处理。这一突破性的技术，使得DeepSeek-V4在1M上下文范围内，能够实现高效的信息提取和推理，为AI领域的研究提供了新的思路。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.lennysnewsletter.com/p/community-wisdom-what-great-product" target="_blank" rel="noopener noreferrer">社区智慧：优秀产品领导者与众不同的做法，Claude与ChatGPT的比较，入职两周后接受严厉反馈，加入PMF前初创公司的建议，等等</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文深入探讨了优秀产品领导者与众不同的工作方式，并通过对比Claude和ChatGPT，揭示了社区智慧在产品创新中的重要作用。文章以作者在入职两周后收到严厉反馈的经历为切入点，分享了宝贵的经验教训。此外，文章还针对如何加入一个处于产品市场契合度（PMF）阶段的初创公司提供了实用建议。本文内容丰富，见解独到，为AI从业者提供了宝贵的思考和启示。阅读本文，你将了解到社区智慧在产品领导力中的重要性，学会如何应对职场挑战，并掌握加入初创公司的关键技巧。<br><br>***</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://simonwillison.net/2026/Apr/25/why-are-you-like-this/#atom-everything" target="_blank" rel="noopener noreferrer">你为什么是这个样子？</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文探讨了人工智能在图像生成领域的最新进展，以一则有趣的AI生成图像为例，揭示了AI模型在自主创作过程中的独特表现。作者通过分析一个场景中出现的“WHY ARE YOU LIKE THIS”标语，揭示了AI模型在创作过程中可能出现的非预期结果，并引发了对AI创作自主性和创造力的思考。文章以独特的视角深入探讨了AI在艺术创作中的应用，对于AI从业者和对AI艺术创作感兴趣的人士具有重要的阅读价值。<br><br>***</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.byhand.ai/p/library-models-attention-self-vs-cross" target="_blank" rel="noopener noreferrer">自注意力 vs 交叉注意力</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文由Tom Yeh教授撰写，深入探讨了Self Attention与Cross Attention在自然语言处理领域的应用与差异。文章核心观点在于，虽然两者在模型架构上存在相似之处，但它们在处理信息、提升模型性能方面各有侧重。<br><br>文章首先阐述了Self Attention和Cross Attention的基本原理，并通过实例分析展示了它们在模型中的应用。关键论据包括：Self Attention在处理长距离依赖关系方面具有优势，而Cross Attention则能更好地捕捉不同序列之间的交互信息。此外，文章还分析了两种注意力机制的优缺点，以及在实际应用中如何选择合适的注意力机制。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="http://arxiv.org/abs/2604.21896v1" target="_blank" rel="noopener noreferrer">Nemobot游戏：利用大型语言模型构建战略AI游戏智能体以进行交互式学习</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出了一种利用大型语言模型（LLM）的新范式，通过Nemobot环境创建和部署游戏智能体，实现与AI驱动的策略互动。<br><br>**与AI Agent的关联**: 为AI游戏智能体提供了新的构建和部署方法，有助于推动交互式学习和多智能体系统的发展。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="http://arxiv.org/abs/2604.21816v1" target="_blank" rel="noopener noreferrer">工具注意力是所有你需要：动态工具门控和懒惰模式加载以消除可扩展智能体工作流程中的MCP/工具税</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出了一种新的工具门控和模式加载方法，以减少大型语言模型（LLM）智能体与外部工具连接时的开销。<br><br>**与AI Agent的关联**: 为智能体工作流程提供了更高效的工具集成方法，有助于提升智能体系统的可扩展性和性能。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="http://arxiv.org/abs/2604.21794v1" target="_blank" rel="noopener noreferrer">学习如何沟通：多智能体语言系统的端到端优化</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出了DiffMAS框架，用于联合优化多智能体推理和通信。<br><br>**与AI Agent的关联**: 为多智能体系统中的通信优化提供了新的思路，有助于提升智能体之间的协作和决策能力。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47904565" target="_blank" rel="noopener noreferrer">展示HN：claude-mem-viz，浏览Claude代码对你项目的记忆</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN: claude-mem-viz是一款基于AI的项目记忆可视化工具。该产品通过分析Claude代码，帮助用户浏览项目记忆，直观展示代码中的关键信息。它能够有效解决开发者对项目代码记忆模糊、难以快速定位问题的情况，提高开发效率。该工具利用AI技术，实现了代码记忆的智能分析，为技术从业者提供了一种便捷的项目记忆管理方式。<br><br>***</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47904123" target="_blank" rel="noopener noreferrer">展示HN：AI可见性监控器 - 跟踪您的网站是否被GPT/Claude引用</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN: AI Visibility Monitor 是一款AI驱动的网站监测工具，旨在追踪您的网站是否被GPT/Claude等AI模型引用。该产品通过实时监测和分析，帮助用户了解其内容在AI领域的可见度和影响力。对于内容创作者和网站运营者而言，AI Visibility Monitor 可有效解决内容曝光度不足的问题，提升内容在AI领域的可见度，助力内容传播和品牌推广。其AI能力在于精准识别和追踪AI模型引用，为用户提供创新的数据分析和决策支持。<br><br>***</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47905223" target="_blank" rel="noopener noreferrer">展示HN：LLM-wiki – 一条命令即可访问Karpathy的wiki，并支持Claude/Codex的QMD搜索</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN: LLM-wiki 是一款基于大型语言模型（LLM）的便捷知识库工具，它集成了Karpathy的wiki和QMD搜索功能，专为Claude/Codex等模型设计。该产品通过一键命令即可实现快速查找和浏览知识内容，极大地提高了知识获取效率。对于技术从业者而言，LLM-wiki能够帮助他们快速定位所需信息，节省宝贵时间，提高工作效率。其AI能力和创新点在于将多种知识库和搜索方式集成于一体，实现了智能化的知识检索体验。<br><br>***</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-04-26 08:28:59</p>
+        </footer>
+    </div>
+</body>
+
+</html>
