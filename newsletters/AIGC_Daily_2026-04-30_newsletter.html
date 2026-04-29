@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-04-30">
+    <title>AIGC Daily #302 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-04-30 星期四</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-04-30_hero.png" alt="AIGC Daily 302 Hero Image">
+            <p class="hero-caption">本期关注：DeepSeek V4以“克制美学”提升性能引发热议，Anthropic拟超9000亿美元估值融资，HyperResearch开源深度研究代理超越行业巨头，谷歌探索实证研究助手与Granite 4.1 LLM构建，同时Google Analytics存AI代理盲点。</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/p/3788151000751364?f=rss" target="_blank" rel="noopener noreferrer">别急着All-in DeepSeek V4，先看看这10位从业者的真心话</a>
+                    </div>
+                </div>
+                <p class="article-summary">DeepSeek V4引发热议，采用‘模型训练的克制美学’提升性能</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3788499894770947?f=rss" target="_blank" rel="noopener noreferrer">Anthropic正考虑以超9000亿美元估值开启新一轮融资</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic考虑以超9000亿美元估值开启新一轮融资</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.mediapost.com/publications/article/414418/the-google-analytics-blind-spot.html?edition=142415" target="_blank" rel="noopener noreferrer">谷歌分析“盲点”2026年04月20日 - 媒体邮报</a>
+                    </div>
+                </div>
+                <p class="article-summary">Google Analytics无法捕捉AI代理活动，存在‘盲点’</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/singularity/comments/1sz9o4g/converting_claude_code_into_the_most_intelligent/" target="_blank" rel="noopener noreferrer">将Claude代码转化为最智能的深度研究代理</a>
+                    </div>
+                </div>
+                <p class="article-summary">近期，Reddit用户u/heisdancingdancing发布了一项名为HyperResearch的创新项目，该项目将Claude Code技能与深度研究框架相结合，旨在打造最智能的深度研究代理。HyperResearch在深度研究基准的代理搜索空间中超越了OpenAI、谷歌和NVIDIA的产品。它是一款开源软件，只需一条命令即可安装，并支持使用用户已有的CC订阅，无需额外支付OpenAI或Gemini Pro的费用。<br><br>HyperResearch采用16步流程，在每个会话中创建一个可搜索的、持久的知识库，便于后续搜索的构建。该框架旨在尽可能与原始用户提示保持一致，并集成了内置的事实核查、对抗性审查以及广度和深度调查能力。这一通用框架对AI领域具有重要意义，它不仅提升了深度研究代理的智能化水平，还为研究人员提供了一个高效的知识管理工具。HyperResearch的推出，有望推动AI在深度研究领域的应用和发展。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://research.google/blog/four-ways-google-research-scientists-have-been-using-empirical-research-assistance/" target="_blank" rel="noopener noreferrer">谷歌研究科学家使用实证研究辅助的四种方式</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文深入探讨了Google Research科学家如何运用实证研究助手（Empirical Research Assistance）的四种方式，以提升数据挖掘与建模的效率和质量。文章首先阐述了实证研究助手在数据预处理、特征选择、模型训练和结果评估等方面的应用，并通过具体案例展示了其实际效果。接着，文章分析了实证研究助手在提高研究效率和降低人为误差方面的优势，并提出了其在未来研究中的潜在应用前景。此外，文章还探讨了实证研究助手在跨学科研究中的协同作用，为AI从业者提供了宝贵的借鉴和启示。阅读本文，有助于了解实证研究助手在数据挖掘与建模领域的应用现状和发展趋势，对提升AI研究水平具有重要价值。<br><br>***</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://huggingface.co/blog/ibm-granite/granite-4-1" target="_blank" rel="noopener noreferrer">花岗岩4.1 LLMs：它们是如何构建的</a>
+                    </div>
+                </div>
+                <p class="article-summary">《Granite 4.1 LLMs: How They’re Built》一文深入探讨了大型语言模型（LLMs）的构建过程，揭示了Granite 4.1 LLM的独特之处。文章核心观点在于，Granite 4.1 LLM通过创新的技术手段，实现了在语言理解、生成和交互等方面的突破。作者详细阐述了Granite 4.1 LLM的架构、训练方法以及在实际应用中的优势。<br><br>文章关键论据包括：Granite 4.1 LLM采用先进的神经网络架构，有效提升了模型的表达能力和泛化能力；通过大规模数据训练，Granite 4.1 LLM在自然语言处理任务中表现出色；此外，文章还分析了Granite 4.1 LLM在跨语言、跨领域知识融合方面的独特优势。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.technologyreview.com/2026/04/29/1136666/the-download-nuclear-waste-orchestrated-ai-agents/" target="_blank" rel="noopener noreferrer">下载：储存核废料和协调特工</a>
+                    </div>
+                </div>
+                <p class="article-summary">《The Download：储存核废料与协调代理》一文由托马斯·麦考利撰写，深入探讨了核能领域中的核废料储存问题以及人工智能在协调相关事务中的应用。文章指出，随着核能支持度的提升，公众对核能的认可度激增，大型科技公司也纷纷投入资金。核心观点在于，面对核废料这一长期挑战，需要制定切实可行的储存计划，并利用人工智能技术优化协调过程。<br><br>文章通过分析核废料储存的复杂性和重要性，强调了制定长期储存策略的必要性。同时，探讨了人工智能在数据管理、风险评估和资源优化配置等方面的潜在作用。关键论据包括核废料对环境和人类健康的潜在威胁，以及人工智能在提高储存效率和安全性方面的潜力。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47955047" target="_blank" rel="noopener noreferrer">展示HN：将iOS模拟器流式传输到浏览器窗口</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN: Stream iOS Simulators to a Browser Window是一款创新工具，它能够将iPhone模拟器的XPC流捕获并渲染到网页中。该产品解决了桌面应用在预览、截图和读取日志时，陷入osascript循环的问题，使得Claude Code/Codex桌面应用可以利用现有的浏览器工具轻松实现这些功能，提高了用户体验和效率。<br><br>***</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47954869" target="_blank" rel="noopener noreferrer">展示HN：Claude代码Web界面</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN: Claude Code Web UI是一款为Claude Code设计的网页用户界面，旨在解放用户对终端的依赖。该产品通过直观的Web界面，让用户无需在终端环境中操作，即可便捷地使用Claude Code的各项功能。此举极大提升了用户体验，降低了技术门槛，尤其适合技术从业者。该产品利用AI技术，实现代码的智能分析、优化和调试，有效解决复杂编程问题，提高开发效率。<br><br>***</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=47954627" target="_blank" rel="noopener noreferrer">展示HN：免费工具用于验证法律引用</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN：一款免费法律引用验证工具。本产品由具有20年以上经验的公设辩护人和AI工程师共同研发，旨在利用AI技术提升法律工作者对正义的获取。该工具可验证法律文献中的引用是否真实存在，避免因错误引用导致法院罚款。产品通过AI技术对法律文献进行深度分析，确保引用准确无误，有效提高法律工作的效率和准确性。<br><br>***</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-04-30 07:21:40</p>
+        </footer>
+    </div>
+</body>
+
+</html>
