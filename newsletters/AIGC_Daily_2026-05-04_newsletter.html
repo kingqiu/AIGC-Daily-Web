@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-05-04">
+    <title>AIGC Daily #309 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-05-04 星期一</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-05-04_hero.png" alt="AIGC Daily 309 Hero Image">
+            <p class="hero-caption">本期关注：AI代理加速发展，Stigmem开源联邦知识平台打破知识孤岛实现共享，TrainForgeTester提供确定性场景测试，同时AI代理取代手机趋势显现，Meta面临中国Manus协议风险。</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://9to5google.com/2026/05/03/why-would-i-want-an-ai-agent-to-replace-my-phone/" target="_blank" rel="noopener noreferrer">我为什么要让AI代理取代我的手机？ - 9to5Google</a>
+                    </div>
+                </div>
+                <p class="article-summary">Why would I want an AI agent to replace my phone? - 9to5Google</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.aol.com/news/whats-stake-meta-china-kills-111324256.html" target="_blank" rel="noopener noreferrer">如果中国取消其Manus协议，Meta将面临什么风险 - AOL.com</a>
+                    </div>
+                </div>
+                <p class="article-summary">What&#39;s at stake for Meta if China kills its Manus deal - AOL.com</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48002447" target="_blank" rel="noopener noreferrer">展示HN：Stigmem - 开源联邦知识编织平台，适用于AI代理（v1.0）</a>
+                    </div>
+                </div>
+                <p class="article-summary">Stigmem，一款开源的联邦知识织构，旨在为AI代理提供共享、联邦的知识基础。其核心思想是，AI代理不再维持独立的记忆存储，而是将类型化、溯源标记的事实写入共享的织构中，并通过Ed25519签名节点握手实现跨节点复制。每个事实由七个元素组成：实体、关系、值、来源、时间戳、置信度和范围。这些事实是不可变的，一旦出现矛盾，系统会自动揭示。<br><br>Stigmem的重要性在于，它打破了传统AI代理知识孤岛的限制，实现了知识的共享与联邦。这种模式对于AI领域具有重要意义，因为它有助于提高AI代理的协作能力，促进知识的流动与整合。此外，Stigmem的开放性使得更多研究者可以参与到联邦知识织构的建设中，推动AI技术的创新与发展。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48000135" target="_blank" rel="noopener noreferrer">展示HN：TrainForgeTester – 人工智能代理的确定性场景测试</a>
+                    </div>
+                </div>
+                <p class="article-summary">标题：TrainForgeTester：AI智能体确定性场景测试工具<br><br>TrainForgeTester是由alcray开发的一款开源场景测试运行器，专为AI智能体设计，旨在评估智能体在实际应用场景中的表现。该工具的核心功能是模拟公司特定的场景，让智能体在更为贴近实际的工作环境中执行任务，而非仅仅依赖通用基准测试。通过TrainForgeTester，开发者可以测试智能体在执行过程中可能出现的错误，如采取错误行动、跳过必要步骤、调用错误工具或传递错误参数等。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48002451" target="_blank" rel="noopener noreferrer">展示HN：ISO 20022金融消息的加密收据权限</a>
+                    </div>
+                </div>
+                <p class="article-summary">标题：Show HN：ISO 20022金融消息的加密收据权威性<br><br>核心内容概述：随着ISO 20022在全球范围内逐步取代SWIFT MT消息，金融机构在处理这些消息时，内部记录的日志仅作为声明而非确凿证据。NextGenRails开发的20022Validator工具，为ISO 20022 JSON消息提供SHA-384散列、Merkle承诺和RS256签名的JWS收据，确保消息零存储。收据可独立验证，无需保留，用户可随时使用jwt.io或token.dev工具，通过已发布的公钥进行验证。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="http://arxiv.org/abs/2604.28043v1" target="_blank" rel="noopener noreferrer">协作智能体推理工程（CARE）：一个涉及领域专家、开发者和辅助智能体的三方设计方法论</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出了一种名为CARE的系统性方法论，用于在科学领域内工程化大型语言模型（LLM）智能体，该方法涉及领域专家、开发者和辅助智能体，通过可重用的工件和分阶段的门控流程来规范行为、归一化、工具编排和验证。<br><br>**与AI Agent的关联**: 为AI Agent领域提供了系统化的方法论，有助于提高智能体的工程化水平，特别是在科学领域中的应用。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="http://arxiv.org/abs/2604.28138v1" target="_blank" rel="noopener noreferrer">Crab：一个语义感知的智能体沙箱检查点/恢复运行时</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出了一种名为Crab的语义感知的检查点/恢复运行时，用于智能体沙箱，以支持故障容忍、即时执行、强化学习回滚分支和安全的回滚。<br><br>**与AI Agent的关联**: 为智能体沙箱提供了高效的检查点和恢复机制，有助于提高智能体的鲁棒性和可靠性。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="http://arxiv.org/abs/2604.28139v1" target="_blank" rel="noopener noreferrer">Claw-Eval-Live：一个用于演化真实世界工作流程的实时智能体基准</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 引入了Claw-Eval-Live，一个用于工作流程智能体的实时基准，它分离了一个可刷新的信号层，该层在发布之间更新，从而可以评估智能体对不断变化的工作流程需求或验证任务是否已执行。<br><br>**与AI Agent的关联**: 为智能体领域提供了一个实时基准，有助于评估智能体在真实世界工作流程中的表现和适应性。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48002958" target="_blank" rel="noopener noreferrer">展示HN：使用Tailscale与苹果的容器化堆栈</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN: Using Tailscale with Apple&#39;s containerization stack是一款结合了Apple容器化技术和Tailscale SSH连接的解决方案。该产品通过Apple的容器化命令行工具构建Alpine Linux容器，并实现通过Tailscale SSH连接到容器，同时利用Apple Keychain存储Tailscale认证密钥。用户可在MacBook上创建容器运行应用，同事可通过Tailscale连接容器进行交互，而无需暴露MacBook的其他部分。此产品为技术从业者提供了一种安全、便捷的容器化应用部署与访问方式。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48002513" target="_blank" rel="noopener noreferrer">展示HN：Matlab中的光学设计和仿真</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN: Optical Design and Simulation in Matlab是一款由MathWorks团队开发的专注于光学设计和模拟的软件库。该产品利用MATLAB强大的计算能力，为用户提供了一个高效的光学系统设计和分析平台。通过该产品，用户可以轻松实现光学系统的建模、仿真和分析，有效解决复杂光学设计中的计算难题。其专业化的功能和便捷的操作，为光学工程师和科研人员提供了强大的技术支持，助力他们快速、准确地完成光学系统的设计和优化。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48000947" target="_blank" rel="noopener noreferrer">展示HN：可解释的AutoResearch - 可读的代理工作流程</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN: Interpretable AutoResearch – Legible Agent Workflows是一款基于AI的自动研究平台。该产品通过可解释的代理工作流程，实现了对研究过程的可视化与可控化。它旨在帮助用户轻松理解和控制复杂的AI研究任务，提高研究效率。通过提供直观的界面和强大的AI能力，Interpretable AutoResearch助力用户快速定位问题、优化模型，并实现研究成果的复现。对于技术从业者而言，这款产品无疑是提升研究效率、降低研究风险的得力助手。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-05-04 08:36:49</p>
+        </footer>
+    </div>
+</body>
+
+</html>
