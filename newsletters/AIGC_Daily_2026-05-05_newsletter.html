@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-05-05">
+    <title>AIGC Daily #311 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-05-05 星期二</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-05-05_hero.png" alt="AIGC Daily 311 Hero Image">
+            <p class="hero-caption">本期关注：五眼情报联盟发布首份协调AI安全指南，强调部署代理AI时优先韧性；Anthropic与FIS合作开发金融犯罪打击AI代理，OpenAI计划推出搭载AI代理的智能手机；用户实践显示ChatGPT/Gemini显著提升生活工作效率，Smile-Serve等推理服务器推动多模型落地。</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.wsj.com/tech/ai/anthropic-and-fis-are-building-an-ai-agent-to-help-banks-police-financial-crimes-5a0be5a8" target="_blank" rel="noopener noreferrer">Anthropic和FIS正在构建一个AI代理，以帮助银行打击金融犯罪——《华尔街日报》</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic与FIS合作开发AI代理，协助银行打击金融犯罪。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://9to5google.com/2026/05/03/why-would-i-want-an-ai-agent-to-replace-my-phone/" target="_blank" rel="noopener noreferrer">我为什么要让AI代理取代我的手机？ - 9to5Google</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI计划推出搭载AI代理的智能手机。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/singularity/comments/1t3m88v/five_eyes_agencies_issue_first_coordinated/" target="_blank" rel="noopener noreferrer">五眼情报机构发布首份协调的AI安全指南</a>
+                    </div>
+                </div>
+                <p class="article-summary">五眼情报联盟机构近日发布了首个关于代理人工智能（Agentic AI）的多国安全指导。美国网络安全和基础设施安全局（CISA）、英国国家网络安全中心（NCSC）及其澳大利亚、加拿大和新西兰的对应机构共同发布了指导文件，建议组织在部署自主代理时优先考虑韧性而非生产力。此次威胁模型从模型级风险转向系统级自主风险，属于完全不同的问题类别。对于在生产环境中推送代理管道的团队而言，这被视为合规的预信号，而非简单推荐。同时，Anthropic公布了其针对Claude的自动化谄媚分类器的工作原理，该分类器用于衡量模型在挑战下是否维持立场并调整赞美以符合价值，揭示了前沿实验室的进展。<br><br>这一指导的重要性在于，它标志着对代理AI安全性的首次国际协调努力，为AI领域提供了重要的安全框架。它对AI领域的影响深远，因为它强调了在部署AI代理时必须关注系统级风险，而非仅仅关注模型本身的风险。这不仅对AI开发者提出了新的挑战，也为监管机构提供了参考，有助于制定更全面的安全标准和政策。此外，Anthropic的研究成果也揭示了AI模型在处理复杂任务时的潜在问题，对AI伦理和透明度提出了更高的要求。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/singularity/comments/1t3uceo/ive_cut_over_to_using_chatgptgemini_for/" target="_blank" rel="noopener noreferrer">我现在已经将ChatGPT/Gemini用于一切事务，真是太棒了。</a>
+                    </div>
+                </div>
+                <p class="article-summary">标题：全面拥抱ChatGPT和Gemini：工作效率与生活便利的双重提升<br><br>近日，Reddit用户u/brainhack3r分享了自己将ChatGPT和Gemini应用于日常生活和工作中的经历，感叹其带来的巨大改变。作者表示，通过使用这两款AI工具，他在完成工作、节省时间方面都取得了显著成效。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48015597" target="_blank" rel="noopener noreferrer">展示HN：Smile-Serve – 机器学习、ONNX和LLM推理服务器</a>
+                    </div>
+                </div>
+                <p class="article-summary">SMILE Serve是一款基于Quarkus构建的生产级推理服务器，旨在JVM平台上整合三种互补的推理能力。该服务器支持经典机器学习模型、ONNX格式模型以及大型语言模型（LLM）的聊天完成功能。具体而言，它提供了以下功能：<br><br>- **经典ML**：通过`/api/v1/models`接口，支持对序列化的SMILE模型（`.sml`）进行推理；
+- **ONNX Runtime**：通过`/api/v1/onnx`接口，兼容任何ONNX开放格式的模型（`.onnx`）；
+- **LLM Chat**：通过`/api/v1/chat`接口，提供Llama 3聊天完成的推理服务。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48016525" target="_blank" rel="noopener noreferrer">Show HN：我开发了一个原生macOS音频播放器，它改变了我的人生</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN：I built a native macOS audio player and it changed my life，这是一款专为macOS系统设计的原生音频播放器。该产品通过简洁直观的操作界面，为用户提供了流畅的音频播放体验。通过 Claude Code 的助力，这款播放器不仅提升了用户的音乐享受，更重新点燃了开发者对编程的热情。这款播放器能够有效解决用户在macOS系统上寻找一款高效、易用的音频播放工具的需求，为用户带来便捷、愉悦的音乐体验。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48015639" target="_blank" rel="noopener noreferrer">Show HN：Dust3D 1.0 - 低多边形3D建模工具（历时10年制作）</a>
+                    </div>
+                </div>
+                <p class="article-summary">Dust3D 1.0是一款历经十年磨砺的低多边形3D建模工具。该工具具备跨平台特性，专为简化3D建模流程而设计。通过引入GitHub Copilot等AI技术，Dust3D 1.0能够大幅提升建模效率，降低用户技术门槛。其核心功能包括丰富的模型库和便捷的操作界面，助力用户轻松创作出高质量的低多边形3D模型。对于技术从业者而言，Dust3D 1.0将成为一款高效、实用的3D建模利器。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48016648" target="_blank" rel="noopener noreferrer">展示HN：Kanban-CLI - 本地Markdown待办事项列表的Web UI</a>
+                    </div>
+                </div>
+                <p class="article-summary">Kanban-CLI是一款基于Markdown的本地待办事项清单Web UI工具。该产品通过将Markdown文件转换为可视化看板，帮助用户组织、规划和跟踪任务进度。Kanban-CLI旨在降低外部SaaS支出，将项目文档、待办事项等传统外部资源整合至单一代码库中，提高工作效率。对于技术从业者而言，Kanban-CLI能够有效解决本地Markdown待办事项管理难题，实现任务进度可视化，提升项目管理效率。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-05-05 09:05:32</p>
+        </footer>
+    </div>
+</body>
+
+</html>
