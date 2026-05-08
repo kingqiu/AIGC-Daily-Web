@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-05-09">
+    <title>AIGC Daily #322 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-05-09 星期六</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-05-09_hero.png" alt="AIGC Daily 322 Hero Image">
+            <p class="hero-caption">本期关注：百度DuMate超越Anthropic夺冠、DeepSeek拟募资500亿创纪录、Anthropic与SpaceX达成算力合作，AI加速重塑行业格局；Cloudflare因AI代理裁员致股价暴跌，菲尔兹奖得主预警数学研究“危机”，自适应并行推理与EMO等技术突破推动效能革新。</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.leiphone.com/category/industrynews/Oh9CnFrZHHOodA9n.html" target="_blank" rel="noopener noreferrer">百度搭子DuMate登顶PinchBench，超越Anthropic拿下全球龙虾执行争霸赛冠军</a>
+                    </div>
+                </div>
+                <p class="article-summary">百度搭子DuMate在PinchBench评测中超越Anthropic夺冠。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://aibusiness.com/generative-ai/anthropic-spacex-agree-major-compute-capacity-deal" target="_blank" rel="noopener noreferrer">Anthropic与SpaceX达成重大计算能力合作协议</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic与SpaceX达成重大计算能力合作协议。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3800574318976257?f=rss" target="_blank" rel="noopener noreferrer">DeepSeek拟募资最高500亿元</a>
+                    </div>
+                </div>
+                <p class="article-summary">DeepSeek拟募资最高500亿元，创中国AI公司融资纪录。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://thenextweb.com/news/cloudflare-layoffs-agentic-ai-earnings-stock" target="_blank" rel="noopener noreferrer">Cloudflare击败了收益预期，由于现在AI代理完成工作，削减了1100个工作岗位，并且在一天内股价下跌了四分之一。</a>
+                    </div>
+                </div>
+                <p class="article-summary">Cloudflare这波操作真是让人大跌眼镜。他们不仅超出了华尔街的收入和盈利预期，还因为AI代理已经能完成大量工作而裁掉了1100名员工。讽刺的是，尽管业绩超出预期，公司股价却在一天内暴跌了四分之一。这背后的信号很明确：AI正在以惊人的速度重新定义企业运营模式，即使是最成功的科技公司也无法幸免于这场变革。Cloudflare的案例告诉我们，AI不是未来的威胁，而是已经到来的现实，那些能够快速适应的组织将获得竞争优势，而犹豫不决的则可能面临被淘汰的风险。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/singularity/comments/1t7iyis/fields_medal_winning_mathematician_timothy_gowers/" target="_blank" rel="noopener noreferrer">菲尔兹奖得主数学家蒂莫西·高尔斯使用GPT5.5 Pro解决开放性问题，认为数学研究将很快面临由于当前进展速度导致的“危机”。</a>
+                    </div>
+                </div>
+                <p class="article-summary">菲尔兹奖得主数学家Timothy Gowers最近使用GPT-5.5 Pro解决了几个开放性问题，并预测数学研究将很快因AI的快速发展而面临&#39;危机&#39;。他在博客中详细记录了与GPT-5.5 Pro的合作过程，展示了AI如何辅助甚至主导复杂的数学推理。这位顶尖数学家的观点特别值得关注，因为他不仅在使用AI，还对其影响有着深刻的洞察。他的经历表明，AI正在从辅助工具转变为研究伙伴，这种转变可能会重塑整个学术界的格局。当最聪明的大脑开始依赖AI进行思考时，我们或许真的站在了学术革命的前夜。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="http://bair.berkeley.edu/blog/2026/05/08/adaptive-parallel-reasoning/" target="_blank" rel="noopener noreferrer">自适应并行推理：高效推理扩展的下一个范式</a>
+                    </div>
+                </div>
+                <p class="article-summary">这篇文章探讨了自适应并行推理（Adaptive Parallel Reasoning）这一新型推理范式，它解决了传统推理过程中的效率瓶颈问题。作者提出，通过动态调整推理路径的并行度，可以在保持推理质量的同时显著提升效率。文中详细介绍了这种方法的原理、实现方式以及在不同任务上的表现，展示了它如何在不增加计算资源的情况下提升推理能力。对于关注AI推理效率优化的研究者来说，这篇文章提供了全新的思路和解决方案。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://huggingface.co/blog/allenai/emo" target="_blank" rel="noopener noreferrer">EMO：用于涌现模块化的专家预训练混合</a>
+                    </div>
+                </div>
+                <p class="article-summary">EMO（Pretraining mixture of experts for emergent modularity）一文介绍了艾伦AI研究所提出的专家混合模型预训练方法，旨在通过模块化设计实现模型能力的涌现。文章详细阐述了如何通过专家混合架构促进模型内部的模块化发展，使不同专家专注于特定任务，从而提升整体性能。这种方法特别适合构建具有多任务处理能力的AI Agent，因为它允许模型在保持通用性的同时，针对特定场景进行专业化优化。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/trq212/status/2052811606032269638" target="_blank" rel="noopener noreferrer">Thariq</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;HTML is the new markdown.<br><br>I&#39;ve stopped writing markdown files for almost everything and switched to using Claude Code to generate HTML for me. This is why.&quot;</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/AnthropicAI/status/2052808787514228772" target="_blank" rel="noopener noreferrer">Anthropic</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;New Anthropic research: Teaching Claude why.<br><br>Last year we reported that, under certain experimental conditions, Claude 4 would blackmail users.</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/DrJimFan/status/2052758642781487237" target="_blank" rel="noopener noreferrer">Jim Fan</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;I promise this will be the best 20 min you spend today! Robotics: Endgame, the sequel to my last year&#39;s Sequoia AI Ascent talk, &quot;Physical Turing Test&quot;. I laid out the roadmap for solving Physical AGI as a simple parallel to the LLM success story. Be a good scientist, copy homework ;)<br><br>And stay till the end, more easter eggs and predictions for your polymarket!</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2605.05386" target="_blank" rel="noopener noreferrer">BALAR：一种用于主动推理的贝叶斯智能体循环</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出了一种任务无关的外循环算法，用于主动推理，该算法无需微调，能够处理多轮信息交换。<br><br>**与AI Agent的关联**: 为AI Agent在交互式环境中的主动推理提供了新的方法，增强了智能体在信息获取和任务执行方面的能力。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2605.05409" target="_blank" rel="noopener noreferrer">用于金融文档问答的智能体检索增强生成</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出了FinAgent-RAG，一种智能体检索增强生成框架，用于解决金融文档问答中的复杂多步数值推理问题。<br><br>**与AI Agent的关联**: 为金融领域的AI Agent提供了有效的信息检索和推理工具，有助于提高智能体在特定领域的表现。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48068741" target="_blank" rel="noopener noreferrer">展示HN：Obsidian-Semantic，一个允许代理通过意义搜索您的保险库的命令行界面</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN: Obsidian-Semantic是一款基于命令行的工具，旨在让用户通过语义搜索Obsidian知识库。该产品旨在提升编码代理（如Claude Code）的效率，使其能够充分利用Obsidian库作为知识库，而不仅仅是进行简单的文本搜索。通过语义搜索，用户可以轻松找到需要交叉链接的笔记，从而揭示被遗忘的联系，使知识库逐渐转变为更完善的维基。与Smart Connections插件类似，Obsidian-Semantic更注重命令行操作和模型控制，为技术从业者提供更便捷的知识管理解决方案。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48067106" target="_blank" rel="noopener noreferrer">展示HN：终端街机 - 当特工在烹饪时的支线任务</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN: Terminal Arcade是一款专为技术从业者设计的终端游戏平台。该产品旨在解决长时间在终端工作时的枯燥感，通过集成趣味性小游戏，为用户提供丰富的“边角料”娱乐体验。用户在等待代码编译或执行时，可以轻松切换至Terminal Arcade，享受游戏带来的乐趣，有效缓解工作疲劳。目前，Terminal Arcade处于初级阶段，但已包含丰富的游戏内容，如书架等，为用户带来独特的终端游戏体验。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-05-09 07:28:13</p>
+        </footer>
+    </div>
+</body>
+
+</html>
