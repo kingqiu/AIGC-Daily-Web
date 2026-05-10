@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-05-11">
+    <title>AIGC Daily #326 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-05-11 星期一</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-05-11_hero.png" alt="AIGC Daily 326 Hero Image">
+            <p class="hero-caption">本期关注：AI代码生成持续深化（Airbnb 60%代码AI生成，管理者用Claude Code），DeepSeek-V4-Flash实现长文本高效处理（524k上下文85 tok/s），多智能体系统拓展至工业领域（MachinaCheck构建CNC制造可行性评估），开源复合AI系统成未来趋势。</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.tmtpost.com/7982381.html" target="_blank" rel="noopener noreferrer">Kimi与DeepSeek到底谁更值钱？</a>
+                    </div>
+                </div>
+                <p class="article-summary">Kimi与DeepSeek价值比较引发行业关注。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/singularity/comments/1t9f3hj/after_shopify_and_google_said_that_50_and_75_of/" target="_blank" rel="noopener noreferrer">Shopify和谷歌表示其代码中50%和75%由AI生成后，现在轮到Airbnb宣布其代码库中也有60%由AI生成。此外，Airbnb的首席执行官表示，甚至管理者都在使用Claude Code进行编程。</a>
+                    </div>
+                </div>
+                <p class="article-summary">Katanemo Labs在机器学习社区发布了名为&#39;Signals&#39;的研究成果，这是一种寻找智能体系统中最具信息量轨迹的新方法。研究人员表示，传统方法依赖LLM法官来评估智能体行为，而Signals通过更高效的算法直接识别关键信号，大幅降低了评估成本。这项技术对于优化AI代理系统的性能和可靠性具有重要意义，特别是在多智能体协作场景中。Signals的出现代表了智能体系统评估领域的一个重要突破，有望推动AI代理在实际应用中的更广泛部署。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/LocalLLaMA/comments/1t9em98/deepseekv4flash_w4a16fp8_with_mtp_selfspeculation/" target="_blank" rel="noopener noreferrer">DeepSeek-V4-Flash W4A16+FP8 配合 MTP 自推测：在 2× RTX PRO 6000 Max-Q 上达到 85 tok/s @ 524k</a>
+                    </div>
+                </div>
+                <p class="article-summary">DeepSeek-V4-Flash在硬件测试中表现出惊人的性能，在双RTX PRO 6000 Max-Q显卡上实现了524k上下文长度下的85 token/秒处理速度，以及128k上下文长度下的111 token/秒。这一成绩不仅展示了模型在长文本处理上的优势，还通过MTP自推测技术显著提升了效率。更值得关注的是，该模型采用W4A16+FP8量化方案，在保持较高性能的同时大幅降低了计算资源需求。对于需要在有限硬件上运行大模型的开发者和研究人员来说，这是一个里程碑式的突破。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://huggingface.co/blog/lablab-ai-amd-developer-hackathon/machinacheck" target="_blank" rel="noopener noreferrer">MachinaCheck：在AMD MI300X上构建一个多智能体数控可制造性系统</a>
+                    </div>
+                </div>
+                <p class="article-summary">这篇文章讲述了一个令人兴奋的实践案例：如何构建一个基于AMD MI300X的AI多智能体系统，用于CNC制造可行性的实时评估。MachinaCheck展示了多智能体协作在复杂工业场景中的潜力，将传统制造流程与前沿AI技术无缝结合。文章详细介绍了系统的架构设计，包括多个专业AI Agent如何协同工作，从设计分析到生产预测的全流程自动化。特别值得关注的是，这个系统不仅解决了制造过程中的实时问题检测，还通过多智能体间的动态优化，显著提高了生产效率和产品质量。作者分享了在AMD MI300X平台上部署多智能体系统的技术挑战和解决方案，包括资源分配、通信协议和任务调度等关键问题。对于关注AI在工业领域应用的开发者来说，这篇文章提供了一个从理论到实践的完整视角，展示了多智能体系统如何解决真实世界中的复杂问题。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/garrytan/status/2053127683014271466" target="_blank" rel="noopener noreferrer">Garry Tan</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;The thesis is simple: the future belongs to individuals who build compounding AI systems, not to individuals who use corporate-owned centralized AI tools.<br><br>I&#39;m trying to build these in open source so you can have them for free. That&#39;s what GBrain is.&quot;</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/fchollet/status/2053547820880425331" target="_blank" rel="noopener noreferrer">François Chollet</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;If you cannot express your idea in the language of mathematics or code, you do not understand your idea just yet. It is only an intuition.&quot;<br><br>**解读**: Chollet 指出，如果不能以数学或代码表达想法，就说明你还不真正理解它。这句话强调了将直觉转化为可验证形式的重要性，是AI开发的核心原则之一。这提醒我们，真正的创新需要坚实的理论基础。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/fchollet/status/2053169711341551936" target="_blank" rel="noopener noreferrer">François Chollet</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;It was always the case that agency was self-compounding, but AI is magnifying the effect. Low-agency AI users further lose agency, high-agency AI users further gain agency.&quot;<br><br>**解读**: Chollet 认为，AI正在放大自主性的累积效应：低自主性用户会进一步失去自主性，而高自主性用户则会获得更多自主性。这个观察揭示了AI可能加剧数字鸿沟的问题，值得每个AI使用者深思。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/MachineLearning/comments/1t9jh49/looking_for_arxiv_endorsement_cscv_to_post_my_vit/" target="_blank" rel="noopener noreferrer">视觉Transformer中的位置编码：空间组织和鲁棒性的几何解释</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 本文研究了不同位置编码方案（学习绝对位置、正弦波和旋转位置）如何塑造视觉Transformer的内部表示。提出了一个度量标准来评估位置编码的鲁棒性。<br><br>**与AI Agent的关联**: 该研究对AI Agent领域有重要意义，因为它提供了对视觉Transformer内部表示的深入理解，这对于开发能够处理复杂视觉任务的智能体至关重要。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48087949" target="_blank" rel="noopener noreferrer">展示HN：Aura - 基于规划者/工作者架构的桌面人工智能编排IDE</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN: Aura是一款基于桌面的人工智能编排IDE，采用规划者/工作者架构。该产品旨在为开发者提供高效、便捷的AI应用开发环境。Aura的核心功能包括AI模型训练、部署和监控，支持多种AI框架和算法。通过Aura，用户可以轻松构建和优化AI应用，提高开发效率，降低开发成本。此外，Aura的AI能力和创新点在于其独特的编排机制，能够实现多模型协同工作，提高AI应用的性能和稳定性。对于技术从业者而言，Aura是一款不可多得的AI开发利器。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48087703" target="_blank" rel="noopener noreferrer">展示HN：Hustler Bingo - 一款关于初创公司Twitter陈词滥调的小型宾果游戏</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN: Hustler Bingo是一款以初创公司Twitter流行语为主题的迷你宾果游戏。该游戏旨在娱乐，通过轻松的互动，让用户在游戏中体验与初创公司文化相关的趣味元素。游戏采用Vercel、Tanstack Start和Convex等技术构建，旨在测试这些技术，同时为用户提供轻松愉快的游戏体验。该游戏以低分为佳，有助于缓解压力，提升心理健康。适合技术从业者休闲娱乐，体验轻松愉悦的游戏氛围。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-05-11 07:23:37</p>
+        </footer>
+    </div>
+</body>
+
+</html>
