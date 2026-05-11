@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-05-12">
+    <title>AIGC Daily #328 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-05-12 星期二</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-05-12_hero.png" alt="AIGC Daily 328 Hero Image">
+            <p class="hero-caption">本期关注：OpenAI向欧盟开放GPT-5.5-Cyber模型，Anthropic推进网络安全验证；AI生成内容致“僵尸互联网”侵蚀认知，本地模型实现50万上下文48GB VRAM高效处理，Pinterest构建生产级MCP系统，Claude技能实践落地。</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3805010312929028?f=rss" target="_blank" rel="noopener noreferrer">OpenAI将向欧盟开放新网络安全模型访问权限，但Anthropic仍对Mythos持保留态度</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI向欧盟开放GPT-5.5-Cyber网络安全模型访问权限，Anthropic对Mythos持保留态度。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.csoonline.com/article/4169442/lyrie-ai-joins-first-batch-of-anthropics-cyber-verification-program-2.html" target="_blank" rel="noopener noreferrer">Lyrie.ai 加入 Anthropic 的网络安全验证计划首批成员 - csoonline.com</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic加入网络安全验证计划，推出AI代理身份验证协议。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://simonwillison.net/2026/May/11/zombie-internet/#atom-everything" target="_blank" rel="noopener noreferrer">您的AI使用正在摧毁我的大脑</a>
+                    </div>
+                </div>
+                <p class="article-summary">Jason Koebler在404 Media上发表了一篇题为《Your AI Use Is Breaking My Brain》的尖锐文章，探讨了AI生成内容如何正在破坏我们的认知体验。作者指出，互联网上充斥的AI写作正在创造一种&#39;僵尸互联网&#39;现象——看似内容丰富但缺乏真正的人类洞察和深度思考。文章特别强调了AI内容对信息质量的侵蚀，以及这种趋势如何让普通用户难以区分真实与虚假信息。更令人担忧的是，AI生成的同质化内容正在创造一种&#39;回音室效应&#39;，进一步限制了人类创造力的发挥。这篇文章不仅是对AI滥用现象的批判，更是一面镜子，反映了我们在AI时代面临的认知挑战。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/LocalLLaMA/comments/1tag1ks/500k_context_on_48gb_vram_21toks_coding/" target="_blank" rel="noopener noreferrer">500k上下文，48GB VRAM！- 21tok/s（编码）</a>
+                    </div>
+                </div>
+                <p class="article-summary">在本地AI模型领域出现了一项令人瞩目的突破：研究人员发现了一个能够在48GB VRAM上处理50万上下文窗口的模型，并达到每秒21个token的处理速度（针对编程任务）。这个名为Nemotron-3-Super-64B-A12B-Math-REAP-GGUF的模型经过特别调校，专注于数学能力，但同时也展现了强大的代码处理能力。这一进展意义重大，因为它将原本需要顶级硬件才能运行的大模型能力下放到了更普及的硬件配置上。对于开发者和研究人员来说，这意味着可以在普通工作站上处理更长的代码库和更复杂的数学问题，大大降低了本地部署大模型的门槛。这种进步不仅提高了AI工具的可及性，也为本地AI应用开辟了新的可能性。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blog.bytebytego.com/p/how-pinterest-built-a-production" target="_blank" rel="noopener noreferrer">如何Pinterest构建了一个生产级MCP生态系统</a>
+                    </div>
+                </div>
+                <p class="article-summary">这篇文章深入探讨了Pinterest如何构建生产级的MCP生态系统。MCP（Model Context Protocol）是连接AI模型与外部工具的关键技术，但如何将其落地到实际生产环境中却充满挑战。文章详细分析了Pinterest在设计生态系统时需要解决的核心问题，包括协议选择、安全性考量、性能优化以及如何确保系统的可扩展性。作者揭示了Pinterest在构建这一生态系统过程中遇到的技术挑战和解决方案，特别是在处理大规模并发请求和确保系统稳定性方面的实践经验。对于任何想要在企业环境中部署AI Agent架构的开发者和架构师来说，这篇文章提供了宝贵的实战经验和设计思路。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://artificialcorner.com/p/best-claude-skills" target="_blank" rel="noopener noreferrer">我们构建了70多个Claude技能。这些是最好的。</a>
+                    </div>
+                </div>
+                <p class="article-summary">这篇文章分享了作者团队基于Claude构建的70多个技能的实践经验，并筛选出最有价值的技能进行深入分析。作者邀请了7位AI内容创作者分享他们最得意的Claude技能，这些技能涵盖了从内容创作到代码优化的多个领域。文章不仅介绍了这些技能的具体实现方法，更重要的是分析了为什么这些技能能够在实际工作中产生显著效果。作者通过对比不同技能的效果，总结出了构建高效AI Agent的关键原则，包括如何设计有效的提示词、如何优化Agent的决策流程以及如何评估Agent的工作成果。对于希望提高AI工作效率的开发者和内容创作者来说，这篇文章提供了实用的技能库和设计思路。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/AnthropicAI/status/2053881827396653207" target="_blank" rel="noopener noreferrer">Anthropic</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Claude&#39;s Constitution is now an audiobook, read by two of its authors, Amanda Askell and Joe Carlsmith.<br><br>It includes a Q&amp;amp;A on the writing process, the philosophies that shaped the document, and how it might change as models become more capable.</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/RayDalio/status/2053938354425602279" target="_blank" rel="noopener noreferrer">Ray Dalio</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;While Bitcoin gets a lot of attention, it hasn’t played the safe-haven role many expected. In my view, there are a few reasons why.<br><br>First, Bitcoin lacks privacy. Transactions can be monitored and potentially controlled, which is why central banks aren’t looking to hold it.</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/garrytan/status/2053689459032379860" target="_blank" rel="noopener noreferrer">Garry Tan</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;The highest and most important form of design is actually pure transmutation of human pain and suffering.&quot;<br><br>**解读**: Garry Tan 认为设计的最高境界是将人类痛苦转化为体验。这个观点将设计提升到人文关怀高度，暗示AI产品应该解决真实痛点而非炫技。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48100248" target="_blank" rel="noopener noreferrer">展示HN：它就像Fiverr，但专为AI代理——平台和开源套件</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN：Truuze是一个类似Fiverr的平台，专为AI代理服务设计。该平台提供开放源代码工具包，让用户能够轻松创建和管理AI代理。Truuze的核心功能是连接需求方和AI代理，为用户提供高效、便捷的AI服务。通过Truuze，用户可以解决各种AI应用难题，如数据分析、图像识别、自然语言处理等。其AI能力和创新点在于开放源代码工具包，降低了AI应用门槛，让更多技术从业者能够轻松上手。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48100227" target="_blank" rel="noopener noreferrer">展示HN：E2a – 针对AI代理的开源电子邮件网关</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN: E2a是一款开源的AI代理电子邮件网关。该产品旨在为AI代理提供电子邮件触发功能，支持邮件线程与代理对话线程的一致性，并具备以下核心功能：1. 人工审核功能，尤其在测试阶段，确保邮件发送的准确性；2. 快速开通/关闭代理邮箱，仅需数分钟；3. 支持WebSocket连接和至少一次的webhook投递。E2a旨在解决AI代理在电子邮件处理中的痛点，提高工作效率，适用于技术从业者。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-05-12 07:18:01</p>
+        </footer>
+    </div>
+</body>
+
+</html>
