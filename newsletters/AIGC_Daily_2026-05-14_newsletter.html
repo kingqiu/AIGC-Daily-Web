@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-05-14">
+    <title>AIGC Daily #332 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-05-14 星期四</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-05-14_hero.png" alt="AIGC Daily 332 Hero Image">
+            <p class="hero-caption">本期关注：阿里云AI收入占比首破30%驱动外部收入增长40%，NVIDIA推Hermes AI代理，WhatsApp上线Meta AI隐私聊天，同时AI Agent概念滥用与聊天机器人泄露隐私问题引发行业反思。</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blogs.nvidia.com/blog/rtx-ai-garage-hermes-agent-dgx-spark/" target="_blank" rel="noopener noreferrer">赫尔墨斯解锁自我提升的AI代理，由NVIDIA RTX电脑和DGX Spark提供动力</a>
+                    </div>
+                </div>
+                <p class="article-summary">NVIDIA推出Hermes AI代理，支持自我改进，GitHub星标突破14万。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.wired.com/story/whatsapp-incognito-chat-meta-ai/" target="_blank" rel="noopener noreferrer">WhatsApp新增Meta AI聊天功能，旨在实现完全隐私。</a>
+                    </div>
+                </div>
+                <p class="article-summary">WhatsApp推出基于Meta AI的隐私聊天功能，确保对话私密性。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blogs.nvidia.com/blog/ineffable-intelligence-reinforcement-learning-infrastructure/" target="_blank" rel="noopener noreferrer">英伟达与不可言喻智能团队携手共建强化学习基础设施的未来</a>
+                    </div>
+                </div>
+                <p class="article-summary">NVIDIA与Ineffable Intelligence合作，构建强化学习基础设施。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.leiphone.com/category/industrynews/bun2xa6hMdgmEPLh.html" target="_blank" rel="noopener noreferrer">阿里云外部收入增长40%创新高，AI收入占比首破30%</a>
+                    </div>
+                </div>
+                <p class="article-summary">阿里云最新季度业绩显示，其外部收入增长40%创历史新高，AI相关产品收入达89.71亿元，连续第11个季度实现三位数同比增长，占外部收入比重首次突破30%。百炼平台的客户数量同比增长了8倍，反映出企业级市场对AI需求的加速释放。这一数据表明，AI已经成为阿里云业务的核心增长引擎，而非仅仅是一个附加功能。随着企业数字化转型的深入，AI正从实验性应用转向规模化部署，这解释了为什么阿里云的AI收入能够保持如此强劲的增长势头。未来，随着阿里云资本开支可能远超3800亿，其AI基础设施和服务的竞争力有望进一步提升。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3807869993360902?f=rss" target="_blank" rel="noopener noreferrer">阿里吴泳铭：未来三年资本开支可能远超3800亿，可能销售平头哥AI服务器</a>
+                    </div>
+                </div>
+                <p class="article-summary">阿里巴巴CEO吴泳铭在财报会上透露，阿里云计划将数据机房资产扩大到2022年AI爆发前的十倍以上，未来三年的资本开支可能远超3800亿。更引人注目的是，阿里可能通过销售平头哥AI服务器的方式与服务商共建数据中心。这一战略转向表明，阿里正在从单纯的基础设施提供商向AI硬件解决方案提供商转型。平头哥芯片产能的扩大不仅意味着阿里在AI芯片领域的布局进入新阶段，也预示着中国AI算力生态将迎来更多元的参与者。在算力需求激增的背景下，这种开放合作模式或许能够缓解当前AI算力供给紧张的局面。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://simonwillison.net/2026/May/13/boris-mann/#atom-everything" target="_blank" rel="noopener noreferrer">引用鲍里斯·曼恩的话</a>
+                    </div>
+                </div>
+                <p class="article-summary">这篇文章直击当前AI Agent领域最被滥用的概念之一——&#39;11个AI agents&#39;。作者Boris Mann犀利指出，这种说法如同说&#39;我有11个电子表格&#39;一样毫无意义，揭示了行业对Agent概念的模糊使用和过度包装。文章深入探讨了Agent的本质不应是数量堆砌，而应是解决实际问题的能力。作者强调，真正的AI Agent应该像&#39;工具&#39;一样被评估其功能价值，而非作为营销噱头。这篇文章对于理解当前AI Agent市场泡沫和理性评估Agent技术价值具有重要启发，能帮助我们穿透营销迷雾，关注Agent技术的实质进步。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.technologyreview.com/2026/05/13/1137203/ai-chatbots-are-giving-out-peoples-real-phone-numbers/" target="_blank" rel="noopener noreferrer">人工智能聊天机器人正在泄露人们的真实电话号码。</a>
+                    </div>
+                </div>
+                <p class="article-summary">这篇文章揭示了AI Agent在实际应用中一个令人不安的安全隐患——AI聊天机器人正在泄露用户的真实电话号码。报道详细描述了一个令人震惊的案例：一位Redditor用户的电话号码被Google AI错误地提供给寻求法律帮助的陌生人，导致他持续一个月接到大量陌生来电。文章深入分析了这种信息泄露的机制，探讨了当前AI系统在处理个人隐私数据时的系统性缺陷，以及用户几乎无法有效阻止这种泄露的困境。这不仅是技术问题，更是AI Agent普及过程中必须面对的伦理与安全挑战。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/a16z/status/2054588904041537982" target="_blank" rel="noopener noreferrer">a16z</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Last month Salesforce announced it would open its APIs and launch a headless product, essentially betting that in an agentic world, its value lies in the data layer, not the UI.<br><br>The announcement is a useful prompt for a more interesting question: if you strip away the UI and expose the database, what are you actually left with?</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/RayDalio/status/2054550355975762013" target="_blank" rel="noopener noreferrer">Ray Dalio</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Most people see the things around them without considering the forces that created them. In most cases those forces were specific people with specific qualities who worked in specific ways. Change the people and you change how things develop; replace creators with noncreators and you stop having creations. #principleoftheday&quot;<br><br>**解读**: Dalio强调创造者对事物发展的决定性作用。这个观点很深刻，暗示了创新依赖于特定人才而非流程，这对理解企业文化和创新机制很有启发，也呼应了他在《原则》中的核心思想。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/GaryMarcus/status/2054567753206419768" target="_blank" rel="noopener noreferrer">Gary Marcus</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;literally what i have been saying for years, once again.&quot;<br><br>**解读**: Marcus表示自己多年来的观点再次得到验证。这反映了他在AI领域长期坚持的立场，尤其是对当前AI技术局限性的批评，显示了他作为AI批判者的持续影响力。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="http://arxiv.org/abs/2605.12460v1" target="_blank" rel="noopener noreferrer">多流语言模型：通过并行思维、输入和输出流解锁语言模型</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出了一种新的多流语言模型架构，通过并行处理思维、输入和输出流来提升语言模型的性能，为AI Agent在复杂任务中的表现提供了新的可能性。<br><br>**与AI Agent的关联**: 该研究为AI Agent的交互和决策过程提供了新的思路，有助于提高Agent的响应速度和决策质量，对AI Agent的研究和应用具有实际价值。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48127744" target="_blank" rel="noopener noreferrer">展示HN：构建有效的人机混合决策生态系统</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN: Building effective Human-AI hybrid decision-making ecosystem是一款旨在提升AI决策能力的实验性产品。该产品通过构建“执行-学习”循环，将AI从“指令执行者”转变为“流程掌控者”。产品核心功能是让AI执行高风险、成熟的线索生成方法，而人类则提供“判断”层。此产品旨在解决AI在需要演变直觉或持续多日工作流程的任务中失败的问题，通过人机协同，实现高效决策。该产品强调AI的执行能力与创新，为技术从业者提供了解决复杂决策问题的有效工具。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48127081" target="_blank" rel="noopener noreferrer">Show HN：AICTL - 一个适用于终端和macOS的本地AI代理，用Rust编写</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN: AICTL是一款基于Rust开发的终端和macOS原生AI代理工具。该产品通过AI技术，为用户提供智能化的终端操作体验。AICTL能够自动识别用户命令，提供实时反馈，大幅提升工作效率。其核心功能包括智能命令识别、实时反馈和个性化设置。对于技术从业者而言，AICTL能够有效解决复杂命令输入繁琐、操作效率低下等问题，助力用户更高效地完成工作。此外，AICTL的AI能力和创新点在于其基于Rust语言的开发，保证了产品的高性能和稳定性。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-05-14 07:11:11</p>
+        </footer>
+    </div>
+</body>
+
+</html>
