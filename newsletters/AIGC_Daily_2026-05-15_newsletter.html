@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-05-15">
+    <title>AIGC Daily #334 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-05-15 星期五</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-05-15_hero.png" alt="AIGC Daily 334 Hero Image">
+            <p class="hero-caption">本期关注：AI市场格局向多极化演进，ChatGPT接近50%份额，Claude与Gemini持续增长；Hugging Face发布1万亿参数开源模型Ring-2.6-1T，推动开源AI突破；Reference-Guided Flow Matching等新算法提升生成模型性能，技术与应用加速落地。</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blogs.nvidia.com/blog/geforce-now-thursday-subnautica-2/" target="_blank" rel="noopener noreferrer">在云端相见：《Subnautica 2》早期访问版登陆GeForce NOW</a>
+                    </div>
+                </div>
+                <p class="article-summary">NVIDIA GeForce NOW平台推出《Subnautica 2》游戏，支持云游戏服务。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/singularity/comments/1tcxx2x/gen_ai_web_traffic_share_update_main_takeaways/" target="_blank" rel="noopener noreferrer">通用人工智能网页流量份额更新 主要结论：→ Claude 和 Gemini 继续增长。→ ChatGPT 接近 50% 的市场份额。</a>
+                    </div>
+                </div>
+                <p class="article-summary">最新的AI网络流量份额数据显示，ChatGPT正逐步接近50%的市场份额，而Claude和Gemini则持续增长。一年前，ChatGPT占据77.6%的市场，Gemini仅7.27%；六个月前，ChatGPT降至69.5%，Gemini增长至15.9%。这表明AI市场正从一家独大向多极化发展，用户开始根据不同需求选择合适的AI助手。Gemini的快速增长尤其值得关注，它已经从边缘玩家成为ChatGPT最强劲的竞争对手。这种市场格局的变化，意味着AI公司需要更精准的产品定位和差异化竞争策略。<br><br>***</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/a16z/status/2054588904041537982" target="_blank" rel="noopener noreferrer">a16z</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Last month Salesforce announced it would open its APIs and launch a headless product, essentially betting that in an agentic world, its value lies in the data layer, not the UI.<br><br>The announcement is a useful prompt for a more interesting question: if you strip away the UI and expose the database, what are you actually left with?</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/RayDalio/status/2054550355975762013" target="_blank" rel="noopener noreferrer">Ray Dalio</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Most people see the things around them without considering the forces that created them. In most cases those forces were specific people with specific qualities who worked in specific ways. Change the people and you change how things develop; replace creators with noncreators and you stop having creations. #principleoftheday&quot;<br><br>**解读**: Ray Dalio 强调创造者决定事物发展的本质。这个观点在AI领域特别有启发性——当AI开始&#39;创造&#39;时，背后人类创造者的价值观和能力将直接影响AI产出的质量和方向，这也是AI安全问题的核心。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="http://arxiv.org/abs/2605.13725v1" target="_blank" rel="noopener noreferrer">ScioMind：基于锚定信念动态和动态配置的认知基础多智能体社会模拟</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出了一种结合结构化意见动力学和基于LLM的智能体推理的认知基础模拟框架，旨在解决现有方法中认知基础不足或LLM交互过于自由的问题。<br><br>**与AI Agent的关联**: 为AI Agent的社会交互和认知建模提供了新的思路，有助于提升智能体在社会环境中的适应性和决策能力。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="http://arxiv.org/abs/2605.13737v1" target="_blank" rel="noopener noreferrer">Senses Wide Shut：全模态LLM中的表征-行动差距</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 研究了全模态LLM在处理文本前提与感知输入不一致时的失败原因，提出了一个用于评估此类问题的基准。<br><br>**与AI Agent的关联**: 揭示了全模态LLM在感知和行动上的局限性，对智能体在多模态交互中的表现和设计提供了新的理解。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48141114" target="_blank" rel="noopener noreferrer">展示HN：全栈HQ - Claude.md和Claude代码代理栈</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN: Full Stack HQ – Claude.md和Agent Stack for Claude Code是一款基于MIT许可的配置工具，专为Claude Code和Google Antigravity IDE设计。通过一键安装，用户可快速搭建CLAUDE.md、GEMINI.md以及10个专业代理和28项技能，极大提高工作效率。该产品以“权限优先”配置理念为核心，为技术从业者提供便捷、高效的开发环境，有效解决开发过程中配置复杂、效率低下等问题。<br><br>***</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48142119" target="_blank" rel="noopener noreferrer">展示HN：在服务器或客户端增量解析LLM Markdown流</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN: Parse LLM Markdown streams incrementally on the server or client是一款针对AI聊天应用中Markdown文本流式解析的优化工具。该产品通过实现Markdown文本的（半）增量解析，有效解决了传统前端重解析整个文档导致的UI渲染缓慢问题。它能够显著提升长响应文本的渲染效率，为用户带来更流畅的交互体验。该产品具备AI能力，通过创新解析方式，为技术从业者提供了一种高效、便捷的Markdown处理解决方案。<br><br>***</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-05-15 07:41:30</p>
+        </footer>
+    </div>
+</body>
+
+</html>
