@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-05-16">
+    <title>AIGC Daily #336 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-05-16 星期六</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-05-16_hero.png" alt="AIGC Daily 336 Hero Image">
+            <p class="hero-caption">本期关注：谷歌测试Gemini Spark AI代理将支持航班预订与邮箱管理，X开源推荐算法并获Claude Code解读，Emergence World提出"世界构建"评估LLM新方法，Follow the Mean生成模型提升复杂分布建模能力。</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.testingcatalog.com/google-prepares-gemini-spark-ai-agent-ahead-of-i-o-launch/" target="_blank" rel="noopener noreferrer">谷歌为I/O发布会前准备Gemini Spark AI代理 - 测试目录AI新闻</a>
+                    </div>
+                </div>
+                <p class="article-summary">Google测试Gemini Spark AI代理，准备在I/O大会上推出</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.androidauthority.com/gemini-spark-onboarding-screen-leaked-3667118/" target="_blank" rel="noopener noreferrer">谷歌即将推出的“Gemini Spark”可能很快就能帮您预订航班并管理您的邮箱——Android Authority</a>
+                    </div>
+                </div>
+                <p class="article-summary">Google的Gemini Spark可能即将推出，可自动处理航班预订和邮箱管理</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48152588" target="_blank" rel="noopener noreferrer">Show HN：X开源了他们的算法</a>
+                    </div>
+                </div>
+                <p class="article-summary">X(推特)最近开源了其推荐算法，一位开发者使用Claude Code将复杂的算法步骤转化为通俗易懂的英文解释。这个开源举动意味着任何人都可以查看和理解X的内容推荐机制，这在社交媒体历史上是罕见的透明度突破。对于那些关心算法如何影响我们信息获取的用户来说，这提供了一个难得的窗口。虽然原始代码可能仍有一定技术门槛，但Claude Code的解读让普通开发者也能一窥究竟。这种透明度可能会引发更多关于算法公平性和透明度的讨论，也可能成为其他平台跟进的榜样。不过，算法只是冰山一角，真正影响用户体验的还有无数其他因素。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48152558" target="_blank" rel="noopener noreferrer">展示HN：Emergence World：将世界构建作为评估大型语言模型的方法</a>
+                    </div>
+                </div>
+                <p class="article-summary">当前LLM基准测试可能已经&#39;失效&#39;，一个名为Emergence World的新项目提出用&#39;世界构建&#39;来评估大模型能力。这种方法通过要求模型进行长期、复杂的世界模拟，综合考察推理、记忆、规划等多方面能力，比传统的单一任务测试更接近真实应用场景。例如，让模型构建一个完整的虚拟世界并预测其发展，这需要模型具备持久的记忆、因果推理和长期规划能力。这种方法可能更难&#39;刷榜&#39;，也更能反映模型在实际任务中的真实表现。如果这种方法被广泛采用，可能会改变整个行业评估AI能力的方式，推动模型向更接近人类认知的方向发展。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/fchollet/status/2055346225092902924" target="_blank" rel="noopener noreferrer">François Chollet</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Most documented psychological biases are not irrational, they are highly optimized, energy-efficient shortcuts meant for a biological substrate operating under strict real-time physical constraints and a limited caloric budget&quot;<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/garrytan/status/2055310116325560647" target="_blank" rel="noopener noreferrer">Garry Tan</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;The biggest alpha leak of 2026 is that you can tokenmax $10k/mo with OpenClaw/Hermes + GBrain and get the AI that everyone will have in 2028 for $100/mo, but you can get it now, and that is the biggest single unlock you can have vs your competition&quot;<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/garrytan/status/2055266014728945836" target="_blank" rel="noopener noreferrer">Garry Tan</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Hard leftists and DSA-types will fight AI tooth and nail because AI is the universal solvent for socialism’s three prerequisites.<br><br>AI will reduce scarcity (abundance), eliminate victimhood (agency), and eliminate the need for intermediaries (disintermediation).&quot;</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="http://arxiv.org/abs/2605.15104v1" target="_blank" rel="noopener noreferrer">从文本到语音：评估工具调用LLM代理的可重复和可验证框架</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出了一种将基于文本的工具调用基准转换为基于音频的评估方法，无需重新标注工具模式和金标签，通过文本到语音转换、说话人变化和环境噪声创建配对文本音频实例。<br><br>**与AI Agent的关联**: 为评估语音代理的工具使用能力提供了新的框架，对多智能体系统和工具使用的研究具有重要意义。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="http://arxiv.org/abs/2605.15164v1" target="_blank" rel="noopener noreferrer">立场：行为保证无法验证现在治理所要求的安</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 讨论了行为保证在验证AI安全方面的局限性，指出当前保证方法在知识论上有限，无法验证AI的某些安全属性。<br><br>**与AI Agent的关联**: 对AI Agent的安全性研究具有指导意义，强调了在AI Agent设计和应用中安全性和治理的重要性。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48154710" target="_blank" rel="noopener noreferrer">展示HN：一个启动自定义知识库系统的种子提示</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN：一款基于种子提示的自定义知识库系统。该产品通过整合LLM（大型语言模型）技术，帮助用户构建个性化知识库。用户可通过与LLM的对话生成知识内容，并利用Python脚本将Markdown文件转换为可浏览的HTML，实现知识库的便捷管理和查询。该产品有效解决了知识库管理困难、信息检索效率低下等问题，为技术从业者提供高效的知识管理解决方案。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48153009" target="_blank" rel="noopener noreferrer">展示HN：为AI应用和购物代理的代理式产品发现</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN: Agentic product discovery for AI apps and shopping agents 是一款专注于AI应用和购物代理的产品发现平台。该平台利用先进的AI技术，为用户提供智能化的产品推荐服务。通过分析用户行为和偏好，平台能够精准匹配用户需求，帮助用户快速找到心仪的产品。对于技术从业者而言，该平台不仅提高了工作效率，还降低了寻找合适产品的难度。其AI能力和创新点在于，通过不断学习和优化，平台能够持续提升推荐准确度和个性化程度，为用户提供更加智能、便捷的购物体验。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-05-16 07:30:36</p>
+        </footer>
+    </div>
+</body>
+
+</html>
