@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-05-19">
+    <title>AIGC Daily #343 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-05-19 星期二</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-05-19_hero.png" alt="AIGC Daily 343 Hero Image">
+            <p class="hero-caption">本期关注：谷歌Gemini 3.2 Flash突破数学推理能力解决IMO难题，OpenAI开源Symphony代理编排工具，Hugging Face重振PapersWithCode平台，共同推动AI模型能力边界与研究资源整合发展。</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://sg.news.yahoo.com/inside-gemini-spark-code-reveals-235723075.html" target="_blank" rel="noopener noreferrer">Gemini Spark内部揭秘：代码揭示驱动谷歌AI代理的技能系统和任务调度器 - 雅虎新闻新加坡</a>
+                    </div>
+                </div>
+                <p class="article-summary">谷歌开源Gemini Spark代码，揭示AI代理的技能系统和任务调度器。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.infoq.com/news/2026/05/openai-symphony-agents/" target="_blank" rel="noopener noreferrer">OpenAI开源Symphony，一款用于自主编码代理编排的SPEC.md - infoq.com</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI开源Symphony，用于自主编码代理编排的SPEC.md。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/singularity/comments/1tgn8qt/gemini_32_flash_is_capable_of_solving_imo_2025_p6/" target="_blank" rel="noopener noreferrer">Gemini 3.2 Flash能够解决IMO 2025 P6问题。目前只有GPT-5.5-Pro能够在没有任何支架/束缚工程的情况下解决它。</a>
+                    </div>
+                </div>
+                <p class="article-summary">Gemini 3.2 Flash 现在能够解决 IMO 2025 的第6题，这是目前只有 GPT-5.5-Pro 在没有任何支架/工程辅助的情况下才能解决的问题。这一突破表明，谷歌的轻量级模型在数学推理能力上已经达到了前所未有的高度，甚至超越了大多数更强大的模型。IMO 数学竞赛题目历来是测试模型高级推理能力的黄金标准，Gemini 3.2 Flash 的这一表现意味着它在复杂问题解决方面已经接近顶尖水平。这不仅是模型能力的提升，更是对整个AI推理能力边界的重新定义，让人不禁好奇谷歌接下来还有什么大招。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/garrytan/status/2056368178251596157" target="_blank" rel="noopener noreferrer">Garry Tan</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;The NYT is predictably tearing down Reese Witherspoon for encouraging moms to try AI before they ingest the anti-AI pablum as truth<br><br>Instead of linking to the NYT op-ed, I think you should watch this video and encourage you to follow Reese Witherspoon on Instagram https://t.co/Z2iI8ddaSt&quot;</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/garrytan/status/2056360252652867624" target="_blank" rel="noopener noreferrer">Garry Tan</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;A California mayor just pled guilty to being a literal foreign agent of the Chinese government. She ran a CCP propaganda website disguised as local news.<br><br>NBC&#39;s angle? The real problem is that reporting on it &quot;reignited fears of anti-Asian discrimination.&quot;</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/AnthropicAI/status/2056419620643541012" target="_blank" rel="noopener noreferrer">Anthropic</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Anthropic is acquiring @stainlessapi, an SDK and MCP server platform that has powered every Anthropic SDK since the earliest days of our API.<br><br>Read more: https://t.co/ZQbsZKnicv&quot;</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48184763" target="_blank" rel="noopener noreferrer">展示HN：Claude Soul – Claude Code的跨会话学习引擎</a>
+                    </div>
+                </div>
+                <p class="article-summary">Claude Soul是一款针对Claude Code的跨会话学习引擎，旨在解决Claude Code在会话间缺乏记忆的问题。该产品通过MCP服务器和钩子技术，从用户交互中提取信号（如纠正、成功、困惑），并定期反思以构建行为框架。框架根据证据获得或失去信心，不良框架会自动淘汰。经过约200次会话后，Claude Soul展现出惊人的自我学习能力，为用户带来更智能、高效的交互体验。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48183793" target="_blank" rel="noopener noreferrer">展示HN：信标 - 本地AI代理可见性的开源层</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN: Beacon是一款开源的本地AI代理可见性层。该产品通过提供一套标准化接口，实现AI代理在本地环境中的可见性和交互。Beacon旨在解决AI代理在复杂环境中难以被发现和协作的问题，提升AI代理的透明度和可管理性。其核心功能包括：1）本地AI代理的注册与发现；2）代理间通信与协作；3）代理状态监控与日志记录。Beacon的AI能力和创新点在于其开放性和可扩展性，支持多种AI代理和场景，助力开发者构建高效、智能的本地AI生态系统。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-05-19 06:12:43</p>
+        </footer>
+    </div>
+</body>
+
+</html>
