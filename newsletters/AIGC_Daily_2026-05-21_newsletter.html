@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-05-21">
+    <title>AIGC Daily #347 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-05-21 星期四</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-05-21_hero.png" alt="AIGC Daily 347 Hero Image">
+            <p class="hero-caption">本期关注：Google Gemini Spark引数据安全担忧，NanoClaw获融资推动AI代理技术发展，HalBench揭示模型恭维与幻觉差异，Andrew Ng探索AI agent生成图像视频的自我迭代优化方向。</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.cnet.com/tech/services-and-software/gemini-spark-too-much-data-access-commentary/" target="_blank" rel="noopener noreferrer">双子座Spark给谷歌过度访问您的数据 - CNET</a>
+                    </div>
+                </div>
+                <p class="article-summary">Google推出新的AI代理Gemini Spark，可能过度获取用户数据。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/ai-artificial-intelligence/934478/if-google-cant-make-ai-agents-useful-maybe-no-one-can" target="_blank" rel="noopener noreferrer">如果谷歌无法让AI代理变得有用，或许没有人能做到——《The Verge》</a>
+                    </div>
+                </div>
+                <p class="article-summary">Google在AI代理领域面临挑战，但可能成为大规模成功的关键。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.businessinsider.com/cohen-brothers-raised-millions-openclaw-competitor-nanoclaw-agentic-ai-enterprise-2026-5" target="_blank" rel="noopener noreferrer">两位兄弟筹集了1200万美元用于开发一个被政府官员称为其“第二大脑”的OpenClaw竞争对手 - Business Insider</a>
+                    </div>
+                </div>
+                <p class="article-summary">今年，NanoClaw作为OpenClaw的更安全替代品应运而生，其背后由两位兄弟创立的公司成为“claws”群体中首家获得风险投资的成员。这一群体由一群自主、开源的AI代理公司组成，NanoClaw的融资被视为加速OpenAI在代理AI领域的进展，并推动Codex从编码助手向能够解析和回复邮件、管理文件以及安排会议的代理转变。这一举措标志着AI领域的一个重要里程碑，不仅体现了对现有技术的挑战，也预示着AI代理技术的未来发展方向。NanoClaw的成功融资和对AI代理技术的探索，对AI领域的发展具有重要意义，它不仅可能改变AI在商业和日常生活中的应用方式，也可能推动整个行业向更高水平的智能化迈进。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/LocalLLaMA/comments/1tizvih/halbench_i_built_a_custom_sycophancy_and/" target="_blank" rel="noopener noreferrer">HalBench：我构建了一个定制的谄媚和幻觉基准，并测试了4个前沿模型（Sonnet 4.6、Grok 4.3、GPT 5.4和Gemini 3.1 Pro），寻求关于接下来运行哪些开源模型的意见！</a>
+                    </div>
+                </div>
+                <p class="article-summary">近日，Reddit用户u/Saraozte01发布了一篇关于HalBench的AI资讯。HalBench是一款针对大型语言模型（LLM）的恭维和幻觉能力的开源基准测试工具。该测试通过对3200个基于错误前提的提示进行评估，共生成12,800个评分响应，并经过100个随机样本的人工验证。结果显示，Sonnet 4.6在恭维和幻觉能力上优于Grok 4.3，而GPT-5.4和Gemini 3.1 Pro的表现则相对较差。<br><br>这一研究对于AI领域具有重要意义。首先，它为评估LLM的恭维和幻觉能力提供了一个标准化的测试方法，有助于研究人员和开发者更好地理解LLM的局限性。其次，通过公开数据和代码，该研究促进了AI领域的开放性和透明度，有利于推动相关技术的发展。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/AndrewYNg/status/2057146565500998024" target="_blank" rel="noopener noreferrer">Andrew Ng</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;New course: Build AI agents that generate images and videos -- an under-explored frontier. A key to performance is having the agent evaluate its own output, and iterate to improve quality. This short course is built together with @googlecloudtech and taught by Katie Nguyen  and Wafae Bakkali.<br><br>You&#39;ll learn three evaluation techniques and combine them in an agent: image-text similarity scoring to check the output matches the prompt, an LLM judge that scores against custom criteria like bran...</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/a16z/status/2057169524718493938" target="_blank" rel="noopener noreferrer">a16z</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Marc Andreessen says AI is teaching sand to think and it could be the most important technology in the history of humanity:<br><br>&quot;Imagine a form of alchemy that turns sand into thought.&quot;</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/naval/status/2057062903111434286" target="_blank" rel="noopener noreferrer">Naval</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;What you really want is a challenge at the edge of your capability.&quot;</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48213843" target="_blank" rel="noopener noreferrer">展示HN：网站AI编辑器（Next.JS）</a>
+                    </div>
+                </div>
+                <p class="article-summary">Show HN: AI editor for websites (Next.JS) 是一款基于 Next.JS 的开源网站编辑器，集成了 Claude Code 和 Codex 等LLM模型。该产品通过AI技术，为用户提供智能化的网站编辑体验，帮助用户快速生成高质量的内容。只需获取LLM API key，即可在Anthropic模型（其他模型也支持）的基础上进行个性化定制。这款产品旨在解决传统网站编辑效率低、内容质量参差不齐等问题，为技术从业者提供便捷、高效的AI编辑工具。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48211212" target="_blank" rel="noopener noreferrer">展示HN：P-Hacker – 通过主题（而非仅关键词）分组/分析HN趋势</a>
+                    </div>
+                </div>
+                <p class="article-summary">P-Hacker是一款基于机器学习的HN趋势分析工具。它通过聚类算法将HN论坛内容划分为不同主题，并精准捕捉趋势。与传统的关键词匹配方法不同，P-Hacker能够深度挖掘话题讨论，解决传统工具在趋势分析和话题探索方面的局限性。用户无需繁琐地搜索关键词，即可全面了解用户对特定话题的讨论，为技术从业者提供更精准、深入的洞察。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-05-21 07:44:19</p>
+        </footer>
+    </div>
+</body>
+
+</html>
