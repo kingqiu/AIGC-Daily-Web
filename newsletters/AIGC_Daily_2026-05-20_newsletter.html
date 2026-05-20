@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-05-20">
+    <title>AIGC Daily #345 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-05-20 星期三</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-05-20_hero.png" alt="AIGC Daily 345 Hero Image">
+            <p class="hero-caption">本期关注：谷歌推出个人AI助手与Android CLI升级，同时AI构建的31节免费编程课程和YouTube MCP工具展现教育创新，而Google搜索框25年来首次重大改版标志着从关键词匹配到AI Agent交互的范式转变。</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.greenwichtime.com/business/article/google-announces-slew-of-ai-advances-including-a-22267059.php" target="_blank" rel="noopener noreferrer">谷歌宣布一系列人工智能进展，包括即将推出的个人人工智能助手——格林威治时间</a>
+                    </div>
+                </div>
+                <p class="article-summary">谷歌宣布推出一系列AI新进展，包括即将推出的个人AI助手。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/05/19/agentic-app-coding-gets-an-upgrade-with-googles-release-of-android-cli/" target="_blank" rel="noopener noreferrer">谷歌发布Android CLI，为代理应用编码带来升级 - TechCrunch</a>
+                    </div>
+                </div>
+                <p class="article-summary">谷歌发布Android CLI，升级Agentic应用编码工具。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48198681" target="_blank" rel="noopener noreferrer">展示HN：DDS Vibe Academy – 由AI代理构建的31节免费AI编码大师课</a>
+                    </div>
+                </div>
+                <p class="article-summary">DDS Vibe Academy 推出了一个完全免费的31节AI编程课程，全部由AI助手构建完成。这个课程涵盖了Claude Code、Google Antigravity、Gemini 3.1 Pro、Cursor、Shopify Sidekick、Ollama、Hydrogen 2026以及AI成本工程等多个前沿工具和技术。课程设计者声称这些内容都是AI生成的，旨在为开发者提供最新、最实用的AI编程技能培训。<br><br>这个项目的出现很有意思，它不仅是一次教育资源的开放，更是一种自我迭代的学习模式——用AI教AI相关内容。从课程广度来看，几乎涵盖了当前AI开发的所有主流工具链，从云平台到本地部署，从代码生成到成本优化。对于想要跟上AI开发浪潮的程序员来说，这简直是个宝藏资源库。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48198790" target="_blank" rel="noopener noreferrer">展示HN：YouTube MCP，为任何AI代理提供访问YouTube的权限</a>
+                    </div>
+                </div>
+                <p class="article-summary">一位开发者创建了YouTube MCP工具，目的是让任何AI助手都能访问YouTube内容。这个工具源于一个实际需求：开发者拥有一个长篇的YouTube稍后播放列表，希望Claude能够帮助整理和总结每个视频内容，但发现Claude等主流AI无法直接访问YouTube。<br><br>这个工具解决了AI与YouTube之间的连接障碍，使得AI助手能够理解、分析和总结视频内容。想象一下，未来你可以让AI帮你整理学习资料、分析视频教程内容，甚至根据你的观看历史推荐相关内容。这不仅仅是技术上的小进步，更是AI内容理解能力的一次重要延伸。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://venturebeat.com/technology/google-just-redesigned-the-search-box-for-the-first-time-in-25-years-heres-why-it-matters-more-than-you-think" target="_blank" rel="noopener noreferrer">谷歌刚刚首次在25年内重新设计了搜索框——这比你想象的更重要。</a>
+                    </div>
+                </div>
+                <p class="article-summary">Google搜索框25年来首次重大改版，表面是界面变化，实则标志着搜索范式的根本性转变。这篇文章深入分析了Google如何将传统搜索框转变为AI Agent的交互入口，实现了从&#39;关键词匹配&#39;到&#39;意图理解&#39;的跨越。文章揭示了这一变革背后的技术逻辑：通过整合大语言模型与多轮对话能力，搜索不再是简单的信息检索，而是成为了能够主动理解用户需求、提供个性化解决方案的智能助手。文中特别强调了这一转变对用户体验的重塑——从被动接收链接列表到获得直接答案，甚至预测用户未明说的需求。这一变化不仅影响搜索本身，更预示着未来AI Agent将如何成为人与信息交互的主要界面。<br><br>***</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/garrytan/status/2056368178251596157" target="_blank" rel="noopener noreferrer">Garry Tan</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;The NYT is predictably tearing down Reese Witherspoon for encouraging moms to try AI before they ingest the anti-AI pablum as truth<br><br>Instead of linking to the NYT op-ed, I think you should watch this video and encourage you to follow Reese Witherspoon on Instagram &lt;https://t.co/Z2iI8ddaSt&gt;&quot;</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/RayDalio/status/2056395140575461713" target="_blank" rel="noopener noreferrer">Ray Dalio</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;I believe success is a matter of having meaningful work and meaningful relationships—work and relationships that you are thrilled by. If you can make your work and your passion one and the same, and you can do it with people who you care about and care about you, you will have a happy, successful life.\
+&gt; @longislandu\
+&gt; You can watch the full speech here: &lt;https://t.co/YXqP6Io0Dj&gt;&quot;<br><br>**解读**: Ray Dalio 成功的秘诀是&#39;有意义的工作和有意义的关系&#39;。这位投资大亨的观点提醒我们，在AI快速发展的时代，人类幸福仍源于工作与情感的深度连接，而非单纯的技术进步。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48200511" target="_blank" rel="noopener noreferrer">展示HN：AgentWing – 让AI代理更快完成任务</a>
+                    </div>
+                </div>
+                <p class="article-summary">AgentWing是一款AI任务加速工具。它通过引入导演层，将单一任务分解为多个独立工作运行，实现并行处理，显著提升AI代理执行任务的效率。传统AI代理执行任务流程繁琐，依赖性强，导致任务执行缓慢。AgentWing通过优化工作流程，解决任务间依赖问题，让AI代理更高效地完成任务，极大提高工作效率。<br><br>***</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48200057" target="_blank" rel="noopener noreferrer">展示HN：PrismoDev - Claude Code/Codex的本地CLI用于查找代币浪费</a>
+                    </div>
+                </div>
+                <p class="article-summary">PrismoDev是一款针对Claude Code/Codex的本地命令行工具，旨在帮助用户识别和减少代码中的token浪费。该工具通过扫描本地代码库，识别并解决诸如上下文膨胀、重复输出、过期会话状态等问题，从而降低使用Claude Code/Codex的成本。PrismoDev的核心功能是帮助开发者优化代码，提高效率，降低不必要的资源消耗。对于技术从业者来说，PrismoDev是一款不可或缺的工具，能够有效提升开发过程中的资源利用率。<br><br>***</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-05-20 08:01:13</p>
+        </footer>
+    </div>
+</body>
+
+</html>
