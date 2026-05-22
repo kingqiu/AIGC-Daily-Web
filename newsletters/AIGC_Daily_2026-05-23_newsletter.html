@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-05-23">
+    <title>AIGC Daily #358 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-05-23 星期六</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-05-23_hero.png" alt="AIGC Daily 358 Hero Image">
+            <p class="hero-caption">本期关注：为什么谷歌的Gemini Spark AI智能体可能改变游戏规则 - CBS新闻、Google正向可能不会买单的消费者推销AI代理生态系统 - TechCrunch、Blackwell 和 PDL 性能提升、Gary Marcus</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.cbsnews.com/news/google-gemini-spark-ai-agent/" target="_blank" rel="noopener noreferrer">为什么谷歌的Gemini Spark AI智能体可能改变游戏规则 - CBS新闻</a>
+                    </div>
+                </div>
+                <p class="article-summary">Google在I/O大会上正式发布Gemini Spark个人AI助手，可深度整合Gmail、Google Docs等自家产品生态，主打个性化AI agent体验。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/05/21/google-is-pitching-an-ai-agent-ecosystem-to-consumers-who-may-not-buy-it/" target="_blank" rel="noopener noreferrer">Google正向可能不会买单的消费者推销AI代理生态系统 - TechCrunch</a>
+                    </div>
+                </div>
+                <p class="article-summary">Google在I/O大会上推出面向消费者的AI agent生态系统，试图通过AI agent重新定义用户与网络的交互方式。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/LocalLLaMA/comments/1tkw1su/blackwell_and_pdl_performance_increase/" target="_blank" rel="noopener noreferrer">Blackwell 和 PDL 性能提升</a>
+                    </div>
+                </div>
+                <p class="article-summary">llama.cpp 刚刚加入了对 Nvidia Blackwell 架构新特性 Programmatic Dependent Launch（PDL）的支持。这个特性允许 GPU 更高效地调度计算任务，尤其适合需要批量处理大量短请求的场景——这正是生产环境里最常见的情况。简单说就是：黑芝麻用户以后跑本地模型，吞吐量和延迟都会有明显改善。虽然这只是底层优化，但对那些认真跑本地模型的人来说，影响比很多&quot;发布&quot;都实在。PDL 目前支持 Compute Capability &gt;= 9.0 的 Blackwell 系列，还不支持 ADA 架构。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/LocalLLaMA/comments/1tkpz2y/beellama_v020_major_dflash_update_single_rtx_3090/" target="_blank" rel="noopener noreferrer">BeeLlama v0.2.0 – 重大 DFlash 更新。单张 RTX 3090：Qwen 3.6 27B 最高达 164 tps（4.40 倍），Gemma 4 31B 最高达 177.8 tps（4.93 倍）。提示词处理速度接近基线水平。</a>
+                    </div>
+                </div>
+                <p class="article-summary">BeeLlama v0.2.0 带来了一个叫 DFlash 的重大优化更新。实测数据很亮眼：Qwen 3.6 27B 在单张 RTX 3090 上跑出了 164 tokens/s 的速度，是原来的 4.4 倍；Gemma 4 31B 更是达到 177.8 tokens/s，提升 4.93 倍。更难得的是，提示词处理速度几乎没受影响——之前很多优化方案都是用牺牲首 token 响应时间来换取吞吐量的。DFlash 的核心思路是让连续生成长段落时跳过不必要的重计算，在保持响应质量的同时大幅提升效率。如果你是本地跑开源模型的朋友，这个版本值得更新。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/GaryMarcus/status/2057822495332262228" target="_blank" rel="noopener noreferrer">Gary Marcus</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;I truly miss the age of science and transparency in AI.<br><br>Especially given how much money and political power and governance and scientific understanding is at stake.</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/garrytan/status/2057860964951928842" target="_blank" rel="noopener noreferrer">Garry Tan</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;What a difference a month has made. My personal AI has grown a ton. GBrain has become a necessity because grep can&#39;t cut it on my dataset<br><br>pages 17,888 → 146,646 (8.2x)
+people 4,383 → 24,585 (5.6x)
+companies 723 → 5,339 (7.4x)
+cron jobs 21 → 66 https://t.co/nW41GcZShb&quot;</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/a16z/status/2057854267420283217" target="_blank" rel="noopener noreferrer">a16z</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Google is now processing more than 3.2 quadrillion tokens per month, a 7x increase from a year ago<br><br>Charts of the Week: https://t.co/O1SZEaWPFX https://t.co/xEfVkOPRz3&quot;</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48241602" target="_blank" rel="noopener noreferrer">Show HN: Mneme – 运行在您设备上的开放协议AI记忆</a>
+                    </div>
+                </div>
+                <p class="article-summary">Mneme是一款面向AI助手的本地化记忆管理框架，旨在让用户在任何主流大语言模型（Claude、Cursor、ChatGPT、Gemini）上实现持久、跨平台的上下文记忆。区别于传统的云端记忆服务，Mneme将所有数据保存在用户设备本地，并使用仅由用户持有的加密密钥进行端到端加密，确保数据主权和隐私安全。其核心采用开放协议设计，开发者可通过npm直接集成，无需依赖特定平台的闭源接口，从而实现模型间的无缝记忆共享。凭借轻量本地存储与即插即用API，Mneme帮助用户在保持性能的同时摆脱云端锁定，实现个人知识库统一管理，特别适合对数据安全高度敏感的技术从业者和跨工具协同的创作场景。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48241066" target="_blank" rel="noopener noreferrer">Show HN: OpenRig – 多智能体编程拓扑的控制平面</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenRig – 多智能体编程控制平面<br><br>OpenRig是一款专为AI智能体协作设计的控制平面，旨在解决多智能体编程环境中终端分散、配置难管理的痛点。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-05-23 07:51:37</p>
+        </footer>
+    </div>
+</body>
+
+</html>
