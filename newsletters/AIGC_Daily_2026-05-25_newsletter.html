@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-05-25">
+    <title>AIGC Daily #362 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-05-25 星期一</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-05-25_hero.png" alt="AIGC Daily 362 Hero Image">
+            <p class="hero-caption">本期关注：OpenAI 被 Gartner 评为企业编码代理领域的领导者、OpenClaw突破30万GitHub星标。随后Google推出了Spark。- The New Stack、每个人都在实时应对AI安全——连Google也不例外、99%的CEO预计未来两年内将出现人工智能驱动的裁员</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://openai.com/index/gartner-2026-agentic-coding-leader" target="_blank" rel="noopener noreferrer">OpenAI 被 Gartner 评为企业编码代理领域的领导者</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI被Gartner评为2026年企业AI编码代理魔力象限领导者，Codex获创新与规模化部署认可。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://thenewstack.io/gemini-spark-vs-openclaw/" target="_blank" rel="noopener noreferrer">OpenClaw突破30万GitHub星标。随后Google推出了Spark。- The New Stack</a>
+                    </div>
+                </div>
+                <p class="article-summary">开源AI代理工具OpenClaw获30万GitHub stars，Google同期发布AI代理平台Spark。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/05/24/everyone-is-navigating-ai-security-in-real-time-even-google/" target="_blank" rel="noopener noreferrer">每个人都在实时应对AI安全——连Google也不例外</a>
+                    </div>
+                </div>
+                <p class="article-summary">TechCrunch今天发了一篇视角很清醒的文章：Google正在和其他所有公司一起&#39;实时导航&#39;AI安全，没有人有完整的答案。文章指出，我们正处在一个尴尬的过渡期——AI能力狂奔突进，但安全框架、法规、评估标准都还没跟上节奏。Google的AI安全负责人、Anthropic的安全研究员、OpenAI的对齐团队……大家都在摸着石头过河，边做边学。这篇文章的好在于它没有给出一个简单的解决方案，而是诚实地描绘了行业现状：每个人都在实时应对问题，没有人真正准备好了。对比一下，这其实就是去年年底Sam Altman作证国会时的核心信息——我们确实不知道AI风险的全部面貌，但必须在前进中搞清楚。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/singularity/comments/1tmpjla/99_of_ceos_expect_aidriven_layoffs_in_the_next/" target="_blank" rel="noopener noreferrer">99%的CEO预计未来两年内将出现人工智能驱动的裁员</a>
+                    </div>
+                </div>
+                <p class="article-summary">来自Reddit Singularity板块的一条有点让人不安的调查：99%的CEO预计未来两年内会发生AI驱动的裁员。这个数字来自哪、怎么采样的还不好说，但这个话题本身的热度说明它击中了太多人的焦虑。这两年我们确实看到了真实的变化——客服、外卖审核、基础文案、初级编程……这些领域已经在悄悄减人。不过换个角度想，每一波技术革命都说要消灭大量岗位，最后人类总是找到了新的工作方式。问题是什么时候这个转折点会来？对于普通人来说，可能不需要关心&#39;99%&#39;这个数字准不准，而是要开始想：五年后，我的技能组合还值钱吗？</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.lennysnewsletter.com/p/the-ai-paradox-dan-shipper" target="_blank" rel="noopener noreferrer">AI悖论：越自动化，越多人，越多工作 | 丹·希普斯特</a>
+                    </div>
+                </div>
+                <p class="article-summary">Shipper在这篇深度分析中提出了一个反直觉的观点：AI自动化并不会消灭工作，反而会创造更多工作。他以Claude Code和Codex为例，指出当这些工具变得越来越强大时，它们并没有取代人类，而是把人类变成了某种「审批节点」——AI负责执行，人类负责质量控制和决策。他特别强调了PM和设计师的光明前景，认为这些需要跨领域判断的岗位在AI时代会变得更加重要。Shipper还指出了一个有趣的转变：CLI时代正在让位于自然语言交互，这意味着未来我们与代码的关系将彻底改变。这篇文章的价值在于它打破了「AI替代人类」的简单叙事，揭示了自动化背后的真实动态。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://simonwillison.net/2026/May/24/armin-ronacher/#atom-everything" target="_blank" rel="noopener noreferrer">引用阿明·罗纳彻</a>
+                    </div>
+                </div>
+                <p class="article-summary">Ronacher在日志中分享了一个开源社区中普遍存在的痛点：当人们用AI工具（如Copilot）生成代码后提交issue时，这些issue往往失去了提交者原本的声音。AI会把观察到的问题「扔进绞肉机」，然后用一种不自然的措辞重新表达。Ronacher认为这是目前最令人沮丧的失败模式之一。更重要的是，他指出了一个反直觉的事实：原始的、不完美的描述往往比AI「优化」后的版本更准确、更有价值，因为人类的原始表达保留了问题的上下文和意图，而这正是诊断问题的关键。这篇文章虽然简短，但揭示了AI辅助编程中一个重要的质量控制问题——我们对AI生成内容的审查能力，可能比AI本身更重要。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/levie/status/2058582370253701432" target="_blank" rel="noopener noreferrer">Aaron Levie</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;CEOs are uniquely prone to AI psychosis because they’re sufficiently distant from the last mile of work that still has to happen to generate most value with AI.<br><br>So when they play with AI, they see the happy path results, often not considering the next 10 or 20 things that have to happen to get sustainable results from agents.</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/garrytan/status/2058457353859834142" target="_blank" rel="noopener noreferrer">Garry Tan</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;The companies I love working with in office hours are the ones where the founder has a specific, weird, earned insight that nobody else has. Not &quot;AI for X.&quot; A genuine edge that came from living inside a problem.<br><br>The ones that are dying almost always have the same pattern: technically competent founders building something nobody asked for, moving metrics that don&#39;t matter, avoiding the conversation with the one user who&#39;d tell them the truth.</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/garrytan/status/2058602658538344546" target="_blank" rel="noopener noreferrer">Garry Tan</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Everyone building AI agents is focusing on building the prefrontal cortex. Planning. Reasoning. Multi-step chains. There&#39;s value here. CEO-stuff.<br><br>But also, a reframe: there is value in building the cerebellum. It&#39;s offloading boring tasks into reflex so the complex thought can focus.</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48259936" target="_blank" rel="noopener noreferrer">Show HN: TalkTimer，一个由AI智能体团队运营的微型SaaS</a>
+                    </div>
+                </div>
+                <p class="article-summary">TalkTimer是一款专为现场活动设计的智能舞台计时工具，适用于演讲、演示、黑客马拉松等场景。与传统计时器不同，它将AI能力深度融入活动管理流程，不仅提供精准的倒计时功能，还支持AI主持的观众问答环节和智能日程重新平衡，大幅提升活动流畅度与参与体验。<br><br>产品核心价值在于解决现场活动中常见的时间把控难题。通过AI辅助，演讲者可实时监控剩余时间，问答环节自动管理观众提问队列，系统还能根据实际进度智能调整后续环节时长，确保活动按时完成。这些功能由一支AI代理团队独立构建和运营，代表了一种全新的产品开发模式。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48260339" target="_blank" rel="noopener noreferrer">展示 HN：简单的精灵图生成</a>
+                    </div>
+                </div>
+                <p class="article-summary">Simple Sprite Sheet Generation是一款基于AI技术的精灵图表生成工具，专为游戏开发者设计。该工具能够自动将游戏角色、道具或场景元素拆分为独立的精灵帧，并整合为标准化的精灵图表格式，大幅简化游戏美术资产的创建流程。<br><br>核心功能包括智能拆帧、尺寸自动适配、动画序列编排以及多格式导出。开发者只需提供原始素材或描述需求，即可快速生成符合主流游戏引擎（如Unity、Godot）要求的精灵图表。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-05-25 07:02:03</p>
+        </footer>
+    </div>
+</body>
+
+</html>
