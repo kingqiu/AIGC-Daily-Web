@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-05-26">
+    <title>AIGC Daily #364 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-05-26 星期二</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-05-26_hero.png" alt="AIGC Daily 364 Hero Image">
+            <p class="hero-caption">本期关注：Qwen3.6是目前本地代理应用的最佳选择吗？、Gemini Omni 的优势在于视频操控、展示 HN：Nerve – 自托管的 AI 代理运行时、Show HN：面向程序/项目/交付经理的 AI 技能</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/LocalLLaMA/comments/1tnbz23/is_qwen36_current_king_for_local_agentic_use/" target="_blank" rel="noopener noreferrer">Qwen3.6是目前本地代理应用的最佳选择吗？</a>
+                    </div>
+                </div>
+                <p class="article-summary">本地模型社区最近在热烈讨论 Qwen3.6 是否已经登顶本地 agent 用途的王者地位。有用户深入测试后发现，Qwen3.6 35B A3B 在 agentic 任务上几乎找不到对手——最坏情况不过是偶尔陷入循环，而 Gemma 4 那边却会频繁出现 tool call 损坏的问题。这个讨论背后其实反映了一个更宏观的趋势：大厂闭源模型固然强大，但开源社区正在以惊人的速度缩小差距，尤其是在「能稳定调用工具」这个硬指标上。35B 参数量级能做到这种程度的可靠性，确实让不少人重新评估本地部署的可行性。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/singularity/comments/1tniqkb/the_strength_of_gemini_omni_is_in_video/" target="_blank" rel="noopener noreferrer">Gemini Omni 的优势在于视频操控</a>
+                    </div>
+                </div>
+                <p class="article-summary">Gemini Omni 是 DeepMind 最新发布的多模态大模型，核心优势在于对视频的精细操控能力。它能够实现帧级实时编辑、场景切换、角色动作重定向以及特效叠加，且保持视觉连贯性。<br><br>该能力在内容创作领域尤为关键，电影后期、广告包装、游戏动画等高成本环节可大幅自动化，缩短制作周期并降低人力投入；同时在视频监控、自动驾驶等需要实时分析的工业场景，也能为行为预测和异常检测提供新技术路径。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/naval/status/2058856408179675577" target="_blank" rel="noopener noreferrer">Naval</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Anthropic doesn’t have Claude, Claude has Anthropic.&quot;<br><br>**解读**: Garry Tan 说现在大家做AI agent都在卷&quot;前额叶&quot;——规划、推理、多步链式调用这些高大上的能力。但他提了个反直觉的观点：真正的突破可能在&quot;小脑&quot;——把那些无聊重复的事变成自动化 reflex，让复杂思维专注在真正重要的事上。他说大多数 agent 框架会失败，因为把所有认知都当成了&quot;高认知&quot;处理。这比喻很妙，想象一下你的房贷自动还款 vs 需要开个董事会来审批——后者注定会烂尾。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/ClementDelangue/status/2058672394865111544" target="_blank" rel="noopener noreferrer">clem 🤗</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;llama.cpp with MTP support makes local models fast enough to use as daily drivers 🚀<br><br>Qwen3.6-27B dense generation below on A10G:  From 25 tok/st to 45 tok/s (+78%)! https://t.co/rLjBVa3Yzh&quot;</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/garrytan/status/2058871289545466300" target="_blank" rel="noopener noreferrer">Garry Tan</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;This is exactly how I build my agents and I’ve built 4 back to back now: both personal AI and company brains<br><br>It’s the same methods over and over. Do it. Skillify it. Add to cron. Check if it is resolvable. Evals and integration tests. Repeat.&quot;</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48272788" target="_blank" rel="noopener noreferrer">展示 HN：Nerve – 自托管的 AI 代理运行时</a>
+                    </div>
+                </div>
+                <p class="article-summary">Nerve是一款由ClickHouse推出的自托管AI代理运行时环境，旨在为开发者提供本地化、可控的AI代理部署方案。作为一个轻量级的运行时系统，Nerve允许用户在自有基础设施上快速构建、部署和管理AI代理，无需依赖第三方云服务。<br><br>核心功能方面，Nerve提供了标准化的代理执行框架，支持多模型接入、任务编排和状态管理。开发者可以通过简洁的API接口定义代理行为，实现复杂的工作流自动化。运行时环境内置了资源调度、容错处理和安全隔离机制，确保代理在生产环境中的稳定运行。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48271766" target="_blank" rel="noopener noreferrer">Show HN：面向程序/项目/交付经理的 AI 技能</a>
+                    </div>
+                </div>
+                <p class="article-summary">这是一款专为项目管理者打造的AI技能库，基于Claude Code和OpenCode构建，覆盖项目全生命周期的智能解决方案。通过10个阶段对齐的AI代理和62个工作流程，将人工智能深度融入项目管理的每个关键环节。<br><br>产品涵盖六大核心阶段：项目构思阶段的MEDDIC资格认证与需求估算，规划阶段的容量分析与预算基线，执行阶段的周报生成与障碍分类，以及治理阶段的执行摘要与干系人更新。AI能够自动完成RACI矩阵制定、风险深度分析、变更管理文档等专业工作，显著提升项目经理的日常工作效率。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-05-26 07:44:40</p>
+        </footer>
+    </div>
+</body>
+
+</html>
