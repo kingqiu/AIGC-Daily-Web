@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-05-27">
+    <title>AIGC Daily #366 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-05-27 星期三</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-05-27_hero.png" alt="AIGC Daily 366 Hero Image">
+            <p class="hero-caption">本期关注：NVIDIA Vera CPU正“强力出击”对抗竞争、SkillOpt 将 Markdown 技能文件视为可训练参数，并配备完善的优化机制、仙人掌混合路由器：Gemma4-2B可通过将15-55%的任务路由至Gemini，其余任务在本地运行，从而比肩Gemini-3.1-Flash-Lite。、Gary Marcus, MIT PhD and NYU Professor Emeritus</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blogs.nvidia.com/blog/vera-cpu-phoronix/" target="_blank" rel="noopener noreferrer">NVIDIA Vera CPU正“强力出击”对抗竞争</a>
+                    </div>
+                </div>
+                <p class="article-summary">NVIDIA Vera CPU在Phoronix基准测试中展现强劲性能，专为AI工厂时代高带宽、大规模并行计算需求设计。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/LocalLLaMA/comments/1to1mey/skillopt_treats_markdown_skill_files_as_trainable/" target="_blank" rel="noopener noreferrer">SkillOpt 将 Markdown 技能文件视为可训练参数，并配备完善的优化机制</a>
+                    </div>
+                </div>
+                <p class="article-summary">一篇新论文把 agent 开发者们长期以来&quot;凭感觉&quot;做的事给形式化了：把 markdown 格式的 skill 文件当成可训练的参数来优化。<br><br>具体做法是用前沿模型做编辑器，自动提出对 skill 文件的增删改操作，然后用标准的优化方法来调整这些改动。相比之前靠人工调 prompt 或盲目试错，这套方法论让 skill 的迭代有了系统化的路径。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/LocalLLaMA/comments/1tom98y/cactus_hybrid_router_gemma42b_can_match/" target="_blank" rel="noopener noreferrer">仙人掌混合路由器：Gemma4-2B可通过将15-55%的任务路由至Gemini，其余任务在本地运行，从而比肩Gemini-3.1-Flash-Lite。</a>
+                    </div>
+                </div>
+                <p class="article-summary">一个小模型能干的事比它体积暗示的要大得多——至少在这个路由场景下是这样。<br><br>研究者用 2B 参数的 Gemma4 做 Router，在 15-55% 的任务上把请求转发给 Gemini，然后自己处理剩下的。这个组合在多个基准上追平了 Gemini-3.1-Flash-Lite。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/GaryMarcus/status/2059058176075420111" target="_blank" rel="noopener noreferrer">Gary Marcus, MIT PhD and NYU Professor Emeritus</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;If enough other companies report the same, the bubble pops. 🫧&quot;<br><br>**解读**: Gary Marcus 警告说，如果足够多的公司都报告同样情况，AI泡沫就会破裂。这句话看似轻描淡写，但背后是Marcus一贯的&quot;AI炒作质疑者&quot;立场。他近期一直在关注AI商业化困境，如果大模型公司集体财报不及预期，这可能是行业拐点信号。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/naval/status/2058856408179675577" target="_blank" rel="noopener noreferrer">Naval</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Anthropic doesn’t have Claude, Claude has Anthropic.&quot;<br><br>**解读**: Naval 说了一句很有哲学味道的话：不是Anthropic拥有Claude，而是Claude拥有Anthropic。这是在暗示AI系统已经具备某种&quot;主体性&quot;——公司不过是AI实现自己目标的载体。这个观点有点科幻，但又让人细思极恐，值得琢磨。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/garrytan/status/2058871289545466300" target="_blank" rel="noopener noreferrer">Garry Tan</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;This is exactly how I build my agents and I’ve built 4 back to back now: both personal AI and company brains<br><br>It’s the same methods over and over. Do it. Skillify it. Add to cron. Check if it is resolvable. Evals and integration tests. Repeat.&quot;</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="http://arxiv.org/abs/2605.25981v1" target="_blank" rel="noopener noreferrer">LLM Agents何时对表面噪声与语义噪声区别对待？基于留出跟踪级验证的68单元测量研究</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 本文对10个大型语言模型、7个架构家族的chain-of-thought和ReAct代理进行了系统性实证研究。通过68个单元、覆盖GSM8K、MATH和HotpotQA数据集（共1,530个原始样本和约11,150个变体），揭示了一个重要现象：意义承载扰动（如释义、同义词替换）比呈现扰动（如格式调整、重新排序）对最终答案的影响更大。在严重程度匹配后，不一致性差距平均达到+19.69个百分点（配对t=9.58, p&lt;0.001）。<br><br>**与AI Agent的关联**: 该研究直接针对AI Agent的核心问题——鲁棒性和噪声敏感性。为提升Agent在实际部署中的可靠性提供了实证依据，帮助研究者理解LLM Agents在复杂推理任务中的行为边界，对设计更稳定的Agent系统具有重要指导价值。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48286318" target="_blank" rel="noopener noreferrer">Show HN：Claude Code 多智能体工作流可视化编排器</a>
+                    </div>
+                </div>
+                <p class="article-summary">这是一个面向 Claude Code 的可视化多智能体工作流编排工具，为开发者提供直观的图形界面来设计、调试和管理复杂的多代理 AI 工作流。通过拖拽式操作和流程可视化，开发者可以轻松构建包含多个 Claude 代理的协作链路，实现任务分解、信息传递和结果聚合等高级编排逻辑。<br><br>该工具的核心价值在于大幅降低多代理 AI 应用的开发门槛。传统方式下，构建复杂的多代理协作流程需要编写大量底层代码，而可视化编排让开发者能够专注于工作流的逻辑设计，而非陷入繁琐的实现细节。它支持实时预览执行状态、节点输出和异常信息，帮助团队快速迭代和优化工作流配置。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48284677" target="_blank" rel="noopener noreferrer">Show HN: CredWork – 一个简单的项目追踪与展示工具</a>
+                    </div>
+                </div>
+                <p class="article-summary">CredWork是一款专为开发者设计的项目跟踪与展示工具，旨在帮助用户系统化管理项目并建立可验证的技术履历。该工具支持手动操作或与AI Agent协同使用，满足不同工作场景需求。<br><br>核心功能包括直观的项目时间线记录、作品集展示以及活动热力图。平台类似GitHub贡献图的活动记录功能，能够长期追踪用户的技术轨迹，让成长过程可视化。随着活动量积累，系统会自动计算并颁发持续性徽章和AI技能徽章等，为用户提供客观的能力认证。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-05-27 07:28:17</p>
+        </footer>
+    </div>
+</body>
+
+</html>
