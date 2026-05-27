@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-05-28">
+    <title>AIGC Daily #368 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-05-28 星期四</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-05-28_hero.png" alt="AIGC Daily 368 Hero Image">
+            <p class="hero-caption">本期关注：AI工厂：智能的新基础设施、SWE-rebench 排行榜（2026年3月、4月和5月）：GPT-5.5、Opus 4.7、Cursor（Composer 2.5）、Kimi K2.6 等更多模型、展示 HN：VAEN – 打包和导入可移植的AI编程代理套件、Gary Marcus, MIT PhD and NYU Professor Emeritus</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blogs.nvidia.com/blog/ai-factories-the-new-infrastructure-of-intelligence/" target="_blank" rel="noopener noreferrer">AI工厂：智能的新基础设施</a>
+                    </div>
+                </div>
+                <p class="article-summary">NVIDIA阐述AI工厂概念，称其将电力实时转化为智能，AI工厂本质是Token工厂，企业部署AI代理时每瓦性能和每Token成本将成为关键经济指标。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/LocalLLaMA/comments/1tpawlm/swerebench_leaderboard_march_april_and_may_2026/" target="_blank" rel="noopener noreferrer">SWE-rebench 排行榜（2026年3月、4月和5月）：GPT-5.5、Opus 4.7、Cursor（Composer 2.5）、Kimi K2.6 等更多模型</a>
+                    </div>
+                </div>
+                <p class="article-summary">SWE-rebench刚刚更新了3月至5月的排行榜，这次带来了更大规模、更高质量的编程任务测试集。GPT-5.5、Opus 4.7、Cursor Composer 2.5、Kimi K2.6等模型同台竞技。值得注意的是，这次更新意味着我们终于有了对新一代模型编程能力的系统评估。对于关注AI编程进展的读者来说，这是目前最权威的能力参照——它不是考你概念理解，而是真刀真枪的软件工程任务。如果你在选型或者评估自己团队用哪个模型做coding副手，这份榜单值得花时间研究一下。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48300485" target="_blank" rel="noopener noreferrer">展示 HN：VAEN – 打包和导入可移植的AI编程代理套件</a>
+                    </div>
+                </div>
+                <p class="article-summary">今天看到一个有意思的开源工具叫VAEN，解决的是一个实际痛点：AI coding agent的工作流配置好后很难迁移。这个CLI工具帮你把整个 harness 打包成可移植的形态——说白了就是让你的agentic工作流「拎包入住」。对于需要频繁切换模型或者在多环境部署AI编程工具的团队来说，这个思路很实用。而且是开源的，GitHub上可以直接拉下来试试。如果你经常折腾agent配置但受够了「换个环境就报一堆依赖错」，可以关注一下这个项目。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/garrytan/status/2059650235333566767" target="_blank" rel="noopener noreferrer">Garry Tan</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;The best pitch test: can you tell this at a bar to a friend?<br><br>Not the market size, not the TAM, not the deck. Just the story. Why you built it. What you saw that nobody else saw. What happened.</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/GaryMarcus/status/2059676307043082331" target="_blank" rel="noopener noreferrer">Gary Marcus, MIT PhD and NYU Professor Emeritus</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Starbucks learned the hard way: you literally can’t even trust (current) AI to count.&quot;<br><br>**解读**: Gary Marcus 说星巴克用AI做库存盘点，结果连「数数」都出错——这直接戳破了当前AI「什么都能做」的过度宣传。他这句挺犀利的：在那些需要精确、可预测输出的场景里，LLM依然靠不住。背景补充：Marcus一直是对AI hype泼冷水的代表人物，他的批评虽然刺耳，但每次都有具体案例支撑。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/GaryMarcus/status/2059625413576699926" target="_blank" rel="noopener noreferrer">Gary Marcus, MIT PhD and NYU Professor Emeritus</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;“Tokens got burned for millions of dollars without any real significant ROI to show for it.”<br><br>hearing this over and over again&quot;</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48297491" target="_blank" rel="noopener noreferrer">Show HN: Claude Code 200美元计划是对原始 API 成本的 17 倍补贴</a>
+                    </div>
+                </div>
+                <p class="article-summary">这是一款深度解析 Anthropic Claude Code $200 订阅计划成本结构的分析工具。该项目通过详细的 API 费用对比计算，揭示了订阅制相对于按量付费的巨大价格优势——$200 月费相当于为用户提供了约 17 倍的原始 API 成本补贴。<br><br>产品核心功能聚焦于成本透明化，将 Claude Code 的定价机制进行量化拆解，让开发者清晰了解在高频使用场景下选择订阅计划的实际收益。分析内容涵盖 token 消耗计算、不同使用量级的费用对比，以及订阅模式的经济学逻辑。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48300285" target="_blank" rel="noopener noreferrer">HN展示：一款可学习任何内容的开源Duolingo替代品</a>
+                    </div>
+                </div>
+                <p class="article-summary">这是一款开源的AI驱动学习平台，旨在成为Duolingo的开源替代品，但功能更为强大——它不局限于语言学习，而是支持用户学习任何主题。<br><br>核心亮点在于其AI自动化能力：用户只需输入想学习的内容，系统即可自动生成完整的交互式课程，从入门到精通全程覆盖，甚至包括量子物理等复杂学科。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-05-28 06:49:43</p>
+        </footer>
+    </div>
+</body>
+
+</html>
