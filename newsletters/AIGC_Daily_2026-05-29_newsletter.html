@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-05-29">
+    <title>AIGC Daily #371 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-05-29 星期五</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-05-29_hero.png" alt="AIGC Daily 371 Hero Image">
+            <p class="hero-caption">本期关注：Anthropic发布新模型Opus 4.8 - Axios、NVIDIA研究推动机器人技术从模拟走向现实世界、IBM与Red Hat承诺投入50亿美元，在AI时代重新定义开源的未来 - IBM新闻室、Opus 4.8 Artificial Analysis 结果</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.axios.com/2026/05/28/anthropic-opus-release-mythos" target="_blank" rel="noopener noreferrer">Anthropic发布新模型Opus 4.8 - Axios</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic发布Claude Opus 4.8升级版旗舰模型，提升编程和知识工作能力，价格保持不变。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blogs.nvidia.com/blog/icra-research-robotics-simulation-to-real-world/" target="_blank" rel="noopener noreferrer">NVIDIA研究推动机器人技术从模拟走向现实世界</a>
+                    </div>
+                </div>
+                <p class="article-summary">NVIDIA在ICRA大会上展示8篇机器人模拟到现实迁移研究论文，推动具身智能实用化进程。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://newsroom.ibm.com/2026-05-28-ibm-and-red-hat-commit-5-billion-to-redefine-the-future-of-open-source-in-the-ai-era" target="_blank" rel="noopener noreferrer">IBM与Red Hat承诺投入50亿美元，在AI时代重新定义开源的未来 - IBM新闻室</a>
+                    </div>
+                </div>
+                <p class="article-summary">IBM与Red Hat宣布50亿美元AI时代开源安全计划，通过Project Lightwell建立企业级软件供应链防护体系。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/singularity/comments/1tqfmgw/opus_48_artificial_analysis_results/" target="_blank" rel="noopener noreferrer">Opus 4.8 Artificial Analysis 结果</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic 最新发布的 Claude Opus 4.8 在 Artificial Analysis 第三方评测中展现出令人瞩目的表现。根据社区用户整理的对比数据，Opus 4.8 在整体智能水平上略胜 GPT-5.5，虽然编码能力稍有差距，但在「Agent 能力」这一关键维度上拉开了显著优势，稳坐当前最强 Agent 模型的宝座。在效率层面，Opus 4.8 也实现了小幅提升，进一步优化了计算资源的使用。这意味着对于需要模型自主规划、执行多步骤任务的用户——比如自动化工作流、复杂代码处理、或者长程推理场景——Opus 4.8 几乎是目前的最优选择。当然，具体选择还要看实际用例，毕竟编码任务上还是 GPT-5.5 更有优势，但综合来看，Anthropic 这波更新确实让竞争格局又紧了几分。<br><br>***</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/trq212/status/2059672872189141372" target="_blank" rel="noopener noreferrer">Thariq</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Eid Mubarak! &lt;https://t.co/vpU3NJ3RvC&gt;&quot;<br><br>***</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/RayDalio/status/2059694695232455117" target="_blank" rel="noopener noreferrer">Ray Dalio</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;It is unacceptable to use your personal influence to help someone get a job because doing so undermines the meritocracy. It&#39;s not good for the job seeker, because it conveys they did not really earn it; it is not good for the person doing the hiring, because it undermines their authority; and it is not good for you because it demonstrates you will compromise merit for friends. It is an insidious form of corruption and it must not be tolerated. #principleoftheday&quot;<br><br>***</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="http://arxiv.org/abs/2605.28773v1" target="_blank" rel="noopener noreferrer">重新思考记忆：作为持续演化的连接性</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出FluxMem框架，将Agent记忆建模为异构图，通过渐进式拓扑演化解决动态Agent环境中记忆表示僵化的问题。该方法能够根据反馈、任务变化和异构信号动态调整记忆连接，克服传统静态记忆库检索管道脆弱的缺陷。核心创新在于将记忆结构从预定义的静态表示转变为可演化的动态图结构。<br><br>**与AI Agent的关联**: 直接针对AI Agent的长期记忆能力这一核心挑战，提出可演化的记忆框架对构建能够适应动态环境、完成长时序任务的自主智能体至关重要。该工作为Agent记忆系统的设计提供了新的范式，对提升Agent在复杂环境中的持续学习和适应能力具有重要价值。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="http://arxiv.org/abs/2605.28807v1" target="_blank" rel="noopener noreferrer">为可扩展监督校准保守性</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出Calibrated Collective Oversight (CCO)方法，解决Agentic AI系统中人类如何对超越自身能力的自主系统保持有效监督的核心问题。该方法通过聚合多样化的辅助评分函数，在具有统计保证的序列设置中实现可扩展的监督机制，无需依赖复杂假设或启发式方法。<br><br>**与AI Agent的关联**: 直接触及AI Agent领域最关键的安全与可控性挑战——如何确保高度自主的Agent系统在人类控制之下。该工作为构建安全可靠的Agentic AI系统提供了实用的监督框架，对推动自主智能体在实际应用中的安全部署具有重要的理论与实践意义。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/singularity/comments/1tqipjn/personal_use_for_simulations/" target="_blank" rel="noopener noreferrer">个人使用（模拟）</a>
+                    </div>
+                </div>
+                <p class="article-summary">Personal Use for Simulations（个人模拟实验平台）是一款基于超级计算的个性化虚拟现实沙盒系统，旨在为个人用户提供近似真实地球的模拟环境。该平台通过自研的ASI（人工超级智能）引擎驱动，实时生成具备人类、动物、鸟类等真实行为模式与心理反应的AI代理，并在缺乏信息的区域自动插值补全，实现全息式的世界模型。用户通过脑机接口直接登录系统，可在任意尺度上调节物理常数、因果规则或全局参数，指令即时生效。核心价值在于突破传统实验成本与伦理限制，支持快速原型验证、复杂系统行为预测、AI模型强化学习训练、沉浸式教育培训等多元化应用场景。平台的高保真感知引擎与可编程物理层，使其在科研、游戏、决策仿真等领域具备独特优势，为个人探索未知、创新突破提供前所未有的自由与控制力。<br><br>***</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/singularity/comments/1tq8vrx/the_singularity_gate_new_benchmark_for_ai/" target="_blank" rel="noopener noreferrer">奇异之门：模型训练截止后AI预测范式突破性科学发现的新基准。Opus 4.7与GPT-5.5领先</a>
+                    </div>
+                </div>
+                <p class="article-summary">The Singularity Gate（奇点之门）是一款专门用于评估前沿AI模型预测能力的创新基准测试工具。与传统基准测试不同，它不考察模型对已有知识的复现或推理能力，而是让模型在不看答案的情况下，预测其训练数据截止日期之后发表的、足以改变范式的科学发现。<br><br>该基准测试涵盖物理学、生物学、化学等多个学科的真实突破性论文，要求模型仅根据摘要或核心线索预测其关键发现。目前表现最佳的模型为Claude Opus 4.7，最高得分达17.75%（部分正确）。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-05-29 07:05:39</p>
+        </footer>
+    </div>
+</body>
+
+</html>
