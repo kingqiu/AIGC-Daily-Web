@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-05-30">
+    <title>AIGC Daily #373 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-05-30 星期六</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-05-30_hero.png" alt="AIGC Daily 373 Hero Image">
+            <p class="hero-caption">本期关注：生物学领域重大变革：扎克伯格新开源模型超越谷歌AlphaFold、继Nvidia 200亿美元"非收购式招聘"之后，AI芯片初创公司Groq据报道正融资6.5亿美元 - TechCrunch、IBM和Red Hat承诺投入50亿美元通过"Project Lightwell"项目保护开源供应链 - SecurityWeek、我从零开始用8GB数据训练了一个大语言模型，我很开心。</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://eu.36kr.com/en/p/3830290697414528" target="_blank" rel="noopener noreferrer">生物学领域重大变革：扎克伯格新开源模型超越谷歌AlphaFold</a>
+                    </div>
+                </div>
+                <p class="article-summary">Meta发布ESMFold2开源蛋白质预测模型，在预测10亿种蛋白质结构上超越Google的AlphaFold，标志着Meta在生命科学AI领域取得重大突破。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/05/29/after-nvidias-20b-not-acqui-hire-ai-chip-startup-groq-reportedly-raising-650m/" target="_blank" rel="noopener noreferrer">继Nvidia 200亿美元&quot;非收购式招聘&quot;之后，AI芯片初创公司Groq据报道正融资6.5亿美元 - TechCrunch</a>
+                    </div>
+                </div>
+                <p class="article-summary">AI芯片初创公司Groq正寻求融资6.5亿美元，以扩大其自研AI芯片推理云业务，此前已与NVIDIA达成2亿美元的非收购合作协议。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.securityweek.com/ibm-and-red-hat-commit-5-billion-to-secure-open-source-supply-chains-under-project-lightwell/" target="_blank" rel="noopener noreferrer">IBM和Red Hat承诺投入50亿美元通过&quot;Project Lightwell&quot;项目保护开源供应链 - SecurityWeek</a>
+                    </div>
+                </div>
+                <p class="article-summary">IBM与Red Hat联合宣布5亿美元投资计划，启动Project Lightwell项目，旨在通过AI技术保障开源软件供应链安全。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/LocalLLaMA/comments/1treb2z/me_train_llm_on_8gb_from_scratch_me_happy/" target="_blank" rel="noopener noreferrer">我从零开始用8GB数据训练了一个大语言模型，我很开心。</a>
+                    </div>
+                </div>
+                <p class="article-summary">本地跑大模型不再是极客专利了。有位开发者最近分享了自己用8GB显存从零训练LLM的经历——没错，就是那张「小显存」显卡，结果还真让他练出了能跑通的模型。他把代码扔到了GitHub上，算是给社区做了个接地气的示范。说实话，大模型训练这几年一直被「大厂专利」的形象笼罩，动不动就提千卡集群、万亿参数，但这位老哥的尝试说明了一个朴素的道理：很多事儿，技术上没那么高不可攀，就是个敢不敢动手的问题。当然，8GB能训出什么水平的模型、能不能用在正经场景上，这些还得实际跑跑看——但光是这个探索本身，就挺有意思的。开源社区的魅力就在这儿：大厂有大厂的玩法，普通人有普通人的玩法，大家都在摸这片水域的边界。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-omni-3-5-videos/" target="_blank" rel="noopener noreferrer">Gemini Omni 和 Gemini 3.5 的 9 个实战演示</a>
+                    </div>
+                </div>
+                <p class="article-summary">Google放出了一组Gemini Omni和Gemini 3.5的演示视频，虽然没有长篇大论的技术博客，但光看视频本身就已经挺有说服力了。Omni作为Gemini的多模态能力集大成者，在演示里能看出一些实打实的场景理解能力——不是那种demo舞台上精心准备的成功案例，而是更接近真实使用的效果展示。3.5版本则延续了Gemini系列一贯的高效率路线，在保持能力的同时把响应速度和控制成本压了下去。这几年看下来，Google在Gemini这条线上确实是认真的，从最初的对标GPT-3.5，到后来居上的Gemini 2.5 Pro，再到现在的Omni和3.5，迭代速度和技术密度都算得上是第一梯队了。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blog.google/innovation-and-ai/technology/ai/university-waterloo-labs/" target="_blank" rel="noopener noreferrer">来看看 Futures Lab 的真实 AI 原型。</a>
+                    </div>
+                </div>
+                <p class="article-summary">在人工智能从实验室走向真实场景的浪潮中，University of Waterloo 的 Futures Lab 通过一系列落地原型展示了技术转化的新路径。文章聚焦于学生团队研发的 AI 原型，其中最具代表性的是手语教学 Tutor——结合计算机视觉、自然语言处理和生成式模型，实现手势实时识别、语义交互以及个性化学习路径的闭环。手语 Tutor 不仅帮助听障学习者突破语言壁垒，也为 AI 辅助教学提供了可复制的交互范式，体现了以包容性为核心的设计理念。除此之外，实验室还展示了面向职场的 AI 协作平台、智能辅导系统等创新项目，均通过真实用户测试验证了技术可行性并收集了大量交互数据。核心观点指出，AI 原型的快速迭代与跨学科协作是推动教育与工作方式变革的关键引擎，而 Futures Lab 的实践为高校创新生态提供了可参考的研发流程和开源资源。对 AI 从业者而言，本文提供了原型设计、用户验证及伦理考量的实战案例，以及如何在真实场景中平衡技术性能与社会价值的思考框架，极具阅读价值。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.technologyreview.com/2026/05/29/1138110/the-download-lithium-extraction-ebola-ai-pope/" target="_blank" rel="noopener noreferrer">本期下载：解锁锂资源与控制埃博拉</a>
+                    </div>
+                </div>
+                <p class="article-summary">标题的中文简介：解锁锂资源与控制埃博拉——深度技术洞察<br><br>本篇《下载》聚焦两项前沿议题。首先，作者解析了一种新型锂提取技术，该技术通过直接在硬岩或盐湖卤水中使用选择性吸附剂和电化学工艺，实现高效、低耗的锂回收。相比传统蒸发池工艺，新方法可将用水量削减90%以上，提取时间从数月压缩至数天，从而显著降低生产成本与碳排放。文中引用了多个中试项目数据，显示每吨锂的能源消耗下降约30%，并有望在全球范围内释放诸如美国西部、内蒙古等地的潜在储量，改变目前锂供应链高度集中于南美的格局。作者进一步指出，这一技术突破将为电动汽车产业提供更稳定、环保的原材料支撑，同时对能源转型中的资源安全产生深远影响。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/GaryMarcus/status/2060356620928835746" target="_blank" rel="noopener noreferrer">Gary Marcus, MIT PhD and NYU Professor Emeritus</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Nobody knows for sure where employment is going and over what time frame. But one thing I can tell you for sure is that the big AI CEO’s have started lying about it.<br><br>When they tell you know “we are just here to augment humans, not replace them”, they are saying what they want you to hear for PR, not what they actually believe or hope.</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/ClementDelangue/status/2060378354931388837" target="_blank" rel="noopener noreferrer">clem 🤗</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Most people know Hugging Face from its public models and datasets but few realize that 50% of the models and datasets stored on HF are private.<br><br>This number has been increasing with buckets (our S3 alternative for AI) and enable companies to build AI more efficiently and collaboratively within their organizations, even when they don&#39;t share publicly!</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/garrytan/status/2060461897594683861" target="_blank" rel="noopener noreferrer">Garry Tan</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;The &quot;we will upgrade the dependencies later&quot; excuse just died. When AI makes library upgrades nearly free, staying current stops being a luxury and becomes the default. Tech debt was always a tooling problem and now it’s a thing of the past.<br><br>https://t.co/xRBd6WB7N5&quot;</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48328684" target="_blank" rel="noopener noreferrer">Show HN: ClawChat——多智能体AI的端到端加密协作平台</a>
+                    </div>
+                </div>
+                <p class="article-summary">ClawChat是一款面向多智能体AI系统的端到端加密协调平台，旨在为AI agent之间的安全通信与协作提供基础设施级解决方案。<br><br>该平台支持多个AI智能体在加密环境下进行任务分配、信息共享和协同决策，有效解决了多智能体系统中数据隐私和通信安全的关键挑战。通过采用端到端加密技术，ClawChat确保AI agent之间传递的敏感信息在整个交互过程中均处于加密状态，防止未授权访问和数据泄露风险。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48326539" target="_blank" rel="noopener noreferrer">展示 HN：训练 Claude Code 的替代品（ds4、pi 和 aoe）</a>
+                    </div>
+                </div>
+                <p class="article-summary">这是一款AI模型能力蒸馏工具，旨在帮助用户通过Claude Code观察和分析AI工作流程，自动提取关键知识和操作模式，进而训练出能够替代部分Claude Code功能的轻量化模型或工作流程。<br><br>产品核心价值在于解决企业对AI依赖过重的痛点。通过系统性地记录、分解Claude Code在各类任务中的决策路径和执行策略，用户可以识别出可复用的最佳实践，并将其迁移到成本更低或更可控的AI系统中。这不仅有助于降低对单一AI服务的依赖，还能根据自身业务需求定制化训练专属的AI工作助手。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-05-30 08:14:18</p>
+        </footer>
+    </div>
+</body>
+
+</html>
