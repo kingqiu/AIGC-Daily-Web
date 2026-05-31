@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-05-31">
+    <title>AIGC Daily #376 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-05-31 星期日</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-05-31_hero.png" alt="AIGC Daily 376 Hero Image">
+            <p class="hero-caption">本期关注：Anthropic在估值竞赛中超越OpenAI，H轮融资估值达9650亿美元 - PitchBook、在Nvidia 200亿美元“非收购式招聘”之后，AI芯片初创公司Groq据报道正在融资6.5亿美元——TechCrunch、OpenAI模型解决埃尔德什平面单位距离问题 - Let's Data Science、Parallax：用于语言建模的参数化局部线性注意力</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://pitchbook.com/news/articles/anthropic-bests-openai-in-valuation-race-hitting-965b-with-series-h" target="_blank" rel="noopener noreferrer">Anthropic在估值竞赛中超越OpenAI，H轮融资估值达9650亿美元 - PitchBook</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic完成H轮融资，估值达965亿美元超越OpenAI，成为全球估值最高的AI初创企业。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/05/29/after-nvidias-20b-not-acqui-hire-ai-chip-startup-groq-reportedly-raising-650m/" target="_blank" rel="noopener noreferrer">在Nvidia 200亿美元“非收购式招聘”之后，AI芯片初创公司Groq据报道正在融资6.5亿美元——TechCrunch</a>
+                    </div>
+                </div>
+                <p class="article-summary">AI芯片初创公司Groq在新一轮融资中筹集6.5亿美元，用于发展基于自研AI芯片的推理云服务。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://letsdatascience.com/news/openai-model-solves-erdos-planar-unit-distance-problem-757e8a64" target="_blank" rel="noopener noreferrer">OpenAI模型解决埃尔德什平面单位距离问题 - Let&#39;s Data Science</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI内部模型证明了保罗·埃尔德什1946年提出的平面单位距离问题，在数学领域取得重大突破。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/LocalLLaMA/comments/1ts79rg/parallax_parameterized_local_linear_attention_for/" target="_blank" rel="noopener noreferrer">Parallax：用于语言建模的参数化局部线性注意力</a>
+                    </div>
+                </div>
+                <p class="article-summary">最近学术界在注意力机制上有了新动作。Parallax 提出了一种名为“参数化局部线性注意力”的新方法，目标是打破传统注意力结构近十年来的停滞。简单来说，它让模型在处理长文本时能更高效地“权衡”需要关注的信息，同时降低计算复杂度。目前在语言建模基准测试上已经展现出不错的提升，训练收敛速度也有改善。这件事值得关注，是因为注意力机制是 LLM 的核心底层模块，任何架构层面的突破都可能引发连锁反应——虽然目前还停留在研究阶段，但如果被主流框架采纳，可能会对未来的模型训练和推理成本产生不小影响。<br><br>这件事的另一个意义在于，它提醒我们 LLM 的优化不只有“堆参数”一条路。学术界正在从数学和工程两个方向同时挖潜，寻找在不显著牺牲性能的前提下压缩成本的可能性。这种探索对于整个行业的长远健康发展其实是件好事。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48341069" target="_blank" rel="noopener noreferrer">Show HN: Thaw – 用于运行中LLM的Git分支（支持分叉代理、跳过预填充）</a>
+                    </div>
+                </div>
+                <p class="article-summary">如果你做过 AI 代理的开发，可能会遇到这个痛点：当你想让 agent 同时探索多条路径（比如 RL rollout、best-of-N 采样、并行写代码）时，每条分支都得重新跑一遍 prefill——即使大部分输入是完全相同的。这个叫 Thaw 的工具把 Git 分支的思想搬到了运行中的 LLM 上，让你可以“fork”一个 agent 的状态，省掉重复的 prefill 计算。开发者自己做了一些 benchmark，对于需要大量分支的场景，token 消耗能省不少。<br><br>这不算是那种会刷屏的大新闻，但它解决的是一个非常具体的工程问题。AI 代理工作流正在变得越来越复杂，对并行探索的需求只会增加。Thaw 的出现说明社区已经开始从“让模型更强”转向“让模型用起来更高效”——这个转变值得注意。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/bindureddy/status/2060811657366970411" target="_blank" rel="noopener noreferrer">Bindu Reddy</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Open source AI is exponentially taking off<br><br>There are several very good models to choose from including Kimi, DeepSeek and GLM</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/ClementDelangue/status/2060749008641970465" target="_blank" rel="noopener noreferrer">clem 🤗</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;AI safety can&#39;t happen behind closed doors! Super cool to see that the @AISecurityInst is releasing its evals, datasets, and models in the open on @huggingface, so researchers everywhere can scrutinize, reproduce, and build on them: https://t.co/pLaKgl0oH1 https://t.co/yV0XeSyage&quot;<br><br>**解读**: Delangue 点赞 AISecurityInst 把安全评估、数据集和模型都开源到 HuggingFace 上。他喊出&quot;AI安全不能关起门来做&quot;，强调开放能让全球研究者检验、复现和基于此继续开发。这个趋势值得注意——AI safety 从&quot;保密研发&quot;转向&quot;开放共建&quot;，某种程度上也是对去年闭源派的一种回应。安全这事，透明才能建立信任。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/GaryMarcus/status/2060812433510265304" target="_blank" rel="noopener noreferrer">Gary Marcus, MIT PhD and NYU Professor Emeritus</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Anthropic’s chance of being long-term
+profitable is greater than OpenAI’s. But still not huge.&quot;<br><br>**解读**: Marcus 抛出个有点反直觉的判断：Anthropic 比 OpenAI 更有长期盈利的可能，但&quot;still not huge&quot;。作为一个AI批评老将，他这话说得很克制，暗示AI公司的商业化前景其实没有外界想象的那么乐观。当然他也承认不是完全不看好，只是提醒别把&quot;技术厉害&quot;和&quot;能赚钱&quot;画等号——这观点在当下AI烧钱大战里挺值得琢磨的。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48341436" target="_blank" rel="noopener noreferrer">Show HN: HermesBench – 个人 AI 智能体工作流可靠性评估</a>
+                    </div>
+                </div>
+                <p class="article-summary">HermesBench是一款专注于个人AI Agent工作流可靠性评估的开源基准测试框架。随着AI Agent在各领域的广泛应用，其工作流的稳定性和可靠性成为关键挑战。该工具通过系统化的评估方法，帮助开发者全面测试AI Agent在实际任务执行中的表现，识别潜在故障点和性能瓶颈。<br><br>HermesBench提供标准化的测试指标和可定制的评估场景，涵盖任务完成率、错误恢复能力、响应一致性等多个维度。开发者可以利用该框架对Agent进行持续性评估，量化其在复杂工作流中的稳定性表现。通过生成详细的测试报告，用户能够直观了解Agent的薄弱环节，为优化和迭代提供数据支撑。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48339755" target="_blank" rel="noopener noreferrer">Show HN：在 Claude Code 中使用 Kimi 和 OpenAI 订阅</a>
+                    </div>
+                </div>
+                <p class="article-summary">这是一款开源代理工具，旨在为 Claude Code 用户提供更灵活的 AI 模型选择。它通过桥接技术，使用户能够在 Claude Code 中直接调用 Kimi（月之暗面）和 OpenAI 的订阅服务，实现多 AI 模型的统一接入与管理。<br><br>核心功能方面，该工具充当中间层，将 Claude Code 的请求转发至用户偏好的 AI 服务提供商，同时保持与原生体验的一致性。开发者无需复杂配置，即可无缝切换不同的 AI 能力。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-05-31 08:20:25</p>
+        </footer>
+    </div>
+</body>
+
+</html>
