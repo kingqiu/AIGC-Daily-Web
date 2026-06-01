@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-06-01">
+    <title>AIGC Daily #381 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-06-01 星期一</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-06-01_hero.png" alt="AIGC Daily 381 Hero Image">
+            <p class="hero-caption">本期关注：OpenAI模型解决Erdös平面单位距离问题 - 数据科学频道、OpenAI 推出 Rosalind 生物防御计划，向各国政府提供免费 AI 模型用于大流行病防范 - MLQ.ai、Show HN: Deliberate – 记录你的 AI 代理拒绝了什么，而不仅仅是它执行了什么、MineBench 上 Opus 4.7 与 Opus 4.8 的差异</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://letsdatascience.com/news/openai-model-solves-erdos-planar-unit-distance-problem-757e8a64" target="_blank" rel="noopener noreferrer">OpenAI模型解决Erdös平面单位距离问题 - 数据科学频道</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI内部模型证明了埃尔德什1946年提出的平面单位距离猜想，取得数学领域的重大突破。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://mlq.ai/news/openai-launches-rosalind-biodefense-offers-free-ai-model-to-governments-for-pandemic-preparedness/" target="_blank" rel="noopener noreferrer">OpenAI 推出 Rosalind 生物防御计划，向各国政府提供免费 AI 模型用于大流行病防范 - MLQ.ai</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI推出Rosalind生物防御计划，向各国政府和认证开发者免费提供GPT-Rosalind模型用于疫情防范。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48347255" target="_blank" rel="noopener noreferrer">Show HN: Deliberate – 记录你的 AI 代理拒绝了什么，而不仅仅是它执行了什么</a>
+                    </div>
+                </div>
+                <p class="article-summary">Hacker News 上出现了一个很有意思的安全工具——Deliberate。这个工具的出现背景是今年四月发生的 PocketOS 事故和二月的 DataTalks.Club 事件。核心逻辑很简单：它专门记录 AI agent 拒绝执行的操作，而不是只记录成功运行的部分。开发者 Jer Crane 在事故中发现，他能看到删除生产数据卷的 API 调用，却看不到 agent 为什么会拒绝这个请求。这种信息不对称在关键时刻可能是致命的。对于正在构建 AI agent 应用的开发者来说，这个工具值得放进开发栈。它解决的是一个被忽视但实际很常见的问题：agent 的“拒绝日志”往往比“执行日志”更能暴露系统设计上的漏洞。<br><br>***</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/singularity/comments/1tt3f2m/differences_between_opus_47_and_opus_48_on/" target="_blank" rel="noopener noreferrer">MineBench 上 Opus 4.7 与 Opus 4.8 的差异</a>
+                    </div>
+                </div>
+                <p class="article-summary">Reddit 上有人详细对比了 Claude Opus 4.7 和 4.8 在 MineBench 基准上的表现。平均推理时间从 4.7 的较长耗时降到了 24.8 分钟（约 1487 秒），而 15 次构建的总成本只有 41.52 美元——价格没变，但性能有明显变化。更值得关注的是思维链（CoT）和思考时间的差异，这意味着 4.8 版本可能在推理策略上做了优化，在保持成本不变的前提下提升了效率。这种小版本迭代往往被忽视，但对需要精打细算的企业用户来说，这种“加量不加价”的变化其实是值得关注的信号。如果你在做模型选型，这类基准对比能帮你避开一些坑。<br><br>***</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-omni-3-5-videos/" target="_blank" rel="noopener noreferrer">Gemini Omni和Gemini 3.5实际展示的9个演示</a>
+                    </div>
+                </div>
+                <p class="article-summary">Google 在这篇博客中一口气放出九段 Gemini Omni 与 Gemini 3.5 的实际演示，涵盖代码生成、图像理解、视频问答、长文档摘要、多语言对话以及跨模态推理等场景。每个 demo 都配有关键指标和交互过程，突出模型在 1M token 级别上下文下的连贯记忆、在高分辨率图片中精准定位细节、以及在实时视频流中进行意图追踪的能力。文章指出，这些演示并非一次性炫技，而是对 AI Agent 在真实环境中的感知‑决策闭环进行的系统化验证，尤其是跨模态信息的融合如何降低错误率、提升任务成功率。值得一读的原因在于，它提供了前沿多模态模型的实战表现，为研究者和开发者构建下一代 AI Agent 提供了明确的能力边界参考。<br><br>***</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/bindureddy/status/2061167347621040541" target="_blank" rel="noopener noreferrer">Bindu Reddy</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;X is totally underestimating open source AI<br><br>1.5 billion people in China use these models and they are getting better by the second</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/GaryMarcus/status/2061114378141995264" target="_blank" rel="noopener noreferrer">Gary Marcus, MIT PhD and NYU Professor Emeritus</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Weird how the Pope seems to understand AI better than @geoffreyhinton, but I am 100% with the Pope on this.<br><br>We are NOT creating beings. The Pope is right.</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/GaryMarcus/status/2061083763862606235" target="_blank" rel="noopener noreferrer">Gary Marcus, MIT PhD and NYU Professor Emeritus</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Anyone remember how I said in January 2025 that AI was going to be stumble and be dubbed “too big to fail”, along with cries for bailouts?<br><br>If that call was correct – which increasingly seems likely, as the bets escalate to insane heights – the carnage could be immense:&quot;</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🛠️ 产品推荐</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48349448" target="_blank" rel="noopener noreferrer">展示 HN：GEDD – 在用户发现之前，找出你的AI代理出错的地方</a>
+                    </div>
+                </div>
+                <p class="article-summary">GEDD是一款由AWS Samples推出的AI代理测试与质量保障工具，旨在帮助开发者主动发现AI Agent输出中的错误和偏差，避免问题内容触达终端用户。该工具通过系统化的测试框架，对AI生成的结果进行多维度评估，包括事实准确性、逻辑一致性、指令遵循程度等关键指标。<br><br>产品核心功能包括：自动化测试用例生成、批量结果校验、错误模式识别以及可视化报告输出。开发者可将GEDD集成到CI/CD流程中，实现AI输出的持续监控与质量把控。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://news.ycombinator.com/item?id=48350310" target="_blank" rel="noopener noreferrer">Show HN: TIL – 一种时间线文件格式，带有螺旋查看器和编辑器</a>
+                    </div>
+                </div>
+                <p class="article-summary">TIL是一个开源的时间线文件格式及配套工具链。它定义了一种轻量级的.til文件格式，用于结构化记录时间线数据。核心存储三类内容：事件（event）、范围事件（ranged event）和标签（tag）。事件支持指向外部引用（URI、UUID等），并可附加任意JSON属性，实现与现有数据源的灵活关联。<br><br>产品提供CLI工具、web查看器和编辑器，用户可通过命令行或图形界面管理时间线数据。其中螺旋视图（spiral viewer）以独特的可视化方式呈现时间线，让用户直观地浏览和理解事件序列与关系。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-06-01 08:11:11</p>
+        </footer>
+    </div>
+</body>
+
+</html>
