@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-06-08">
+    <title>AIGC Daily #400 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-06-08 星期一</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="placeholder.jpg" alt="AIGC Daily 400 Hero Image">
+            <p class="hero-caption">本期关注：OpenAI 宣布推出名为“锁定模式”的令人不安的新 ChatGPT 功能 - Gizmodo、Weaviate推出Engram，打破AI记忆瓶颈，让智能体从对话中自主学习，无需...、通过Gemini企业代理平台释放可靠响应的Agentic RAG、我用 Claude 预测 2026 年 FIFA 世界杯</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://gizmodo.com/openai-announces-unnerving-new-chatgpt-feature-named-lockdown-mode-2000768425" target="_blank" rel="noopener noreferrer">OpenAI 宣布推出名为“锁定模式”的令人不安的新 ChatGPT 功能 - Gizmodo</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI推出“Lockdown Mode”安全功能，旨在防止AI智能体被恶意指令劫持和数据窃取。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.lokmattimes.com/business/weaviate-launches-engram-to-break-the-ai-memory-bottleneck-and-let-agents-learn-from-conversation-without-slowing-down/" target="_blank" rel="noopener noreferrer">Weaviate推出Engram，打破AI记忆瓶颈，让智能体从对话中自主学习，无需...</a>
+                    </div>
+                </div>
+                <p class="article-summary">AI数据库公司Weaviate发布Engram产品，突破AI记忆瓶颈，实现智能体从对话中持续学习而不降低性能。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://research.google/blog/unlocking-dependable-responses-with-gemini-enterprise-agent-platforms-agentic-rag/" target="_blank" rel="noopener noreferrer">通过Gemini企业代理平台释放可靠响应的Agentic RAG</a>
+                    </div>
+                </div>
+                <p class="article-summary">Gemini Enterprise Agent平台推出的Agentic RAG将检索增强生成与自主Agent深度结合，实现多轮对话中动态决定何时检索企业文档、数据库或外部API，实时生成上下文感知的答案。相较传统静态RAG，Agentic RAG通过可配置检索策略、置信度阈值和反馈闭环显著降低幻觉风险，提高准确性和可解释性，并提供统一的数据治理、合规审计和细粒度访问控制接口。对企业而言，这种可信的答案生成满足金融、医疗、法律等高合规行业对信息准确性的严苛要求，同时通过自动调度检索资源提升响应速度，降低人工干预成本。对AI领域的影响在于推动RAG从被动检索向主动决策转变，为构建可靠、可解释的企业AI系统奠定基础；促进跨模态、跨领域检索与生成协同研究；为多智能体协作和知识图谱融合提供可扩展框架，加速企业级AI应用的落地与安全部署。<br><br>***</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://artificialcorner.com/p/claude-fifa-world-cup" target="_blank" rel="noopener noreferrer">我用 Claude 预测 2026 年 FIFA 世界杯</a>
+                    </div>
+                </div>
+                <p class="article-summary">Frank Andrade 在 Newsletter 中分享了利用 Anthropic 大模型 Claude 对 2026 年 FIFA 世界杯进行预测的实验。团队将历史比赛成绩、球队排名、关键球员状态及赛前媒体评论等多源信息结构化后喂入模型，Claude 在生成自然语言解释的同时输出了冠军预测。结果显示模型首选冠军为 \[具体球队]，并提供了概率分布与关键因素说明。<br><br>该案例之所以值得关注，主要在于它展示了 LLM 在非文本生成任务——结构化预测——上的可行性，验证了模型能够从海量异构数据中提取因果关系并进行定量推断；同时也暴露了时序信息处理、噪声过滤与可解释性方面的局限，为后续改进指明方向。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.technologyreview.com/2026/06/04/1138391/courts-coping-ai-lawsuits/" target="_blank" rel="noopener noreferrer">法院如何应对大量AI生成诉讼案件</a>
+                    </div>
+                </div>
+                <p class="article-summary">当AI开始批量生成诉讼文件，法院系统准备好了吗？本文深入探访了美国联邦法院法官Maritza Braswell的工作日常，她每天都要审阅大量由当事人自己撰写的法律文书——而这些文书的质量参差不齐，很多连基本的法律逻辑都说不通。问题的关键在于：AI降低了写诉状的门槛，但并没有提升诉状的质量。法院需要在不拒绝当事人求助的前提下，维护司法效率与公平。作者采访了多位法官、律师和AI法律工具提供商，揭示了一个正在形成中的新现实——法律系统的运转逻辑正在被悄悄改写，而规则制定者还在努力理解这场变革的边界。<br><br>***</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://thesequence.substack.com/p/the-sequence-radar-873-last-week" target="_blank" rel="noopener noreferrer">The Sequence Radar #873：上周AI动态：足球、S-1文件与超级模特</a>
+                    </div>
+                </div>
+                <p class="article-summary">本期“The Sequence Radar #873”由AI领域资深观察家Jesus Rodriguez倾力打造，是一篇深度解读上周AI产业脉搏的重量级周评。文章以独特的观察视角，系统梳理了AI领域三大核心议题，为读者呈现了一幅清晰的产业演进图景。<br><br>在AI足球赛事板块，文章深入剖析了这一新兴技术竞技形态背后的深层意义。这不仅是AI在复杂环境决策能力上的展示，更是强化学习、路径规划和多智能体协作等前沿技术的实战检验，暗示了AI从实验室走向真实场景应用的广阔前景。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/GaryMarcus/status/2063733036953526701" target="_blank" rel="noopener noreferrer">Gary Marcus</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Zuckerberg and LeCun’s unilateral decision to open source Llama likely (partly) catalyzed China’s AI industry — and may have done truly massive harm to American business interests.<br><br>We are now starting to see the consequences.&quot;</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/GaryMarcus/status/2063711435956646127" target="_blank" rel="noopener noreferrer">Gary Marcus</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;AI is mentioned more often in SpaceX’s S-1 than Jesus is mentioned in the Bible. &lt;https://t.co/yh2Zkitlux&gt;&quot;<br><br>**解读**: Marcus 翻出了 SpaceX 上市文件，发现 AI 被提及的次数比圣经里提到 Jesus 还多。他没说这意味着什么，但这个数据本身就很说明问题——连传统航天巨头都在疯狂拥抱 AI 了。这不是观点，是证据。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/RyanCodrai/turbovec" target="_blank" rel="noopener noreferrer">RyanCodrai/turbovec</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 7.1K<br><br>在构建大规模向量检索系统时，你是否曾经被内存占用吓到过？1千万条向量用 float32 存储就要 31GB RAM，这在很多实际场景中根本跑不起来。turbovec 就是来解决这个痛点的——它基于 Google Research 的 TurboQuant 算法，可以把同样的数据压缩到 4GB 以内，而且搜索速度还比 FAISS 快 12-20%。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-06-08 07:17:33</p>
+        </footer>
+    </div>
+</body>
+
+</html>
