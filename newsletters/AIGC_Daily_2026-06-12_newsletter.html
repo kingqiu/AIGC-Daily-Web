@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-06-12">
+    <title>AIGC Daily #408 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-06-12 星期五</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.axios.com/2026/06/11/prometheus-bezos-industrial-ai" target="_blank" rel="noopener noreferrer">贝索斯创立的工业AI初创公司Prometheus估值达410亿美元——Axios</a>
+                    </div>
+                </div>
+                <p class="article-summary">亚马逊创始人Jeff Bezos的AI创业公司Prometheus完成120亿美元B轮融资，估值达410亿美元，成为估值最高的AI独角兽之一。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.itnews.com.au/news/anthropic-releases-mythos-class-model-for-public-use-626507?utm_source=feed&utm_medium=rss&utm_campaign=iTnews+Security+feed" target="_blank" rel="noopener noreferrer">Anthropic发布Mythos级模型供公众使用 - iTnews</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic发布Mythos系列模型并向公众开放使用，这是该公司继Claude系列后的新一代AI模型产品。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.leiphone.com/category/industrynews/rlbyFXSP1xl2Mrvo.html" target="_blank" rel="noopener noreferrer">千问上线足球预测 AI 助手，大模型预测能否战胜人类？</a>
+                    </div>
+                </div>
+                <p class="article-summary">阿里巴巴旗下千问推出足球预测AI助手，结合2026世界杯热点展示大模型在体育预测领域的应用。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/MachineLearning/comments/1u2tk0i/anthropic_walks_back_policy_on_silent_nerfing_for/" target="_blank" rel="noopener noreferrer">Anthropic撤回AI/ML静默削弱政策，将通知用户</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic最近对Fable 5模型的&quot;silent nerfing&quot;政策来了个180度大转弯。简单说就是，之前他们在后台悄悄调整模型能力，用户完全不知情，现在他们决定改规矩了——以后调整会提前通知用户。官方给Wired的声明挺坦诚的，说&quot;我们做了错误的权衡，对于没有及时告知用户这件事表示歉意&quot;。这事儿说大不大说小不小，毕竟Fable刚发布就被吐槽限制太多，现在又搞出这种悄悄改参数的骚操作，用户信任度肯定受影响。对整个行业来说，Anthropic这次的认错倒是开了个好头——至少比有些公司装死不回应强。不过话说回来，AI公司到底有没有义务告诉用户&quot;嘿，我们把模型偷偷削了一刀&quot;？这个边界估计还得继续吵。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://newsletter.pragmaticengineer.com/p/did-anthropics-new-model-just-boost" target="_blank" rel="noopener noreferrer">**脉搏：Anthropic的新模型是否意外助力了竞争对手Codex的市场份额？**</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic新出的Fable模型正在引发一场意想不到的蝴蝶效应——它那严格的限制措施反而让竞争对手Codex的用户量蹭蹭往上涨。这事儿挺讽刺的：Anthropic本来是想打造一个&quot;负责任&quot;的开发者模型，结果限制太多让很多人受不了，直接跳船去用别家了。Newsletter里提到的另一个趋势也很有意思：现在业内开始流行一种叫&quot;smart model routing&quot;的做法，就是根据任务类型自动分配给最合适的模型，而不是一股脑全用最强最贵的那个。说白了就是精打细算，省钱省token。对开发者和企业来说，这波操作值得关注——别迷信什么&quot;最强大模型&quot;，选对的不选贵的才是真谛。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://thesequence.substack.com/p/the-sequence-ai-of-the-week-875-why" target="_blank" rel="noopener noreferrer">序列AI周报 #875：为什么你的语言模型需要“打个盹”</a>
+                    </div>
+                </div>
+                <p class="article-summary">这是一篇探讨语言模型学习机制颠覆性变革的深度分析。文章提出了一个看似荒诞却极具洞察力的问题：为什么你的语言模型需要&quot;睡眠&quot;？作者深入讨论了传统机器学习中train/test split这一基础假设正在被动摇——随着模型变得足够强大，它们开始展现出类似生物体的&quot;离线学习&quot;能力，能够在推理过程中自我调整和完善。<br><br>文章最有价值的观点在于重新定义了模型训练的范式边界：当模型规模达到临界点，学习不再局限于显式的训练阶段，而是在推理过程中持续发生。这解释了为什么 Scaling Law 正在从简单的规模扩张，转向推理时计算（test-time computation）的新战场。对于AI Agent开发者而言，这意味着我们需要在设计系统时，考虑的不再只是训练数据的质量，而是如何在推理阶段为模型创造&quot;反思&quot;与&quot;整合&quot;的空间。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="http://arxiv.org/abs/2606.12384v1" target="_blank" rel="noopener noreferrer">APPO：智能体程序化策略优化</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 该论文研究agentic强化学习中的两个核心问题：分支决策点选择和分支后的信用分配。通过将credit assignment细化到更精细的决策单元，解决了现有方法在工具调用边界或固定工作流上分配信用的粗粒度问题，显著提升了多轮工具使用任务的策略优化效果。<br><br>**与AI Agent的关联**: 直接针对AI Agent的核心能力——工具使用和多轮推理的优化问题。提出的细粒度信用分配方法对提升自主智能体的决策质量和学习效率具有重要价值，对构建更高效的Agent系统具有直接指导意义。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="http://arxiv.org/abs/2606.12291v1" target="_blank" rel="noopener noreferrer">评估LLM在误导性医学上下文中的认知韧性</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 该论文针对LLM在医学领域的实际应用安全性问题，提出认知韧性概念并构建MedMisBench基准。当在原本正确答案的题目中注入误导性上下文时，LLM会放弃正确答案，研究揭示了高性能与安全判断之间的脆弱关联，为评估AI Agent的可靠性提供了新视角。<br><br>**与AI Agent的关联**: 对AI Agent在真实场景部署具有重要意义。认知韧性概念可应用于评估自主智能体在对抗性或多变环境中的稳定性，为构建更鲁棒的医疗、法律等高风险领域Agent系统提供安全评估基础。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/addyosmani/agent-skills" target="_blank" rel="noopener noreferrer">addyosmani/agent-skills</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 54.6K<br><br>还在为 AI coding agents 生成的代码质量不稳定而头疼？**addyosmani/agent-skills** 这个项目就是为了解决这个问题而生的。它把资深工程师在真实项目中积累的工程技能——工作流、最佳实践、质量门禁——全部封装成 AI agent 可以直接调用的 slash commands，让 AI 编程不再是“能跑就行”的玄学。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-06-12 07:26:25</p>
+        </footer>
+    </div>
+</body>
+
+</html>
