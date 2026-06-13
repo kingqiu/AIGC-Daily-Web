@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-06-13">
+    <title>AIGC Daily #410 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-06-13 星期六</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/p/3849942472512769?f=rss" target="_blank" rel="noopener noreferrer">氪星晚报｜SpaceX确定发行价，募资750亿美元创史上最大IPO；OpenAI CEO奥特曼推迟访韩计划；中央网信办举报中心开设“涉AI应用乱象举报专区”</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI CEO奥特曼因个人原因推迟访韩行程，原计划会见三星、Kakao、NAVER等韩国科技企业负责人。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blogs.nvidia.com/blog/nvidia-blackwell-agentperf-artificial-analysis/" target="_blank" rel="noopener noreferrer">英伟达Blackwell在首个代理式AI基础设施基准测试中位居领先</a>
+                    </div>
+                </div>
+                <p class="article-summary">NVIDIA Blackwell Ultra NVL72平台在行业首个AgentPerf代理AI基准测试中取得领先性能。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://africa.businessinsider.com/news/this-weeks-anthropic-inspired-ai-freakout-explained/f7wkxp6" target="_blank" rel="noopener noreferrer">本周Anthropic引发的AI恐慌，深度解读</a>
+                    </div>
+                </div>
+                <p class="article-summary">AI初创公司Anthropic因开发者强烈反对而调整策略，撤销部分限制性政策以保护自身业务并防止模型蒸馏。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.leiphone.com/category/industrynews/j9yj1yXi4UpIZhIT.html" target="_blank" rel="noopener noreferrer">HDC 2026：HarmonyOS 6终端设备数突破6600万，鸿蒙生态驶入高速增长快车道</a>
+                    </div>
+                </div>
+                <p class="article-summary">华为HDC 2026在东莞开幕，HarmonyOS 6的终端设备数已经突破6600万，这个数字背后是鸿蒙生态真正驶入了高速增长通道。从去年的几千万到如今的6600万，鸿蒙完成了从&quot;能不能用&quot;到&quot;多少人用&quot;的关键跨越。更值得关注的是，这次大会释放的信号是HarmonyOS Next正在成为真正意义上的国产操作系统底座——不只是手机系统，而是打通了平板、手表、车机、全屋智能等全场景。这意味着在iOS和Android之外，全球移动操作系统格局正在出现第三个玩家，而它的根基是中国完整的软硬件生态。对开发者来说，这意味着新的机会窗口正在打开。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://huggingface.co/blog/allenai/olmo-eval" target="_blank" rel="noopener noreferrer">olmo-eval：模型开发循环的评估工作台</a>
+                    </div>
+                </div>
+                <p class="article-summary">Allen AI在Hugging Face上发布了olmo-eval，一个专门为模型开发闭环打造的评估工作台。说白了，它解决的是一个很实际的问题：每次训练完新模型，到底怎么科学地评估它的能力？传统的做法是各自为政，olmo-eval把这件事做成了标准化流程。它支持的评估维度很全面，从常规的MMLU、HumanEval，到更细致的特定任务表现，都能一键跑完。对于做模型研究的团队来说，这能省下大量&quot;重复造轮子&quot;的时间。AI2这次把工具开源出来，既是给自己用，也是给整个社区提供一个基准参照。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://newsletter.pragmaticengineer.com/p/did-anthropics-new-model-just-boost" target="_blank" rel="noopener noreferrer">脉动：Anthropic的新模型是否意外助攻了竞争对手Codex的市场份额？</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic 新推出的 Fable 模型因为使用限制太多，正在把用户推向竞争对手 Codex——这件事看似只是茶余饭后的八卦，但背后折射出的是整个 AI 应用层的结构性变化。文章敏锐捕捉到一个正在成形的趋势：Smart Model Routing（智能模型路由）。企业不再迷信单一最强模型，而是根据任务类型、成本、延迟动态调配不同模型。这背后有商业逻辑，也有技术权衡——比如 Fable 的「思维完整性」要求与编程场景的即时反馈天然冲突。读这篇能帮你看清：大模型竞争的下半场，胜负手不在基准测试分数，而在生态与工作流整合。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.intoai.pub/p/latent-mixture-of-experts" target="_blank" rel="noopener noreferrer">潜在混合专家模型（Latent MoE）详解</a>
+                    </div>
+                </div>
+                <p class="article-summary">NVIDIA 的 Latent MoE 架构到底是怎么运作的？这篇文章把「Latent Mixture-of-Experts」拆解得明明白白。核心洞察是：传统 MoE 的问题在于 expert 选择是离散的——每个 token 只能被有限的 expert 处理，而 Latent MoE 引入了隐空间，让 expert 之间的交互变成了连续可微的操作。这意味着梯度能更顺畅地流动，模型训练更稳定，推理效率也更高。文章用 Nemotron-3 Super 和 Ultra 模型作为案例，让你看到这种架构在实际部署中的表现。对于想深入理解大模型Scaling困境与解法的人来说，这是一篇难得的技术好文。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/garrytan/status/2065416181943865611" target="_blank" rel="noopener noreferrer">Garry Tan</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Everyone thinks AI coding tools set founders free.<br><br>Watch what people actually build with them: rules, approvals, process, layers. The same cage, assembled faster.</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/ClementDelangue/status/2065521439516823578" target="_blank" rel="noopener noreferrer">clem 🤗</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;To people in the answers saying &quot;but opus 4.8 is weaker so without fallback, the score would even be higher&quot;: this is not necessarily true because of how any benchmark - which is an average of queries - work and what is called &quot;the fallacy of division&quot;.<br><br>Even if Opus 4.8 has a lower average score on AA than Fable 5, it actually performs better than Fable 5 on some benchmark that compose the index of AA, especially where there&#39;s high refusal rate of Fable 5 (ex GPQA Diamond, AA-Omniscience)...</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/ClementDelangue/status/2065435542121025933" target="_blank" rel="noopener noreferrer">clem 🤗</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;This graph captures what’s broken about AI evals: they structurally favor closed-source APIs that can route, fallback, ensemble, and optimize behind the scenes with no transparency.<br><br>No offense, @ArtificialAnlys, but how is comparing one model to two models fair? https://t.co/iuCu5GlWoQ&quot;</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/maziyarpanahi/openmed" target="_blank" rel="noopener noreferrer">maziyarpanahi/openmed</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 3.2K<br><br>在医疗 AI 领域，数据隐私一直是开发者头疼的问题——患者的病历、检查报告这些敏感信息，稍有不慎就会触碰合规红线，但把它们上传到云端 API 处理，又总感觉不太安心。OpenMed 就是来解决这个痛点的：它是一个完全本地运行的医疗 AI 框架，模型和数据都跑在你自己的硬件上，完全不依赖任何云服务。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-06-13 08:13:32</p>
+        </footer>
+    </div>
+</body>
+
+</html>
