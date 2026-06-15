@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-06-16">
+    <title>AIGC Daily #415 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-06-16 星期二</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.leiphone.com/category/industrynews/ZgPImCFdSTkpxCSn.html" target="_blank" rel="noopener noreferrer">97毫秒！百度 PP-OCRv6 把 OCR 带进毫秒时代</a>
+                    </div>
+                </div>
+                <p class="article-summary">百度发布PP-OCRv6新一代OCR模型，推理速度最快仅需97毫秒，综合性能位居全球第一。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.leiphone.com/category/industrynews/Zlsk48Iv88fVZ3N9.html" target="_blank" rel="noopener noreferrer">腾讯AI下半场，智能体加速场景落地</a>
+                    </div>
+                </div>
+                <p class="article-summary">腾讯加速推进AI智能体在多个场景落地，CodeBuddy、ima、WorkBuddy等产品相继推出。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/p/3854486447510535?f=rss" target="_blank" rel="noopener noreferrer">氪星晚报 ｜我国成功发射吉星高分07C04星等8颗卫星；小红书或已准备好本月在香港提交IPO申请；智谱：公司已推出最新一代旗舰模型GLM-5.2</a>
+                    </div>
+                </div>
+                <p class="article-summary">智谱 AI 正式发布了最新一代旗舰模型 GLM-5.2，这是继 GLM-4 之后又一次重要迭代。从 36氪的报道来看，新模型在推理能力、多模态理解以及长上下文处理上都有显著提升。作为国内头部大模型厂商，智谱的一举一动直接影响着国内 AI 生态的走向。GLM-5.2 的发布不仅意味着国产模型能力的进一步逼近国际前沿，也预示着国内大模型竞争正在进入一个新的阶段——从&quot;能用&quot;到&quot;好用&quot;，从&quot;追赶&quot;到&quot;并跑&quot;。有意思的是，同期支付宝的政务 AI 助手&quot;晓政&quot;累计服务次数已突破 1 亿次，覆盖 16000 项服务事项，这两件事放在一起看，恰好说明中国 AI 应用层的渗透速度，可能比很多人想象的更快。<br><br>***</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/alabama-investment-june-2026/" target="_blank" rel="noopener noreferrer">我们正在通过新的投资和社区支持加强在阿拉巴马州的业务。</a>
+                    </div>
+                </div>
+                <p class="article-summary">Google 宣布 2026‑2027 年将在阿拉巴马州 Jackson County 投资 15 亿美元扩建数据中心，计划部署自研 TPU 与高密度 GPU 集群，支撑 Search、Cloud AI 与 Gemini 等大模型的训练与推理。此举标志着其在美国本土的 AI 算力布局进入新阶段，并强调园区将全部采用可再生能源，计划三年内实现 100% 碳中和，展示绿色算力的示范效应。<br><br>在社区层面，Google 投入约 2000 万美元用于当地教育、技能培训和中小企业扶持，涵盖数据中心运维、云计算与 AI 开发人才生态，旨在打造本地人才供应链。研究指出，项目将新增 1,200 余个高薪岗位并带动供应链本地化，推动阿拉巴马州经济向高科技转型。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/a16z/status/2066533355827683436" target="_blank" rel="noopener noreferrer">a16z</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;The mission statement SpaceX adopted when it absorbed xAI in February reads: &quot;scaling to make a sentient sun to understand the Universe and extend the light of consciousness to the stars.&quot;<br><br>This is, depending on how you read it, either the most ridiculous thing a serious company has ever put on its mission page or the most honest. We think it’s the latter.</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/bindureddy/status/2066569314430558691" target="_blank" rel="noopener noreferrer">Bindu Reddy</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;The AI doomer crowd claimed that GPT-3 shouldn&#39;t be released because it was going to destroy us all<br><br>In fact, OpenAI used fear to transition from being open to closed AI!! 😢</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/fchollet/status/2066554345345147288" target="_blank" rel="noopener noreferrer">François Chollet</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Even if you are in favor of AI regulation, you should recognize that opaque and arbitrary regulatory strikes are counter-productive for the whole industry.&quot;<br><br>**解读**: François Chollet（Keras作者）站出来喊话：就算你支持 AI 监管，也得承认那些不透明、随意的监管动作对整个行业是反效果的。这话戳中了很多人的痛点——监管应该讲道理、有边界，不能靠拍脑袋。AI 圈子里「安全」这个词已经被滥用成打压对手的工具了，他这次算是说了句公道话。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2606.14574" target="_blank" rel="noopener noreferrer">SIMMER：基于世界模型评估LLM可执行规划中的潜在失败</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出了SIMMER基准测试，用于评估LLM作为自主智能体在家庭环境中的规划能力。与传统只关注规划成功率的评估不同，本文聚焦于&quot;潜在失败&quot;这一关键问题——这类失败不会立即触发反馈，而是在执行过程中悄无声息地破坏目标达成。研究通过构建世界模型来模拟规划执行环境，系统性地探测和量化LLM规划器的潜在失败模式，为理解自主Agent的可靠性提供了新的评估维度。<br><br>**与AI Agent的关联**: 直接针对AI Agent的核心能力——规划与执行——进行深入研究。潜在失败检测对于部署在真实环境中的自主智能体至关重要，因为这类失败可能导致严重后果但难以被传统评估方法发现。该研究为构建更安全可靠的自主Agent提供了重要的评测工具和理论基础，对Agent系统的实际部署具有重要指导意义。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2606.13945" target="_blank" rel="noopener noreferrer">MedLatentDx：用于跨医院罕见病诊断的潜在多智能体通信</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出了MedLatentDx框架，解决罕见病诊断中跨医院协作的隐私保护挑战。该框架设计了一种潜在（latent）多智能体通信机制，允许医院在不直接传输可识别临床文本的情况下共享诊断证据。通过在隐空间进行信息交换，既满足了隐私法规要求，又实现了分布式诊断协作，为多智能体系统在医疗领域的应用探索了新的技术路径。<br><br>**与AI Agent的关联**: 代表了多智能体系统在医疗诊断领域的创新应用，展示了如何通过隐私保护的多智能体协作解决现实世界的问题。该研究对于构建医疗领域的分布式AI Agent系统具有重要参考价值，特别是在需要跨机构协作但受隐私约束的场景中，为未来医疗智能体系统的设计和部署提供了新思路。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/Introduction-to-Autonomous-Robots/Introduction-to-Autonomous-Robots" target="_blank" rel="noopener noreferrer">Introduction-to-Autonomous-Robots/Introduction-to-Autonomous-Robots</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 3.1K<br><br>在学习自主机器人的路上，你是否为找不到系统、权威的学习资料而发愁？Introduction to Autonomous Robots 正是来解决这个痛点的——这是一本聚焦于自主机器人计算原理的开源教材，由MIT Press出版，内容涵盖机器人感知、决策、运动控制等核心算法。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-06-16 07:22:48</p>
+        </footer>
+    </div>
+</body>
+
+</html>
