@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-06-17">
+    <title>AIGC Daily #417 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-06-17 星期三</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.axios.com/2026/06/16/microsoft-copilot-cowork-tokenmaxxing-cowork" target="_blank" rel="noopener noreferrer">微软着眼于DeepSeek以强化企业AI - Axios</a>
+                    </div>
+                </div>
+                <p class="article-summary">微软正探索将DeepSeek模型整合至企业AI产品Copilot Cowork，标志着开源大模型获得头部厂商企业级应用认可。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blogs.nvidia.com/blog/blackwell-mlperf-training-6-0/" target="_blank" rel="noopener noreferrer">最快、最大、最强：NVIDIA Blackwell横扫MLPerf训练6.0基准测试</a>
+                    </div>
+                </div>
+                <p class="article-summary">NVIDIA Blackwell架构在MLPerf Training 6.0基准测试中取得最快、最强性能，全面刷新AI训练纪录。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blogs.nvidia.com/blog/hpe-ai-factory-agentic-enterprise/" target="_blank" rel="noopener noreferrer">HPE携手NVIDIA扩展AI工厂，迎接智能体时代</a>
+                    </div>
+                </div>
+                <p class="article-summary">NVIDIA与HPE联合扩展HPE AI Factory，专为AI智能体时代打造新一代AI工厂基础设施。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://uk.finance.yahoo.com/news/pitchbook-samaya-ai-announce-premium-130000895.html" target="_blank" rel="noopener noreferrer">PitchBook与Samaya AI宣布高级大语言模型合作，以行业领先数据与AI可审计性赋能私人市场工作流程 - Yahoo Finance UK</a>
+                    </div>
+                </div>
+                <p class="article-summary">PitchBook与SamayaAI近日宣布达成PremiumLLM合作，将PitchBook覆盖全球私募公司、投资者、交易和基金的权威数据深度嵌入SamayaAI的ExpertAIAgent平台。通过原生Q\&amp;A提示和代理工作流，机构投资者和金融专业人士可在现有工作流中直接查询私募市场情报，并获得完整的数据溯源与审计路径，实现“查询即审计”。此举把PitchBook的结构化数据资产与SamayaAI的大型语言模型及专用小模型相结合，显著提升答案的准确性和可解释性。为何重要？私募市场信息不对称长期制约投资决策效率，传统平台需频繁切换、数据更新滞后。此次集成把高可信度的私有数据与AI代理的无缝交互融合，既降低信息获取成本，又保证模型输出的可追溯性，满足监管对透明度的要求。对AI领域而言，此次合作树立了“数据+模型”协同的标杆，推动金融垂直领域的大模型应用从实验走向生产，标志着AI在高价值、低噪声私有数据场景中的可行性和商业化路径。最终，这一合作预示着AI代理将成为私募行业决策链路的核心组件，加速行业数字化转型，并为其他垂直领域的数据可信AI解决方案提供可复制的参考模式。<br><br>***</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.stocktitan.net/news/MORN/pitch-book-and-samaya-ai-announce-premium-llm-partnership-powering-hrn3ypz14meg.html" target="_blank" rel="noopener noreferrer">AI代理联手将PitchBook私募市场数据整合进统一工作流程 - Stock Titan</a>
+                    </div>
+                </div>
+                <p class="article-summary">PitchBook 与 Samaya AI 近日达成高级大语言模型合作，将覆盖全球私募公司、投资者、交易和基金的私有市场数据直接嵌入 Samaya AI 的专家 AI 代理平台。用户通过自然语言问答或自动化工作流即可在已有系统中获取 PitchBook 的精准洞察，无需切换平台。此举解决了 AI 代理在私有市场领域对权威、可追溯数据的迫切需求，提升模型输出的可信度与审计能力，同时显著降低数据获取成本和响应时延，为投研团队提供更高效的决策支持。对 AI 行业而言，这标志着可信数据与大模型深度融合的成熟路径，预示金融 AI 将从辅助工具向决策核心演进。随着类似数据-模型集成在更多垂直场景落地，AI 的可解释性、合规性和规模化应用将加速实现。<br><br>***</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.technologyreview.com/2026/06/16/1138905/exclusive-ebook-how-ai-is-becoming-the-next-military-advisor/" target="_blank" rel="noopener noreferrer">独家电子书：人工智能正成为下一代军事顾问</a>
+                    </div>
+                </div>
+                <p class="article-summary">这份来自MIT Technology Review的独家电子书，汇集了六篇关于AI如何在军事领域扮演决策顾问角色的深度报道。时间跨度从2025年4月到2026年4月，并经过更新以反映最新发展动态。这不是泛泛而谈的科技新闻，而是扎实的调查性报道——它会带你深入了解AI系统如何被整合进军事决策链条，从情报分析到战略建议，AI Agent的概念在这里被赋予了真实而严肃的应用场景。<br><br>最值得关注的或许是文章对「AI顾问」这一角色的多维度审视：它不只是讲述技术能力，还探讨了伦理边界、责任归属、人机协作的边界等深层问题。当AI真正介入攸关生死的决策时，我们面对的不只是技术挑战，更是制度性和哲学性的命题。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="http://arxiv.org/abs/2606.16939v1" target="_blank" rel="noopener noreferrer">用于可解释大型语言模型的可扩展电路学习方法</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 论文提出CircuitLasso方法，通过稀疏线性回归实现可扩展的电路学习，解决传统干预方法在处理高维SAE特征时计算成本过高的问题。该方法在保持可解释性的同时提升了电路发现的效率。<br><br>**与AI Agent的关联**: 该论文主要聚焦于LLM的内部机制可解释性，通过理解模型如何执行计算来揭示行为根源。虽然对Agent的可观测性和可信度有一定意义，但与AI Agent的核心能力（自主决策、多智能体协作、工具使用、规划推理）关联较弱，更偏向基础模型研究而非Agent系统构建。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/teslamate-org/teslamate" target="_blank" rel="noopener noreferrer">teslamate-org/teslamate</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 8.4K<br><br>TeslaMate 是一款专为特斯拉车主打造的开源数据日志工具，解决了很多人的痛点：想深入了解自己的车辆数据，又不想把所有信息都交给特斯拉的云服务。如果你对车辆数据的掌控有更高要求，或者想DIY一些个性化的数据分析，这个项目绝对值得一试。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-06-17 07:15:34</p>
+        </footer>
+    </div>
+</body>
+
+</html>
