@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-06-22">
+    <title>AIGC Daily #427 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-06-22 星期一</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://thenextweb.com/news/mrs-dow-jones-american-dream-dead-millennials-gen-z-gambling" target="_blank" rel="noopener noreferrer">道琼斯夫人表示，美国梦对美国年轻人来说已经“彻底破灭”</a>
+                    </div>
+                </div>
+                <p class="article-summary">The American dream is ‘very dead’ for young Americans, says Mrs. Dow Jones</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://thenextweb.com/news/signal-whittaker-ai-chatbots-not-friends-copilot-backdoor-privacy" target="_blank" rel="noopener noreferrer">Signal的梅雷迪思·惠特克表示AI聊天机器人“不是你的朋友”，并称Copilot智能体是后门</a>
+                    </div>
+                </div>
+                <p class="article-summary">Signal’s Meredith Whittaker says AI chatbots ‘are not your friends’ and calls Copilot agents a backdoor</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://thenextweb.com/news/amazon-human-in-the-loop-ai-governance-normalization-deviance" target="_blank" rel="noopener noreferrer">亚马逊表示，人工干预型AI监管机制存在缺陷，原因是人类注意力不足</a>
+                    </div>
+                </div>
+                <p class="article-summary">Amazon says human-in-the-loop AI oversight is failing because humans stop paying attention</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3862458180359424?f=rss" target="_blank" rel="noopener noreferrer">微信AI助手“小微”小范围灰度上线</a>
+                    </div>
+                </div>
+                <p class="article-summary">微信终于要推AI助手了——而且是原生的那种。据36氪报道，微信已经开始小范围灰度测试AI助手&quot;小微&quot;，部分用户的主界面左上角已经出现了小眼睛图标。这就是入口。根据腾讯客服的描述，小微不仅仅是能聊天的AI，它被设计成可以直接操作微信原生功能的助手：帮好友发消息、查询朋友圈、预约服务、调起小程序……基本上你手动在微信里做的事，它都能帮你干。\n\n微信的月活跃用户超过13亿，任何一点功能改动都可能是改变数亿人使用习惯的大事。这次腾讯选择了灰度测试而非大张旗鼓地发布，可能是在监管层面更加谨慎，毕竟微信上的AI能做什么、不能做什么，边界还在摸索。\n\n但可以确定的是，微信一旦全面开放AI助手能力，会是今年国内AI应用落地最重要的时刻之一。现在就看正式版本什么时候来了。<br><br>***</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://thesequence.substack.com/p/the-sequence-radar-880-last-week" target="_blank" rel="noopener noreferrer">The Sequence Radar #880：上周AI动态：600亿美元的Cursor交易、谷歌人才流失、以及Midjourney的身体扫描仪</a>
+                    </div>
+                </div>
+                <p class="article-summary">AI编程工具Cursor又搞了个大新闻。据The Sequence Radar报道，这家公司最近谈成了一笔高达$60B的交易，如果最终落地，将成为AI编程赛道最大的独角兽交易案。Cursor成立于2023年，靠着AI代码补全和对话式编程迅速崛起，是今年最受开发者关注的工具之一。\n\n与此同时，报道还提到了Google的人才流失问题——不少Gemini团队的核心成员选择出走，这给Google的AI战略蒙上了一层阴影。而Midjourney则继续在视觉生成领域深耕，推出了新的&quot;身体扫描&quot;功能，让图像生成的可控性又上了一个台阶。\n\n这一周AI圈的信息量确实不小，既有新贵崛起，也有老牌玩家的隐忧。赛道竞争正在进入白热化阶段。<br><br>***</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.lennysnewsletter.com/p/building-the-most-ai-pilled-engineering" target="_blank" rel="noopener noreferrer">打造全球最深度AI化的工程团队 | Fiona Fung（Claude Code和Cowork团队经理）</a>
+                    </div>
+                </div>
+                <p class="article-summary">当 Claude Code 和 AI Agent 真的开始进入日常工作流，工程师团队该怎么管？Anthropic 内部负责 Claude Code 和 Cowork 产品线的 Fiona Fung 在这篇访谈里分享了第一手经验。她讲到当 Agent 能帮你写代码、做 Code Review、甚至接手整个任务时，传统的工程师角色定义就开始模糊了——你到底是在「做」这个功能，还是在「审核」Agent 做出来的结果？团队协作的边界在哪里？她的核心观察是「roles are blurring and agents are everywhere」，但她认为这不是威胁，而是重新思考什么是真正人类判断力的机会。比如在 Cowork 这个产品里，团队发现当 AI 能承担更多执行层的工作，反而让人类有机会做更高层次的架构决策和产品判断。<br><br>这篇文章的价值不只是管理洞察，更难得的是它来自 Agent 产品团队的真实踩坑。Fiona 提到他们曾经担心 AI 会让工程师变懒、不思考，但实际观察是相反的——当执行成本降低，工程师反而更愿意去探索更多方案，因为「试错」的代价小了。这种认知的翻转对任何在做 A...</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/ClementDelangue/status/2068688725958148465" target="_blank" rel="noopener noreferrer">clem 🤗</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;- 2016-2024: 🇺🇸leads in open-source AI<br><br>* 2024-2027: 🇺🇸 leads in general AI &amp; massively benefits</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/bindureddy/status/2068680398847275027" target="_blank" rel="noopener noreferrer">Bindu Reddy</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Gemini is now officially behind open source<br><br>It’s time for Google to declare a CODE RED</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/ZhuLinsen/daily_stock_analysis" target="_blank" rel="noopener noreferrer">ZhuLinsen/daily\_stock\_analysis</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 44.4K<br><br>如果你平时关注多个市场的股票，每天手动去各个平台查行情、看新闻、做分析，那这套 [daily\_stock\_analysis](https://github.com/ZhuLinsen/daily_stock_analysis) 一定能让你眼前一亮。它是一个完全开源的 LLM 驱动的股票智能分析系统，专注于帮助个人投资者和开发者解决「信息碎片化、分析耗时」的痛点。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-06-22 07:04:21</p>
+        </footer>
+    </div>
+</body>
+
+</html>
