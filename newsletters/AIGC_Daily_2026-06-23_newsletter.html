@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-06-23">
+    <title>AIGC Daily #429 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-06-23 星期二</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blogs.nvidia.com/blog/ai-for-science-software-cuda/" target="_blank" rel="noopener noreferrer">从材料模拟到实验天文学，NVIDIA全新AI软件开启科学发现新篇章</a>
+                    </div>
+                </div>
+                <p class="article-summary">NVIDIA在ISC大会上发布DAQIRI库和ALCHEMI NIM微服务等新软件，加速AI在化学、材料、天文等科学领域的发现。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blogs.nvidia.com/blog/nvidia-vera-cpu-los-alamos-national-laboratory/" target="_blank" rel="noopener noreferrer">**NVIDIA Vera CPU 为洛斯阿拉莫斯国家实验室的代理科学人工智能铺平道路**</a>
+                    </div>
+                </div>
+                <p class="article-summary">Los Alamos国家实验室宣布采用NVIDIA Vera CPU构建三台超级计算机，驱动科学发现的Agentic AI能力。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/06/22/spacex-inks-compute-deal-with-reflection-ai-an-open-source-ai-lab/" target="_blank" rel="noopener noreferrer">SpaceX与开源AI实验室Reflection AI签署计算协议 - TechCrunch</a>
+                    </div>
+                </div>
+                <p class="article-summary">开源AI公司Reflection AI与SpaceX达成协议，自2026年7月起以1.5亿美元/月价格使用SpaceX数据中心Nvidia GB300芯片。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blogs.nvidia.com/blog/eco-wave-power-ai-digital-twins/" target="_blank" rel="noopener noreferrer">Eco Wave Power利用NVIDIA AI基础设施和数字孪生技术将海浪转化为电力</a>
+                    </div>
+                </div>
+                <p class="article-summary">NVIDIA最近分享了一个很有意思的案例：Eco Wave Power这家公司正在用AI基础设施和数字孪生技术，把海浪变成清洁电能。说实话，这几年AI圈聊的大多是模型能力、算力芯片这些&quot;软&quot;的东西，但这则新闻让我看到了AI落地的新方向——能源基础设施。数字孪生技术可以让海浪能发电站的设计和运营更高效，而AI在边缘端的实时分析能力，则让整个系统更智能。更重要的是，NVIDIA在博客里提到&quot;AI的下一个纪元将由能源定义&quot;，这话挺值得琢磨的：当算力需求指数级增长，能源问题迟早会成为AI发展的硬约束。这条新闻告诉我们，AI公司们已经在提前布局了。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blogs.nvidia.com/blog/jupiter-exascale-supercomputing-science/" target="_blank" rel="noopener noreferrer">在ISC大会上，JUPITER展示百亿亿次级科学计算的风采</a>
+                    </div>
+                </div>
+                <p class="article-summary">JUPITER，欧洲第一台百亿亿次级超级计算机，在德国正式投入运行了。这台怪兽用的是NVIDIA的Grace Hopper超级芯片加上Quantum-X800 InfiniBand网络，峰值算力直接冲到了百亿亿次级别。说人话就是：它一秒钟能完成的计算量，比全球所有人同时拿着计算器算几辈子加起来都多。这不只是数字游戏——JUPITER已经开放给全球科研机构使用，在气候模拟、新材料发现、药物研发这些领域都在干活了。百亿亿次级计算（HPC和AI融合）正在从&quot;实验室黑科技&quot;变成真正的科研基础设施，这大概才是这条新闻真正值得我们记住的地方。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/bindureddy/status/2069071245904416822" target="_blank" rel="noopener noreferrer">Bindu Reddy</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Multi-agent orchestration is the future<br><br>We have repeatedly found that combining AI models based on their relative strengths yields the best results</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/fchollet/status/2069059823069753486" target="_blank" rel="noopener noreferrer">François Chollet</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Programming is not about code, just like music is not about notation. It is the art &amp;amp; science of managing complexity through layers of abstraction. AI is simply a part of it.&quot;<br><br>**解读**: Chollet 说了句大实话：编程的本质不是写代码，而是&quot;用抽象层管理复杂度&quot;。代码只是载体，真正难的是把模糊需求变成清晰结构。AI现在能帮你生成代码，但它搞不定&quot;这个复杂问题该拆成哪几层&quot;——这部分才是程序员的真正价值。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/GaryMarcus/status/2069081433126346860" target="_blank" rel="noopener noreferrer">Gary Marcus</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;LLMs can’t be trusted to follow rules.<br><br>Which means they can’t be trusted, period.</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="http://arxiv.org/abs/2606.20408v1" target="_blank" rel="noopener noreferrer">LLM代理安全、多轮红队测试、越狱基准测试、对抗鲁棒性、安全关键系统</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出NRT-Bench基准，用于评估LLM代理在持续对抗压力下的鲁棒性。在模拟核电站控制室的五角色操作员团队场景中，实现多轮红队测试，系统性揭示LLM作为安全关键系统监督组件的脆弱性，并建立安全关键系统部署中LLM代理的对抗鲁棒性评估标准。<br><br>**与AI Agent的关联**: 直接针对LLM代理在安全关键场景中的部署安全性进行系统评估，填补了多轮自适应对抗攻击下代理鲁棒性研究的空白。该研究对构建可靠、可信AI代理系统具有重要指导意义，为代理安全评估提供了标准化基准。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="http://arxiv.org/abs/2606.20487v1" target="_blank" rel="noopener noreferrer">超越全局重规划：跨设备代理系统的层级恢复</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出层级恢复框架解决跨设备代理系统在运行时故障下的粗粒度恢复问题。通过系统建模设备本地策略空间，实现细粒度的层级故障恢复机制，使代理能够针对不同设备环境进行针对性策略调整，而非简单地重试或全局重规划。<br><br>**与AI Agent的关联**: 针对多设备代理系统中实际部署的关键瓶颈——故障恢复能力不足，提供系统性解决方案。该研究显著提升代理在复杂异构环境中的容错性和任务完成率，对真实世界的多设备AI代理应用具有重要实用价值。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/bytedance/deer-flow" target="_blank" rel="noopener noreferrer">bytedance/deer-flow</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 73.2K<br><br>还在为需要同时调用多个Agent、处理复杂的多步骤任务而头疼吗？DeerFlow就是为你准备的。这是一个由字节跳动开源的超级Agent框架，刚发布2.0版本就登顶GitHub Trending，狂揽73K+ Stars。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-06-23 06:51:55</p>
+        </footer>
+    </div>
+</body>
+
+</html>
