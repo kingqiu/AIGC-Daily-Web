@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-06-26">
+    <title>AIGC Daily #435 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-06-26 星期五</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arstechnica.com/gadgets/2026/06/openai-and-broadcom-announce-chip-designed-for-llm-inference-at-scale/" target="_blank" rel="noopener noreferrer">OpenAI和Broadcom宣布推出专为大规模LLM推理设计的芯片 - Ars Technica</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI与Broadcom合作推出首款专为大规模LLM推理设计的AI芯片Jalapeño，标志着OpenAI正式进军AI芯片自研领域。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.leiphone.com/category/yanxishe/vzVNtknYIRqTX0Wv.html" target="_blank" rel="noopener noreferrer">这次是阿里！中国的大模型团队快被 Anthropic 告完了</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic在美国提起诉讼，指控阿里巴巴等中国大模型团队涉嫌侵犯其AI模型知识产权。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.axios.com/pro/all-deals/2026/06/24/pro-rata-premium-first-look-stegra-thoma-bravo-taktile" target="_blank" rel="noopener noreferrer">Thoma Bravo投资padoa，Taktile融资1.1亿美元，Stegra融资14亿欧元 - Axios</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic前员工创立的AI初创公司Mirendil获得2亿美元融资，估值达10亿美元，由a16z、红杉资本等领投。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reddit.com/r/MachineLearning/comments/1ufgpnh/r_compiling_agentic_workflows_into_llm_weights/" target="_blank" rel="noopener noreferrer">【R】将代理工作流编译为LLM权重：以两个数量级更低的成本达到接近前沿的质量</a>
+                    </div>
+                </div>
+                <p class="article-summary">一篇新鲜出炉的论文提出了一个让人眼前一亮的思路：直接用前沿大模型的&quot;思考轨迹&quot;来训练小模型。具体做法是让GPT-4、Claude这类模型完成复杂任务，把它们的推理过程记录下来，然后用这些数据对小型语言模型做监督微调。结果很有意思——这种蒸馏出来的小模型，在质量上接近前沿模型水准，但成本直接砍掉两个数量级。这意味着什么？对于那些被Token计费搞得头疼的公司来说，小模型不再是&quot;凑合用&quot;的选择，而是可以真正上场打硬仗的主力了。低成本+够用的能力，这个组合对应用层开发者吸引力巨大。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://huggingface.co/blog/vllm-jobs" target="_blank" rel="noopener noreferrer">使用一条命令在 HF Jobs 上运行 vLLM 服务器</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文介绍如何在 HuggingFace（HF）平台上通过单条指令快速启动 vLLM 推理服务器。vLLM 基于 PagedAttention 实现高吞吐、低延迟的 LLM 推理，结合 HF Jobs（托管式推理任务）后，用户只需执行类似 `hf job run --model &lt;model-id&gt; --engine vllm` 的命令，即可自动完成容器构建、资源分配、模型加载和服务暴露，省去手动配置 Kubernetes、GPU 调度或自行搭建推理管道的繁琐步骤。该方案的核心价值在于降低大模型部署的技术门槛，使研究团队和中小型企业能够直接利用 HF 弹性算力实现横向扩展；同时，vLLM 的分页注意力与连续批处理技术显著提升单卡和多卡环境下的推理效率，帮助用户在成本与性能之间取得更好平衡。对于 AI 领域而言，一键部署模式加速模型原型验证和线上迭代，推动更多开源 LLM 快速进入生产环境，并促使云服务进一步完善 Serverless 推理生态。随着此类便捷工具的普及，LLM 的使用将从拥有大规模工程资源的组织向更广泛的科研社区和中小企业渗透，整体提升行业创新的速度与广度。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.latent.space/p/databricks" target="_blank" rel="noopener noreferrer">为什么 Frontier 生态系统必须是开放的 — Matei Zaharia 和 Reynold Xin，Databricks</a>
+                    </div>
+                </div>
+                <p class="article-summary">Databricks两位技术领袖Matei Zaharia和Reynold Xin罕见地同框接受访谈，聊了一个核心问题：为什么AI Agent的生态系统必须走向开放？他们认为，随着AI应用从聊天机器人走向真正的工作流自动化，每一家公司都将需要自己的&quot;Agent Cloud&quot;——但这个未来不会由少数巨头垄断来实现，而是需要开放的生态系统支撑。访谈中最有意思的观点是关于&quot;Agent之间的互操作性&quot;：如果每个AI平台都生产自己专有的Agent，不同系统之间就无法协作，整个生态就会碎片化。他们还探讨了开源模型在Agent时代的位置，以及企业如何避免被单一供应商锁定。这篇访谈的长度和深度都相当可观，两人的观点时有碰撞但底层逻辑一致，读下来能对AI Agent的产业化路径有一个高维度的认知框架。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://lilianweng.github.io/posts/2026-06-24-scaling-laws/" target="_blank" rel="noopener noreferrer">**《规模法则，需谨慎对待》**
+
+或更简洁的表达：
+
+**《谨慎的规模法则》**</a>
+                    </div>
+                </div>
+                <p class="article-summary">Lilian Weng（OpenAI研究员，曾负责安全与对齐工作）写了一篇关于Scaling Laws的系统性深度分析，这篇文章值得认真读是因为它回答了一个关键问题：Scaling Laws的本质是什么，以及它为什么可能正在失效。她从最基础的power-law关系讲起，梳理了从Chinchilla到DeepMind的Gopher论文等一系列里程碑式研究，指出了当前业界对scaling的三个主要误解：以为参数量越大越好、以为数据量可以无限堆叠、忽视了推理阶段scaling的潜力。更重要的是，她提出了一个在Agent时代格外关键的观点：当模型需要&quot;思考&quot;而非只是&quot;记忆&quot;时，传统的pre-training scaling laws可能需要被重新定义。这篇文章技术深度足够，但论述清晰，适合想理解LLM底层逻辑的读者。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="http://arxiv.org/abs/2606.26027v1" target="_blank" rel="noopener noreferrer">多步骤工具使用强化学习为何崩溃及监督信号如何修复它</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 该论文深入分析了在工具使用任务中，RL方法导致模型性能崩溃的根本原因。研究发现失败源于特定控制令牌的概率异常峰值，揭示了纯RL在多步骤工具调用中的不稳定性。更重要的是，论文提出了通过引入监督信号来修复这一问题的方法，为提升Agent工具使用能力的训练范式提供了重要指导。<br><br>**与AI Agent的关联**: 直接聚焦于AI Agent的核心能力——工具使用与规划。通过揭示RL在Agent训练中的崩溃机制并提供解决方案，对构建更稳定、更强大的自主Agent具有关键指导意义，是Agent能力提升研究的重要突破。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="http://arxiv.org/abs/2606.25960v1" target="_blank" rel="noopener noreferrer">Agentic系统作为压缩器：用比特量化系统智能</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 该论文提出了一个创新性理论框架，将Agentic系统的智能定义为&#39;压缩能力&#39;。在固定任务分布、接口和计算预算下，更强的Agentic系统能用更少的比特重建目标对象。论文通过算术编码Operationalize了该度量，为评估和比较不同Agent系统的智能水平提供了全新的理论基础和分析工具。<br><br>**与AI Agent的关联**: 针对AI Agent系统本身提出了根本性的理论问题——如何量化系统智能。该研究为Agent领域提供了重要的评估方法和理论框架，有助于我们更深入理解Agent系统的本质特性，对未来的Agent设计和发展具有深远的指导价值。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/opendatalab/MinerU" target="_blank" rel="noopener noreferrer">opendatalab/MinerU</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 69.5K<br><br>如果你做过文档处理相关的 AI 项目，一定遇到过这个头疼的问题：PDF 里密密麻麻的文字、表格、公式、图片，想喂给 LLM 却被各种格式搞得焦头烂额。MinerU 就是来解决这个痛点的——它专门把 PDF、Word、Excel 这些复杂文档“翻译”成 LLM 能直接读懂的 Markdown 或 JSON 格式。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-06-26 06:58:16</p>
+        </footer>
+    </div>
+</body>
+
+</html>
