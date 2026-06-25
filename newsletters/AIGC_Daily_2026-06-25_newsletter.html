@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-06-25">
+    <title>AIGC Daily #433 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-06-25 星期四</div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="../images/AIGC_Daily_2026-06-25_hero.png" alt="AIGC Daily 433 Hero Image">
+            <p class="hero-caption">本期关注：OpenAI推出首款自研AI芯片Jalapeño，与Nvidia保持距离 - Gizmodo、Menlo Ventures在Anthropic成功后融资30亿美元创纪录 - Zamin.uz、OpenAI推出AI驱动方案修复开源软件漏洞、Stripe、Anthropic 和 OpenAI 支持一项阻止呼吸道感染的行动</p>
+        </div>
+
+        <!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://gizmodo.com/openai-distances-itself-from-nvidia-with-jalapeno-its-first-in-house-ai-chip-2000777005" target="_blank" rel="noopener noreferrer">OpenAI推出首款自研AI芯片Jalapeño，与Nvidia保持距离 - Gizmodo</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI与Broadcom合作推出首款自研AI芯片Jalapeño，迈向技术独立的关键一步。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://zamin.uz/en/technology/208800-menlo-ventures-raises-record-3-billion-following-anthropic-success.html" target="_blank" rel="noopener noreferrer">Menlo Ventures在Anthropic成功后融资30亿美元创纪录 - Zamin.uz</a>
+                    </div>
+                </div>
+                <p class="article-summary">Menlo Ventures因Anthropic投资成功募集30亿美元，创下其50年历史上最大基金规模。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.csoonline.com/article/4188321/openai-rolls-out-ai-led-push-to-fix-open-source-software-flaws.html" target="_blank" rel="noopener noreferrer">OpenAI推出AI驱动方案修复开源软件漏洞</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI与Trail of Bits合作推出Patch the Planet计划，利用AI修复开源软件漏洞。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.technologyreview.com/2026/06/24/1139621/stripe-anthropic-and-openai-are-backing-an-effort-to-stop-respiratory-infections/" target="_blank" rel="noopener noreferrer">Stripe、Anthropic 和 OpenAI 支持一项阻止呼吸道感染的行动</a>
+                    </div>
+                </div>
+                <p class="article-summary">Stripe、Anthropic 和 OpenAI 这三家在AI圈里举足轻重的公司，最近同时出现在了一个与&quot;感冒&quot;相关的项目里——它们共同支持了一个旨在攻克呼吸道感染的联合研究计划。<br><br>说实话，感冒这东西我们每年都要被折腾好几回，但至今没有什么好办法能真正预防。现在这三家AI巨头联手，说明他们认为生成式AI在蛋白质结构预测、病毒基因分析等领域已经足够成熟，可以真正帮上忙了。据说团队会用大模型来加速疫苗和药物的研发管线，从&quot;大海捞针&quot;变成&quot;有的放矢&quot;。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.technologyreview.com/2026/06/24/1139202/the-emergence-of-the-web-data-infrastructure-layer-for-ai/" target="_blank" rel="noopener noreferrer">人工智能Web数据基础设施层的崛起</a>
+                    </div>
+                </div>
+                <p class="article-summary">MIT Technology Review 今天发了一篇深度稿，讲的是AI时代的数据基础设施问题。简单来说就是：现在AI公司都想搞大模型，但训练和推理都需要海量数据，而这些数据往往分散在不同地方，有的被锁在防火墙后面，有的结构乱七八糟根本没法直接用。<br><br>文章指出，一个专门服务于AI的&quot;数据中间层&quot;正在崛起——帮助企业把散落的数据整合、清洗、标注，让大模型能真正用起来。这有点像是云计算早期的基础设施建设潮，只不过这次服务的是AI。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.technologyreview.com/2026/06/24/1139676/europe-heat-power-plants/" target="_blank" rel="noopener noreferrer">欧洲极端高温导致发电厂停运</a>
+                    </div>
+                </div>
+                <p class="article-summary">在欧洲遭遇破纪录热浪的背景下，能源系统正面临前所未有的压力。文章指出，极端高温导致发电厂的冷却水温度升高、效率下降，甚至被迫停机。法国在6月23日创下1947年以来最高温纪录，导致数座核电站及部分火电厂被迫降负荷或停运，电网负荷随之激增。文章通过分析发电侧的热力学限制、冷却系统容量以及输配电网的瞬时需求，揭示热浪对电力供给的结构性冲击，并指出这种冲击在可再生能源渗透率提升的当下更具系统性风险。作者进一步指出，电网运营商正借助人工智能技术提升负荷预测、实时调度与需求侧响应的精度，以缓解突发停机带来的波动。阅读本文不仅能了解气候极端事件如何直接削弱能源基础设施，还能获知AI在提升能源韧性、实现低碳转型中的关键作用，为能源系统研究者和AI从业者提供跨领域的深度洞见。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.technologyreview.com/2026/06/24/1139658/the-download-introducing-engineering-issue/" target="_blank" rel="noopener noreferrer">**下载：工程特刊介绍**</a>
+                    </div>
+                </div>
+                <p class="article-summary">本期《The Download》聚焦“Engineering issue”，以“we can’t fix everything, but we can be ambitious”开篇，阐述工程学在技术变革中的核心使命：凭借人类创造力，将看似不可能的挑战转化为可落地的解决方案。文章指出，随着AI、量子计算、合成生物学等前沿领域快速迭代，单一技术已难以单独应对气候、能源、公共卫生等系统性难题，必须通过跨学科、系统化的工程思维将多项技术进行有机集成。<br><br>核心观点强调三点：① **雄心驱动创新**——只有设定宏大目标，才能激发科研与产业的持续突破；② **工程化是规模化关键**——从实验室原型到商业化产品，需要严谨的设计、标准化的流程与可靠的质量控制；③ **人本价值不可缺**——技术本身无善恶，工程师需承担伦理与社会责任，确保技术红利普惠而非加剧不平等。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/a16z/status/2069869327411749012" target="_blank" rel="noopener noreferrer">a16z</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;We&#39;re thrilled to lead Mirendil&#39;s $200M seed round.<br><br>Frontier AI work has been locked inside a few big labs.</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/bindureddy/status/2069781585868808679" target="_blank" rel="noopener noreferrer">Bindu Reddy</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Super excited for our recursive self-improving agents launch…<br><br>No, they won’t be using Anthropic’s expensive token-guzzling models</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/hardmaru/status/2069815056511160598" target="_blank" rel="noopener noreferrer">hardmaru</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Excited to partner with @OpenRouter ⚡<br><br>Products like OpenRouter Fusion and Sakana Fugu have sparked a serious conversation about dependency and resilience in AI.</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="http://arxiv.org/abs/2606.24820v1" target="_blank" rel="noopener noreferrer">SHERLOC：用于代码修复智能体的结构化诊断定位</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: SHERLOC提出了一个训练免费的框架，将推理型LLM与紧凑的表示相结合，专门用于代码修复任务中的故障定位。该框架通过结构化假设驱动的探索和推理，解决了现有定位方法只提供文件检索结果而缺乏可操作诊断信息的问题，显著提高了智能体在代码修复过程中的定位效率和准确性。<br><br>**与AI Agent的关联**: 该论文直接针对AI Agent在代码修复场景中的应用，聚焦于多轮工具使用（multi-turn tool use）中资源浪费的关键问题。其框架设计对提升自主智能体的诊断和定位能力具有直接价值，为构建更高效的代码修复Agent提供了可复用的方法论。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="http://arxiv.org/abs/2606.24842v1" target="_blank" rel="noopener noreferrer">碎片化的世界模型：通用智能体的结构性认证</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 该论文首次形式化证明了通用智能体在&#39;大世界&#39;环境中的固有能力局限，指出标准的一致性保证无法区分关键瓶颈和无关失败。基于此，提出了结构性认证（structural certification）框架，这是一种过渡局部的框架，能够精确识别智能体在世界模型中的能力和局限，为通用Agent的安全性和可靠性评估提供了理论基础。<br><br>**与AI Agent的关联**: 该论文从理论层面深入探讨了通用智能体的本质局限性和认证方法，对AI Agent研究具有重要的基础性意义。其提出的结构性认证框架为评估和保障自主智能体在复杂环境中的行为可靠性提供了新的理论工具，对Agent安全性和可解释性研究有重要贡献。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/google-labs-code/design.md" target="_blank" rel="noopener noreferrer">google-labs-code/design.md</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 17.3K<br><br>当你用 Cursor、Windsurf 这类 AI 编程工具写前端代码时，有没有遇到这种情况：让 AI 生成的页面颜色、字体、间距总是和你的设计稿对不上，每次都要反复叮嘱它&quot;按钮用蓝色&quot;、&quot;标题 24px&quot;、&quot;圆角 4px&quot;……说得累不说，AI 还经常记错或自己发挥。DESIGN.md 就是来解决这个问题的。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-06-25 08:05:23</p>
+        </footer>
+    </div>
+</body>
+
+</html>
