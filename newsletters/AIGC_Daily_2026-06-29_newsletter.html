@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-06-29">
+    <title>AIGC Daily #441 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-06-29 星期一</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.techtimes.com/articles/319214/20260628/karpathy-claudemd-grows-ten-rules-new-self-check-protocol-ai-coding-loops.htm" target="_blank" rel="noopener noreferrer">Karpathy的CLAUDE.md扩展至十条规则：AI编码循环的新自我检查协议 - Tech Times</a>
+                    </div>
+                </div>
+                <p class="article-summary">AI专家Karpathy加入Anthropic后，其开发的CLAUDE.md编码规范扩展至10条规则，新增AI自我检查协议。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.reuters.com/world/asia-pacific/australias-firmus-technologies-strikes-ai-access-deal-with-nvidia-2026-06-28/" target="_blank" rel="noopener noreferrer">澳大利亚费尔穆斯科技与英伟达达成AI访问协议 - 路透社</a>
+                    </div>
+                </div>
+                <p class="article-summary">澳大利亚AI基础设施公司Firmus Technologies与NVIDIA达成战略合作，将在亚太地区扩展AI GPU基础设施。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.interconnects.ai/p/artifacts-22-zyphra-cohere-and-poolside" target="_blank" rel="noopener noreferrer">最新开放产物（#22）：Zyphra、Cohere 和 Poolside 正在扩展生态系统的广度</a>
+                    </div>
+                </div>
+                <p class="article-summary">Interconnects AI发布了第22期开放Artifacts评估文章，重点分析了Zyphra、Cohere和Poolside三家公司的开源模型发布情况及其对生态系统的意义。文章深入探讨了这些公司为何选择开源策略——不仅仅是为了技术共享，更是为了在AI基础设施竞争中占据有利位置。Zyphra作为新进入者带来了创新的模型架构，Cohere凭借其企业级定位持续扩展Command系列的能力边界，而Poolside则展现了开源社区在特定垂直领域的深耕。这三个案例共同描绘了当前开源AI生态的多样化路径：有的追求技术突破，有的聚焦商业落地，有的深耕细分市场。开源与闭源的竞争正在从单纯的模型能力比拼，延伸到生态系统建设、开发者社区运营等更深层次。<br><br>***</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.a16z.news/p/charts-of-the-week-cycles-different" target="_blank" rel="noopener noreferrer">本周图表：周期，不同却相同</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文以“周期：不同却又相同”为主题，通过本周精选的多幅数据图表，揭示了AI在各行业的循环演进规律。作者首先辨析“AI enabled”与“AI ‘enabled’”的本质区别，指出真正的AI赋能不仅体现在技术堆栈的叠加，更在于组织结构、决策流程和文化基因的协同变革。随后，对比过去三年中超过150家AI创业公司的人均产出与资金消耗，发现“精益运营”已成为维持高速增长的关键杠杆，且这一趋势在软硬件、平台与应用层均呈显著收敛。进而，文章借助美国大型连锁超市的技术渗透案例，展示了数字化如何提升库存周转率与物流时效，却在客单价、购物体验和员工满意度层面产生了“生产力悖论”，即宏观指标上升与微观感知下降并存。通过跨行业对比，作者提炼出技术驱动的增长往往遵循“加速‑饱和‑再平衡”三阶段模型，并提示AI从业者在设计产品路线图时应同步关注效率指标与用户体验的双向反馈。阅读本文，不仅能获得最新的行业数据可视化解读，更能从中领悟到AI落地的系统性思考框架，是AI研发、战略规划与投资决策者不可多得的高价值参考。<br><br>***</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.technologyreview.com/2026/06/26/1139760/heat-waves-mess-with-your-brain-scientists-are-trying-to-figure-out-why/" target="_blank" rel="noopener noreferrer">热浪会影响你的大脑。科学家们正在试图弄清楚原因。</a>
+                    </div>
+                </div>
+                <p class="article-summary">热浪正从单纯的生理不适转向对大脑功能的系统性干扰，JessicaHamzelou在报道中指出，极端高温会导致认知表现显著下降，且其背后的神经机制正在被逐步阐明。文章引用了多项最新实验：在模拟热环境中，受试者在执行复杂工作记忆任务时的错误率上升约15%，反应时间延长约30%；功能磁共振显示前额叶皮层活动减弱，默认模式网络的功能连通性降低。动物实验进一步揭示，持续热暴露可引起海马体神经元凋亡、血脑屏障通透性增加以及局部神经炎症标志物升高，提示长期热应激可能加速认知衰退。<br><br>从跨学科视角看，这些发现为人工智能系统的设计与部署提供了重要启示：边缘计算设备的工作温度若逼近人类热舒适阈值，可能导致软硬件性能波动；在模型训练阶段，若训练数据来源于高温环境下的用户行为，模型对温度敏感性的偏差需被显式建模。文章建议在智能工作平台中嵌入动态温控模块，并结合可穿戴认知负荷监测，实现对热诱导注意力下降的实时预警。总体而言，本文不仅描绘了热浪对大脑的多层次冲击，还提供了从分子、行为到系统层面的机制解释和可操作的防护方案，对AI从业者在应对气候变化的技术挑战具有很高的阅读价值。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/ClementDelangue/status/2071247445204369625" target="_blank" rel="noopener noreferrer">clem 🤗</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;It&#39;s quite rational to regulate frontier API models, especially to get more transparency for the government, without regulating open-source AI.<br><br>Here&#39;s why:</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/levie/status/2071253118252356001" target="_blank" rel="noopener noreferrer">Aaron Levie</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;It should be 100% obvious that there will soon be mythos level models on cyber security that are open and available to anyone. As a byproduct of this, alternative tech stacks will emerge that also drive more economic value and control away from the US’s tech stack.<br><br>This is what should be considered when thinking through the gate keeping you want to have in AI. If advanced models will become open and available regardless, then by not allowing the release of models you’re neither more secur...</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/GaryMarcus/status/2071351331504206162" target="_blank" rel="noopener noreferrer">Gary Marcus</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;hard to see how anyone makes much money from all this in the long run.<br><br>more like the airline industry; very small margins and big expenses</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/Robbyant/lingbot-map" target="_blank" rel="noopener noreferrer">Robbyant/lingbot-map</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 8.2K<br><br>如果你在开发机器人导航、AR/VR应用或自动驾驶系统，一定遇到过实时3D重建的痛点——传统方法要么速度慢得像蜗牛，要么跑久了就漂移得面目全非，根本没法用到真实场景里。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-06-29 07:04:30</p>
+        </footer>
+    </div>
+</body>
+
+</html>
