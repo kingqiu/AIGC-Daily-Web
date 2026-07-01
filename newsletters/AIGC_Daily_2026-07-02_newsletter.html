@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-07-02">
+    <title>AIGC Daily #448 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-07-02 星期四</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/ai-artificial-intelligence/958964/anthropic-claude-fable-5-is-back" target="_blank" rel="noopener noreferrer">Anthropic被长期搁置的Fable 5获准回归</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic与美国政府完成谈判，获准在全球恢复Claude Fable 5模型的访问服务，涵盖Claude平台及AWS等渠道。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/tech/959778/google-notebooklm-ai-clips" target="_blank" rel="noopener noreferrer">Google的NotebookLM可以用TikTok风格的短片总结你的研究</a>
+                    </div>
+                </div>
+                <p class="article-summary">Google NotebookLM新增TikTok风格AI视频功能，可将用户上传的研究资料自动生成60秒垂直视频，面向Pro和Ultra订阅用户开放。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/07/01/gemini-spark-googles-agentic-assistant-is-now-available-on-mac/" target="_blank" rel="noopener noreferrer">Gemini Spark——谷歌的智能代理助手，现已登陆Mac平台</a>
+                    </div>
+                </div>
+                <p class="article-summary">Google推出24/7智能助手Gemini Spark的Mac桌面版本，新增实时追踪功能并扩展更多应用支持。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://thenextweb.com/news/together-ai-800m-series-c-aramco-ventures" target="_blank" rel="noopener noreferrer">开源云需求激增，Together AI完成8亿美元C轮融资</a>
+                    </div>
+                </div>
+                <p class="article-summary">开源AI云服务商Together AI宣布完成8亿美元C轮融资，由沙特阿美的风险投资基金领投。这家成立于2022年的公司专注于运行开源模型推理，其客户包括VMware、Runway等知名企业。本轮融资规模之大，在当前AI投资降温的大背景下格外引人注目——它几乎是Anthropic和OpenAI之外的最大单笔融资之一。Together AI的核心逻辑是：在企业越来越不愿意把所有数据交给闭源大厂的时候，提供一个&quot;中立&quot;的开源选择。这轮融资的完成说明市场对开源AI基础设施的需求远比外界想象的更强劲，而沙特资本的入局则暗示着全球AI博弈正在向新的方向延伸。<br><br>***</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.technologyreview.com/2026/07/01/1140003/llms-are-stuck-in-a-groupthink-rut-this-startup-is-trying-to-get-them-out/" target="_blank" rel="noopener noreferrer">大型语言模型陷入了群体思维的死胡同。这家初创公司正试图将它们拉出来。</a>
+                    </div>
+                </div>
+                <p class="article-summary">MIT Technology Review最近做了一个有趣的实验：让Claude、ChatGPT、Gemini分别随机生成1-10之间的数字，结果&quot;7&quot;出现了远超概率预期的频率。这暴露了一个深层问题——当这些模型被训练成&quot;有帮助&quot;的样子时，它们学会了模仿&quot;正确答案&quot;的分布，却丢失了真正的随机性。更讽刺的是，当用户追问&quot;再来一个&quot;时，模型的回答往往更集中而非更分散，因为它们在&quot;揣测&quot;用户想要的&quot;多样性&quot;。这种&quot;群体思维&quot;不止存在于数字生成任务中，在代码补全、文案创意等场景同样存在。研究者指出，解决这个问题需要在RLHF阶段刻意加入对&quot;反模式&quot;行为的奖励，而不是一味追求&quot;正确&quot;。这不仅是技术细节，它揭示了当前AI系统设计中一个被忽视的权衡：为了让模型&quot;更像人&quot;，我们可能正在牺牲一些机器本该有的特性。<br><br>***</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.lennysnewsletter.com/p/sonnet-5-review-i-ran-64-generations" target="_blank" rel="noopener noreferrer">Sonnet 5 评测：运行 64 轮生成，验证它是否值得</a>
+                    </div>
+                </div>
+                <p class="article-summary">这可能是目前最硬核的Agent能力横评。作者用Claude Code搭建了一套名为&quot;How I AI Bench&quot;的评测体系，让5个前沿模型（包括Sonnet 5）分别完成64轮盲测任务，涵盖原型生成、产品需求文档写作和Agent语音测试三大场景。结果相当反直觉：有些被吹上天的模型在实际Agent任务中表现平平，而某些低调的选手反而在复杂推理链路中稳定得出奇。文章特别关注了一个细节：当模型以&quot;Agent模式&quot;运行时，它的输出风格和准确性与普通对话模式差异巨大——这种&quot;双重人格&quot;现象意味着，用传统LLM评测benchmark来预测Agent表现，可能根本不靠谱。更重要的是，作者发现模型在长时间任务中的&quot;衰减曲线&quot;差异显著，有的模型前30%任务表现完美，后半段开始疯狂摆烂，有的却能保持稳定输出。这篇文章的价值在于：它不告诉你哪个模型最强，而是让你理解&quot;强&quot;在不同场景下的真正含义。<br><br>***</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/bindureddy/status/2072453818512744618" target="_blank" rel="noopener noreferrer">Bindu Reddy</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Using Fable all the time doesn&#39;t make sense.<br><br>You are killing the environment if you do so.</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/ClementDelangue/status/2072401982569025742" target="_blank" rel="noopener noreferrer">clem 🤗</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;AI systems that are accessible or even better open-source are safer for a simple reason: more people can inspect them, test them, stress them, and report what breaks or harms to keep the builders accountable. &quot;Sunlight is the best disinfectant&quot;!<br><br>That’s why we’re proud to help lead FLARE with a coalition of safety and cyber-security researchers from MIT, Stanford, Princeton, Harvard, Northeastern, Carnegie Mellon and more.</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/DrJimFan/status/2072337488782475390" target="_blank" rel="noopener noreferrer">Jim Fan</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;ENPIRE -&gt; ASPIRE, our 2nd work in the series for Physical AutoResearch. We are building the components for robot self-improvement, one /skill at a time.&quot;<br><br>**解读**: Jim Fan 宣布了 ENPIRE -&gt; ASPIRE 的研究进展，这是 Physical AI 系列的第二作，主打机器人&quot;逐技能&quot;自我改进。听着像是把复杂任务拆解成一个个小技能点，让机器人在实践中逐步升级。这个方向如果成真，对具身智能落地很有意义。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2606.31134" target="_blank" rel="noopener noreferrer">超越图书馆：用于自动形式化研究数学的智能体框架</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出一种智能体框架来解决LLM在数学推理中的形式化验证问题。框架通过智能协调多个专门化模块，实现将自然语言数学自动转换为Lean 4等可验证的形式化代码。针对LLM容易产生难以检测的微妙错误这一核心问题，利用形式化语言的机械证明检查能力，确保数学推理的正确性。<br><br>**与AI Agent的关联**: 该工作直接针对AI Agent在数学领域的应用创新，提出利用多模块智能体协作实现自动形式化的新范式。对Agent研究的重要贡献在于展示了如何构建能够处理复杂、长程推理任务的自主智能体系统，对提升Agent推理准确性和可靠性具有重要参考价值。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2606.31085" target="_blank" rel="noopener noreferrer">DDIAgents：用于药物-药物相互作用预测的机制条件化上下文流</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出DDIAgents框架，创新性地将多智能体系统应用于药物-药物相互作用预测。框架包含规划智能体和专家智能体，通过动态知识编排实现针对不同作用机制的专门化预测。核心贡献在于展示了如何根据具体任务需求动态实例化和协调多个专业化智能体，处理异构生物医学证据。<br><br>**与AI Agent的关联**: 该工作是AI Agent在医疗领域应用的典型案例，展示了多智能体系统在需要专业领域知识协调的复杂推理任务中的有效性。框架中的动态智能体实例化和路由机制对Agent系统的实际部署具有重要借鉴意义，为构建领域专家型Agent系统提供了可行的技术方案。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/usestrix/strix" target="_blank" rel="noopener noreferrer">usestrix/strix</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 29.6K<br><br>作为开发者，你是否经常为了赶项目上线而忽略了安全测试？传统的 penetration testing 工具门槛高、使用复杂，CI/CD 流程里也缺少靠谱的自动化安全检测——等到上线后被攻击者发现漏洞可就麻烦了。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-07-02 07:32:26</p>
+        </footer>
+    </div>
+</body>
+
+</html>
