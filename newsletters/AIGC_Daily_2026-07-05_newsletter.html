@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-07-05">
+    <title>AIGC Daily #460 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-07-05 星期日</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/07/04/alibaba-reportedly-bans-employees-from-using-claude-code/" target="_blank" rel="noopener noreferrer">据报道，阿里巴巴禁止员工使用Claude Code</a>
+                    </div>
+                </div>
+                <p class="article-summary">阿里巴巴将Claude Code列为高风险软件，禁止员工在工作中使用。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/07/04/midjourney-wants-hollywood-studios-to-reveal-the-details-of-their-ai-usage/" target="_blank" rel="noopener noreferrer">Midjourney希望好莱坞电影公司披露其使用人工智能的细节</a>
+                    </div>
+                </div>
+                <p class="article-summary">Midjourney正在跟好莱坞三大电影公司打版权官司，现在它反手一击：要求这些片厂公开自己是怎么用AI的。这波操作挺有意思——你告我侵权，我反问&quot;你自己也没少用AI吧？&quot;<br><br>事情的核心是版权问题。片厂们声称Midjourney未经授权拿他们的内容训练模型，而Midjourney这次是想反过来举证：你们自己在制作流程里也没少用AI工具，凭什么站在道德高地上指责我？</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/07/04/new-google-commercial-imagines-a-declaration-of-independence-written-with-help-from-ai/" target="_blank" rel="noopener noreferrer">谷歌新广告设想：《独立宣言》在AI协助下撰写</a>
+                    </div>
+                </div>
+                <p class="article-summary">谷歌最近放了一支新广告，脑洞大开：假如250年前起草《独立宣言》的国父们有Google Workspace会怎样？AI帮你写历史性文件，这画面确实有点魔幻现实。<br><br>广告本身可能15秒就过去了，但它传递的信号值得琢磨——谷歌正在把AI包装成&quot;日常工具&quot;，而不是&quot;颠覆性黑科技&quot;。当你的AI开始替杰斐逊起草独立宣言了，它就已经从&quot;新奇特&quot;变成了&quot;理所当然&quot;。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.latent.space/p/the-coolest-diffusion-research-isnt" target="_blank" rel="noopener noreferrer">🔬 最酷的扩散研究不在LLM领域 — Evan Feinberg &amp; Sergey Edunov，Genesis Molecular AI</a>
+                    </div>
+                </div>
+                <p class="article-summary">这篇文章揭示了一个被大多数AI从业者忽视的重要趋势：扩散模型真正的突破性应用可能不在大语言模型领域，而在生物分子设计与药物发现赛道。<br><br>作者Brandon Anderson深度访谈了Genesis Molecular AI的核心团队，挖掘出几个关键信息：Llama项目的核心负责人Evan Feinberg选择离开Meta，押注于AI驱动的新药研发；其团队研发的PEARL模型在零样本条件下于OpenBind基准测试中取得领先成绩，展示了AI在预测蛋白质-小分子相互作用方面的巨大潜力；而共折叠(co-folding)技术的准确率终于跨越临界点，使得同时预测蛋白质结构与配体的能力成为现实。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.technologyreview.com/2026/07/03/1140148/a-device-that-revives-eyeballs-from-dead-donors-could-make-eye-transplants-possible/" target="_blank" rel="noopener noreferrer">一种能使已故捐献者眼球复苏的设备或使眼球移植成为可能</a>
+                    </div>
+                </div>
+                <p class="article-summary">在眼科移植领域，全眼移植一直被视为“禁区”，主要因为眼球在离体后几分钟内即出现细胞死亡、代谢衰竭和结构退化，导致即使手术成功也难以恢复视力。近日，美国哈佛医学院团队与多家工程院校合作，推出一种能够在死后数小时内“复活”供体眼球的装置。该装置通过微型灌注回路、恒温控制以及优化的营养液配方，实现对角膜、视网膜、视神经的持续供氧与代谢支持，同时利用实时传感反馈调节灌注参数，以防止缺血再灌注损伤。动物实验显示，使用该装置保存的猪眼在6小时后仍保持约90%的视网膜电位和神经节细胞活性，相较传统冷藏方法提升了近三倍的功能恢复率。研究团队还结合深度学习模型，对灌注过程中的生理信号进行预测，进一步优化灌注方案，显著降低了细胞凋亡率。尽管实现临床级全眼移植仍需解决免疫排斥、神经再生以及伦理审查等多重挑战，但该技术为未来人工眼球、视功能恢复以及跨学科的AI辅助医学提供了全新的技术路径。对AI从业者而言，本文展示了数据驱动的实时监测与控制在高端器官保存中的关键作用，亦为生物医学AI的创新应用提供了宝贵案例。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="http://arxiv.org/abs/2607.02387v1" target="_blank" rel="noopener noreferrer">将智能体搜索应用于地球观测数据发现</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出了一个部署为公共服务的人工智能搜索系统，专门用于地球科学领域的自然语言查询处理。该系统整合了NASA的多个数据集和工具（如Worldview、Giovanni、科学发现引擎等），利用大语言模型和知识图谱的潜在价值，实现智能化的数据集和工具推荐，解决了即使是领域专家也难以快速定位所需资源的痛点。<br><br>**与AI Agent的关联**: 该论文直接展示了Agentic AI在实际科学发现中的应用价值。作为一个典型的AI Agent系统，它通过自然语言理解、任务分解和工具选择能力，为地球观测数据发现提供了新范式，对未来科学研究中的智能助手设计具有重要参考意义。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="http://arxiv.org/abs/2607.02381v1" target="_blank" rel="noopener noreferrer">HULAT2在MER-TRANS 2026中的应用：面向西班牙语易读文本生成的多智能体简化系统</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出了一种基于LangGraph的多智能体工作流，结合Gemini 2.5 Flash和RigoChat-7B-v2模型，采用并行生成策略、内部质量信号、事件-条件-动作路由机制、受控编辑和可追溯决策等技术，实现了全自动化的西班牙语易读文本生成，在多语言辅助阅读领域展示了先进的多智能体协作范式。<br><br>**与AI Agent的关联**: 该论文是典型的多智能体系统研究，展示了多个AI Agent如何通过工作流编排实现复杂任务。每个Agent承担不同角色（生成、质量控制、路由决策），体现了多智能体协作、分工与协调的核心机制，对多Agent系统的工程化应用具有重要参考价值。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/Zackriya-Solutions/meetily" target="_blank" rel="noopener noreferrer">Zackriya-Solutions/meetily</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 15.3K<br><br>还在为开会记笔记头疼吗？用飞书、腾讯会议自带的转录功能，又怕录音被传上云端泄露出去？今天给你安利一个神器——**Meetily**，一个开源、隐私优先的 AI 会议助手。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-07-05 08:48:38</p>
+        </footer>
+    </div>
+</body>
+
+</html>
