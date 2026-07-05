@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-07-06">
+    <title>AIGC Daily #462 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-07-06 星期一</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/07/04/midjourney-wants-hollywood-studios-to-reveal-the-details-of-their-ai-usage/" target="_blank" rel="noopener noreferrer">Midjourney希望好莱坞工作室公开其AI使用的细节 - TechCrunch</a>
+                    </div>
+                </div>
+                <p class="article-summary">AI图像生成公司Midjourney在美国版权诉讼中反诉好莱坞三家工作室，要求对方公开其AI使用细节，以反击版权侵权指控。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://letsdatascience.com/news/jesse-eisenberg-defends-staying-in-us-critiques-ai-6800f339" target="_blank" rel="noopener noreferrer">杰西·艾森伯格捍卫留在美国的决定，批评人工智能 - Let&#39;s Data Science</a>
+                    </div>
+                </div>
+                <p class="article-summary">Google DeepMind与A24达成合作，演员Jesse Eisenberg在Variety采访中表示其新片《The Debut》将成为评判该AI合作的重要作品。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://bioengineer.org/ai-tool-enhances-accuracy-in-predicting-patient-response-to-cancer-immunotherapy-drugs/" target="_blank" rel="noopener noreferrer">AI工具提高癌症免疫治疗药物患者反应预测准确性</a>
+                    </div>
+                </div>
+                <p class="article-summary">科研团队推出AI模型COMPASS，可显著提升癌症免疫治疗患者应答预测准确性，为个性化医疗提供新工具。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/ai-artificial-intelligence/961505/wealthy-ai-schools-alpha-forge-prep" target="_blank" rel="noopener noreferrer">美国部分富有人士正让AI来教育他们的孩子</a>
+                    </div>
+                </div>
+                <p class="article-summary">The Verge 最近报道了一个有意思的现象：美国最富有的那批家长，正在把孩子的教育交给 AI。文章聚焦的是 Alpha School（Alpha Forge Prep）这类学校——学费一年 4 万美元起步，孩子每天只上两小时传统课程，剩下的时间几乎全在与 AI 对话、学习、完成任务。<br><br>这些家长不是科技极客，而是律师、医生、金融大佬。他们的逻辑很直接：AI 辅导能给孩子一对一的关注，比大多数人类老师更耐心、更个性化，而且永远不会情绪崩溃。至于&quot;AI 会不会出错&quot;、&quot;孩子会不会失去社交&quot;这些大多数美国普通人的担忧，在他们眼里不重要——因为他们请得起人类私教来补足这些。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3883374792962307?f=rss" target="_blank" rel="noopener noreferrer">电子布价格连涨，产业链上游高端织机紧缺</a>
+                    </div>
+                </div>
+                <p class="article-summary">东吴证券最近的一份研报把一个很多人忽略的细节摆到了台面上：AI 的爆发，正在沿着产业链往上游一层层传导。铜箔、电子布、树脂这三种 PCB 基础材料，因为 AI 服务器、算力卡的需求，价格已经开始新一轮上涨。<br><br>具体数据挺直观——电子纱月初均价涨了 2500 元/吨，电子布涨了 1.2 元/米左右，G75 和 7628 这些主流型号都供不应求。问题出在织机端：高端织机产能有限，扩产周期又长，短期内供需错配很难缓解。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.technologyreview.com/2026/07/03/1140148/a-device-that-revives-eyeballs-from-dead-donors-could-make-eye-transplants-possible/" target="_blank" rel="noopener noreferrer">一种可使已故捐献者眼球复活的设备或能使眼球移植成为可能</a>
+                    </div>
+                </div>
+                <p class="article-summary">近年来，完整人类眼球的移植一直受限于离体后组织快速退化以及手术技术瓶颈。研究团队研发出一种灌注式保存装置，通过在体外模拟血液流动、调控温度与氧合，并结合人工智能实时监测细胞代谢状态，可在死亡供体眼球取出后数小时内恢复视网膜与视神经的活性。实验结果显示，经过该装置处理的猪眼在离体后仍能保持电生理响应，部分细胞甚至出现再分裂迹象。该技术突破了传统冷链保存的局限，为后续显微外科吻合及视神经再生提供了生理学基础。文章指出，AI算法在预测最佳灌注参数、识别早期退化标志方面发挥了关键作用，使得装置的调控精度提升至亚毫摩尔水平。作者还展望，若能在灵长类模型中验证安全性和功能恢复，未来或可将完整眼球移植纳入临床救治顽固性失明的选项之中。阅读价值在于：1）展示了AI与生物医学交叉的创新路径；2）提供了器官保存与神经再生融合的技术框架；3）为眼科及再生医学领域的研究者提供了新思路与实验依据。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/fchollet/status/2073873983729287317" target="_blank" rel="noopener noreferrer">François Chollet</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;In the future, there will be &quot;Latent Space Archaeologists&quot; who investigate the model weights of the 21st century to reconstruct a long extinct culture.&quot;<br><br>**解读**: Chollet 抛了个浪漫预言：未来会出现&quot;潜空间考古学家&quot;，专门研究21世纪模型权重里的人类文化化石。他想说的是，现在训练的AI模型里沉淀了大量文化细节，等新版本一覆盖，旧权重就成了考古对象。一种挺有意思的技术史视角。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/bindureddy/status/2073915829406806526" target="_blank" rel="noopener noreferrer">Bindu Reddy</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Meta’s new model - Watermelon - is apparently a GPT 5.5 class model<br><br>The only problem is that 5.5 will become a legacy model next week when 5.6 launches</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/garrytan/status/2073878389543546908" target="_blank" rel="noopener noreferrer">Garry Tan</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;If people have good ideas for how to serve one another, GDP-per-person everywhere in the world is about to 10x&quot;<br><br>**解读**: Garry Tan 乐观预言：只要人们有好点子互相服务，全球人均GDP能涨10倍。他作为 YC 总裁，背后逻辑是 AI 把创业门槛拉低，个人能做的事指数级增加，&quot;全民创业&quot;想象正在落地。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/asgeirtj/system_prompts_leaks" target="_blank" rel="noopener noreferrer">asgeirtj/system_prompts_leaks</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 49.9K<br><br>如果你好奇 ChatGPT、Claude、Gemini 这些 AI 背后到底被设定了什么&quot;人设&quot;和指令规则，这个仓库就是为你准备的。`asgeirtj/system_prompts_leaks` 汇集了 Anthropic、OpenAI、Google、xAI 等厂商主流模型（包括 Claude Fable 5、GPT-5.5、Gemini 3.5 等）的 system prompt 原文，涵盖网页版、桌面 App 以及 IDE 插件等场景，持续更新，最近一次新增就是 Claude Sonnet 5 的提示词。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-07-06 07:55:29</p>
+        </footer>
+    </div>
+</body>
+
+</html>
