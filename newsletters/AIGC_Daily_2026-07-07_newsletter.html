@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-07-07">
+    <title>AIGC Daily #464 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-07-07 星期二</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.leiphone.com/category/industrynews/UKOyRcsQg5b36KyE.html" target="_blank" rel="noopener noreferrer">大道至简，阿里与清华论文揭示扩散大模型推理能力，入选 ICML 杰出论文</a>
+                    </div>
+                </div>
+                <p class="article-summary">阿里巴巴与清华大学合作的扩散语言模型论文入选ICML杰出论文，该荣誉仅授予年度最具影响力研究的2-3篇论文。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.leiphone.com/category/ai/YTCPIZ2kIbjtt6CX.html" target="_blank" rel="noopener noreferrer">登顶多项全球 SOTA！大晓全开源首个「统一具身基模型」ACE-Brain-0.5</a>
+                    </div>
+                </div>
+                <p class="article-summary">大晓机器人正式开源新一代统一具身基模型ACE-Brain-0.5，声称在多项全球基准测试中登顶SOTA。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.axios.com/pro/all-deals/2026/07/06/pro-rata-premium-first-look" target="_blank" rel="noopener noreferrer">Keyfactor融资超10亿美元、Hub的IPO计划，以及黑石集团收购Dresser——Axios</a>
+                    </div>
+                </div>
+                <p class="article-summary">中国3D基础模型开发商Tripo AI完成1500万美元A3轮融资，由吉利资本、4399网络等机构投资。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3884777410031879?f=rss" target="_blank" rel="noopener noreferrer">SpaceX公布AI数据中心计划，同步推进星链卫星脱轨</a>
+                    </div>
+                </div>
+                <p class="article-summary">SpaceX周一扔了个重磅消息——要建AI数据中心，选址在美国中西部。与常规数据中心不同的是，它打算直接用自家星链卫星网络提供高速低延迟的数据回传，相当于把太空和地面算力绑在了一条链上。同步推进的还有约100颗第一代星链卫星脱轨操作，给新一代腾频谱和轨道位置。<br><br>这事表面看是基建新闻，但配合xAI的布局读就很有意思了。Musk正在搭建一条从卫星、能源到AI算力的垂直链条——SpaceX负责通信和算力承载，xAI负责模型和数据，Tesla负责终端和真实世界数据采集。太空+AI的组合听起来科幻，但这可能就是未来几年AI基础设施真正洗牌的战场。卫星互联网公司跨界做AI基建，AWS、Azure、Google Cloud这些老牌云厂商可能真得想想怎么应对这个新变量了。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3884784672763906?f=rss" target="_blank" rel="noopener noreferrer">防范系统性风险与理财越界，英监管机构评估纳管AI金融服务</a>
+                    </div>
+                </div>
+                <p class="article-summary">英国金融市场行为监管局（FCA）周一发布了一份评估报告，核心信号很明确：ChatGPT、Claude、Gemini这些大模型已经深度介入消费者的财务决策，但目前几乎处于监管真空。FCA执行董事Sheldon Mills专门点出了一个新风险——&quot;集中化风险&quot;，消费者和企业都在依赖少数几家AI供应商，万一出点问题就是系统性事件。<br><br>这份报告目前还没落地为正式法规，但它是英国监管层第一次把&quot;AI影响个人理财决策&quot;摆到台面上讨论。联想到FCA此前已经在AI交易、AI信贷评估领域有所动作，这次算是把消费者的&quot;日常理财&quot;也纳入了视野。AI帮人管钱、给投资建议的时代，监管的手不会只是举着——欧盟AI法案生效后，英国的动作只会越来越快，ChatGPT给理财建议这种用法，可能很快就要被划红线了。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.technologyreview.com/2026/07/06/1140176/your-familys-300-stake-in-openai/" target="_blank" rel="noopener noreferrer">你们家对OpenAI的300美元投资</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文围绕OpenAI提出的‘全民股份’计划展开深度解析。该计划承诺每个美国家庭可获约300美元的公司股份，以兑现CEO Sam Altman‘AI财富全民共享’的愿景。通过剖析OpenAI最新的营利子公司结构、与微软等投资者的利润上限协议以及监管文件，作者揭示该股份并非真正所有权，而是一种象征性收益分配机制。文中引用公开估值数据：截至2024年，OpenAI估值已超1500亿美元，按每户300美元折算仅占0.002%以下，远低于传统风投门槛，凸显该方案的象征意义远大于实质财务回报。同时，文章探讨该计划的政治动因——在AI对就业冲击加剧的背景下，政府借助‘小额股份’提升公众对AI的认同感，并为未来可能的‘AI红利’或UBI政策布局。对AI从业者而言，本文提供了了解AI企业治理、政府‑产业关系以及收益共享新模式的独特视角，是把握AI商业化与社会责任交叉点的必读之作。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/fchollet/status/2074242671103889799" target="_blank" rel="noopener noreferrer">François Chollet</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Reporting benchmark results as a scalar number, e.g. &quot;75% on XYZ&quot; is completely meaningless at this point. You should always report efficiency scores, e.g. &quot;75% at a cost per task of $10.&quot;&quot;<br><br>**解读**: François Chollet（ARC-AGI 基准的创始人）吐槽说，现在报一个「模型在 XYZ 上拿了 75%」基本没意义，必须同时报达成这个分数花了多少成本。作为一直主张&quot;真正的通用智能还没到&quot;的人，他这番话是在提醒行业：刷榜数字掩盖了效率差异，而企业落地看的恰恰是单任务成本。这一观点可能会推动新的&quot;每美元效果&quot;评测标准。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/bindureddy/status/2074273579404067226" target="_blank" rel="noopener noreferrer">Bindu Reddy</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;July Timetable for models<br><br>GPT 5.6 - tomorrow or thursday
+Grok 4.5 - in beta 
+Gemini 3.5 - available to testers, release next week?
+Deepseek v4 - GA, this month
+Opus 5 -  end of month</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/ClementDelangue/status/2074149078691090595" target="_blank" rel="noopener noreferrer">clem 🤗</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;From a few hundred thousand to 100M AI builders in 2028? AI will create tons of jobs if we make it distributed instead of monopolized by a few companies!&quot;<br><br>**解读**: Hugging Face CEO clem 抛出预测：AI 开发者要从现在的几十万增长到 2028 年的 1 亿，关键是&quot;分布式&quot;而不是被几家巨头垄断。这话与其说是预测，不如说是 Hugging Face 的战略宣言——平台型公司吃的是开源生态红利，所以他自然希望 AI 创造的岗位越多越好、越分散越好，避免赢家通吃。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/steipete/CodexBar" target="_blank" rel="noopener noreferrer">steipete/CodexBar</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 16.7K<br><br>如果你同时在用 Codex、Claude Code、Cursor 这类 AI 编程工具,一定被这个问题烦过:想看额度剩多少、什么时候重置,每次都得切浏览器登录对应后台。CodexBar 就是来解决这个痛点的。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-07-07 07:56:13</p>
+        </footer>
+    </div>
+</body>
+
+</html>
