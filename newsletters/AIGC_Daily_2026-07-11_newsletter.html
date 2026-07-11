@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-07-11">
+    <title>AIGC Daily #471 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-07-11 星期六</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.leiphone.com/category/industrynews/Q8V2eFGCX42CZP81.html" target="_blank" rel="noopener noreferrer">日均提问次数暴增 20 倍！百度搭子宣布重磅升级，企业版同步发布</a>
+                    </div>
+                </div>
+                <p class="article-summary">百度搭子日均提问量暴增20倍，个人版重磅升级多端记忆与PPT生成能力，同时发布首个面向企业的智能体解决方案。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/07/09/openai-launches-its-new-family-of-models-with-gpt-5-6/" target="_blank" rel="noopener noreferrer">OpenAI 推出全新模型系列 GPT-5.6 - TechCrunch</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI发布全新GPT-5.6系列模型，CEO Sam Altman称新模型性能实现数量级提升，进一步巩固其在生成式AI领域的领先地位。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/07/09/popular-open-source-ai-developer-tool-ollama-raises-65m-grows-to-nearly-9m-users/" target="_blank" rel="noopener noreferrer">热门开源AI开发者工具Ollama融资6500万美元，用户量增长至近900万 - TechCrunch</a>
+                    </div>
+                </div>
+                <p class="article-summary">开源AI开发工具Ollama完成6500万美元B轮融资，用户规模已接近900万，GitHub星标数达17.6万颗，成为AI开发者生态的关键基础设施。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3889804779731457?f=rss" target="_blank" rel="noopener noreferrer">SK海力士本周五登陆纳斯达克，募资265亿美元跻身大型IPO</a>
+                    </div>
+                </div>
+                <p class="article-summary">韩国存储芯片巨头SK海力士本周五将登陆纳斯达克，计划通过发行ADR募资约265亿美元（约40万亿韩元），发行价定为149美元/ADR，共计1.779亿份，有望跻身年内规模最大的科技股IPO之一。<br><br>作为全球第二大存储芯片厂商，SK海力士正处于AI浪潮的最核心位置——HBM高带宽内存正是当下AI GPU最紧缺的核心组件，英伟达Blackwell、AMD MI300全都依赖它来堆算力。这次赴美上市，相当于直接打通了全球投资者布局AI基础设施赛道的资金通道。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3889784854870537?f=rss" target="_blank" rel="noopener noreferrer">消息称AMD将于本月发布Venice CPU</a>
+                    </div>
+                </div>
+                <p class="article-summary">AMD宣布将于7月22-23日的Advancing AI活动上发布基于Zen 6架构的EPYC Venice CPU。和上一代Zen 5相比，新CPU的性能和能效提升超过70%——这个数字相当炸裂。<br><br>Venice是AMD面向AI数据中心的主力产品线，将直接对标英特尔Xeon和英伟达Grace系列。过去两年AMD在AI芯片领域风头被GPU抢走了不少，但别忘了，CPU才是数据中心的&quot;基础设施底座&quot;——所有GPU服务器都离不开高性能CPU做调度和数据预处理。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/fchollet/status/2075646052951376196" target="_blank" rel="noopener noreferrer">François Chollet</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;It&#39;s mind-blowing how fast agentic coding has progressed in the past 6 month. It&#39;s a completely different world now.&quot;<br><br>**解读**: Chollet 感慨这半年 agentic coding 的进步速度惊人，世界已经完全不同了。作为 ARC-AGI 基准的设计者、曾对 LLM 能力边界持审慎态度的 Chollet 都这么说，说明编程 Agent 的实用化拐点可能真的到了。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/hardmaru/status/2075585438837051680" target="_blank" rel="noopener noreferrer">hardmaru</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;One of my first journeys in neural networks started over a decade ago with implementing CPPN-NEAT! Back then, I built a clone of ‘Picbreeder’ not only to study the mechanics of neural nets, but to explore the human creativity process itself, and generate some cool abstract art.<br><br>Neurogram: https://t.co/ytwBChaHu7
+Gallery: https://t.co/aAaUGomkv2</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/bindureddy/status/2075507869190124005" target="_blank" rel="noopener noreferrer">Bindu Reddy</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;All the best models per use-case changed in the last few weeks....<br><br>master agent - fable
+sub-agents - grok 4.5, 5.6. sol
+chat -  5.6 terra
+real-time - grok 4.5
+ocr- flash 3.5
+design - opus 4.8
+images - gpt image-2
+video - seedance 2.5
+open-source - glm 5.2</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="http://arxiv.org/abs/2607.08681v1" target="_blank" rel="noopener noreferrer">SolarChain-Eval：去中心化能源市场中可信经济代理的物理约束基准</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出了SolarChain-Eval，一个物理约束的基准测试框架，用于评估去中心化能源市场中的可信经济代理。该基准测试不仅评估任务性能，还评估AI代理的可信度，包括对物理约束的遵守、防止利用无效物理数据、避免创造人为流动性以及治理决策的稳定性等问题。这为在网络物理环境中部署的AI代理系统提供了全面的可靠性评估方法。<br><br>**与AI Agent的关联**: 该论文直接针对AI Agent在真实世界物理环境中的应用挑战，聚焦于经济领域自主代理的可信度评估问题。它为构建安全可靠的AI Agent系统提供了重要的评估框架和基准，对AI Agent在关键基础设施中的应用具有重要的实践指导意义。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/wonderwhy-er/DesktopCommanderMCP" target="_blank" rel="noopener noreferrer">wonderwhy-er/DesktopCommanderMCP</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 7.3K<br><br>如果你平时用 Claude 写代码，一定遇到过这种尴尬：AI 给的建议很棒，但你得手动复制、打开终端、运行命令、再把结果贴回去——来回折腾特别影响思路。DesktopCommanderMCP 就是为了解决这个痛点而来的。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-07-11 08:20:38</p>
+        </footer>
+    </div>
+</body>
+
+</html>
