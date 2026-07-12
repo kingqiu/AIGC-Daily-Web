@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-07-13">
+    <title>AIGC Daily #475 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-07-13 星期一</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3893239431395849?f=rss" target="_blank" rel="noopener noreferrer">多维数据勾勒经济运行“稳新活融”新图景</a>
+                    </div>
+                </div>
+                <p class="article-summary">多维数据勾勒经济运行“稳新活融”新图景</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3892797787208449?f=rss" target="_blank" rel="noopener noreferrer">今年1-5月，我国云计算设备、半导体设备出口金额累计同比分别大增114.4%、91.5%</a>
+                    </div>
+                </div>
+                <p class="article-summary">今年1-5月，我国云计算设备、半导体设备出口金额累计同比分别大增114.4%、91.5%</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3892795603008004?f=rss" target="_blank" rel="noopener noreferrer">科技行业裁员浪潮加剧，多数美国劳动者支持设立人工智能财富基金</a>
+                    </div>
+                </div>
+                <p class="article-summary">科技行业裁员浪潮加剧，多数美国劳动者支持设立人工智能财富基金</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3892793713670919?f=rss" target="_blank" rel="noopener noreferrer">Meta面临1.4万亿美元罚款，被指控侵害未成年人权益</a>
+                    </div>
+                </div>
+                <p class="article-summary">Meta这周摊上了一桩大麻烦。美国4个州联合指控Meta利用成瘾算法诱导未成年人，并刻意隐瞒平台对青少年心理健康的负面影响，索赔金额直接拉到了1.4万亿美元——这个数字已经超过Meta目前的市值。雪上加霜的是，全美已有29个州提起了类似诉讼，欧盟那边也没闲着，依据《数字服务法》发布初步报告，要求Meta修改&quot;自动播放&quot;&quot;无限滚动&quot;这些成瘾性设计，否则就要按全球年收入的6%开罚。Meta目前全盘否认并表态将继续抗辩。说到底，这事的关键不在于赔多少钱，而在于&quot;把人黏在屏幕上&quot;这套增长打法正在被全球监管联手围剿。算法推荐曾经是所有社交平台的护城河，如今看来更可能是一座活火山——下一个被拉清单的，未必只有Meta。<br><br>***</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3892794471643912?f=rss" target="_blank" rel="noopener noreferrer">中信建投：计算机板块半年报预告陆续披露，AI算力硬件持续高景气</a>
+                    </div>
+                </div>
+                <p class="article-summary">中信建投这周发了份研报，把当下AI产业链的景气度拆得很清楚：一边是A股的AI服务器、智算硬件企业在半年报里业绩弹性突出，软件和AI应用层也开始出现真实的收入落地；另一边是OpenAI、xAI、Meta这些海外玩家在Agent、Coding、多模态、办公入口这些高频场景持续推进，模型竞争已经从&quot;能力验证&quot;转向&quot;能不能用起来&quot;。翻译成人话就是——AI行业现在是真的在算账了：上游算力厂商算每张卡的出货，下游应用算每个token的推理成本和每个用户的ARPU。算力消耗、基础设施投入和AI应用商业化正在形成共振，这份报告算是给近期看多算力板块又补了一份弹药，但也提醒了一句：硬件景气之后，真正的考验是应用层能不能把故事兑现成现金流。<br><br>***</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.lennysnewsletter.com/p/how-tech-workers-actually-feel-about" target="_blank" rel="noopener noreferrer">2026年科技工作者对AI的真实感受 | 年度AI情绪调查（诺姆·塞加尔）</a>
+                    </div>
+                </div>
+                <p class="article-summary">这篇年度调查直面了一个被技术乐观叙事掩盖的问题：2026年的一线科技工作者，到底怎么看待 AI？文章揭示了一个&quot;大分化&quot;（great tech bifurcation）的现实——一半人在 AI 浪潮中如鱼得水，另一半却在挣扎求存，而 burnout（职业倦怠）甚至创下了历史新高。<br><br>最有价值的部分在于，Noam Segal 没有停留在情绪层面，而是试图拆解这种分化的结构性原因：哪些岗位、哪些技能栈、哪些工作场景真正从 AI 中获益？哪些人反而因为 AI 加速了竞争而更加疲惫？这种&quot;分化&quot;的视角，比单纯唱多或唱衰 AI 都更有信息量。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/fchollet/status/2076310779482317104" target="_blank" rel="noopener noreferrer">François Chollet</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;The weak AI code gen we had until late last year was most useful to low-skill programmers -- it was raising the floor. It was essentially useless to high-skill programmers -- you could move faster and ship better code without.<br><br>This has been completely flipped: the strong AI code gen we have now is *most* useful to high-skill programmers, while low-skill programmers are vastly underutilizing it or sometimes drowning in it. It went from a crutch to a power tool.&quot;</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/bindureddy/status/2076359473942429817" target="_blank" rel="noopener noreferrer">Bindu Reddy</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Anthropic keeps increasing their effective API prices....<br><br>Sonnet 5 literally costs 2x that of Sonnet 4.6</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/levie/status/2076338364635287637" target="_blank" rel="noopener noreferrer">Aaron Levie</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;One of the key architectural questions of the 21st century in business will be how you maximize your corporate IP in the form of decisions, insights, workflow patterns, and best practices in a world where so much intelligence is packed into AI models.<br><br>One might think these questions could just get bitter lessoned out of existence, but in reality they become even more germane as intelligence becomes more powerful. In a world where any firm also has access to frontier intelligence, understa...</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="http://arxiv.org/abs/2607.08691v1" target="_blank" rel="noopener noreferrer">ProjAgent：面向仓库级代码生成的程序相似性检索</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出了ProjAgent，一个仓库级代码生成系统，引入程序相似性（procedural similarity）概念，用于跨文件依赖和项目特定约定的复杂代码生成任务。该方法不仅依赖词汇、结构或语义相似性，还能识别实现相似程序逻辑但标识符或应用领域不同的函数，解决了传统检索方法忽视跨项目程序逻辑复用的问题。<br><br>**与AI Agent的关联**: 该论文为AI Agent提供了代码理解和生成的能力框架，对于需要执行复杂软件工程任务的自主智能体具有重要价值。其程序相似性检索方法可增强Agent在工具使用和代码生成场景中的准确性和实用性。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/Dicklesworthstone/destructive_command_guard" target="_blank" rel="noopener noreferrer">Dicklesworthstone/destructive\_command\_guard</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 2.8K<br><br>还在担心你用的 AI 编程助手&quot;手滑&quot;删库跑路吗？dcg（Destructive Command Guard）就是为这个问题量身打造的护身符。它专门拦截 AI agent 在执行 `git push --force`、`rm -rf`、删除主分支这类危险命令时的手抖操作，在命令真正落地之前先帮你把一道关，避免几小时的心血被一句&quot;看起来合理&quot;的指令化为乌有。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-07-13 07:34:07</p>
+        </footer>
+    </div>
+</body>
+
+</html>
