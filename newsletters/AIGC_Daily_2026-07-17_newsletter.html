@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-07-17">
+    <title>AIGC Daily #485 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-07-17 星期五</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3898936840701571?f=rss" target="_blank" rel="noopener noreferrer">谷歌据悉推迟发布Gemini 3.5 Pro，因持续提升模型编程能力</a>
+                    </div>
+                </div>
+                <p class="article-summary">谷歌旗舰AI模型Gemini 3.5 Pro因强化编程能力而延期数月发布，引发内部对竞争优势流失的担忧。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://aibusiness.com/agentic-ai/foundation-standardize-ai-payments" target="_blank" rel="noopener noreferrer">成立基金会以标准化AI支付</a>
+                    </div>
+                </div>
+                <p class="article-summary">40家机构联合成立AI支付标准基金会，Visa、Mastercard、Google、Microsoft等支持x402支付协议以规范AI交易。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.leiphone.com/category/industrynews/NmzJRzjezIZgViCu.html" target="_blank" rel="noopener noreferrer">权威报告：阿里AI编程市场份额第一，超第二至第五名总和</a>
+                    </div>
+                </div>
+                <p class="article-summary">IDC报告显示阿里以47.6%份额位居2025年中国AI编程市场第一，超第二至第五名总和。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3898921880569737?f=rss" target="_blank" rel="noopener noreferrer">上市脚步临近，Anthropic据悉计划几周内召开IPO投资者会议</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic正在加速推进IPO进程，最早可能今年10月启动。据悉公司已经安排与投资者的会面，今年5月完成的融资让估值达到9650亿美元，首次超越OpenAI成为全球估值最高的未上市公司之一。<br><br>这个数字背后藏着的信号比表面更劲爆——Anthropic在企业市场（尤其是编程领域）的快速崛起，让他们有了和OpenAI正面叫板的资本。一旦成功上市，融资金额很可能再创纪录，整个AI赛道的估值逻辑也会被重新洗牌。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.technologyreview.com/2026/07/16/1140600/the-download-openai-unveils-gpt-red-heat-pumps-rise-us/" target="_blank" rel="noopener noreferrer">**下载：OpenAI发布GPT-Red，热泵在美国兴起**</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI最近公布了GPT-Red，一个专门&quot;攻击&quot;AI模型的超级黑客模型。和传统的红队测试不同，GPT-Red不是靠人类专家手挖漏洞，而是用AI来对付AI——模拟各种刁钻、恶意、甚至从未见过的攻击方式。<br><br>更值得关注的是，OpenAI计划把这个工具开放给企业用户。当你的公司准备上线一个AI客服系统时，可以先用GPT-Red来&quot;拷打&quot;一下选用的模型：它会不会被诱导泄露敏感信息？会不会在恶意输入下崩溃或胡说八道？</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.latent.space/p/ainews-thinkys-inkling-975b-a41b" target="_blank" rel="noopener noreferrer">Thinky的Inkling：975B-A41B多模态模型，成为新的最佳美国Apache 2.0开源模型（含Inkling-Small，276B-A12B）</a>
+                    </div>
+                </div>
+                <p class="article-summary">Thinky 终于交出了第一份完整答卷——975B 总参、41B 激活的混合专家（MoE）架构多模态模型 Inkling，还附带一个 276B-A12B 的 Inkling-Small 版本，且全部采用 Apache 2.0 开源协议。在动辄&#39;闭源为王&#39;的当下，这样一个真正全尺寸的开源多模态底座对 Agent 开发者意义重大：你终于有了一个既能看图又能思考、同时又不被许可协议绑住手脚的选择。文章不仅介绍了模型规格，还做了相当扎实的能力评测——它在多模态理解、长上下文推理、代码生成等任务上的真实表现如何？与同级别的 Llama、Qwen 以及闭源旗舰相比又处于什么位置？对于正在搭建 Agent 技术栈、纠结要不要继续把身家性命压在 GPT/Claude API 上的团队，这些信息比任何模型发布通稿都更有参考价值。如果你最近在琢磨&#39;多模态 Agent 到底什么时候能真正落地&#39;，这篇文章会给你一个清晰的现状坐标。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.artificialintelligencemadesimple.com/p/the-ai-industry-is-going-through" target="_blank" rel="noopener noreferrer">AI行业正在经历一场大规模调整</a>
+                    </div>
+                </div>
+                <p class="article-summary">这是一份写于 2026 年 6 月的 AI 行业月度复盘，但它不是流水账。作者把过去一个月发生的标志性事件——Fable 5 发布、SpaceX IPO、还有那些你可能没注意到的暗流——串成了一条清晰的逻辑线，并抛出一个让人冷静的判断：AI 行业正在经历一场&#39;大型修正&#39;。文章最有价值的部分不是预测，而是对几个核心矛盾的剖析：当模型能力逼近瓶颈时，估值靠什么支撑？当开源追平闭源时，商业护城河又在哪里？当 Agent 概念被热炒了两年，真正能跑通商业闭环的到底有几个？这些问题的答案没有定论，但作者的视角足够冷静、足够&#39;反共识&#39;，不会给你画饼。如果你最近对 AI 行业有点审美疲劳，觉得到处都是 PR 稿和宏大叙事，这篇文章能帮你把焦距重新调回地面，看清哪些是真正的趋势、哪些只是噪音。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2607.13558" target="_blank" rel="noopener noreferrer">多智能体协作推理：基于工具增强证据的城市区域画像</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出多智能体协作推理框架用于城市区域画像，融合卫星图像、POI、文本描述等多模态城市数据。框架通过多智能体分工协作，结合工具调用和证据聚合，实现比传统单智能体方法更全面的区域特征推理。该工作创新性地将多智能体协作机制引入城市计算领域，解决了异构数据融合和复杂推理的难题。<br><br>**与AI Agent的关联**: 直接涉及多智能体系统设计，展示了多个AI Agent如何通过工具使用和证据共享进行协作推理。对理解多智能体协作机制、任务分解与整合具有重要参考价值，对构建城市计算领域的Agent系统有实际指导意义。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2607.13396" target="_blank" rel="noopener noreferrer">AI Agent的集合转换行为测试：隐藏可靠性变化下的工具选择</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 从认知心理学借鉴集合转换概念，设计基准测试评估LLM Agent在工具可靠性隐藏变化时的适应能力。框架构建具有冗余工具库的任务场景，通过隐藏边界切换可靠工具组，系统测试Agent的工具选择灵活性和适应性。揭示了当前Agent系统在动态环境中可能出现的工具依赖僵化问题。<br><br>**与AI Agent的关联**: 针对AI Agent的核心能力——工具选择与使用——进行深入的行为测试。识别出Agent在工具可靠性变化时的适应缺陷，为提升Agent的鲁棒性和自主决策能力提供重要评估依据。对Agent实际部署和可靠性保障具有直接价值。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/PostHog/posthog" target="_blank" rel="noopener noreferrer">PostHog/posthog</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 35.8K<br><br>你有没有过这种经历：想看产品里用户行为，得接 Mixpanel；想录屏回放，得接 Hotjar；想上线新功能做灰度，得接 LaunchDarkly；线上报错，还得接 Sentry……一圈下来，钱包瘪了，数据还散落在七八个后台里，根本拼不到一起。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-07-17 07:58:27</p>
+        </footer>
+    </div>
+</body>
+
+</html>
