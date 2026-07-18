@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-07-18">
+    <title>AIGC Daily #487 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-07-18 星期六</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/video/how-apples-big-lawsuit-could-disrupt-openais-ipo-plans/" target="_blank" rel="noopener noreferrer">苹果的重大诉讼或扰乱OpenAI的IPO计划</a>
+                    </div>
+                </div>
+                <p class="article-summary">Apple于上周五对OpenAI提起商业秘密诉讼，指控其不当获取苹果技术并雇佣大量前苹果员工，可能扰乱OpenAI的IPO计划。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.leiphone.com/category/industrynews/owcf1OSxXWdhLsHd.html" target="_blank" rel="noopener noreferrer">阶跃与支付宝达成AI Agent系统级合作，跨端协同迈向“能办事”</a>
+                    </div>
+                </div>
+                <p class="article-summary">支付宝与阶跃达成AI Agent系统级合作，用户可通过自然语言调用AI版支付宝连接真实服务，实现跨端智能办事。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.leiphone.com/category/industrynews/JDlu3Gqj7atcWniy.html" target="_blank" rel="noopener noreferrer">千问AI眼镜将升级为智能体眼镜：能灵活调用Skill和Agent，能全天候感知</a>
+                    </div>
+                </div>
+                <p class="article-summary">千问宣布将AI眼镜升级为智能体眼镜，支持调用第三方Skill和Agent，并推出全双工语音、眼动追踪等新技术。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.therundown.ai/p/moonshot-kimi-k3-closes-the-frontier-gap" target="_blank" rel="noopener noreferrer">Moonshot的Kimi K3缩小了前沿差距</a>
+                    </div>
+                </div>
+                <p class="article-summary">月之暗面（Moonshot AI）正式发布 Kimi K3，定位是&quot;进一步收窄与前沿模型的差距&quot;。从 The Rundown AI 和 MIT Technology Review 今天的报道来看，K3 的核心变化不是参数，而是它把自己定位成端到端的智能体——能拆解任务、调度工具、直接出活儿的那种，而不是只会聊天的&quot;问答机&quot;。<br><br>MIT Technology Review 直接把这称为&quot;中国最新的 AI 跃进&quot;，重点提到了 K3 在推理和长上下文处理上的进步。对月之暗面而言，K3 是从早期&quot;长文本之王&quot;转向&quot;全模态智能体&quot;的关键一步。如果这一步真的站住了，意味着中国阵营不再是单纯追赶 Claude 和 GPT，而是开始尝试在某些 Agent 场景里正面掰手腕。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blogs.nvidia.com/blog/nvidia-vera-rubin-post-training-intelligence-per-dollar/" target="_blank" rel="noopener noreferrer">NVIDIA Vera Rubin 以最低成本实现最高智能——后训练工作负载的关键指标，赋能代理式 AI</a>
+                    </div>
+                </div>
+                <p class="article-summary">NVIDIA 这两天在官方博客上高调发布了 Vera Rubin 架构，这次专门瞄准&quot;后训练&quot;（post-training）场景。核心卖点不是算力又多强，而是&quot;每美元智能&quot;（intelligence per dollar）做到极致——尤其面向 Agent 时代的真实生产环境。<br><br>后训练是当前大模型迭代最关键的一步，从基础模型到能落地的产品，中间这一段往往决定了模型在真实任务里的最终表现。NVIDIA 的逻辑很清晰：Agent 时代没人关心你训了多大的模型，大家只关心每花一块钱算力能换回多少可用的智能。Vera Rubin 通过芯片、系统和算法的端到端协同设计，把后训练的单位 token 成本拉到了新低。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://huggingface.co/blog/nvidia/scale-diffusers-finetuning-nemo-automodel" target="_blank" rel="noopener noreferrer">使用 NVIDIA NeMo Automodel 和 🤗 Diffusers 大规模微调视频和图像模型</a>
+                    </div>
+                </div>
+                <p class="article-summary">这篇文章讲的是如何在工业级规模上微调视频和图像生成模型——具体来说，是 NVIDIA NeMo Automodel 与 Hugging Face Diffusers 的深度集成。<br><br>对做生成式模型的团队来说，这篇文章值得花时间看，因为它不只是又一个&quot;如何微调&quot;的教程。NeMo Automodel 之前主要服务于 LLM 训练，这次与 Diffusers 的打通意味着同样的并行训练策略、混合精度优化、分布式检查点管理等&quot;大模型基建&quot;能力，被正式搬到了扩散模型上。作者详细拆解了在多节点 GPU 集群上跑 LoRA、full fine-tune 视频模型的实战配置，以及 NeMo 的模型并行策略如何与 Diffusers 的模块化设计对齐。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.notboring.co/p/weekly-dose-of-optimism-202" target="_blank" rel="noopener noreferrer">每周一剂乐观 #202</a>
+                    </div>
+                </div>
+                <p class="article-summary">这是 Packy McCormick 的《Weekly Dose of Optimism》第202期，本期覆盖了多个值得关注的方向：Saronic（无人水面艇）、Sunday Robots（机器人）、Kimi 与 Inkling（AI 写作/创作工具）等。<br><br>对 AI Agent 方向的读者来说，这期最有看点的可能是 Kimi + Inkling 的组合——月之暗面在长上下文和 Agent 工作流上的持续押注，以及一家名为 Lipfendra 的新公司背后的产品逻辑。Packy 的写作风格是把多个看似不相关的信号串成一条主线：他习惯从能源、国防、机器人、AI 工具的交叉点中提炼出一个&quot;正在发生的结构性变化&quot;，而不是逐条罗列新闻。这种叙事方式本身对做 Agent 产品的人有借鉴意义——你怎么把分散的能力封装成一个用户能感知的&quot;工作流&quot;，本质上和 Packy 组织信息的方式是同构的。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/fchollet/status/2078256981480182250" target="_blank" rel="noopener noreferrer">François Chollet</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;AfterLab is coming out of stealth -- a new research lab building a different approach to efficient fluid intelligence. Congrats to Clem and Matt on the funding!&quot;<br><br>**解读**: Chollet 宣布 AfterLab 正式亮相，这个新实验室专注&#39;高效流质智能&#39;。Chollet 本人是 ARC-AGI 基准的创造者，一直强调流质智能才是 AGI 的核心，现在下场押注&#39;效率&#39;路线而非暴力堆参数，算是给当前 scaling 主流打了个问号。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/hardmaru/status/2078156625479921847" target="_blank" rel="noopener noreferrer">hardmaru</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Real brains follow Dale&#39;s principle: a neuron can either excite its neighbors or suppress them, but never both. Standard deep learning ignores this and uses backpropagation.<br><br>In our new paper, Diffusing Blame, we fix this disconnect. By introducing a routing method that broadcasts error signals directly to the hidden layers, we can train networks made of dedicated positive and negative neurons to strictly obey Dale&#39;s principle, all without relying on backprop!</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/bindureddy/status/2078128415727841535" target="_blank" rel="noopener noreferrer">Bindu Reddy</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Kimi 3 is great but it’s a 3T model<br><br>Frontier models will need to be 10T models</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2607.14642" target="_blank" rel="noopener noreferrer">MCPEvol-Bench：MCP服务器动态演化下的LLM Agent性能基准测试</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出了MCPEvol-Bench基准测试，专门评估LLM Agent在MCP服务器接口和功能持续演化场景下的适应能力。研究填补了现有基准测试忽视工具动态变化导致评估不准确的空白，为Agent在真实复杂工具环境中的鲁棒性评估提供了标准化测试框架。<br><br>**与AI Agent的关联**: 直接针对AI Agent的核心能力——工具使用和适应能力进行评估。MCP作为连接LLM与外部工具的核心基础设施，该研究对理解和提升Agent在动态工具环境中的表现具有重要价值，对Agent系统的实用化部署具有指导意义。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2607.14178" target="_blank" rel="noopener noreferrer">ReasFlow：通过基于知识的多Agent系统助力以推理为中心的应用数学科学发现</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出了ReasFlow框架，一个专为数学等理论驱动领域设计的知识驱动型多Agent科学发现系统。不同于主要面向经验驱动领域的现有自动化研究系统，该工作探索了需要严格证明和领域知识综合的推理密集型科学发现任务，为多Agent协作解决复杂推理任务提供了新范式。<br><br>**与AI Agent的关联**: 体现了多Agent系统在高级推理任务中的协同潜力，展示多个Agent如何分工协作完成需要多跳推理、证明合成的复杂科学任务。该研究对推动Agent从单一任务向复杂知识密集型协作任务的演进具有重要参考价值。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/github/copilot-sdk" target="_blank" rel="noopener noreferrer">github/copilot-sdk</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 9.8K<br><br>如果你一直在琢磨怎么把 AI Agent 能力塞进自己的应用里，但又不想从零搭建 orchestration，那 GitHub Copilot SDK 值得你花十分钟看一眼。它把 Copilot CLI 背后那套经过生产验证的 agent runtime 直接打包成 SDK 暴露出来——你只需定义 agent 行为，剩下的规划、工具调用、文件编辑，Copilot 全包了。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-07-18 08:44:17</p>
+        </footer>
+    </div>
+</body>
+
+</html>
