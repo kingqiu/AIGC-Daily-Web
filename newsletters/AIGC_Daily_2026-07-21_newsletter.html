@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-07-21">
+    <title>AIGC Daily #493 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-07-21 星期二</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3904641667319683?f=rss" target="_blank" rel="noopener noreferrer">美国法官批准涉Anthropic的15亿美元版权诉讼和解协议</a>
+                    </div>
+                </div>
+                <p class="article-summary">美国法院批准Anthropic与作家团体达成的15亿美元版权诉讼和解协议，成为AI版权领域里程碑事件。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/07/20/google-is-working-on-a-new-ai-chip-designed-to-make-gemini-more-efficient/" target="_blank" rel="noopener noreferrer">谷歌正在研发一款旨在提升Gemini效率的新型AI芯片</a>
+                    </div>
+                </div>
+                <p class="article-summary">Google正在开发新型AI芯片以提升Gemini模型运行效率，目标降低功耗并提高性能。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://aibusiness.com/generative-ai/startup-launches-foundry-develop-materials-chips" target="_blank" rel="noopener noreferrer">初创公司推出代工业务 专注开发芯片材料</a>
+                    </div>
+                </div>
+                <p class="article-summary">Nvidia、Meta和Samsung联合成立芯片材料研发中心，旨在减少对稀有材料的依赖并增强供应链韧性。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/07/20/anthropics-landmark-1-5b-copyright-settlement-is-approved/" target="_blank" rel="noopener noreferrer">Anthropic公司15亿美元版权侵权和解协议获批</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic 与版权所有者达成的 15 亿美元版权和解协议获得法院最终批准，成为 AI 行业迄今最大规模的版权和解案。这起案件的核心争议在于使用受版权保护的作品训练 AI 模型是否构成侵权。虽然最终协议落地了，但需要注意的是，这一判决并没有解决&quot;用版权材料训练 AI&quot;这个更宏观的问题——其他正在审理中的案件还会继续探索这条边界。对整个行业来说，15 亿美元这个数字本身就是一个强烈的信号：版权方维权的能力和意愿都在增强，AI 公司未来的训练数据成本和法律风险只会越来越高。这可能也会倒逼更多厂商去砸钱做授权合作或者合成数据。<br><br>***</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.technologyreview.com/2026/07/20/1140655/ai-biases-hiring-humans/" target="_blank" rel="noopener noreferrer">AI在招聘时比人类更容易形成偏见</a>
+                    </div>
+                </div>
+                <p class="article-summary">当AI帮你筛选简历时，它真的比人类更公平吗？这篇MIT Technology Review的深度报道揭示了一个令人不安的发现：大语言模型不仅会从训练数据中学到人类已有的偏见，还会&quot;自发地&quot;形成全新的偏见模式。研究者发现，LLM在招聘场景中产生的偏见往往比人类招聘者更隐蔽、更系统性——因为这些偏见并非来自显式的训练标签，而是从海量文本的统计规律中自然涌现的。这意味着，即使你刻意去除了种族、性别等敏感特征，模型依然可能通过姓名、学校、甚至用词风格等隐性线索做出歧视性判断。文章最有价值的观点是：AI偏见不是&quot;修bug&quot;那么简单，它需要我们重新思考如何在模型训练和评估的全链条中引入公平性约束。如果你正在做AI Agent相关的应用开发，特别是涉及自动化决策（招聘、审批、内容审核），这篇文章会让你重新审视&quot;让模型自己判断&quot;这条路线的风险。<br><br>***</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.lennysnewsletter.com/p/how-i-ai-how-the-founder-of-morning" target="_blank" rel="noopener noreferrer">🎙️ 我的AI之路：Morning Brew创始人如何打造了一个永不枯竭的Claude内容机器</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文是Lenny Rachitsky在How I AI专栏中，对Morning Brew创始人如何利用Claude打造“永动机式”内容生产线的深度访谈。核心观点是，AI不再是单纯的写作工具，而是充当创意引擎与编辑把关的双重角色。作者通过详实的案例，展示了从选题生成、素材聚合、文案迭代到质量评估的全链路自动化流程：先用LLM进行海量 idea mining，结合业务目标进行 prompt 工程；随后通过人机协同的快速审稿，筛选出高价值的概念；最后把通过率、阅读率等指标反馈给模型，实现持续微调。关键论据包括：(1) 超过80%的选题由AI率先提出；(2) 内容产出周期从原来的数天压缩至数小时；(3) 读者互动率提升约30%。文章还提供了可复制的 prompt 模板、评估框架以及在实际运营中常见的“幻觉防御”技巧。对AI从业者而言，这是一场关于如何在大规模内容生态中平衡效率、质量与创新的实战课堂，提供了从技术选型到组织流程的系统性思路。<br><br>***</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/fchollet/status/2079259394890731598" target="_blank" rel="noopener noreferrer">François Chollet</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Always keep in mind that the rate of change matters more than the current metric value&quot;<br><br>**解读**: Chollet 这句话是给AI从业者的醒脑剂：别盯着当前榜单分数看，关键是看斜率。ARC基准的创造者说这话特别有分量——他自己就是在用一个&quot;还没被攻克&quot;的benchmark来衡量真正的推理能力。AI迭代太快，月度指标意义有限，趋势才是信号。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/bindureddy/status/2079217040880279691" target="_blank" rel="noopener noreferrer">Bindu Reddy</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Wow - woke up to some really bad news<br><br>The nightmare scenario is coming true - the US may ban open source models</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/ClementDelangue/status/2079301434357456931" target="_blank" rel="noopener noreferrer">clem 🤗</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Banning open-source AI would hurt defenders 10x more than attackers, which would make the world 10x more dangerous and this is a good example why! &lt;https://t.co/Fv1z0zvJoZ&gt;&quot;<br><br>**解读**: Hugging Face CEO clem 直接反驳&quot;开源AI危险论&quot;：禁止开源反而让防御方更难用AI保护自己。这逻辑跟网络安全领域经典命题一脉相承——好人必须用跟坏人一样快的工具。配上Bindu那条看，海外开源圈正在联手反击监管。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/1jehuang/jcode" target="_blank" rel="noopener noreferrer">1jehuang/jcode</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 9.6K<br><br>如果你已经用腻了那些&quot;聊完就忘&quot;的 AI 编程助手，jcode 可能会让你眼前一亮。它是一个用 Rust 写的高性能 coding agent harness，主打多会话工作流和长期记忆——上午开的 session 下午接着聊，agent 不会一脸茫然地问&quot;我们在做什么&quot;。痛点上，它精准解决了传统 AI 编程工具上下文易失、定制能力弱、吃资源太狠这几个老大难。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-07-21 08:37:29</p>
+        </footer>
+    </div>
+</body>
+
+</html>
