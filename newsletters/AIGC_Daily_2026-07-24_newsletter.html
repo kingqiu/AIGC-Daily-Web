@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-07-24">
+    <title>AIGC Daily #499 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-07-24 星期五</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/ai-artificial-intelligence/970115/openai-chatgpt-health-launch-claims" target="_blank" rel="noopener noreferrer">OpenAI推出ChatGPT健康版，声称将面向所有人开放</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI向所有美国用户开放ChatGPT Health，用户可连接医疗记录和健康追踪数据至聊天机器人。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/ai-artificial-intelligence/970065/anthropic-voice-mode-claude-opus-sonnet-haiku-ai" target="_blank" rel="noopener noreferrer">Claude的语音模式现已支持Opus和Sonnet</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic将Claude语音模式扩展至Opus和Sonnet模型，并集成至Gmail、Slack、Canva等主流应用。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://aibusiness.com/data-centers/schneider-electric-amd-unveil-blueprint-ai-factory-deployments" target="_blank" rel="noopener noreferrer">施耐德电气与AMD公布AI工厂部署蓝图</a>
+                    </div>
+                </div>
+                <p class="article-summary">Schneider Electric与AMD联合发布AI工厂部署蓝图，支持高达246kW的AI机架设计。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3908860730856577?f=rss" target="_blank" rel="noopener noreferrer">英伟达与Amkor达成15亿美元芯片封装与测试合作协议</a>
+                    </div>
+                </div>
+                <p class="article-summary">英伟达和Amkor本周达成了一项15亿美元的多年期合作协议，共同开发面向下一代AI和加速计算平台的先进半导体封装与测试技术。根据协议，英伟达将提供预付款，支持Amkor在美国本土扩充先进封装产能。<br><br>这笔钱不只是普通的&quot;采购订单&quot;，而是英伟达主动往上游&quot;注资&quot;——用预付款帮封装厂扩建产能。背后的逻辑很清晰：随着AI芯片越来越复杂，先进封装（尤其是CoWoS这类技术）已经成了整个行业的瓶颈，英伟达自己也在被台积电的产能卡脖子。绑定Amkor相当于给自己多了一条后路，同时也呼应了美国半导体制造回流的大方向。15亿美元不算小数目，但对比英伟达过去几年在AI基础设施上的千亿级投入，这更像是&quot;产业链补强&quot;的一步——比起再买更多晶圆，能把芯片&quot;包好&quot;可能才是当下更稀缺的能力。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/07/23/aegisai-founded-by-former-google-security-execs-lands-36m-to-stop-ai-driven-spear-phishing/" target="_blank" rel="noopener noreferrer">前谷歌安全高管创立AegisAI，获得3600万美元融资以阻止AI驱动的鱼叉式网络钓鱼</a>
+                    </div>
+                </div>
+                <p class="article-summary">由前Google安全高管创立的AegisAI拿下3600万美元融资，目标是抵御AI驱动的鱼叉式网络钓鱼攻击。他们的核心思路是——既然攻击端已经用上了AI生成的高度个性化钓鱼邮件，防守端也必须用AI来&quot;以彼之道还施彼身&quot;：让AI Agent像真人分析师一样审视每一封邮件，捕捉那些再详细的检查清单也发现不了的细微异常。<br><br>这家公司值得关注的地方在于，创始团队的Google安全背景意味着他们对&quot;大规模检测&quot;有实战经验。在AI让钓鱼攻击门槛降到几乎为零的今天（生成一封模仿CEO语气的邮件只需几秒钟），传统关键词过滤和黑名单机制已经形同虚设。这3600万美元赌的是——AI攻防战里，防守方能不能赢回一点主动权。可以预见，接下来会有更多&quot;AI安全&quot;公司拿到钱。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.latent.space/p/poolside" target="_blank" rel="noopener noreferrer">走进模型工厂 —— Eiso Kant, Poolside AI</a>
+                    </div>
+                </div>
+                <p class="article-summary">Poolside AI 联合 CEO Eiso Kant 这次访谈讲的是他们怎么用一支规模很小的顶尖研究团队，搭起一套&quot;模型工厂&quot;，训练出 Laguna S——一个 118B 的 MoE 模型，在基准测试中击败了体量大近十倍的 Thinky 开源模型。文章最精彩的部分在于&quot;模型工厂&quot;这个比喻背后的工程哲学：不是堆人、堆卡，而是把数据流水线、训练流程、评估体系都做成可复用的基础设施，让每一次训练迭代都能从上一次的经验中继承。还有一段关于&quot;在小团队里如何做研究管理&quot;的讨论也值得玩味——当核心研究员只有十几个人时，决策路径短到几乎不需要中层管理，但代价是每个人必须同时是研究者和工程师。Kant 还暗示这只是开始，模型工厂的下一步是让训练本身变得更自动化、更可编程。<br><br>如果你在关心&quot;为什么有些小团队能以小博大&quot;，或者想知道当前 AI 公司在模型研发上的组织范式正在怎么演变，这篇访谈提供了一个少见的内部视角。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://thesequence.substack.com/p/the-sequence-opinion-900-beyond-the" target="_blank" rel="noopener noreferrer">Sequence观点第900期：超越GPU：谷歌是英伟达唯一的全栈竞争对手吗？</a>
+                    </div>
+                </div>
+                <p class="article-summary">这篇是 The Sequence 第900期的观点文章，核心论点是：在 AI 基础设施这场战争里，Google 可能是唯一有资格和 NVIDIA 打全栈战争的对手。作者认为，NVIDIA 的护城河看似是 GPU，实际上是 CUDA 生态、高速互联和系统级优化三位一体的工程壁垒——这些都不是靠砸钱买卡就能复制的。但 Google 是一个异类：自有 TPU 芯片、自有模型（从 Gemini 到开源）、自有云平台、自有终端应用（Search、YouTube、Android），而且这些层之间是真正打通的。文章抛出一个值得思考的问题：当模型本身越来越趋同，算力的差异化竞争会不会从&quot;谁有更多卡&quot;转向&quot;谁能把整个栈做得更紧&quot;？<br><br>这篇值得读的点不在于站队 Google 还是 NVIDIA，而是它强迫你跳出&quot;AI 公司 = 卖模型或卖算力&quot;的二维分类，开始用&quot;全栈整合&quot;这个视角看下一阶段的竞争。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/garrytan/status/2080443154730553402" target="_blank" rel="noopener noreferrer">Garry Tan</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;It’s time to build housing in SF&quot;<br><br>**解读**: YC 总裁 Garry Tan 一句话喊话：&#39;是时候在旧金山建房子了&#39;。表面谈住房，背后却是硅谷的 AI 人才争夺战——高房价正把工程师和 AI 创业团队逼向奥斯汀、西雅图。这条看似不相关的推文，折射出 AI 竞争最硬的成本：人住哪儿。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2607.19359" target="_blank" rel="noopener noreferrer">LLM智能体的轮廓图记忆：通过叙事轮廓实现跨实体的隐式遍历</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 本文提出ProGraph（轮廓图记忆），一种双层记忆架构，专门解决LLM智能体跨会话的多跳关联问题。贡献包括：1）提出MemHop基准，包含1000个多跳记忆问题，涵盖10个社交网络场景；2）提出基于叙事轮廓和图结构的两层记忆系统，实现跨实体的隐式遍历；3）在1-5跳深度的多跳记忆任务上显著优于现有方法。该工作首次系统性地评估LLM智能体的多跳记忆能力，为构建更强大的长期记忆智能体奠定基础。<br><br>**与AI Agent的关联**: 该论文直接针对LLM智能体的核心挑战——长期记忆与多跳关联能力。提出的ProGraph架构对构建具备跨会话持续学习和推理能力的智能体具有重要价值。MemHop基准为评估智能体记忆系统提供了标准测试平台，对推动智能体记忆研究具有重要意义。成果可应用于需要长期用户交互的智能助手、个性化推荐系统等场景。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2607.19837" target="_blank" rel="noopener noreferrer">了解你的智能体：面向AI智能体的侦察驱动渗透测试</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 本文首次系统性地将传统渗透测试中的侦察概念引入AI智能体安全领域。核心贡献包括：1）形式化定义智能体侦察过程，识别其试图提取的知识资产类型；2）揭示智能体在面对间接提示注入攻击时的脆弱性；3）分析敌手如何利用侦察获取的知识资产对智能体实施攻击；4）提出针对AI智能体安全评估的侦察驱动测试框架。该工作填补了AI智能体安全测试方法论的空白。<br><br>**与AI Agent的关联**: 该论文对AI智能体安全领域具有开创性意义。随着智能体系统部署规模扩大，安全问题日益突出。本文提出的侦察驱动渗透测试框架为评估和提升智能体系统的安全性提供了系统化方法。对于构建可信赖的智能体系统、理解智能体弱点、以及防御提示注入等攻击具有重要指导价值，对智能体安全生态的健康发展至关重要。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/shiyu-coder/Kronos" target="_blank" rel="noopener noreferrer">shiyu-coder/Kronos</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 33.0K<br><br>如果你做量化交易或对金融市场预测感兴趣，Kronos 值得关注。它是第一个专门为金融时间序列打造的**开源 foundation model**，思路新颖——把 K 线数据当作一种&quot;语言&quot;，用类似 NLP 大模型的范式去学习市场规律，进而预测未来走势。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-07-24 08:21:16</p>
+        </footer>
+    </div>
+</body>
+
+</html>
