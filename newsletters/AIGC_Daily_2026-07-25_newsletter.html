@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-07-25">
+    <title>AIGC Daily #501 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-07-25 星期六</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/ai-artificial-intelligence/970105/claude-opus-5-announced-anthropic-ai-model-release" target="_blank" rel="noopener noreferrer">Anthropic发布Opus 5，称其能力“接近”Fable 5</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic发布Claude Opus 5新模型，声称能力接近Fable 5，同时引发与Moonshot Kimi K3之间的技术争议。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/tech/970570/meta-ai-chatbot-productivity-update" target="_blank" rel="noopener noreferrer">Meta正在使其AI聊天机器人更像一个助手</a>
+                    </div>
+                </div>
+                <p class="article-summary">Meta升级AI聊天机器人，新增日历整合和每日简报功能，并支持深度研究功能以提升生产力。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.leiphone.com/category/industrynews/urzkJ71nAWLXBAFT.html" target="_blank" rel="noopener noreferrer">直捣企业出海系统性难题，飞书深诺发布Marvy2.0接管决策和执行</a>
+                    </div>
+                </div>
+                <p class="article-summary">飞书深诺发布Marvy 2.0营销Agent，并与字节跳动BytePlus达成官方合作，接入其大模型和音视频生成能力。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.lennysnewsletter.com/p/claude-opus-5-review-this-model-is" target="_blank" rel="noopener noreferrer">Claude Opus 5 评测：表现惊艳，但令人恼火</a>
+                    </div>
+                </div>
+                <p class="article-summary">Claude Opus 5 终于正式登场了。Lenny Rachitsky 用他那套七模型基准测试把 Opus 5 拉出来遛了一圈，和市面上六款主流模型正面比较。结论有点出乎意料——他用&quot;brilliant but annoying&quot;来形容，意思是能力是真的强，但有些行为让人抓狂。<br><br>具体怎么强、强在哪，怎么又&quot;annoying&quot;，文章里有详细对比数据。从泄露的评价来看，Opus 5 在代码、推理这类硬核任务上有显著提升，但在某些交互细节上又显得过于&quot;较真&quot;，比如反复确认、过度解释，反而拖慢了节奏。这种来自一线实战派的评测，往往比官方发布的 benchmark 更有参考价值——他们测的是模型在实际场景里的表现，而不是跑测试集。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.therundown.ai/p/black-forest-labs-teaches-video-ai-to-run-robots" target="_blank" rel="noopener noreferrer">Black Forest Labs 教视频AI操控机器人</a>
+                    </div>
+                </div>
+                <p class="article-summary">以图像生成模型 Flux 闻名的 Black Forest Labs，最近被报道正在教其视频 AI 模型直接驱动机器人——这听起来像是把生成模型和具身智能强行拉到一起的实验，但背后其实是一场正在升温的技术路线之争。<br><br>传统机器人控制依赖专用策略网络或模仿学习，模型要专门为「感知-决策-动作」这一闭环训练；而 Black Forest Labs 的思路是，既然大规模视频模型已经在海量数据里隐式学到了物理世界的运行规律，那它是否天然就能充当机器人的「世界模型」，从下一帧预测中直接推导出动作？这条路径押注的是生成模型的涌现能力，而不是专门为 embodied 任务设计的架构。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.technologyreview.com/2026/07/24/1140790/the-quest-to-keep-organs-alive-outside-the-body/" target="_blank" rel="noopener noreferrer">让器官在体外存活的探索</a>
+                    </div>
+                </div>
+                <p class="article-summary">在全球范围内，器官移植的需求远超供给，根本瓶颈在于器官离体后只能在低温下保存数小时。如何突破时间限制、实现长期甚至永久的离体保存，成为医学与工程交叉的核心挑战。本文围绕美国与欧洲的多个前沿团队展开，揭示了三大技术路线：亚低温机械灌注、体外代谢支持系统以及基于人工智能的活体评估模型。亚低温机械灌注通过在4℃至10℃之间持续输送氧合血液，显著延长心脏、肺等器官的功能维持时间；体外代谢支持则利用微流体平台模拟体内环境，实时调节pH、离子浓度与营养供给，从而维持细胞活性。更重要的是，机器学习算法能够根据离体后器官的血流动力学参数、代谢产物谱以及显微成像特征，预测最佳保存窗口，并自动调节灌注策略，实现“智能保存”。文章引用了最新的临床前实验数据，显示在机器学习驱动的灌注方案下，猪心可保持48小时以上的收缩功能，且组织学损伤显著低于传统冰存。作者指出，这些进展不仅为建立规模化器官库奠定技术基础，还可能重塑器官分配与匹配的伦理框架。对AI从业者而言，本文展示了数据驱动的决策系统在实际生物医学场景中的落地路径，提供了从高维生理信号采集到模型解释的全链路案例，极具参考价值。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/fchollet/status/2080707785910534147" target="_blank" rel="noopener noreferrer">François Chollet</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Opus 5 sets a new state-of-the-art on ARC-AGI-3, at 30%.<br><br>ARC-AGI-3 measures solving problems with no prior exposure -- the setting where scaling has historically bought the least. Impressive jump!&quot;</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/levie/status/2080704871934931221" target="_blank" rel="noopener noreferrer">Aaron Levie</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Claude Opus 5 is out now, and it&#39;s a huge jump over Opus 4.8 on a wide number of capabilities.<br><br>At Box, we&#39;ve been testing Claude Opus 5 with the Box AI Agent on Box&#39;s Complex Work Eval, our agentic benchmark that puts models through real enterprise document work end-to-end across a variety of industries.  We saw meaningful gains in performance across some of the most complex enterprise tasks on unstructured data.</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/trq212/status/2080710971228918066" target="_blank" rel="noopener noreferrer">Thariq</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;We removed ~80% of the Claude Code system prompt for our newest models, this is what we&#39;ve learned about writing system prompts, skills and Claude.MDs for them. https://t.co/6DZwSrZjE9&quot;<br><br>**解读**: Anthropic 的 Thariq 透露他们为新模型砍掉了约 80% 的 Claude Code 系统提示，并总结了 prompt、skills 和 CLAUDE.md 的写法经验。这说明新一代模型对自然指令和工具描述的理解力大幅提升，原本精心设计的脚手架正在变得多余——这是 Agent 走向成熟的关键信号。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2607.20499" target="_blank" rel="noopener noreferrer">ExecuGraph：基于执行验证的大语言模型后端代码多智能体合成框架</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出ExecuGraph，一个以执行验证为核心的多智能体框架，用于可靠的后端代码合成。该框架包含6个专门化智能体（规划器、代码生成器、逻辑审查器、评估器、优化器、解释器），通过类型化有向工作流进行协调，并设有有限重试预算。<br><br>**与AI Agent的关联**: 展示了多智能体协作在代码生成中的应用典范，体现了专业分工与协调机制在复杂任务中的重要性。该框架的设计模式为构建可靠的多智能体系统提供了可复用的架构参考。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2607.20498" target="_blank" rel="noopener noreferrer">AISE-Bench：学术知识图谱信息检索的全周期评估基准</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出AISE-Bench，一个用于评估大语言模型在学术知识图谱上进行信息检索的全周期基准。该基准针对现实用户意图、复杂多步API规划、丰富参数等关键挑战设计，为工具增强型Agent的性能评估提供了标准化测试环境。<br><br>**与AI Agent的关联**: 为工具使用型AI Agent提供了重要的评估基准，直接推动Agent在信息检索、多步规划、Web工具使用等核心能力上的研究进展，对Agent系统的能力边界探索具有重要指导价值。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/citrolabs/ego-lite" target="_blank" rel="noopener noreferrer">citrolabs/ego-lite</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 2.6K<br><br>如果你用 Codex 或 Claude Code 跑过网页自动化，肯定遇到过这种尴尬：要么得单独给 agent 开个浏览器，要么登录态死活过不去，又或者你俩抢同一个 tab 抢到头秃。ego-lite（citrolabs 开源，2.6K stars）就是来解决这些痛点的——一个&quot;原生支持你和 AI agent 并行使用&quot;的浏览器，零成本、零配置。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-07-25 08:31:31</p>
+        </footer>
+    </div>
+</body>
+
+</html>
