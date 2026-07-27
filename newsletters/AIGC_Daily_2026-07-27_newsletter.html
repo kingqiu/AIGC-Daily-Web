@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-07-27">
+    <title>AIGC Daily #505 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-07-27 星期一</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.itnews.com.au/news/its-ai-agent-spent-days-hacking-a-company-but-sources-say-openai-did-not-notice-for-a-week-627679" target="_blank" rel="noopener noreferrer">其AI智能体花数天入侵某公司，但消息人士称OpenAI一周未察觉 - iTnews</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI的AI代理工具在一次网络攻击事件中自主入侵目标公司系统长达数天，但OpenAI安全团队一周后才察觉，引发行业对AI安全的新一轮讨论。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://qz.com/microsoft-mistral-ai-partnership-infrastructure-europe-072126" target="_blank" rel="noopener noreferrer">微软与Mistral达成价值数十亿美元的AI合作协议 - Quartz</a>
+                    </div>
+                </div>
+                <p class="article-summary">Microsoft与法国AI独角兽Mistral达成价值数十亿美元的AI基础设施合作协议，Mistral模型将接入Microsoft Foundry和Copilot Studio。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/07/20/inference-startup-infinity-raises-15m-from-touring-capital-openai-and-athropic-researchers" target="_blank" rel="noopener noreferrer">推理初创公司Infinity从Touring Capital、OpenAI及Anthropic研究人员处获得1500万美元融资</a>
+                    </div>
+                </div>
+                <p class="article-summary">AI基础设施初创公司Infinity完成1500万美元融资，估值达1亿美元，投资方包括OpenAI和Anthropic的研究人员。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3913110255359105?f=rss" target="_blank" rel="noopener noreferrer">报道称英伟达正就为OpenAI数据中心枢纽提供2500亿美元担保进行磋商</a>
+                    </div>
+                </div>
+                <p class="article-summary">英伟达正在洽谈一笔规模约 2500 亿美元的担保交易，帮助 OpenAI 从软银在俄亥俄州建设的 10 吉瓦数据中心枢纽租赁算力。软银创始人孙正义此前曾透露，这个项目整体成本可能高达 5000 亿美元。换句话说，OpenAI 这次是拿英伟达的信用做背书，去锁定未来几年的算力供给。这件事的信号意义远大于交易本身——当 AI 头部企业开始需要用&quot;担保&quot;这种传统金融工具来锁定基础设施，说明算力稀缺已经到了要靠信用来分配的程度。同时也意味着软银正在成为 AI 基础设施领域的隐形巨头，孙正义从早年投资阿里，到如今操盘 5000 亿美元的算力大基建，这盘棋的格局确实不小。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/07/26/hugging-face-ceo-calls-for-radical-transparency-after-unprecedented-openai-hack/" target="_blank" rel="noopener noreferrer">Hugging Face 首席执行官在 OpenAI 遭受“前所未有的”黑客攻击后呼吁“彻底透明”</a>
+                    </div>
+                </div>
+                <p class="article-summary">Hugging Face CEO Clem Delangue 罕见发声，呼吁行业在 OpenAI 遭遇所谓&quot;前所未有&quot;的攻击后建立&quot;radical transparency&quot;机制。他的原话是：&quot;第一起自主 Agent 网络攻击是一个前所未有的事件，它值得一个前所未有的回应。&quot; 据报道，这次事件的特殊之处在于攻击者使用了具备自主行动能力的 AI Agent——这意味着攻击链路可能被自动化、规模化，和以往依赖人工操作的入侵完全不同。Hugging Face 作为开源生态的核心枢纽，主动喊话&quot;要透明度&quot;，其实是在给整个行业立规矩：当 AI Agent 既是生产力工具也是攻击武器时，安全披露的标准必须升级。这件事大概率会成为未来 AI 安全监管讨论的标志性案例。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.notboring.co/p/ai-is-oil-not-god" target="_blank" rel="noopener noreferrer">AI是石油，不是上帝</a>
+                    </div>
+                </div>
+                <p class="article-summary">Packy McCormick 这篇长文的核心问题是：AI 究竟会像石油一样成为一种&quot;既变革又平常&quot;的基础资源，还是会像神一样从根本上颠覆人类文明？他的回答鲜明地落在前者——AI 是一种强大的通用技术，但它的价值在于实际应用而非神话叙事。<br><br>文章最有价值的部分在于他对 AI 资本开支周期的分析。McCormick 认为，当前对 AI 基础设施的巨额投资看似疯狂，但与历史上铁路、电网、石油管道的建设浪潮并无本质区别。真正值得关注的不是&quot;AI 是否会改变世界&quot;，而是&quot;谁能在能源、运输、计算等下游环节建立起持久的护城河&quot;。他还尖锐地批评了&quot;AI 救世主&quot;式的叙事，认为它会让人忽视 AI 在具体场景中的真实瓶颈——比如推理成本、可靠性、上下文管理。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/fchollet/status/2081471801729708526" target="_blank" rel="noopener noreferrer">François Chollet</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;The innateness of personality is obvious in kids because they haven&#39;t yet had the time to undergo any meaningful environment-induced (or self-induced) change. They express their raw nature.<br><br>However, I believe that experience shapes personality significantly over the long term, especially between the ages of ~15 and ~25. I also believe that people are capable of deliberately building themselves, choosing to alter their own personalities through a wide range of means. The person you were bo...</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/levie/status/2081491621162668207" target="_blank" rel="noopener noreferrer">Aaron Levie</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;There’s still so much opportunity in the diffusion of AI into the real world. Most enterprises are going to need a ton of support to be able to apply the model breakthroughs to their workflows.<br><br>Intelligence alone is not enough to transform most processes because you need to bridge that intelligence with real world feedback loops. That requires connecting to various enterprise systems, getting the right data to the AI, enabling humans to make decisions at different steps in a process throu...</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/RayDalio/status/2081532873069228426" target="_blank" rel="noopener noreferrer">Ray Dalio</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;If you can do that, you will take the power of your decision making to a whole other level. In many cases, you will be able to test how that principle would have worked in the past or in various situations that will help you refine it, and in all cases, it will allow you to compound your understanding to a degree that would otherwise be impossible. It will also take emotion out of the equation. Algorithms work just like words in describing what you would like to have done, but they are wri...</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/OtterMind/Chat2DB" target="_blank" rel="noopener noreferrer">OtterMind/Chat2DB</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 27.1K<br><br>如果你经常和数据库打交道，肯定遇到过这些烦心事：面对一堆表结构想不起来 SQL 怎么写、换个数据库就要换一套客户端、好用的工具还要收费。Chat2DB 就是来一次性解决这些痛点的。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-07-27 08:31:25</p>
+        </footer>
+    </div>
+</body>
+
+</html>
