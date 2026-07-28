@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-07-28">
+    <title>AIGC Daily #507 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-07-28 星期二</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/07/27/microsoft-launches-its-first-cyber-model-and-a-new-agentic-cybersecurity-system/" target="_blank" rel="noopener noreferrer">微软发布首个网络安全模型，以及一个新的代理网络安全系统</a>
+                    </div>
+                </div>
+                <p class="article-summary">Microsoft推出首个AI安全模型及新的代理式网络安全平台，以强化其AI安全产品组合。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/07/27/psa-your-claude-shared-chats-and-artifacts-may-have-ended-up-on-google/" target="_blank" rel="noopener noreferrer">PSA：你的Claude共享聊天和Artifacts可能已出现在Google搜索结果中</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic的Claude共享聊天功能出现隐私漏洞，用户私人对话可能被Google和Bing搜索索引。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://aibusiness.com/generative-ai/tech-companies-urge-caution-us-policymakers-open-ai-models" target="_blank" rel="noopener noreferrer">科技公司敦促美国政策制定者对开源模型保持谨慎</a>
+                    </div>
+                </div>
+                <p class="article-summary">美国科技公司敦促政策制定者对中国开源AI模型保持谨慎，此举正值特朗普政府考虑对中国开源模型实施潜在打击。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/07/27/anthropics-dario-amodei-responds-doesnt-oppose-open-weight-models-but-fears-chinese-ai/" target="_blank" rel="noopener noreferrer">Anthropic的Dario Amodei回应：不反对开源权重模型，但担忧中国AI</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic CEO Dario Amodei 最近的一番表态，在AI圈炸开了锅。他明确说，自己并不反对开源权重模型，但对中国AI的崛起表达了明显的担忧。<br><br>作为手握Claude系列的闭源巨头掌门人，Amodei 却公开表态不反对开源——这个姿态本身就耐人寻味。外界普遍认为这是在向开源社区示好，也可能是在监管讨论中提前占据更主动的位置。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.wired.com/story/private-claude-chats-exposed-in-google-and-bing-search-results/" target="_blank" rel="noopener noreferrer">**Google和Bing搜索结果中暴露了私人Claude对话**</a>
+                    </div>
+                </div>
+                <p class="article-summary">Wired最近报道了一件让Claude用户后背发凉的事——大量本应是私密的对话内容，出现在了Google和Bing的搜索结果里。<br><br>问题出在哪？用户分享对话链接时，Claude会生成一个公开URL，但本应被排除在搜索引擎索引之外的页面，却被爬虫抓了个正着。结果就是，搜索特定关键词时，可能会意外看到别人和Claude的&quot;私人对话&quot;，其中不乏包含商业机密、个人隐私的敏感内容。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.lennysnewsletter.com/p/how-i-ai-claude-opus-5-review-browser" target="_blank" rel="noopener noreferrer">🎙️ 我的AI使用心得：Claude Opus 5 评测 + Codex 中的浏览器使用 + Cursor和树莓派如何让AI变得有趣</a>
+                    </div>
+                </div>
+                <p class="article-summary">这期播客一口气聊了三件事：Claude Opus 5 实际用起来怎么样、Codex 的浏览器使用能力，以及怎么用 Cursor 加树莓派玩出 AI 新花样。核心看点是 Codex 的 browser use——这基本上就是 AI Agent 在真实网页环境里自主操作的能力，已经从概念演示走向日常工具。作者们不是在背产品发布会的参数，而是从实际工作流出发，告诉你哪些功能真的能省时间、哪些只是噱头。比如 Cursor 接上树莓派后能做什么&quot;不正经&quot;的 AI 玩具，往往比正儿八经的 benchmark 更能暴露一个工具的真实潜力。值得听是因为 AI Agent 正在从&quot;能不能做&quot;变成&quot;做得好不好&quot;，而 browser use 正是检验 Agent 实用性的关键试金石。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blog.bytebytego.com/p/how-nvidia-builds-open-models-for" target="_blank" rel="noopener noreferrer">NVIDIA如何构建AI时代的开放模型</a>
+                    </div>
+                </div>
+                <p class="article-summary">NVIDIA 到底是怎么造开源模型的？应用深度学习研究副总裁 Bryan Catanzaro 亲自拆解了背后的架构选择和开源策略。多数人以为 NVIDIA 只是卖显卡的，但这篇文章会让你意识到，他们在开源模型上的投入远比外界看到的大——从训练数据筛选到架构设计，每一个决策背后都有一个关键问题：什么样的模型既能跑在自家硬件上，又能真正推动整个 AI 生态往前跑。文中特别提到了 NVIDIA 为何选择开放权重而非闭源，以及在 reasoning model 和传统 dense model 之间的取舍逻辑。对于做 AI Agent 的人来说，理解底层模型的能力边界和设计哲学，比多学一个提示工程技巧更重要——你选择基于哪个模型搭建 Agent，本质上就是在选择它的能力天花板。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/AndrewYNg/status/2081787106062746002" target="_blank" rel="noopener noreferrer">Andrew Ng</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Good move by @JensenHuang. The Nvidia letter is well written and worth reading. As we saw with the OpenAI-Hugging Face hack, we need open models and harnesses for defense.<br><br>Lets stop believing the PR that closed models are safer. - that&#39;s just regulatory capture.&quot;</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/fchollet/status/2081836094044168339" target="_blank" rel="noopener noreferrer">François Chollet</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;In science, you have to report the experiments that didn&#39;t work, not just the ones that did. Same with AI. (I wish.)&quot;<br><br>**解读**: François Chollet 抛出一个犀利观察：科学要求报告失败的实验，但 AI 行业几乎只晒成绩单。这话戳中了当下大模型的「发布会文化」——benchmark 跑得好就大肆宣传，跑不好就沉默，也是为什么外部很难复现和验证很多 SOTA 结果。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/lilianweng/status/2081816923088814421" target="_blank" rel="noopener noreferrer">Lilian Weng</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;It is a hard and sad decision. I shared this message with folks at Thinky. Thank you all for the time together♥️ Just as the last sentence in my message: The future worth building is human. https://t.co/VGb5fM5chX&quot;<br><br>**解读**: 知名 AI 安全研究者 Lilian Weng（前 OpenAI 成员）宣布离开 Thinky，留下一句「值得建造的未来是人类的」。作为圈内有影响力的声音，她的离开时机和这句话在这个节骨眼上颇值得玩味，也反映小型 AI 实验室当下的生存压力。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/mvanhorn/last30days-skill" target="_blank" rel="noopener noreferrer">mvanhorn/last30days-skill</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 54.2K<br><br>如果你想了解某个话题最近的热度——比如&quot;谁在讨论 MCP&quot;或&quot;Rust 生态有什么新动向&quot;——通常要手动翻 Reddit、X、YouTube、Hacker News，累得要死。`/last30days` 就是为这种场景准备的：一个 AI agent skill，能自动横跨这些平台调研话题，最后汇总成一份有据可查的总结。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-07-28 08:21:31</p>
+        </footer>
+    </div>
+</body>
+
+</html>
