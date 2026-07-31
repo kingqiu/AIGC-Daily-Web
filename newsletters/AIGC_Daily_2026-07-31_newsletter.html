@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-07-31">
+    <title>AIGC Daily #513 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-07-31 星期五</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3918741589568905?f=rss" target="_blank" rel="noopener noreferrer">OpenAI下调GPT-5.6部分模型价格</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI宣布GPT-5.6系列模型大幅降价，Luna降价80%、Terra降价20%，并推出Fast模式提升处理速度至2.5倍。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/tech/973276/google-deepmind-gemini-robotics-2-whole-body" target="_blank" rel="noopener noreferrer">谷歌DeepMind新AI模型可控制机器人全身</a>
+                    </div>
+                </div>
+                <p class="article-summary">Google DeepMind发布Gemini Robotics 2模型，实现对人形机器人全身运动的完整控制，从脚部到指尖均可精准操作。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/07/27/ilya-sutskevers-safe-superintelligence-partners-with-nvidia-to-scale-its-ai-research" target="_blank" rel="noopener noreferrer">伊利亚·苏茨克维的安全超级智能公司与美国英伟达合作，扩大人工智能研究规模</a>
+                    </div>
+                </div>
+                <p class="article-summary">Ilya Sutskever创办的Safe Superintelligence与NVIDIA达成合作，将获得Vera Rubin GPU平台算力支持，规模提升一个数量级。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://deepmind.google/blog/gemini-robotics-er-2-powering-robotics-with-video-understanding-task-orchestration-and-multi-robot-collaboration/" target="_blank" rel="noopener noreferrer">Gemini Robotics ER 2：以视频理解、任务编排和多机器人协作赋能机器人技术</a>
+                    </div>
+                </div>
+                <p class="article-summary">Google DeepMind 昨天放出了 Gemini Robotics ER 2，这大概是本周最重磅的具身智能发布。和 ER 1 比，新版本在三个维度上实现了质变：视频理解、工具编排、多机器人协作。以前机器人只能按固定脚本执行任务，遇到没见过的新场景基本就抓瞎；ER 2 能理解视频里的语义层次，推理&quot;为什么会这样&quot;，还能主动调用外部工具。更关键的是多机器人协同——几个机器人可以分工合作完成一个复杂任务，比如一个负责搬运、一个负责装配，背后由同一个大模型调度。这意味着具身智能正在从&quot;会做动作&quot;向&quot;会思考动作&quot;跃迁，agentic 时代机器人的雏形已经出来了。家庭机器人真正大规模落地的最后一公里，可能就从这里开始。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.bensbites.com/p/1-billion-chatgpt-users" target="_blank" rel="noopener noreferrer">10亿ChatGPT用户</a>
+                    </div>
+                </div>
+                <p class="article-summary">ChatGPT 用户数突破了 10 亿。从 2022 年 11 月上线算起，它用了不到 4 年走完了 Facebook 近 9 年才走完的路。更值得关注的是增长曲线：今年年初用户数还在 5 亿级别，半年时间直接翻倍，生成式 AI 的渗透速度已经完全脱离传统 S 曲线。10 亿用户意味着 ChatGPT 已经从&quot;尝鲜产品&quot;变成了&quot;基础设施&quot;——当一个产品触达全球 1/8 的人口，它就不再只是工具，而是日常生活的一部分。接下来的看点是：每个人每天用多久，以及它到底改变了几亿人的工作与决策方式。当我们还在争论 AGI 是不是快了，10 亿用户的回答其实已经提前给出了——它早就在那里了。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.latent.space/p/ontologies-agentic-systems" target="_blank" rel="noopener noreferrer">本体论东山再起：为何AI智能体正在重振语义网</a>
+                    </div>
+                </div>
+                <p class="article-summary">AI工程师们正在重新发现本体论（Ontology）的价值——用确定性的语义边界来约束概率性的AI Agent。这篇文章讲的是一件挺有意思的事：Semantic Web时代被嘲笑为&quot;过度工程&quot;的本体论技术，现在正被Agent浪潮悄悄激活。<br><br>文章核心讨论了一个深层矛盾：LLM本质上是概率性的，同样的输入可能产出不同输出，但企业级Agent需要确定性行为——你不能让支付Agent&quot;有时&quot;正确执行转账、&quot;有时&quot;又把金额搞错。作者追溯了从RDF/OWL到现代知识图谱的演进，并展示了当前领先的Agent框架如何在内部使用本体论来定义工具签名、状态转换和权限边界，让模糊的语义意图落地为可验证的执行逻辑。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://thesequence.substack.com/p/thesequence-opinion-904-the-age-of" target="_blank" rel="noopener noreferrer">TheSequence 观点 #904：研究时代被高估了。AI 工程正在胜出。</a>
+                    </div>
+                </div>
+                <p class="article-summary">这篇TheSequence的观点文章抛出了一个有点反直觉的论断：AI的下一波突破可能不会来自新的架构，而是来自Transformer周围的&quot;学习循环&quot;。作者认为，过去几年业界花了太多精力寻找&quot;Transformer杀手&quot;，但真正在生产环境中创造价值的，是围绕现有架构构建的整套工程体系。<br><br>核心论据包括：很多SOTA模型的效果提升来自后训练和微调，而非架构创新；Agent系统的性能瓶颈往往在编排和工具集成上，而不是底层模型；那些&quot;看起来无聊&quot;的工程优化（更好的数据流水线、更聪明的评估框架、更稳定的推理基础设施）累积起来产生的价值，往往超过一次架构革新。文章还引用了近期一些研究，说明在固定架构下，通过改进训练目标和数据策略，模型能力仍有大幅提升空间。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2607.26300" target="_blank" rel="noopener noreferrer">AgentGUI：用于观察和引导长时间运行AI智能体的界面</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出了AgentGUI，一个本地托管的用户友好GUI系统，用于在多个并发长时间运行会话中无缝观察和引导AI Agent。该系统提供丰富的Agent轨迹可视化功能，解决了自主Agent能力快速提升而人类监督界面滞后的问题。核心创新在于为复杂、长时间运行的Agent任务提供实时监控和干预能力。<br><br>**与AI Agent的关联**: 直接面向AI Agent的实际部署需求，解决了Agent可观测性和可控性的核心问题。该工具对于构建安全可靠的自主Agent系统至关重要，能够帮助研究人员和开发者在生产环境中有效监督和调试复杂Agent行为，对推动Agent系统从实验室走向实际应用具有重要价值。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2607.26339" target="_blank" rel="noopener noreferrer">RAGuard：检索增强生成系统的数据污染防御分层框架</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出了一种针对RAG系统的多层防御框架，用于抵御事实性语料污染攻击。第一层通过合成污染文档进行对抗性微调训练密集检索器，第二层进一步增强防御能力。该框架专门应对恶意注入的虚假信息和矛盾内容对LLM生成的干扰问题，为RAG应用提供安全保障。<br><br>**与AI Agent的关联**: RAG是现代AI Agent的关键工具能力之一，为Agent提供外部知识访问能力。该研究直接解决了Agent依赖外部知识时的安全隐患，对构建可信Agent系统具有重要意义。随着Agent系统越来越多地使用RAG进行信息检索和决策，这一安全框架对保障Agent输出的可靠性和安全性至关重要。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/ChromeDevTools/chrome-devtools-mcp" target="_blank" rel="noopener noreferrer">ChromeDevTools/chrome-devtools-mcp</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 48.0K<br><br>你有没有遇到过这种情况：让 AI 编程助手写了个网页，看着代码挺漂亮，但实际打开浏览器一跑，不是控制台报错就是性能拉胯，还得自己手动截图、查 Network、读堆栈，一通操作下来 AI 早就&quot;忘了&quot;刚才写了啥？**chrome-devtools-mcp** 就是来解决这个问题的。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-07-31 08:03:38</p>
+        </footer>
+    </div>
+</body>
+
+</html>
