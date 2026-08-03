@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-08-04">
+    <title>AIGC Daily #521 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-08-04 星期二</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3924397461649801?f=rss" target="_blank" rel="noopener noreferrer">白宫拟召集OpenAI和Anthropic等巨头 讨论AI模型安全测试框架</a>
+                    </div>
+                </div>
+                <p class="article-summary">特朗普政府计划在白宫召集OpenAI、Anthropic和谷歌等AI巨头，讨论美国AI模型自愿安全测试框架。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://aibusiness.com/generative-ai/alibaba-unveils-most-powerful-ai-model-yet" target="_blank" rel="noopener noreferrer">阿里巴巴发布其迄今“最强大”的AI模型</a>
+                    </div>
+                </div>
+                <p class="article-summary">阿里巴巴发布最强AI模型Qwen3.8-Max，声称性能可与Anthropic和OpenAI的最佳系统相媲美。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/ai-artificial-intelligence/974571/eu-ai-act-transparency-labels-rules-deepfakes" target="_blank" rel="noopener noreferrer">欧洲AI标注与透明度规则现已生效</a>
+                    </div>
+                </div>
+                <p class="article-summary">欧盟《AI法案》透明度义务于8月2日正式生效，要求企业披露用户何时与AI聊天机器人互动。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.lennysnewsletter.com/p/how-i-ai-chatgpt-codex-voice-browser" target="_blank" rel="noopener noreferrer">🎙️ How I AI 系列：ChatGPT Codex Voice + 浏览器 + Sites：OpenAI 专家 Nick Baumann 的 AI 工作流程</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI 的 Nick Baumann 在 Lenny&#39;s Newsletter 上演示了一个相当惊艳的 ChatGPT Voice 工作流：现在的语音对话已经能管理多个线程、读取你的屏幕、甚至在后台同时跑任务。这已经不是简单的&quot;语音输入&quot;了，而是把 ChatGPT 变成了一个能&quot;陪伴式工作&quot;的 AI 助手——你一边跟它说话，它一边读你浏览器里的内容，后台还在执行别的命令。这种多模态加多任务并行的交互形态，去年这时候的 AI 完全做不到。<br><br>更深一层的信号是：OpenAI 正在把 ChatGPT 往&quot;操作系统层&quot;推。以前的 AI 是工具，你去找它用；现在的 ChatGPT 开始变成工作流的核心节点，你的工作节奏要围绕它来组织。这背后是 Agent 化的趋势——AI 不再等你提问，而是主动嵌入你的日常。从 Nick 的演示来看，OpenAI 对&quot;Agent&quot;这件事的理解，已经不只是写代码那个层面了。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3923960964938118?f=rss" target="_blank" rel="noopener noreferrer">机构预测：AI芯片建设潮将掀起逾5000亿美元发债高峰</a>
+                    </div>
+                </div>
+                <p class="article-summary">城堡证券最新预测，到 2028 年全球公开和私募信贷市场将涌出超过 5000 亿美元债务，用来支持 AI 数据中心的芯片采购和设施建设。这个数字是什么概念？相当于彭博美国投资级债券指数总额的 5% 以上，而且大部分债券期限在 3-5 年——刚好对得上芯片的折旧周期。<br><br>这意味着 AI 已经不只是科技圈的事了，它正在重塑整个资本市场的结构。以前科技公司发债融个几十亿就是大新闻，现在 AI 基建催生的发债规模是按万亿算的。换句话说，传统金融行业正在用真金白银为 AI 基建&quot;输血&quot;，而这笔钱最终会变成全球各地的 GPU、服务器、电力合同。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.latent.space/p/inference-eng" target="_blank" rel="noopener noreferrer">推理工程大师班 — Philip Kiely &amp; Ali Taha，Baseten</a>
+                    </div>
+                </div>
+                <p class="article-summary">聊的是AI基础设施里最被低估的一环——推理工程。模型训练完只是开始，怎么把它变成能稳定服务百万用户、低延迟、高吞吐的产品，才是真正的难题。Baseten刚拿下130亿美元Series F估值，做的就是推理层的极致优化。<br><br>文章覆盖自回归模型与扩散模型的推理实践，从KV cache管理、continuous batching策略、speculative decoding到硬件选型与多GPU协同。Philip Kiely和Ali Taha作为Baseten核心团队，揭示了很多&quot;实验室跑得通、生产环境崩了&quot;的坑——推理工程的很多陷阱只有在真实流量下才会暴露，比如batch大小与延迟的非线性关系、长上下文场景下的显存爆炸。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.lennysnewsletter.com/p/chatgpt-codex-voice-browser-sites" target="_blank" rel="noopener noreferrer">ChatGPT Codex Voice + 浏览器 + Sites：专家的 AI 工作流程 | Nick Baumann (OpenAI)</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI的ChatGPT已经不再只是一个聊天工具——Voice功能现在能读屏、管理多线程、跑后台任务，几乎就是一个完整的AI Agent操作系统。Nick Baumann作为OpenAI内部专家，完整演示了ChatGPT Codex + Voice + browser + Sites的实战工作流。<br><br>最有看点的不是功能罗列，而是Baumann展示了一个真实场景：Voice同时在听屏幕内容、后台在跑一个code agent、browser在抓取网页数据，多个任务并行处理且互不干扰。这其实就是AI Agent的&quot;多线程&quot;能力第一次被产品化落地——不是概念演示，而是真的能塞进日常工作流的东西。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/esengine/DeepSeek-Reasonix" target="_blank" rel="noopener noreferrer">esengine/DeepSeek-Reasonix</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 29.9K<br><br>如果你平时喜欢在终端里写代码，又想搭一个随时待命的 AI 编程助手，那 Reasonix 值得你放进收藏夹。它是一个原生为 DeepSeek 打造的 AI coding agent，整个工具直接跑在命令行里，不挑编辑器、不用切换窗口，写脚本、改代码、查问题都能在 shell 里一气呵成。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-08-04 07:49:02</p>
+        </footer>
+    </div>
+</body>
+
+</html>
