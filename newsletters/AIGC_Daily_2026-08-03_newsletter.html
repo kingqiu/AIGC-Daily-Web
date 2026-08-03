@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-08-03">
+    <title>AIGC Daily #519 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-08-03 星期一</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.calcalistech.com/ctechnews/article/qy9eg5jw4" target="_blank" rel="noopener noreferrer">伊利亚·苏茨克弗的安全超级智能公司融资50亿美元...</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI联合创始人Ilya Sutskever创立的Safe Superintelligence获NVIDIA 5亿美元投资，计算能力将提升十倍。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://thehill.com/policy/technology/5991875-nvidia-launches-open-secure-ai-alliance" target="_blank" rel="noopener noreferrer">英伟达推出新的开源AI安全联盟</a>
+                    </div>
+                </div>
+                <p class="article-summary">NVIDIA联合Microsoft、Palantir等成立开源AI安全联盟，但OpenAI、Anthropic和Google未参与。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/08/02/sam-altman-and-ais-decel-debate/" target="_blank" rel="noopener noreferrer">Sam Altman与AI放缓之争</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI CEO Sam Altman呼吁AI行业放缓发展速度，引发业界对AI发展节奏的广泛讨论。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3923005684379008?f=rss" target="_blank" rel="noopener noreferrer">AI调度系统接管望远镜开启自主观星</a>
+                    </div>
+                </div>
+                <p class="article-summary">AI新闻虽然不多，但有一条相当硬核值得说：美国西北大学、芝加哥大学与费米实验室联合研发了一套AI调度系统，已经正式接管了位于智利的维克托·M·布兰科4米望远镜，指挥5.7亿像素的&quot;暗能量相机&quot;展开观测。这套系统的决策能力已经与人类调度员相当——它能自主规划望远镜的&quot;凝视方向&quot;，决定该看向哪里、观察什么。团队称之为迈向&quot;自主天文台&quot;的重要一步。<br><br>为什么这件事值得关注？因为它不只是&quot;用AI处理数据&quot;，而是把观测决策权本身交给了AI。天文观测长期以来高度依赖人类调度员的经验和判断，现在AI能在这一环节独立工作，意味着未来大型望远镜和观测阵列有望实现更高程度的自动化。对暗能量、暗物质这类需要长时间持续巡天的研究来说，这是一次实实在在的效率跃升。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3923006201065091?f=rss" target="_blank" rel="noopener noreferrer">金纳米粒子间隙内发光分子可同步闪烁</a>
+                    </div>
+                </div>
+                <p class="article-summary">今天有一条看起来冷门但意义不小的科学突破：剑桥大学卡文迪许实验室与圣安德鲁斯大学的科学家发现，当发光分子被放进金纳米粒子之间不足一纳米宽的间隙时，它们会&quot;集体行动&quot;，像萤火虫一样默契地同步闪烁。论文已经发在最新一期《自然·纳米技术》上。<br><br>听起来是基础物理，但应用前景相当可观。它挑战了关于光学相干性如何形成的长期假设——在纳米尺度上，光的行为可能比我们之前理解的更&quot;协同&quot;。研究团队指出，这一发现为能在室温下工作的高灵敏度传感器、分子光子学，以及未来量子技术开辟了新路径。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.interconnects.ai/p/latest-open-artifacts-23-laguna-s21" target="_blank" rel="noopener noreferrer">最新开源成果（第23期）：Laguna S2.1、Inkling 和 Kimi K3 展示了开源模型在帕累托前沿上的实用性</a>
+                    </div>
+                </div>
+                <p class="article-summary">这篇来自 Interconnects 的文章聚焦三款新发布的前沿开源模型——Laguna S2.1、Inkling 和 Kimi K3，揭示了一个清晰趋势：能训练出强模型的团队正在快速扩散，开源模型正逐步逼近能力-效率的 Pareto frontier。<br><br>文章核心论点是，开源模型不再只是闭源 API 的追赶者，而是在特定权衡点上开始提供有竞争力的选择。作者详细对比了这三款模型在推理、代码、长文本等关键 benchmark 上的表现，并讨论了它们对自托管部署、Agent 构建的实际意义。Laguna S2.1 在某些推理任务上展现了令人印象深刻的效率；Inkling 和 Kimi K3 则各自在特定维度展现了优势——比如 Kimi K3 在长上下文场景下的竞争力尤其值得关注。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.lennysnewsletter.com/p/this-cpo-regrets-that-product-management" target="_blank" rel="noopener noreferrer">这位首席产品官对产品管理的存在感到遗憾 | Tom Verrilli（Whatnot首席产品官）</a>
+                    </div>
+                </div>
+                <p class="article-summary">Whatnot 的 CPO Tom Verrilli 在这篇访谈中抛出了一个反直觉观点：大多数公司里的 PM 角色其实不应该存在。<br><br>他主张，更少、更资深的 PM 做真正的 IC（Individual Contributor）工作，效果远胜于按比例堆人的组织结构。文章讨论了 PM 的本质价值、如何判断 PM 是否在做&quot;真工作&quot;，以及组织设计中常见的反模式——Verrilli 认为传统的 PM:Engineer = 1:X 比率往往是错的，因为它假设 PM 越多越好，但实际上多数 PM 都在做&quot;协调&quot;而非&quot;创造&quot;。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/bindureddy/status/2083960300647436721" target="_blank" rel="noopener noreferrer">Bindu Reddy</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Super excited for open source AI in August<br><br>GLM 5.5 - multimodal, will surpass Kimi K3
+DeepSeek Pro - will be 10x cheaper, K3 level</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/ClementDelangue/status/2083908468285620415" target="_blank" rel="noopener noreferrer">clem 🤗</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;It&#39;s not time to slow down but to accelerate!<br><br>The recent AI-powered cyberattacks have everyone talking about the risks of AI. We should. But let&#39;s not lose sight of the bigger picture!</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/trq212/status/2083977795290734975" target="_blank" rel="noopener noreferrer">Thariq</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;you can already see Jevons paradox at work in mathematics<br><br>there is more happening, it is easier to understand and mathematicians have more time to discuss it with us at higher abstraction levels</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/lyogavin/airllm" target="_blank" rel="noopener noreferrer">lyogavin/airllm</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 25.6K<br><br>如果你曾因为显卡太菜，连 70B 模型都跑不起来而深感挫败，那 AirLLM 绝对值得你收藏。这个项目解决的核心痛点很直接：顶级开源大模型动辄上百 GB 显存需求，普通开发者的消费级 GPU 根本望尘莫及，而大多数量化方案又会牺牲模型质量。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-08-03 08:07:18</p>
+        </footer>
+    </div>
+</body>
+
+</html>
