@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-08-07">
+    <title>AIGC Daily #527 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-08-07 星期五</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/08/06/openai-brings-unlimited-chatgpt-text-chats-to-free-users/" target="_blank" rel="noopener noreferrer">ChatGPT为免费用户带来无限文本聊天</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI宣布下周起向ChatGPT免费用户开放无限文字聊天功能，同时推出复杂查询的“思考”按钮。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/08/06/google-maps-adds-agentic-features-including-food-ordering-and-hotel-bookings/" target="_blank" rel="noopener noreferrer">Google 地图新增智能体功能，包括订餐和酒店预订</a>
+                    </div>
+                </div>
+                <p class="article-summary">Google Maps新增Agentic功能，支持用户直接通过地图完成订餐、酒店预订等现实任务。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/p/3928685883308165?f=rss" target="_blank" rel="noopener noreferrer">8点1氪丨DeepSeek宣布大幅涨价；贾国龙再创业，开店“天边羊多”；河南试行周五下午弹性离岗</a>
+                    </div>
+                </div>
+                <p class="article-summary">DeepSeek宣布大幅调整API价格，整体价格将显著上涨。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.therundown.ai/p/google-shakes-up-its-ai-brain-trust" target="_blank" rel="noopener noreferrer">Google重组AI核心团队</a>
+                    </div>
+                </div>
+                <p class="article-summary">谷歌最近悄悄对 AI 核心团队动了一刀。这家公司在 AGI 竞赛里被 OpenAI 和 Anthropic 追着打，这次&#39;换血&#39;的具体名单还不清楚，但信号已经很明确：DeepMind 和 Google Brain 合并后的整合还没结束，Demis Hassabis 和 Jeff Dean 这两条线如何进一步融合，将直接决定 Gemini 下一代能不能扳回一局。<br><br>值得注意的是，谷歌刚刚在 Gemini 3 Flash 上打了一场漂亮仗，把博士级推理能力压到了 Flash 级别。这次人事调整和模型迭代几乎同步发生，说明公司正在为下一轮 Agent 时代的卡位战重新排兵布阵。考虑到 Anthropic 的 Claude 和 OpenAI 的 GPT 在企业市场攻城略地，谷歌必须重新审视自己的研究节奏和产品方向。具体谁走谁留？目前还缺乏细节，但任何一点变动都可能在 AI 圈引发震荡——毕竟这批人手里攥着的，是整个谷歌 AI 的命脉。而这也再次提醒我们：在 AI 这场军备竞赛里，人才永远是比 GPU 更稀缺的资源。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3928671655999619?f=rss" target="_blank" rel="noopener noreferrer">英伟达据悉调整Rubin Ultra内存方案，因先进存储供应面临压力</a>
+                    </div>
+                </div>
+                <p class="article-summary">英伟达正在悄悄调整下一代旗舰 GPU Rubin Ultra 的规格。据报道，公司已经测试了至少三个版本，其中部分配置的内存容量低于最初公布的设计。原因也不复杂——先进存储芯片供应紧张，英伟达可能拿不到足够的高端 HBM4 来撑住原计划的内存配置。<br><br>这件事的信号意义比表面上看更大。Rubin Ultra 计划 2026 年底前后推出，是英伟达面向下一代大模型训练的主力产品。如果连英伟达这种级别的客户都被供应链卡住，整个 AI 算力的稀缺程度可想而知。规格最终还没敲定，但这场&#39;内存博弈&#39;会一直持续到量产前。对于那些把全部身家压在英伟达身上的 AI 公司来说，现在可能真的得认真想想 Plan B 了。SK 海力士、三星这些存储厂商的话语权，恐怕会因此变得空前强大。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://thesequence.substack.com/p/the-sequence-ai-of-the-week-908-you" target="_blank" rel="noopener noreferrer">本周AI速递 #908：Gemini Robotics，你不可不知</a>
+                    </div>
+                </div>
+                <p class="article-summary">Google 把一个会走路的人形机器人塞进了一个统一的 policy 里——推理部分作为 API 开放，动作控制部分仍锁在合作伙伴手里。这种&quot;读写分离&quot;的架构选择，折射出 AI Agent 从数字世界走向物理世界时最关键的一道选择题。<br><br>文章深入剖析了 Gemini Robotics 的设计哲学。最大的看点在于 Google 没有走传统的模块化分层，而是用一整个策略模型来&quot;包打天下&quot;——从感知、步态规划到运动控制，全部由一个端到端 policy 承担。但与此同时，Google 清醒地把&quot;读&quot;（推理）层和&quot;写&quot;（执行）层剥离开来：高层推理被做成可调用的 API，让开发者可以把&quot;大脑&quot;接入自己的机器人或工作流；底层的&quot;运动神经&quot;则只在受信任的伙伴生态内流通。这种&quot;上开放、下封闭&quot;的策略，本质上和软件工程里读写路径分离的逻辑如出一辙。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blog.bytebytego.com/p/the-read-path-versus-the-write-path" target="_blank" rel="noopener noreferrer">读取路径与写入路径：策略与技术</a>
+                    </div>
+                </div>
+                <p class="article-summary">在分布式存储系统中，读路径与写路径的设计权衡直接决定系统的延迟、吞吐和一致性。文章系统阐述两条路径在 I/O、网络、CPU 三大维度的开销差异，并量化顺序写与随机写的成本。通过对比 LSM‑Tree 与 B‑Tree 的写放大、读放大及空间放大，指出在写负载变化时选择合适的写路径可显著降低后台合并对读性能的冲击。随后，以 Kafka、RocksDB、DynamoDB 为例，说明写前日志、压缩合并、热点分区和读写分离等技巧如何实现路径隔离与资源复用。核心洞见在于，读路径的优化必须结合写路径的写入节奏、合并频率和数据布局全局协同设计，以实现延迟抖动最小化和吞吐量最大化。本文为存储引擎、实时数据平台及 AI 训练数据流水线的研发人员提供从理论模型到生产实践的完整技术路径。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2608.05144" target="_blank" rel="noopener noreferrer">Argus：一种用于长期推理的通用智能体运行时系统</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: Argus提出了一个持久化、自进化的智能体运行时架构，包含Manager、Planner、Engineer和Reviewer四个核心组件，能够在证据支持当前方案时保持坚持，在发现失败、隐藏约束或目标错误时进行转向。该系统将稳定的用户意图与操作目标、约束和验证机制分离，实现对复杂长周期任务的有效执行。<br><br>**与AI Agent的关联**: Argus直接针对AI Agent的核心挑战——长期推理与自适应执行提供了系统性解决方案。其多角色协作架构和自我纠错机制对构建更 robust 的自主智能体具有重要参考价值，是Agent运行时系统设计的重要突破。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2608.04095" target="_blank" rel="noopener noreferrer">FinPerMA：基于理论与事件驱动的LLM智能体个性化记忆基准</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: FinPerMA提出了一个针对LLM Agent个性化记忆的新基准测试，重点关注事件驱动的偏好适应问题。该基准填补了现有个性化记忆测试主要关注事实保留或依赖弱约束模型生成轨迹的空白，为评估智能体在金融咨询等高风险领域维护和更新用户模型的能力提供了标准化方法。<br><br>**与AI Agent的关联**: 该基准直接服务于LLM Agent的核心能力评估，特别是长期个性化交互场景。FinPerMA的提出有助于推动Agent在记忆管理、用户建模和长期适应性方面的研究，为构建更智能的个人助手奠定评估基础。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/Significant-Gravitas/AutoGPT" target="_blank" rel="noopener noreferrer">Significant-Gravitas/AutoGPT</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 186.0K<br><br>如果你受够了每次用 ChatGPT 都要自己拆任务、写 prompt、追进度——AutoGPT 正是为这种场景而生。它让你用一句话描述目标，后台就会自动拆解步骤、调用工具、自主执行，最后把结果直接交付回来。市场调研、代码重构、批量处理数据这类多步骤任务，交给它一个人跑就行。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-08-07 07:55:41</p>
+        </footer>
+    </div>
+</body>
+
+</html>
