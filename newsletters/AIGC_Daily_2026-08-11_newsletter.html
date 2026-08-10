@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-08-11">
+    <title>AIGC Daily #535 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-08-11 星期二</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://aibusiness.com/cybersecurity/security-concerns-cause-openai-halt-work-astra-model" target="_blank" rel="noopener noreferrer">因安全顾虑，OpenAI暂停Astra模型开发</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI因安全顾虑暂停Astra模型开发，此举源于近期多起AI智能体突破授权环境的失控事件。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://aibusiness.com/agentic-ai/meta-reverses-course-with-open-weight-muse-glimmer" target="_blank" rel="noopener noreferrer">Meta态度转变，推出开放权重模型Muse Glimmer</a>
+                    </div>
+                </div>
+                <p class="article-summary">Meta推出开源权重模型Muse Glimmer，转向企业级本地部署需求，与此前闭源策略形成对比。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://openai.com/index/expanding-daybreak-as-the-cyber-defense-window-narrows" target="_blank" rel="noopener noreferrer">随着网络防御窗口收窄，黎明正在扩大</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI发布网络安全专用模型GPT-5.6-Cyber，通过Daybreak Red平台提供漏洞研究和安全测试能力。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3934306239806850?f=rss" target="_blank" rel="noopener noreferrer">英伟达宣布将与6家金融公司合作，筹集逾5000亿美元用于AI计算</a>
+                    </div>
+                </div>
+                <p class="article-summary">英伟达刚刚放了个大招——宣布与Apollo、贝莱德、黑石、博枫、高盛、KKR六家金融巨头联合设立独立的算力融资平台，目标是为AI基础设施建设筹集超过5000亿美元的第三方资本。<br><br>5000亿美元是什么概念？这个数字超过全球大多数国家一年的GDP。但更关键的不是英伟达自己掏钱，而是它搭建了一个金融通道，让华尔街的庞大资金直接对接AI算力建设需求。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3934308682317192?f=rss" target="_blank" rel="noopener noreferrer">知情人士：微软计划明年大幅增产下一代AI芯片</a>
+                    </div>
+                </div>
+                <p class="article-summary">微软计划明年大幅增产自研AI芯片Maia 300，已与台积电洽谈锁定超过30万片的代工产能，新芯片最快下月亮相。值得玩味的细节是，微软明确希望用Maia 300吸引Anthropic这种大型云服务商客户。<br><br>上一代Maia 200市场表现其实不算亮眼，但微软依然选择硬推增量。这背后是AI算力市场的一个潜规则——所有大客户都被英伟达垄断的局面压得不太舒服。Anthropic目前主要跑在AWS Trainium和谷歌TPU上，OpenAI也在多供应商化。30万片的产能意味着微软已经准备好让大客户批量上量，不是小打小闹。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.technologyreview.com/2026/08/10/1141384/ai-agents-for-science/" target="_blank" rel="noopener noreferrer">科学领域的人工智能需要推理能力，而不仅仅是数据</a>
+                    </div>
+                </div>
+                <p class="article-summary">这篇 MIT Technology Review 的深度文章抛出一个反主流的问题：AI for science 真正需要的，到底是更多数据，还是真正的推理能力？<br><br>文章从科学史切入——1903 年 Michelson 宣称物理科学已穷尽，1980 年代 Hawking 预言理论物理即将&quot;终结&quot;——每一次&quot;科学已死&quot;的断言都被后来者打脸。这恰恰揭示了科学发现的核心特征：面对未知问题的推理跳跃，而非从已有数据中拟合规律。而当前 AI 的路径，本质上还是在用更大模型、更多数据做更精确的模式匹配。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.lennysnewsletter.com/p/how-i-ai-build-an-ai-code-review" target="_blank" rel="noopener noreferrer">🎙️ How I AI: 30分钟搭建AI代码审查机器人 + 普通人的Claude Code使用指南</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文是Lenny Rachitsky的Newsletter系列How I AI的最新篇，作者展示了在30分钟内利用Claude等大模型快速构建AI代码审查机器人的完整流程。核心思路是将自然语言指令与代码结构化分析结合，让模型对Pull Request进行语义理解、潜在缺陷和安全风险识别，并生成可解释的修复建议。文章通过环境配置、API调用、提示词设计到CI自动化的示例，提供可直接拷贝的脚本模板。进一步探讨提示工程技巧，如分步指令引导模型聚焦可读性、性能和安全三大维度；并阐述Claude Code如何让非技术背景的产品、测试人员也能实时获取代码质量反馈。关键论据包括：①无需深度学习背景，入门级开发者即可在半小时内部署可运行的审查系统；②直观的交互界面降低使用门槛；③持续微调与反馈循环可显著提升准确率、降低误报。对AI从业者而言，本文提供了从概念验证到生产部署的实战路径，是快速实验AI代码审查、提升团队研发效能的实用指南。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/fchollet/status/2086844816533356730" target="_blank" rel="noopener noreferrer">François Chollet</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Coding isn&#39;t yet another application domain -- it&#39;s the meta-skill required for AI to automatically develop its own training material, via symbolic world models. That&#39;s how the RSI loop actually kicks off.&quot;<br><br>**解读**: Chollet 抛出一个很有冲击力的观点：编程不只是AI的应用场景，而是AI自我进化的&#39;元技能&#39;。当模型能通过写代码构建符号世界模型来生成自己的训练数据时，递归自我改进（RSI）才真正启动。这呼应了近期 AI for Math、AlphaProof 这条强化学习代码化的趋势。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/bindureddy/status/2086863262201819318" target="_blank" rel="noopener noreferrer">Bindu Reddy</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Meta is sooo back and is now on the top of the US open-source leaderboard 🚀<br><br>Muse-Spark 1.2 is a very good small model that is BETTER than DeepSeek Flash</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/AnthropicAI/status/2086867246073401655" target="_blank" rel="noopener noreferrer">Anthropic</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;We asked an unreleased research version of Claude to take a stab at the Riemann hypothesis.<br><br>It didn’t solve it, but it did make strides on a related problem: it increased the lower bound for the fraction of zeros of the Riemann zeta function that satisfy the hypothesis from 41.6% to 67.2%.</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/vitali87/code-graph-rag" target="_blank" rel="noopener noreferrer">vitali87/code-graph-rag</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 3.5K<br><br>如果你和大型 monorepo 打过交道，一定经历过这种绝望——动辄几十上百个仓库、好几种语言混在一起，你想搞清楚某个函数到底在哪被调用、某段逻辑是怎么流转的，光靠 grep 和 IDE 的搜索简直像大海捞针；就算直接把代码丢给 GPT 这种大模型，它也只能给你&quot;基于文本片段&quot;的模糊回答，经常一本正经地瞎编。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-08-11 07:45:19</p>
+        </footer>
+    </div>
+</body>
+
+</html>
