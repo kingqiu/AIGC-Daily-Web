@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-08-14">
+    <title>AIGC Daily #541 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-08-14 星期五</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/08/13/openai-introduces-ultrafast-a-new-mode-that-makes-gpt-5-6-sol-work-at-14x-the-speed/" target="_blank" rel="noopener noreferrer">OpenAI推出“Ultrafast”新模式，让GPT-5.6 Sol的处理速度提升至原来的14倍</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI推出Ultrafast预览模式，GPT-5.6 Sol推理速度提升14倍，专为吸引企业用户推出。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.leiphone.com/category/ai/rbIV873aEJjUGpyU.html" target="_blank" rel="noopener noreferrer">Qwen3.8首日可用，助力存量算力长期有用：智源FlagOS开源开放生态共享</a>
+                    </div>
+                </div>
+                <p class="article-summary">阿里巴巴开源超大规模MoE模型Qwen3.8-2.4T-A95B，首日即在9款主流AI芯片上完成适配并开放使用。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3938554936737161?f=rss" target="_blank" rel="noopener noreferrer">DeepSeek Harness开发者预览版开放测试</a>
+                    </div>
+                </div>
+                <p class="article-summary">DeepSeek于8月13日发布Harness开发者预览版，以MIT协议开源，采用插件化架构支持灵活重组。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://deepmind.google/blog/introducing-gemini-3-7-flash/" target="_blank" rel="noopener noreferrer">发布 Gemini 3.7 Flash</a>
+                    </div>
+                </div>
+                <p class="article-summary">Google DeepMind 昨天正式推出 Gemini 3.7 Flash——这是继 Gemini 3 Flash 之后的又一次迭代。从 3 Flash 的表现来看（GPQA Diamond 90.4%，比 Gemini 2.5 Pro 还高，token 消耗反而少 30%），Google 已经把&quot;小模型做大模型的事&quot;这条路走通了。Flash 系列一向是 Google 最走量的产品线，它不是最强的那个，但往往是最实用的那个——用得起、跑得快、还够聪明。<br><br>3.7 版本大概率会沿着这个方向继续优化：要么是更长的上下文窗口，要么是对 Agent 场景做更深的适配——毕竟 Google 这半年一直在 Agent 基础设施上加码。考虑到 DeepMind 后训练科学家提过，新一代 RL 技术先在 Flash 上验证再用到 Pro 上，3.7 Flash 的真实表现可能比纸面 benchmark 更值得关注。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/08/13/microsoft-kills-off-unsuccessful-ai-features-while-merging-its-separate-copilot-apps/" target="_blank" rel="noopener noreferrer">微软淘汰表现不佳的AI功能 同时整合旗下分散的Copilot应用</a>
+                    </div>
+                </div>
+                <p class="article-summary">微软终于承认 Copilot 的某些尝试失败了。TechCrunch 报道，Microsoft 正在做 Copilot 大整合——把消费版和商用版合二为一，同时砍掉 AI 生成播客、群聊、深度研究，以及那个长得像 Clippy 复活版的黄色小表情 Mico。这意味着去年还大张旗鼓的 Copilot 全线扩张战略正式开始收缩，过去 18 个月里微软拼命往 Copilot 里塞的很多功能，最终沦为没人用的沉没成本。<br><br>这个动作背后的信号很清晰：当&quot;AI for everything&quot;的早期红利消退后，头部玩家开始学会做减法。事实上 Mico 的下架尤其值得关注——微软曾把它包装成 Copilot 的情感化交互门面，定位是&quot;有温度的 AI 助手&quot;，现在看来，&quot;有温度&quot;这个卖点在大模型时代可能并不好卖。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://thesequence.substack.com/p/the-sequence-frontier-update-issue" target="_blank" rel="noopener noreferrer">**序列前沿更新 - 第913期：解读 Meta Muse Code、Prime Intelligence 的 Prime Agent 以及 OpenAI 的 Astra**</a>
+                    </div>
+                </div>
+                <p class="article-summary">这一期 Frontier Update 把近期三个值得关注的 Agent 系产品放在一起拆解：Meta 的 Muse Code、Prime Intellect 的 Prime Agent，以及 OpenAI 的 Astra。它们分别代表了代码 Agent、去中心化训练驱动的 Agent，以及多模态通用助手三条不同的技术路线。文章的重点不在新闻层面，而是比较三者在产品定位、能力边界和工程取舍上的差异——比如 Muse Code 如何在开源生态中定位自己，Prime Agent 如何将分布式训练成果落地为可用 Agent，以及 Astra 在多模态交互上相较以往产品有哪些实质性进步。对于同时关注开源生态和前沿闭源进展的读者来说，这是一篇能帮你快速建立横向认知的综述。<br><br>相比单篇产品评测，这种&quot;三件套并排&quot;的写法更有价值：你能看到同一个&quot;Agent&quot;标签下，完全不同的技术哲学和产品策略正在并行推进。值得读的原因在于，在 Agent 概念被严重泛化的当下，这种结构化对比能帮你分辨哪些是真正的能力突破，哪些更多是市场叙事。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blog.bytebytego.com/p/a-detailed-guide-to-api-composition" target="_blank" rel="noopener noreferrer">API组合技术详细指南</a>
+                    </div>
+                </div>
+                <p class="article-summary">如果你正在搭建 AI Agent，迟早会撞上一个问题：Agent 怎么把多个 API 组合在一起完成任务？这篇文章系统梳理了 API Composition 的核心模式与设计思路，从最基础的顺序调用、并行调用，到带条件的分支编排、错误补偿、事务一致性等进阶模式，都有清晰的解释和适用场景分析。文章特别适合后端工程师和 Agent 架构师——它不只讲&quot;怎么写代码&quot;，更讲&quot;为什么这样组合是合理的&quot;，帮你理解不同组合策略在可靠性、可维护性和性能上的取舍。<br><br>很多 Agent 框架（如 LangChain、AutoGen 等）的底层逻辑其实就是 API Composition 的工程化封装，读懂这篇文章再去看那些框架，思路会通透很多。文章的实用价值很高：读完你不仅能直接套用几种典型模式，还能在自己的 Agent 项目中判断&quot;现在该用哪种组合方式&quot;。是一篇能立刻转化为代码和架构决策的技术长文。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2608.11616" target="_blank" rel="noopener noreferrer">MBA：面向真实商业创意生成的多模态基准与Agent评估</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出了MBA-Bench，首个用于训练和评估商业创意多模态Agent的基准测试，包含30K样本覆盖六个领域。该研究突破了现有Agent系统仅限文本的范式，将视觉感知融入Agent决策过程，构建了完整的多模态任务评测体系，对Agent在真实商业场景中的应用具有重要指导意义。<br><br>**与AI Agent的关联**: 直接聚焦于Agentic系统在实际商业场景中的应用，提出多模态Agent的评估基准。该研究对于构建具备多模态感知和商业决策能力的自主Agent具有直接参考价值，推动了Agent从纯文本交互向多模态感知的演进。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2608.11236" target="_blank" rel="noopener noreferrer">TRACE Bench：任务驱动的角色扮演Agent检查清单评估框架</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出了TRACE Bench，一个任务驱动的Agentic检查清单评估框架。该框架将角色画像离线分解为固定检查清单，通过用户Agent与目标模型自然对话，同时私下更新检查清单状态。创新性地实现了对Agent角色扮演能力的细粒度评估，能够揭示哪些角色需求被测试、哪些失败以及支持判断的对话证据。<br><br>**与AI Agent的关联**: 针对Agent的角色扮演和自主行为评估提出了系统性方法，解决了Agent评估中透明度和可解释性的关键问题。该框架对于构建可靠、可评估的自主Agent具有重要价值，特别是在需要Agent保持一致角色行为的应用场景中。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/macro-inc/macro" target="_blank" rel="noopener noreferrer">macro-inc/macro</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 2.6K<br><br>还在为团队工具碎片化头疼？Slack 聊工作、Notion 写文档、Linear 管任务、HubSpot 做 CRM、Superhuman 收邮件——每天在多个 SaaS 之间来回切换，上下文散得到处都是，团队扩到一二十人就彻底乱套。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-08-14 07:19:04</p>
+        </footer>
+    </div>
+</body>
+
+</html>
