@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-08-17">
+    <title>AIGC Daily #547 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-08-17 星期一</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/ai-artificial-intelligence/980817/openai-disbands-preparedness-team" target="_blank" rel="noopener noreferrer">据报道，OpenAI 已解散其 Preparedness 团队</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI于7月底解散负责评估模型风险的安全准备团队（preparedness team），引发AI安全治理担忧。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://venturebeat.com/technology/meta-returns-to-open-source-with-muse-glimmer-an-apache-2-0-licensed-30b-parameter-ai-model-optimized-for-agents-available-now" target="_blank" rel="noopener noreferrer">Meta重返开源领域：Muse Glimmer——一款采用Apache 2.0许可的300亿参数AI模型，专为代理场景优化，现已发布 | VentureBeat</a>
+                    </div>
+                </div>
+                <p class="article-summary">Meta发布Muse Glimmer开源AI模型（300亿参数），采用Apache 2.0许可证，专为AI代理场景优化。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/ai-artificial-intelligence/980742/chatgpts-computer-history-tracks-your-clicks-and-keystrokes" target="_blank" rel="noopener noreferrer">ChatGPT的计算机历史记录功能会追踪你的点击和按键操作</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI为macOS版ChatGPT推出&quot;Computer History&quot;功能，可记录用户操作并转化为训练数据用于自动化任务。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/08/16/stripe-will-reportedly-acquire-ai-gateway-startup-openrouter-for-7b/" target="_blank" rel="noopener noreferrer">据报道，Stripe将以超过70亿美元收购AI网关初创公司OpenRouter</a>
+                    </div>
+                </div>
+                <p class="article-summary">刚刚传出来的一个消息，可能正在改写 AI 基础设施的格局：支付巨头 Stripe 据说要以超过 70 亿美元的价格收购 OpenRouter——那个被称为&quot;AI 界 Stripe&quot;的模型路由平台。<br><br>OpenRouter 本质上是一个中间层，帮开发者在 GPT-4、Claude、Gemini、Llama 等十几家模型之间挑最合适的，省得自己去一个个接 API。70 亿美元的估值说明，资本市场已经认定：在模型和应用之间，路由层是绕不开的关键节点。而 Stripe 拿下它，等于把&quot;支付入口&quot;和&quot;AI 入口&quot;焊在了一起。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3942795773787527?f=rss" target="_blank" rel="noopener noreferrer">全球开源AI大洗牌，中国开源模型加速崛起</a>
+                    </div>
+                </div>
+                <p class="article-summary">Hugging Face 最近发布的报告，给全球开源 AI 圈投下了一颗深水炸弹：2026 年以来，中国企业发布的最大开源模型，参数规模上限稳定在 7540 亿到 2.78 万亿之间，而美国同行大多数月份都不到 1300 亿。<br><br>这不只是&quot;更大&quot;那么简单。报告里特别提到，中国厂商在权重开放程度、训练数据可获取性、技术报告详细度这些&quot;开放性指标&quot;上的进步也非常明显。过去大家吐槽国产模型&quot;开源但不开放&quot;的尴尬，正在被快速消化。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.lennysnewsletter.com/p/openais-head-of-design-this-is-the" target="_blank" rel="noopener noreferrer">OpenAI设计主管：这是历史上成为设计师的最佳时机 | 伊恩·西尔伯</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI 产品设计负责人 Ian Silber 在 Lenny&#39;s Newsletter 的访谈中，分享了他对当下设计师角色的判断——他认为这是设计师历史上最好的时代，前提是你能学会与 AI 协作。<br><br>文章最有价值的部分在于 Ian 对&quot;人在哪里仍然胜过 AI&quot;的清晰划界。他承认 AI 在生成样板、加速迭代上已经非常强，但在判断&quot;什么值得做&quot;这件事上仍然远不如人——设计师的核心价值正在从&quot;动手做&quot;转向&quot;定义问题&quot;和&quot;做选择&quot;。他还提到，面对 AI 工具爆炸带来的 overwhelm，关键不是学更多工具，而是建立自己的判断框架和审美锚点，否则你只是在给 AI 投喂噪音。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://thesequence.substack.com/p/the-sequence-radar-issue-915-last" target="_blank" rel="noopener noreferrer">Sequence Radar - 第915期：上周AI动态：Cursor收购案、新版Grok和GLM模型、Anthropic最新交易以及River AI</a>
+                    </div>
+                </div>
+                <p class="article-summary">本期《The Sequence Radar》第915期围绕上周AI重要事件展开深度解析，核心观点指出行业竞争已从单纯的技术突破转向数据、算力与平台生态的协同优势。文章首先聚焦Cursor收购案，这一垂直应用层的资本动作表明企业正通过整合数据流与业务入口来构建闭环壁垒；随后报道Grok与GLM两大新模型发布，前者突出跨模态推理与长程记忆能力，后者强调多语言安全对齐与可解释性提升，揭示模型层竞争正逼近硬件边际；Anthropic最新一轮融资与合作案凸显安全与可解释性在企业部署中的商业价值，推动AI治理成为关键竞争要素；River AI推出的实时学习框架把在线学习推向生产环境，实现了模型随数据流持续迭代的闭环。综合来看，这些动向共同指向一个趋势：真正的竞争优势已不再是单一模型参数，而是围绕数据闭环、算力调度和平台生态的综合布局。阅读本期可帮助AI从业者快速把握技术前沿、资本流向以及行业竞争格局的微妙变化，为自身产品与投资决策提供参考。<br><br>***</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/hardmaru/status/2089034954948706770" target="_blank" rel="noopener noreferrer">hardmaru</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;intelligence wants to be free&quot;<br><br>**解读**: hardmaru（前 Stability AI 研究员）这句&#39;Intelligence wants to be free&#39;，明显是经典黑客口号&#39;Information wants to be free&#39;的 AI 版。他在用一句话押韵式地表达开源信仰——模型越来越强，开放权重就是不可逆趋势。和 Llama、DeepSeek 这波开源浪潮是同一脉搏，潜台词是对闭源阵营的隐性批评。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/trq212/status/2089085004966207679" target="_blank" rel="noopener noreferrer">Thariq</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;it says a lot that the creators of three of the most iconic web frameworks: django (@simonw), flask (@mitsuhiko) and rails (@dhh) were so AI pilled so early&quot;<br><br>**解读**: Thariq 抛出一个值得 follow 的观察：三个最经典 Web 框架——Django（Simon Willison）、Flask（Armin Ronacher）、Rails（DHH）的创建者都极早 All in AI。说明真正懂&#39;软件底层怎么搭&#39;的人，比大多数 VC 更早看穿了 AI 的真实潜力。这三个人目前的动作和投资方向，值得认真研究。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/a16z/status/2089076704543469956" target="_blank" rel="noopener noreferrer">a16z</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Right place, right time: many neoclouds spent years mining crypto, then AI showed up and turned their power rights, data centers, and GPUs into some of the hottest assets in tech.<br><br>25 quarters in, CoreWeave is pulling in more quarterly revenue than Azure, AWS, or Google Cloud were at 30.</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/Lightricks/LTX-2" target="_blank" rel="noopener noreferrer">Lightricks/LTX-2</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 9.1K<br><br>如果你做 AI 视频生成，最头疼的莫过于&quot;画面有，声音也要有，还要对得上嘴型&quot;——大部分开源视频模型要么压根不碰音频，要么要你再外接一套 TTS 或音效模型，拼起来既费劲又容易出戏。LTX-2 就是冲着这个痛点来的：它是目前第一个基于 DiT 架构、把音视频统一在一个生成模型里的开源底座，一跑就能产出嘴型同步的音视频成品，省去你自己串管线的痛苦。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-08-17 07:34:25</p>
+        </footer>
+    </div>
+</body>
+
+</html>
