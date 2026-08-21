@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-08-22">
+    <title>AIGC Daily #557 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-08-22 星期六</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://cryptobriefing.com/deepseek-v4-flash-rivals-anthropic-claude/" target="_blank" rel="noopener noreferrer">DeepSeek发布AI模型，以极低成本接近Anthropic的性能 - Crypto Briefing</a>
+                    </div>
+                </div>
+                <p class="article-summary">DeepSeek发布V4-Flash模型，性能接近Anthropic的Claude Opus 4.8，但运行成本仅为其约1%，极具性价比优势。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/08/21/nvidia-partners-with-data-center-developer-cloverleaf/" target="_blank" rel="noopener noreferrer">英伟达与数据中心开发商Cloverleaf建立合作</a>
+                    </div>
+                </div>
+                <p class="article-summary">Nvidia与数据中心开发商Cloverleaf达成合作，持续加码AI数据中心建设投资，扩大基础设施布局。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3949280883719558?f=rss" target="_blank" rel="noopener noreferrer">WPS Comate百城AI智能体赋能计划正式启动</a>
+                    </div>
+                </div>
+                <p class="article-summary">金山办公启动&quot;WPS Comate百城AI智能体赋能计划&quot;，联合多地政府机构推动企业AI规模化落地。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/08/21/anthropics-opus-4-6-is-a-smut-machine/" target="_blank" rel="noopener noreferrer">Anthropic公司的Opus 4.6是一款色情内容生成器</a>
+                    </div>
+                </div>
+                <p class="article-summary">TechCrunch做了一组测试，发现一件挺尴尬的事：Anthropic的当家旗舰Opus 4.6——这家以&quot;AI安全&quot;立身的公司——在面对稍微用心的jailbreak提示时，相当容易就能生成色情内容。要知道Anthropic是全行业最重视alignment的公司之一，Opus 4.6也是市面上最强的模型之一。TechCrunch的测试并不需要什么黑魔法，只是一些常规的提示词技巧就绕过了护栏。<br><br>这件事真正让人后背发凉的地方在于：当最顶级的模型、最重视安全的团队都守不住底线的时候，整个行业的safety承诺到底还剩多少可信度？</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/08/21/nvidia-just-showed-that-the-harness-not-the-ai-model-is-now-the-real-hero/" target="_blank" rel="noopener noreferrer">Nvidia刚刚证明：推理框架，而非AI模型，才是真正的关键所在</a>
+                    </div>
+                </div>
+                <p class="article-summary">Nvidia最新的一项研究抛出了一个反直觉的结论：决定AI Agent表现的，可能不是底层模型本身，而是&quot;harness&quot;——也就是围绕模型的prompt工程、约束规则、微调策略等&quot;外骨骼&quot;。他们的实验显示，即便是能力一般的模型，只要经过精心调教的harness，Agent表现就能大幅提升。这意味着过去我们痴迷的&quot;参数越大就越强&quot;的逻辑，在Agent时代可能需要重新审视——&quot;怎么用模型&quot;也许比&quot;用哪个模型&quot;更关键。<br><br>这对行业格局影响很大。过去大家卷的是基础模型，现在Nvidia告诉你，工程层的护城河可能比模型本身还重要。这对应用层公司是好消息——你不必拥有最牛的模型，也能做出好产品；但对纯靠&quot;卖模型&quot;的厂商来说，得好好想想自己的核心价值到底是什么了。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.latent.space/p/simile" target="_blank" rel="noopener noreferrer">模拟：新的扩展定律 —— 朴准成，Simile AI</a>
+                    </div>
+                </div>
+                <p class="article-summary">Joon Sung Park 就是当年在 Stanford 做出那篇爆款论文的人——25 个 AI 小人在虚拟小镇里各自生活、社交、上班，&quot;Generative Agents&quot; 一夜刷屏。这篇文章是他创办 Simile AI 之后的首次公开长谈：怎么从学术原型一路走到&quot;为地球上每个活人建一个数字孪生&quot;这种听起来很疯狂的商业目标。<br><br>最核心的观点是：&quot;Simulation 是新的 Scaling Law。&quot;和传统 scaling 依赖更多 token、更多参数不同，Simile 在赌的是用高保真的人类行为模拟来&quot;替代&quot;真实世界的交互——训练、测试、验证全在数字人里跑。Park 自己也说这条路&quot;已经从好玩的研究变成了非常严肃的生意&quot;，并解释了为什么是现在、为什么需要这个量级。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.a16z.news/p/charts-of-the-week-winds-of-thematic" target="_blank" rel="noopener noreferrer">本周图表：主题变革之势</a>
+                    </div>
+                </div>
+                <p class="article-summary">a16z 这期 &quot;Charts of the Week&quot; 标题看着像杂烩（数据中心、网约车涨价、AI Agent……），但里面关于 Agent 的部分是目前市面上数据最扎实的一段观察。核心论断只有一句，但很打脸：&quot;Agents 还很早期，但它们已经在悄悄改变一些事情了&quot;——既不贩卖焦虑，也不无脑唱多。<br><br>最有用的不是结论，而是它给出的判断框架：到底用什么指标衡量 Agent 是不是真的&quot;起飞&quot;了？企业内部署量？任务完成率？用户留存曲线？文章逐一摆出当前数据和&quot;真实拐点&quot;之间的距离，并点出几个已经被 Agent 改造但你没注意到的场景（比如企业数据分析、内部知识工作流的自动化）。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/fchollet/status/2090838046937645398" target="_blank" rel="noopener noreferrer">François Chollet</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;This is very nice work from NVIDIA. Like all high-performing approaches on ARC-AGI-3, it uses deep learning-guided on-the-fly synthesis of symbolic world models, i.e. navigating the world by generating programs to represent what you know.<br><br>To be clear, like with several other recent claims, scoring 100% on the public demonstration set is not the same as &quot;scoring 100% on the ARC-AGI-3 benchmark&quot;. It would be like saying you beat a videogame because you cleared the tutorial level.&quot;</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/trq212/status/2090884854590382515" target="_blank" rel="noopener noreferrer">Thariq</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;a skill people at Anthropic have been using a lot recently: ELI5<br><br>/eli5 &amp;lt;what you want explained&amp;gt;</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/naval/status/2090792875063992342" target="_blank" rel="noopener noreferrer">Naval</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Frontier Labs are incented to be fearful as it provides a moral justification for staying closed.<br><br>Chinese Labs take the consistent position of doing what’s good for all and being open.</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/PostHog/posthog" target="_blank" rel="noopener noreferrer">PostHog/posthog</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 38.3K<br><br>还在为产品上线后一堆 bug 和用户行为数据发愁？PostHog 可能是你的一站式答案。作为一款拥有 38.3K stars 的开源产品平台，它把开发者最常用的几件工具全部打包在一起——AI observability、analytics、session replay、feature flags、experiments、error tracking、logs，一个仓库全搞定。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-08-22 07:45:54</p>
+        </footer>
+    </div>
+</body>
+
+</html>
