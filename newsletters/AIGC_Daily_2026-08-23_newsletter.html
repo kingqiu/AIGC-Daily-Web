@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-08-23">
+    <title>AIGC Daily #559 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-08-23 星期日</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://cryptobriefing.com/deepseek-unveils-ai-model-challenging-anthropics-dominance/" target="_blank" rel="noopener noreferrer">DeepSeek发布挑战Anthropic霸主地位的AI模型 - Crypto Briefing</a>
+                    </div>
+                </div>
+                <p class="article-summary">DeepSeek发布新AI模型，据称性能接近Anthropic Claude Opus 5，直接挑战其在高端模型市场的领先地位。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/08/22/openai-says-california-should-strengthen-its-ai-safety-bill/" target="_blank" rel="noopener noreferrer">OpenAI表示加州应加强其人工智能安全法案</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI转变态度，公开呼吁加州加强SB 53 AI安全法案，从之前的反对转为支持更严格监管。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://finance.yahoo.com/technology/ai/articles/ai-death-zone-most-corporate-090000970.html" target="_blank" rel="noopener noreferrer">**AI“死亡区”已到来——大多数企业AI策略正置身其中**
+
+*——Yahoo Finance*</a>
+                    </div>
+                </div>
+                <p class="article-summary">中国开发的AI模型首次在OpenRouter平台占据前五名全部席位，标志着全球AI竞争格局的重要变化。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/08/22/inherent-founded-by-deepmind-alumni-says-its-ai-teammate-just-outperformed-anthropic-and-openai-at-replicating-research/" target="_blank" rel="noopener noreferrer">Inherent由DeepMind前员工创立，称其AI“队友”在复现研究方面的表现已超越Anthropic和OpenAI</a>
+                    </div>
+                </div>
+                <p class="article-summary">英国 AI 实验室 Inherent 刚刚放出了一个叫 Faraday 的 AI 智能体，专门用来复现科研论文。值得注意的是，这家公司是由 DeepMind 老员工创办的，而他们声称 Faraday 在复现研究这件事上，跑分超过了 Anthropic 和 OpenAI 的同类产品。<br><br>这件事有意思的点在于，&quot;复现论文&quot;一直是衡量 AI 能否真正做科研的硬指标——读懂论文只是第一步，自己跑代码、调参数、把实验结果做出来，才是真正难的部分。Faraday 能在这件事上叫板前沿大厂，说明科研自动化这个赛道正在被细分领域的玩家撕开一个口子。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/08/22/harvards-699-startup-bootcamp-offers-ai-avatars-of-its-instructors/" target="_blank" rel="noopener noreferrer">哈佛大学699美元创业训练营推出导师AI虚拟形象</a>
+                    </div>
+                </div>
+                <p class="article-summary">哈佛商学院最近上线了一个叫 HBS Foundry 的创业训练营，售价 699 美元，主打卖点是：用 AI 数字人来当你的&quot;陪练教练&quot;。<br><br>具体来说，学员在练习路演、模拟董事会讨论时，会面对一个还原了真实 HBS 教授风格的 AI Avatar，对方会针对你的表达、策略、临场反应给出即时反馈。哈佛把这种模式叫做&quot;按需获取世界级指导&quot;——本质上就是用 AI 把顶级商学院教授的时间规模化，让几千块学费就能享受原本只有 MBA 学员才能接触到的实战训练。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blog.bytebytego.com/p/ep223-ollama-vs-vllm-vs-sglang" target="_blank" rel="noopener noreferrer">第223期：Ollama vs vLLM vs SGLang</a>
+                    </div>
+                </div>
+                <p class="article-summary">想在本地或私有环境跑开源大模型，Ollama、vLLM、SGLang 这三个名字你一定见过。ByteByteGo 这期播客把三个主流推理引擎拉到一起正面比较，讲清楚它们在请求处理、批处理策略、内存管理等核心环节到底有什么不同——同样是&quot;跑一个 Llama 模型&quot;，体验却天差地别，原因就在这里。<br><br>文章最有价值的部分是对三者设计哲学的拆解：Ollama 把&quot;开箱即用&quot;做到极致，封装了 llama.cpp 的复杂性，适合个人开发者和快速原型验证；vLLM 凭借 PagedAttention 把显存利用率拉满，在高并发生产环境里吞吐表现亮眼；SGLang 则通过 RadixAttention 和结构化生成优化，在 Agent 多轮对话、JSON 强制输出这类场景有独特优势。这不是简单罗列参数表，而是从底层机制告诉你为什么&quot;同一个模型在 Ollama 上跑得像蜗牛，到 vLLM 上却飞起&quot;。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/ClementDelangue/status/2091273855415492806" target="_blank" rel="noopener noreferrer">clem 🤗</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;NVIDIA built its own coding harness to optimize CUDA GPU kernels and achieved a 100% score on ARC-AGI-3’s 25 public games, solving all 183 levels.<br><br>With agents, we&#39;ll move from a world where it&#39;s quite hard to run, optimize, post-train your own AI models and kernels to a world where virtually everybody can do it.</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/a16z/status/2091200032162857328" target="_blank" rel="noopener noreferrer">a16z</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Humans are the minority user of AI<br><br>Agents burn nearly 5x the tokens people do, up 14x since February</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/GaryMarcus/status/2091164108691501224" target="_blank" rel="noopener noreferrer">Gary Marcus</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Bingo, @chamath!<br><br>ARR can mean both “Annual Recurring Revenue” and “Annualized Run Rate” and Anthropic (or least its supporters) may well be playing games with that, implying the former but really talking about the latter.</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="http://arxiv.org/abs/2608.20274v1" target="_blank" rel="noopener noreferrer">分解传递：LLM智能体中的跨任务技能迁移</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 该论文系统性地研究了大型语言模型(LLM)智能体中技能诱导方式对跨任务迁移的影响。研究对比了任务级技能诱导与子任务级技能诱导两种方法，分析了技能迁移的可靠性问题。研究发现诱导的技能可能在任务间传递不可靠，甚至可能损害智能体性能，这对理解自主智能体的经验学习机制具有重要意义。<br><br>**与AI Agent的关联**: 该研究直接聚焦于LLM智能体的能力增长机制，解决了智能体如何从完成的任务中学习并复用技能的核心问题。对于构建更具适应性和学习能力的自主智能体系统具有重要参考价值，特别是在多任务环境和持续学习场景中的应用。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/openai/codex" target="_blank" rel="noopener noreferrer">openai/codex</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 113.3K<br><br>今天要推荐的是 openai/codex，OpenAI 官方出品的一个跑在你 terminal 里的 lightweight coding agent。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-08-23 07:54:58</p>
+        </footer>
+    </div>
+</body>
+
+</html>
