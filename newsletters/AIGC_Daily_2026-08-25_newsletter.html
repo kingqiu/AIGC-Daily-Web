@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-08-25">
+    <title>AIGC Daily #563 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-08-25 星期二</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/08/24/openai-is-building-an-ai-agent-for-everything-will-everyone-use-them/" target="_blank" rel="noopener noreferrer">OpenAI正在为万物打造AI智能体。每个人都会使用它们吗？</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI正推动AI代理从软件工程师群体向普通大众普及，展现其在AI应用大众化领域的战略布局。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3954139267890566?f=rss" target="_blank" rel="noopener noreferrer">英伟达称Groq机架将在今年上线，此前以200亿美元完成收购</a>
+                    </div>
+                </div>
+                <p class="article-summary">英伟达宣布Groq 3 LPX机架全面投产，标志着其200亿美元收购的Groq技术正式商业化落地。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3954130545147009?f=rss" target="_blank" rel="noopener noreferrer">Meta计划在未来几周推出“HATCH”AI代理平台</a>
+                    </div>
+                </div>
+                <p class="article-summary">Meta Platforms计划在未来几周内推出面向消费者的AI代理平台HATCH，旨在变现其AI投资并拓展收入来源。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blogs.nvidia.com/blog/vera-rubin-nvl72-efficiency-ai-agents/" target="_blank" rel="noopener noreferrer">能效提升高达30倍：NVIDIA Vera Rubin NVL72为AI智能体树立全新效率标准</a>
+                    </div>
+                </div>
+                <p class="article-summary">NVIDIA 这次公布了一个相当硬核的数据：Vera Rubin NVL72 每瓦特能完成的工作量最高提升 30 倍。听起来像营销话术，但有个关键背景——OpenRouter 的统计显示，agentic AI（智能体）工作负载消耗的 token 量是普通聊天的 15 倍。一个 AI 帮你做投资研究、自动调用工具、规划多步任务时，调用的算力和&quot;陪你闲聊&quot;根本不是一个量级。<br><br>Vera Rubin NVL72 想解决的就是这个痛点。Agent 时代，单卡跑得多快不再是唯一指标，单位能耗下能扛住多少任务才是硬指标。这意味着 AI 基础设施的主战场，已经悄悄从&quot;谁参数大&quot;转移到&quot;谁每瓦效率高&quot;——下一代数据中心的 KPI 会更看能效比，而不是单纯堆显卡。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/08/24/valor-point72-back-general-intuition-at-6b-valuation-as-ai-startup-pushes-into-robotics/" target="_blank" rel="noopener noreferrer">Valor、Point72押注General Intuition，估值达60亿美元——AI创业公司强势进军机器人领域</a>
+                    </div>
+                </div>
+                <p class="article-summary">一家做&quot;具身智能基础模型&quot;的创业公司 General Intuition 正在谈融资，pre-money 估值直接喊到 60 亿美元。背后站着 Point72 和 Valor 这种顶级资本，主要方向是做一套统一的基础模型，让 AI 智能体学会在物理空间里自主运动和决策——不是给你写邮件那种 AI，而是真的能在现实世界里&quot;导航&quot;的那种。<br><br>这条赛道的热度看看同期玩家就知道：Figure 在造通用机器人、Physical Intelligence 拿了红杉的钱、Skild AI 也是独角兽。60 亿这个数字虽然吓人，但在&quot;具身基础模型&quot;赛道上其实不夸张——大家赌的是同一件事：LLM 之后，下一个真正能跑出来的大模型赛道就是&quot;世界模型&quot;。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blog.bytebytego.com/p/why-code-verification-matters-more" target="_blank" rel="noopener noreferrer">为什么在人工智能时代，代码验证比以往任何时候都更加重要</a>
+                    </div>
+                </div>
+                <p class="article-summary">AI生成代码越来越多了，但谁来验证这些代码真的&quot;对&quot;？这篇文章深入探讨了代码验证在AI时代为什么变得前所未有的重要。它会拆解代码验证的底层机制——从单元测试到形式化验证，分析AI生成代码带来的全新压力：AI倾向于产出&quot;看起来合理但隐藏bug&quot;的代码，这种&quot;似是而非&quot;的特性让传统验证手段开始失灵。大规模AI Agent开发中，验证流程本身需要被重新设计。文章最后还收录了Andrea对未来的判断：随着Agent自主编码能力的提升，验证也必须变成AI-native的——让Agent互相验证、让模型自查输出。<br><br>如果你在做AI Coding工具、用Agent写代码，或者在团队里推AI辅助开发，这篇文章值得读。验证从来不是附属品，而是整个AI开发流水线能不能跑通的关键一环——这也是为什么&quot;Code Verification Matters More Than Ever&quot;。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.lennysnewsletter.com/p/how-i-ai-grok-bot-grok-46whats-great" target="_blank" rel="noopener noreferrer">🎙️ AI使用实录：Grok Bot + Grok 4.6——哪些真正好用（哪些仍在炒作）&amp; 在Devin上月花2万美元的经验教训</a>
+                    </div>
+                </div>
+                <p class="article-summary">有人在AI编程Agent Devin上一个月砸了两万美元。这篇文章就是这个&quot;冤大头&quot;的真实复盘，外加对Grok Bot和Grok 4.6的第一手体验。最有意思的不是花了多少钱，而是这笔钱到底换来了什么——哪些任务Devin真的能高效搞定，哪些看起来简单但Agent死活搞不定，以及密集使用一个月后对AI编码Agent能力天花板的重新校准。Lenny的播客一贯以实战著称，这期的含金量尤其高。<br><br>对于正在评估是否让团队大规模采用AI编程Agent的人来说，这篇文章的价值远超厂商demo和benchmark。真金白银砸下去之后的回报率、踩坑清单、适合与不适合的场景，全是别人替你试错的结果。读完你对&quot;AI Coding Agent现在到底能不能用&quot;会有一个远比Twitter讨论更靠谱的判断。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/levie/status/2091909170308296950" target="_blank" rel="noopener noreferrer">Aaron Levie</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;It’s not fully appreciated that ZDR is responsible for a substantial amount of the growth of AI, because it dramatically simplified the compliance process most companies deal with in handling data with subprocessors. The alternative path would have been a far slower adoption rate.<br><br>For the applied AI tools that are primarily responsible for driving AI growth, they generally have agreements in place with their customers to only offer models with ZDR to ensure that customers don’t have to in...</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/garrytan/status/2091873781325418723" target="_blank" rel="noopener noreferrer">Garry Tan</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Current meta: OpenAI is actually the much more open lab&quot;<br><br>**解读**: YC CEO Garry Tan 抛出一个有点反直觉的观点：&quot;OpenAI 实际上是更开放的实验室&quot;。这话明显是冲着那些打着&quot;开源&quot;旗号的 Meta、Mistral、DeepSeek 去的——意思是真正在产品层面开放、让所有人都能用上的，反而是 OpenAI。这也可以看作 YC 在 OpenAI 上市/融资节点上的一次公开站台。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/a16z/status/2091926939699490915" target="_blank" rel="noopener noreferrer">a16z</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;AI use by both patients and clinicians inflected shortly after the launch of ChatGPT<br><br>Protege CEO Bobby Samuels on the Oracle Problem in health AI and how to solve it: https://t.co/U0Wc7OChua https://t.co/2AzfG4ZpEB&quot;</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/freestylefly/awesome-gpt-image-2" target="_blank" rel="noopener noreferrer">freestylefly/awesome-gpt-image-2</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 15.5K<br><br>还在为 GPT-Image-2 写提示词反复试错、效果飘忽不定而头疼？这个 15.5K star 的开源项目可以直接帮你省掉一大半功夫——freestylefly/awesome-gpt-image-2 喊出了&quot;Prompt as Code&quot;的口号，把 530+ 个逆向工程的真实案例、20+ 套工业级模板全部整理成结构化资产，相当于把别人调好的参数和踩过的坑都打包好送给你。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-08-25 07:57:14</p>
+        </footer>
+    </div>
+</body>
+
+</html>
