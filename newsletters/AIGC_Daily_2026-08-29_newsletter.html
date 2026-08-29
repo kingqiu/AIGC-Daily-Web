@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-08-29">
+    <title>AIGC Daily #571 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-08-29 星期六</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/ai-artificial-intelligence/985947/anthropic-supply-chain-risk-lawsuit-judge-ruling" target="_blank" rel="noopener noreferrer">法院裁定特朗普政府非法将Anthropic列入黑名单</a>
+                    </div>
+                </div>
+                <p class="article-summary">美国联邦法官裁定特朗普政府将Anthropic列入供应链风险名单属违法行为，这是Anthropic针对五角大楼诉讼的首次胜诉。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.facebook.com/rundownnewsletter/posts/openai-is-launching-a-new-400-million-venture-fund-to-invest-in-early-stage-ai-s/945858688535917" target="_blank" rel="noopener noreferrer">OpenAI正在推出一只新的4亿美元风险基金……</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI宣布推出40亿美元新创投基金，将全资出资投资早期AI创业公司，计划支持约8家公司。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3959263773031552?f=rss" target="_blank" rel="noopener noreferrer">SkyProduction接入阿里视频生成模型Wan 3.0，限时3天免费</a>
+                    </div>
+                </div>
+                <p class="article-summary">昆仑万维旗下SkyProduction平台正式接入阿里巴巴视频生成模型Wan 3.0，限时3天面向所有用户免费开放。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/08/28/an-anthropic-researcher-just-gave-us-a-peek-at-self-improving-ai/" target="_blank" rel="noopener noreferrer">Anthropic的一位研究人员刚刚让我们初步了解了一下自我改进型AI</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic的一位研究员最近给出了一个关于&quot;自我改进AI&quot;的重要预览。在10个针对模型不良行为的基准测试中，自动化系统在不降低整体性能的前提下，每一个测试都实现了改进。这听起来很技术，但我认为这是对齐研究的一个重要拐点。<br><br>传统的alignment工作极度依赖人工——标注员一行一行地纠正模型的错误行为。但现在，AI开始具备某种程度的&quot;自我审视&quot;能力，能识别并修复自己的对齐问题。这不意味着我们进入了&quot;AI自己训练自己&quot;的奇点时刻，但它说明一个趋势：人类在AI训练循环中的角色正在被重新定义。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/08/28/neocloud-lambda-secures-1b-in-debt-to-buy-more-chips/" target="_blank" rel="noopener noreferrer">Neocloud Lambda获得10亿美元债务融资用于购买更多芯片</a>
+                    </div>
+                </div>
+                <p class="article-summary">GPU云服务商Lambda刚刚拿到10亿美元私人债务融资，全部用来买Nvidia AI芯片，再租给微软。这笔交易说明两个事实：一是算力短缺依然严重，大客户愿意为锁定产能付出高昂的财务成本；二是&quot;neocloud&quot;这种新型云厂商正在成为AI基础设施的重要玩家。他们不像AWS或Azure那样什么都做，而是专注于一件事——提供GPU算力。<br><br>值得玩味的是，这已经是近期一连串巨额贷款中的最新一笔。&quot;AI泡沫&quot;的质疑声一直没停过，但资本仍在以惊人的速度涌入算力层。卖铲子的生意，可能真的比淘金更稳。微软愿意当这个&quot;租户&quot;，也说明大厂对自有算力之外的弹性需求依然非常饥渴。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://lexfridman.com/tom-brands-transcript/?utm_source=rss&utm_medium=rss&utm_campaign=tom-brands-transcript" target="_blank" rel="noopener noreferrer">转录：Tom Brands：爱荷华摔跤 | Lex Fridman 播客 #245</a>
+                    </div>
+                </div>
+                <p class="article-summary">本篇文字稿源自 Lex Fridman Podcast 第245期，专访美国著名摔跤教练 Tom Brands，系统呈现了他在爱荷华大学摔跤项目中的训练哲学与人生经验。全文从“动机”“心理韧性”“减重技巧”三个维度展开，层层递进，揭示了顶级运动员在高压环境下的自我驱动机制和持续进步的内在逻辑。Tom Brands 以“苦行僧式”的训练方式为例，强调目标设定、反馈循环和情绪管理在竞技表现中的关键作用，并通过大量真实案例说明心理韧性如何转化为技术细节的精准把控。与此同时，嘉宾对减重过程的结构化拆解——从饮食规划、体能监控到情绪调节——提供了跨学科的系统化视角，为 AI 从业者在模型调参、算力分配和能耗优化等场景提供了可借鉴的决策框架。整篇访谈兼具实战经验与理论深度，既是摔跤爱好者的宝贵资源，也是 AI 研究者洞悉人类高效学习与决策机制的一面镜子。阅读此稿，读者可获得关于如何在不确定性中保持专注、如何构建可重复的改进循环以及如何在极限条件下实现突破的独特洞见。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.technologyreview.com/2026/08/28/1142956/how-to-sign-up-for-a-virtual-power-plant-and-decide-whether-you-should/" target="_blank" rel="noopener noreferrer">如何注册虚拟电厂——以及判断是否应该这样做</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文是MIT Technology Review的How To系列之一，旨在为普通用户和能源从业者提供加入虚拟电厂（VPP）的实用指南。作者指出，随着可再生能源渗透率提升，电网对需求侧的调度能力提出更高要求，家庭中的恒温器、电动汽车、储能电池和暖通空调等设备已不再是孤立的终端，而是可被聚合为统一的调度单元。虚拟电厂通过IoT感知、云端协同和AI优化算法，将海量分布式资源转化为可预测、可调度的电力容量，实现削峰填谷、频率调节以及现货市场竞价。文中详细拆解了注册流程、合约结构、收益分配模型以及常见的技术兼容性难题，并从数据隐私、网络安全、设备寿命三个维度给出风险评估。核心论点在于：参与VPP不仅能通过需求响应获得电费返还或服务报酬，更能为能源系统提供弹性，提升可再生能源消纳率。对AI从业者而言，本文展示了将强化学习、联邦学习和实时预测模型嵌入能源调度场景的可行性，提供了跨行业数据融合的实战案例，具有极高的技术参考价值和商业洞察。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/bindureddy/status/2093371979944583176" target="_blank" rel="noopener noreferrer">Bindu Reddy</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;GLM 5.3 Just Dropped Open Weights On Their Big Model🎉<br><br>A huge thank you to these extremely talented chinese labs  who have worked magic!</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/AnthropicAI/status/2093386528668172373" target="_blank" rel="noopener noreferrer">Anthropic</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;New Fellows Research: Can Claude autonomously align other AIs?<br><br>We gave Claude 48 hours and 1 GPU to improve the alignment of small models. It researched and proposed methods, then trained and tested the models on its own. It worked surprisingly well.
+https://t.co/nhlCMgQl46&quot;</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/GaryMarcus/status/2093359844854276481" target="_blank" rel="noopener noreferrer">Gary Marcus</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Two astonishing $NVDA numbers everyone should ponder:<br><br>Q2 Revenue: $96 billion 
+Future commitments: $366 billion*</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2608.26198" target="_blank" rel="noopener noreferrer">用于纳米尺度表征科学仪器的代理型AI系统</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出将AI Agent应用于原子力量显微镜等科学仪器的自主操作，实现从实验意图定义、仪器命令翻译、数据评估、参数调整到图像后处理的端到端自动化。该研究展示了代理型AI在复杂物理操作任务中的实际应用潜力，为科学仪器的智能化和自动化开辟了新途径。<br><br>**与AI Agent的关联**: 该论文直接展示了AI Agent在科学仪器操作领域的实际应用，体现了Agent在复杂、长期任务中的自主决策和执行能力，对推动Agent在科学研究领域的应用具有重要参考价值。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2608.26623" target="_blank" rel="noopener noreferrer">AgentJudgeBench：用于评估代理型工具调用LLM评判者的多难度基准</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 首个系统研究LLM作为评判者在代理型工具调用任务中可靠性的基准测试平台，包含3,808个实例，涵盖多种难度的结构化、依赖驱动的DAG工作流。该研究揭示了当前LLM评判者在Agent评估中的局限性，为构建更可靠的Agent评估体系提供了重要工具。<br><br>**与AI Agent的关联**: 该论文针对Agent核心能力——工具调用的评估问题提供了系统性基准，对Agent研究具有基础性支撑作用，有助于推动Agent技术的标准化评估和性能提升。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/K-Dense-AI/scientific-agent-skills" target="_blank" rel="noopener noreferrer">K-Dense-AI/scientific-agent-skills</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 36.6K<br><br>搞科研的朋友注意了——如果你平时用 Cursor、Claude Code 或者 Codex 这类 AI 编程助手，却一直苦恼于它们不懂你专业领域的知识，那 K-Dense-AI 这个 scientific-agent-skills 真的很值得试试。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-08-29 08:25:42</p>
+        </footer>
+    </div>
+</body>
+
+</html>
