@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-08-31">
+    <title>AIGC Daily #574 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-08-31 星期一</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3962617408044423?f=rss" target="_blank" rel="noopener noreferrer">超八百家公司计划中期分红</a>
+                    </div>
+                </div>
+                <p class="article-summary">超八百家公司计划中期分红</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3962616250301827?f=rss" target="_blank" rel="noopener noreferrer">境外业务收入和回报大幅增长，券商业绩“第三极”悄然成型</a>
+                    </div>
+                </div>
+                <p class="article-summary">境外业务收入和回报大幅增长，券商业绩“第三极”悄然成型</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3962613157657732?f=rss" target="_blank" rel="noopener noreferrer">SpaceX筹建涡轮叶片工厂，意在破解数据中心“电荒”难题</a>
+                    </div>
+                </div>
+                <p class="article-summary">SpaceX筹建涡轮叶片工厂，意在破解数据中心“电荒”难题</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.lennysnewsletter.com/p/ais-third-era-the-rise-of-persistent" target="_blank" rel="noopener noreferrer">AI的第三个时代：持久型AI同事的崛起 | 塔拉·塞沙恩（OpenAI产品负责人）</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI的产品负责人Tara Seshan最近在Lenny&#39;s Newsletter抛出了一个观点：AI正在进入第三个纪元，&quot;持久化的AI同事&quot;会取代&quot;按需调用的工具&quot;。她主管Codex和ChatGPT Work，某种程度上就是OpenAI内部对未来工作形态的官方押注。<br><br>她提了几个很值得玩味的判断：其一，未来的差异化不再是&quot;你用多强的模型&quot;，而是&quot;你的野心有多大&quot;——模型能力会继续涨，产品设计要提前为两三年后的水平留空间，而不是被当下的能力天花板困住；其二，她用&quot;steering vs rowing&quot;来形容新一代AI协作——人类要做的从&quot;自己划船&quot;变成&quot;掌舵&quot;，让AI去执行那些脏活累活；其三，她反复强调要&quot;build for where the models will be&quot;，而不是&quot;build for where they are&quot;。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://thesequence.substack.com/p/the-sequence-radar-issue-923-last" target="_blank" rel="noopener noreferrer">序列雷达 第923期：上周AI要闻：AI的工业化转型</a>
+                    </div>
+                </div>
+                <p class="article-summary">The Sequence最新一期Radar点了一个我最近也在关注的现象：AI竞赛的主战场，正在悄悄从&quot;模型层&quot;转移到&quot;基础设施层&quot;。<br><br>NVIDIA、Anthropic、NScale、a16z最近的密集动作都在印证这一点——Anthropic到处签算力大单，NScale在北欧和北美疯建数据中心，a16z则开始投资能源和电力供应链。背后逻辑其实很清楚：当GPT-5、Claude 4、Gemini 3这些前沿模型的智力差距在缩小，下半场的胜负手就不再是&quot;谁家模型更聪明&quot;，而是&quot;谁能把电、芯片、数据中心、冷却整套基建真正落地&quot;。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://thesequence.substack.com/p/the-sequence-robotics-issue-922-learning" target="_blank" rel="noopener noreferrer">The Sequence机器人通讯 - 第922期：了解LeRobot：机器人领域的&quot;Transformers时刻&quot;</a>
+                    </div>
+                </div>
+                <p class="article-summary">如果机器人领域也出现一个&quot;PyTorch 时刻&quot;，会是什么样子？这篇来自 The Sequence 的深度长文系统探讨了 LeRobot——一个正在崛起的开源机器人学习框架——以及它如何试图解决机器人领域长期碎片化、难以复现的痛点。从数据采集、策略训练到部署推理，LeRobot 试图提供一套端到端工具链，让更多研究者能够参与到具身智能的开发中。文章分析了它的技术选型思路和社区生态构建策略，并将其与传统机器人中间件 ROS 进行了对比，指出 LeRobot 不只是&quot;又一个机器人框架&quot;，而是尝试把学习范式本身标准化。对于关注 embodied AI、具身 Agent 以及机器人基础模型的读者来说，这篇文章帮你看清当前机器人学习基础设施的现状，也帮你判断未来几年具身智能的发展节奏。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://deepmind.google/blog/gemini-omni-1-1-flash-lets-you-build-with-more-control/" target="_blank" rel="noopener noreferrer">Gemini Omni 1.1 Flash 让你在构建过程中拥有更多控制能力</a>
+                    </div>
+                </div>
+                <p class="article-summary">Google DeepMind 发布了 Gemini 家族的最新成员 Omni 1.1 Flash，关键词是&quot;more control&quot;——为开发者提供更细粒度的控制能力。这篇文章系统介绍了新模型在 function calling、结构化输出、多模态输入处理、以及长上下文管理等方面的升级，并详细分析了这些能力如何帮助开发者构建更可靠的 AI Agent。特别值得讨论的是文章对&quot;可控性&quot;在 agent 系统中核心地位的论述：为什么仅仅让模型&quot;更强大&quot;远远不够，开发者真正需要的是对模型行为的精确约束，包括工具调用的确定性、输出的可解析性、以及错误恢复的鲁棒性。文章还对比了 Omni 1.1 Flash 与其他主流模型在 agent 场景下的实际表现差异。对于正在搭建生产级 AI 应用、或者希望把 LLM 真正变成可靠 Agent 的工程师，这是一份不可错过的深度解读。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/fchollet/status/2093873781374923090" target="_blank" rel="noopener noreferrer">François Chollet</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;What makes general intelligence &quot;general&quot; is that, *no matter the problem*, you should show intelligence.<br><br>Not a-priori competence -- intelligence: the ability to make sense of the new problem on the fly. The point is not to be prepared for everything, but to adapt to anything.&quot;</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/levie/status/2094123406811922930" target="_blank" rel="noopener noreferrer">Aaron Levie</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Sometimes people don’t have an intuitive sense of what Jevons paradox looks like for token consumption. Those of us working with enterprises get to see this first hand every day.<br><br>Basically enterprises have an unending stream of tasks that they’d love to be able to bring automation to. But for each individual task, it’s either ROI positive or not based on the cost of bringing automation to it (including the setup time, change management, and so on).</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/hardmaru/status/2094036158766571596" target="_blank" rel="noopener noreferrer">hardmaru</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Silicon Valley dismissed Japan’s System Integration (SI) culture as an unscalable consultant trap.<br><br>Writing the system is no longer the scarce work. Integrating it is.</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/tashfeenahmed/freellmapi" target="_blank" rel="noopener noreferrer">tashfeenahmed/freellmapi</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 22.7K<br><br>如果你爱折腾 AI 应用，肯定踩过这种坑：想对比几个 LLM 的效果，得挨个注册 30 多家服务、申请一堆 Key，还得时刻盯着各家免费额度，超了就被限流。FreeLLMAPI 就是来终结这种混乱的——它把 34 家提供商的 635 个免费模型端点统一到一个 OpenAI 兼容的 `/v1` 接口背后，你只管往这一个地址发请求，剩下的它全包：智能路由自动挑当前最优模型，遇到限流就无缝切到下一家，密钥加密存储，还会按 Key 统计用量，确保你稳稳卡在免费额度内。更妙的是，它支持接入任意 OpenAI 兼容的自定义端点（聊天、Embedding、图片、音频都行），把&quot;聚合免费模型&quot;和&quot;自建代理&quot;两件事合并在了一起。TypeScript 项目，22.7K Star，作为个人实验和原型验证的脚手架相当顺手，值得放进收藏夹。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-08-31 07:11:00</p>
+        </footer>
+    </div>
+</body>
+
+</html>
