@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-09-02">
+    <title>AIGC Daily #578 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-09-02 星期三</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/ai-artificial-intelligence/987830/anthropic-claude-fable-mythos-5-1" target="_blank" rel="noopener noreferrer">Anthropic推出Claude Fable 5.1，并表示其用于代理工作的成本可降低高达45%</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic发布Claude Fable 5.1新模型，宣称代理工作任务成本最高降低45%，同时提升性能表现。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/ai-artificial-intelligence/987695/openai-astra-unreleased-model-cybersecurity-delay" target="_blank" rel="noopener noreferrer">OpenAI在Hugging Face遭黑客攻击后推迟了新模型的开发</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI在遭遇未发布模型泄露事件后，出于安全考虑决定延迟新模型套件Astra的开发进度。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/09/01/googles-answer-to-canva-is-an-ai-tool-where-you-prompt-instead-of-design/" target="_blank" rel="noopener noreferrer">Google推出对标Canva的AI工具：只需提示，无需设计</a>
+                    </div>
+                </div>
+                <p class="article-summary">Google推出AI设计工具Google Pics，整合Gemini和Nano Banana生成模型，直接对标Canva进入创意软件市场。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://deepmind.google/blog/introducing-agentic-video-in-gemini/" target="_blank" rel="noopener noreferrer">Gemini智能代理视频理解功能正式发布</a>
+                    </div>
+                </div>
+                <p class="article-summary">Google DeepMind 给 Gemini 加了一个新能力：agentic video understanding（智能体式视频理解）。和过去那种&quot;传个视频问一句，AI 给你一句话回答&quot;不一样，这个能力让 Gemini 能主动调用工具、在多个视频之间穿梭搜索、甚至自己规划多步推理来完成复杂查询。比如你扔给它 10 个编程教程视频，问&quot;这里面一共出现了哪几种语言&quot;，它会自己决定看哪些片段、怎么对比、怎么汇总给你。这背后是 Google 把 agent 范式从文本搬到了视频领域。更深一层看，过去一年 agent 主要在文本场景里卷，现在视频开始接棒，意味着下一波应用爆发点会出现在长视频、长直播、长课程的处理上——AI 不再只是&quot;读文章的助手&quot;，而是变成&quot;能陪你看完所有素材再交作业的同事&quot;。<br><br>***</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.wired.com/story/openai-astra-first-ai-model-with-critical-cyber-abilities/" target="_blank" rel="noopener noreferrer">OpenAI即将发布其首款具有“关键”网络能力的AI模型</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI 即将发布的新模型 Astra，被内部评为第一个具备 &quot;critical&quot; 级网络安全能力的模型——意思是它在攻防两端都达到了能产生实质影响的水平。Wired 拿到消息说 OpenAI 决定先让少数合作伙伴提前用起来，给他们时间加固防御，然后再全面公开。这个操作挺耐人寻味：一方面承认模型强到能&quot;黑进电脑系统&quot;，另一方面用&quot;先通知再发布&quot;的节奏试图做风险管控。从行业角度看，OpenAI 把&quot;危险能力分级&quot;从 PPT 里的概念变成了真实的产品发布流程——Astra 很可能成为第一个被正式打上 &quot;critical cyber&quot; 标签的消费级模型。后面 Anthropic、Google 估计也得跟着出一套自己的分级标准，整个安全治理体系要被迫加速搭建了。<br><br>***</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blog.bytebytego.com/p/how-to-shrink-a-language-model-without-295" target="_blank" rel="noopener noreferrer">如何缩小语言模型而不让它变得太笨</a>
+                    </div>
+                </div>
+                <p class="article-summary">模型在过去几年膨胀了大约100倍，而消费级显卡显存只翻了一番——供需之间的鸿沟越来越大。这篇文章直面一个核心问题：我们到底如何在不把模型压&quot;傻&quot;的前提下，把它塞进有限的硬件里？<br><br>文章系统梳理了模型压缩的几条主要路径：量化（把权重从 FP16 压到 INT4 甚至更激进的位宽）、知识蒸馏（让小模型模仿大模型的输出分布）、剪枝（去掉不重要的连接或注意力头），以及架构层面的简化设计。作者没有停留在概念罗列，而是着重讨论了每种方法的实际代价——哪些能力会退化、哪些任务对压缩最敏感、以及&quot;过度压缩&quot;的临界点在哪里。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="http://arxiv.org/abs/2608.31022v1" target="_blank" rel="noopener noreferrer">MNIST-PRO: MNIST作为AI Agent的部分可观测世界基准</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出MNIST-PRO基准测试，将经典的MNIST数字识别任务重新设计为序列化的、基于瞥见的搜索任务，隔离并评估AI Agent在部分可观测环境中的感知状态构建能力。该任务引入回溯约束，使得研究者能够专门研究主动感知与工作记忆的协调机制，避免了现有基准中物理和控制复杂性的干扰。<br><br>**与AI Agent的关联**: 该论文直接针对AI Agent的核心能力——感知与记忆协同问题提供了一个干净的评估基准。对于Agent研究社区而言，MNIST-PRO填补了感知-动作循环中感知状态管理能力评估的空白，有助于推动Agent感知架构的标准化评估和对比研究。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="http://arxiv.org/abs/2608.31128v1" target="_blank" rel="noopener noreferrer">DIASENTINEL: 基于指南的可审计多智能体系统用于糖尿病风险筛查</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出DIASENTINEL，一个完全本地化的多智能体系统，集成校准风险预测、确定性临床信号提取和融合排序算法，实现从电子健康记录中进行为期一年的2型糖尿病风险筛查和基于指南的报告生成。该系统针对LLM幻觉和推荐错误问题，通过多智能体协作和指南锚定机制提高临床决策支持的可靠性。<br><br>**与AI Agent的关联**: 作为完整的多智能体系统应用案例，DIASENTINEL展示了如何将多个专业Agent（风险预测Agent、信号提取Agent、融合Agent）协调用于实际医疗场景。其可审计性设计对构建可信、可靠的Agent系统具有重要参考价值，为医疗领域Agent部署提供了技术范式。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/browser-use/video-use" target="_blank" rel="noopener noreferrer">browser-use/video-use</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 22.9K<br><br>做视频后期的人都懂那种苦——剪口头禅、统一调色、烧字幕，一套流程下来连 vlog 都能折腾你大半天。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-09-02 07:01:25</p>
+        </footer>
+    </div>
+</body>
+
+</html>
