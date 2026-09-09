@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-09-10">
+    <title>AIGC Daily #593 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-09-10 星期四</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/ai-artificial-intelligence/992953/openai-math-millennium-prize-navier-stokes" target="_blank" rel="noopener noreferrer">OpenAI隐秘的数学突破引发学术界震动</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI宣布解决了数学界千禧年大奖难题之一，展示了AI在数学领域的突破性能力。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/09/09/gambling-with-our-lives-anthropic-researcher-quits-warns-against-self-improving-ai/" target="_blank" rel="noopener noreferrer">“拿我们的生命做赌注”：Anthropic研究员辞职，警告自我改进AI的风险</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic研究员Jacob Coxon辞职并警告AI自我改进风险，呼吁AI实验室之间建立&quot; pacing agreements &quot;。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/09/09/openai-adds-a-prominent-ai-doomer-to-its-board-of-directors/" target="_blank" rel="noopener noreferrer">OpenAI任命一位知名AI末日论者加入董事会</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI 刚把 AI 安全圈的&quot;老熟人&quot;Paul Christiano 请进了基金会的董事会。这个名字你不一定听过，但在 alignment 圈子里他是绝对的标杆人物——创办了 ARC（Alignment Research Center），后来又做 AIRA，一直是&quot;AI 可能毁灭人类&quot;论调最重要的布道者之一，被很多人归到&quot;AI doom 派&quot;代表那一栏。<br><br>这个人加入 OpenAI 董事会，信号意义比人事变动本身大得多。OpenAI 作为冲在最前面的商业化实验室，过去几年一直被外界质疑 safety 只是公关话术，现在它把一个长期高喊&quot;AI 很危险&quot;的人请上桌，至少在叙事上是认真的。Christiano 一直主张&quot;对齐问题比 AGI 时间表更紧迫&quot;，他选择从内部推动而非继续在外面喊话，也说明他认为&quot;坐进去比站在外面&quot;更能改变结局。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.wired.com/story/anthropic-researcher-quits-jacob-coxon-ai-fears-humanity/" target="_blank" rel="noopener noreferrer">刚从Anthropic辞职的AI研究员称这是“人类的关键时刻”</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic 的一位核心研究员 Jacob Coxon 离职了，而且走之前讲了一些相当重的话。他跟 WIRED 说，Anthropic 内部有一个&quot;mini Manhattan project&quot;在攻关对齐问题，并直言&quot;对人类来说，现在是决定性时刻&quot;。<br><br>Coxon 不是那种哗众取宠的评论者——他是 Anthropic Responsible Scaling Policy 的核心作者之一，是真正知道模型在做什么的人。所以他的离开带着一种&quot;我尽力了&quot;的意味。他特别提到的一个判断是：AI 实验室只剩&quot;几年时间&quot;把系统做安全，这个窗口期比他之前估计的要短得多。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.intoai.pub/p/on-policy-distillation" target="_blank" rel="noopener noreferrer">在策略蒸馏简单解析</a>
+                    </div>
+                </div>
+                <p class="article-summary">On-Policy Distillation (OPD) 已经不是新概念，但它的影响力正在被严重低估——Qwen3、GLM-5.3、Nemotron-Cascade 2 这些当前最强的开源模型几乎都靠它在后训练阶段拉开身位。<br><br>文章最核心的洞察在于：OPD 让 student model 用自己的分布去采样 token，再让 teacher model 在这些 on-policy 数据上给出反馈。相比传统的 off-policy 蒸馏，这种方式更贴合模型真实的生成分布，避免了分布偏移导致的训练效率损失。文章会一步步拆解 OPD 的算法流程，讲清楚它为什么能用相对少的算力，在后训练阶段达到比 SFT 和 RFT 更好的效果。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blog.bytebytego.com/p/how-smart-model-routing-can-cut-llm" target="_blank" rel="noopener noreferrer">智能模型路由如何将LLM成本降低10倍</a>
+                    </div>
+                </div>
+                <p class="article-summary">LLM 应用成本居高不下，是每个做 AI Agent 的人都头疼的问题。这篇文章不谈砍功能，而是讨论怎么用&#39;智能模型路由&#39;把成本直降 10 倍。<br><br>核心思路很简单：不是所有请求都需要顶级模型来处理。简单的问答用小模型，复杂的推理才用大模型。但路由远不是按难度切分那么简单——文章会拆解请求类型的分布、模型之间的价格差异、以及路由系统的准确性是如何共同决定最终省钱效果的。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/levie/status/2097738533297689012" target="_blank" rel="noopener noreferrer">Aaron Levie</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;The way to the reconcile capability level of AI vs. GDP impact is that the diffusion of AI will take much longer than people think. And it will also show up in ways that are hard to measure in GDP immediately.<br><br>You could bring the world’s greatest superintelligence to many workflows, and still be bound by the laws of corporate physics: getting data prepared and put into a pipeline, process reengineering and change management, aligning on how the new workflow should function, and so on.</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/RayDalio/status/2097722434346496346" target="_blank" rel="noopener noreferrer">Ray Dalio</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Almost every technology boom creates a bubble, then a bust, whether it’s railroads, the Industrial Revolution, or the late 1920s.<br><br>Think about the late &#39;20s: electricity, refrigeration, telephones, radios, airplanes, and cars were all emerging at once. Naturally, people wanted to invest in these miracles.</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/GaryMarcus/status/2097800671043141844" target="_blank" rel="noopener noreferrer">Gary Marcus</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;“We may be looking at one of the greatest intellectual scandals in the history of science.”&quot;<br><br>**解读**: Marcus又开炮——&quot;可能是科学史上最大知识丑闻之一&quot;，但只放半句留悬念。这是他的常规操作，看点不在结论本身，而是他对当前AI研究范式持续质疑的态度。这句狠话配合另一条&quot;呼吁抵制GenAI&quot;来看，老炮正在下一盘更大的舆论棋，值得追踪后续矛头指向哪个方向。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/ayghri/i-have-adhd" target="_blank" rel="noopener noreferrer">ayghri/i-have-adhd</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 34.4K<br><br>如果你也经常被 AI 编程助手气到——明明只问了一个小问题，它却先铺垫三段背景，最后才把答案塞在某个段落中间，还要附赠一句&quot;Hope this helps!&quot;——那 i-have-adhd 简直就是为你准备的。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-09-10 06:53:49</p>
+        </footer>
+    </div>
+</body>
+
+</html>
