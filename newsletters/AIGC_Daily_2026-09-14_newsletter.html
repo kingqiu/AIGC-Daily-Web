@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-09-14">
+    <title>AIGC Daily #601 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-09-14 星期一</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/ai-artificial-intelligence/994441/trump-mike-johnson-ai-industry-overreacting" target="_blank" rel="noopener noreferrer">特朗普和迈克·约翰逊认为人工智能行业反应过度</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic CEO Amodei呼吁放慢AI开发速度，OpenAI CEO Altman与马斯克均表态支持，引发行业广泛讨论。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.leiphone.com/category/industrynews/z9XsFJXTUkbHBZFs.html" target="_blank" rel="noopener noreferrer">蚂蚁数科在外滩大会达成31项AI合作，推动智能体走进千行百业</a>
+                    </div>
+                </div>
+                <p class="article-summary">蚂蚁数科在外滩大会与多家企业达成31项AI合作，覆盖绿色能源、智能终端、酒店文旅等领域。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.leiphone.com/category/industrynews/PHYwHDvtZ5GGXTK6.html" target="_blank" rel="noopener noreferrer">斜跃智能完成数亿元天使+轮融资，加速推进Duplex Reasoning全新范式具身基础模型</a>
+                    </div>
+                </div>
+                <p class="article-summary">斜跃智能完成数亿元天使+轮融资，将推进具身基础模型训练与家庭机器人研发。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.latent.space/p/ainews-deepseek-v41-flash-763b-p8b" target="_blank" rel="noopener noreferrer">DeepSeek v4.1-Flash：763B-P8B-D16B 新型因果编码器-解码器架构搭配视觉能力，标志&quot;鲸鱼&quot;的回归</a>
+                    </div>
+                </div>
+                <p class="article-summary">DeepSeek 又扔了一颗炸弹。这次是 v4.1-Flash，总参数 763B，激活 8B（P8B），但它最让人兴奋的不是参数规模，而是架构——用了一种全新的 causal Encoder-Decoder 架构，并且原生支持视觉输入。Latent Space 的编辑甚至直言，这本来应该叫 v5 而不是 4.1。<br><br>为什么说它值得单独拎出来？因为这可能是开源模型第一次在架构层面跑到连前沿实验室都没怎么验证过的路线。之前 Llama 系、Qwen 系基本都是 Decoder-only 一路走到底，连 Encoder-Decoder 都被视为&quot;过时&quot;的设计。但 DeepSeek 这次等于是在告诉所有人：这条路还能走，而且走得通。再加上 8B 激活参数就能处理多模态，对于部署成本来说简直是降维打击。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3981592407620352?f=rss" target="_blank" rel="noopener noreferrer">三家具身智能头部企业被同行举报？涉及企业回应</a>
+                    </div>
+                </div>
+                <p class="article-summary">国内具身智能赛道最近有点意思——三家头部公司千寻智能、星海图、星动纪元，据说本月要迎来一场&quot;大考&quot;，结果还没开考，就传出被某同行向&quot;主考官&quot;举报的消息。<br><br>这种剧情怎么听着有点耳熟？每年这个时候都是各家秀肌肉的时候，融资、订单、demo 各种 PK 接踵而至。在这个节骨眼上被举报，不管最后查出来有没有问题，至少说明一件事：这个赛道的竞争已经白热化到开始用规则武器了。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.interconnects.ai/p/open-source-ai-reading-list" target="_blank" rel="noopener noreferrer">开源AI与开源模型阅读清单</a>
+                    </div>
+                </div>
+                <p class="article-summary">开源模型在过去两年快速崛起，从LLaMA到DeepSeek、Qwen，选择繁多但系统性的入门资料仍然稀缺。Interconnects 的 Nathan Lambert 整理了一份开源AI阅读清单，覆盖关键技术论文、行业分析和生态格局梳理，帮助读者快速建立对开源模型世界的整体认知。文章特别强调了开源模型在性能追赶、成本结构和可控性方面的最新进展，以及这些变化对应用开发者意味着什么。对于正在评估是否要脱离闭源API、转向自部署方案的团队来说，这份清单是难得的起点——它不只是文章罗列，而是 Nathan 本人作为开源模型领域最活跃评论者之一的私房书单，背后有他对每一篇价值的判断。值得每一个认真考虑长期AI技术栈的人读一遍。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://ruben.substack.com/p/privacy" target="_blank" rel="noopener noreferrer">隐私</a>
+                    </div>
+                </div>
+                <p class="article-summary">Claude 和 ChatGPT 都在读取你的聊天记录——但很少有人清楚这些数据究竟被如何处理。这篇文章聚焦 LLM 产品中的隐私问题，拆解了主流产品在数据存储、模型训练使用、以及第三方访问等关键环节的实际做法。文章的价值在于它不只是喊&quot;注意隐私&quot;，而是把厂商的实际策略摊开来看，区分哪些是默认行为、哪些是企业版才能关闭的选项。对于任何要在工作场景中部署 AI Agent 的人来说，这是必须先搞清楚的问题——你让 Agent 读取的每一份文档、每一次对话，都可能进入你并不完全了解的管道。如果你正在认真考虑把 AI 嵌入团队工作流，这篇文章能帮你避开一些代价昂贵的认知盲区。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/fchollet/status/2099230720753598471" target="_blank" rel="noopener noreferrer">François Chollet</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;One of the most worrying risks linked to frontier AI is extreme power concentration.<br><br>The only way to avoid extreme power concentration is to ensure we have multiple independent providers of frontier AI models, including open-source options.&quot;</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/bindureddy/status/2099127135461892119" target="_blank" rel="noopener noreferrer">Bindu Reddy</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;LOL! Google says they agree with pacing the frontier<br><br>TBH they are no where near the frontier.  They are trailing behind open source!</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/levie/status/2099167992835924301" target="_blank" rel="noopener noreferrer">Aaron Levie</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;“Pacing” can be somewhat of a trigger word because it sounds like an arbitrary slow down of capability or a way to hobble competitors through undue regulation.<br><br>However, the specific improvement goals laid out in Dario’s are absolute necessities in AI development. We expect equivalent in areas like aerospace, life sciences, health care, and other industries, and AI development likely shouldn’t be that different.</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/asgeirtj/system_prompts_leaks" target="_blank" rel="noopener noreferrer">asgeirtj/system_prompts_leaks</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 66.0K<br><br>你有没有好奇过，当你打开 ChatGPT 或 Claude 问出第一句话之前，这些 AI 实际上被&quot;偷偷&quot;塞了什么指令？system_prompts_leaks 就是那个帮你揭开这层面纱的仓库——它把 Anthropic、OpenAI、Google、xAI 等各家大模型的 system prompt 原原本本扒了出来，Claude Fable 5.1、GPT-6-Astra、Gemini 3.8 Flash、Grok 全都有，而且持续更新，目前已经攒下 66K star 了。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-09-14 07:03:50</p>
+        </footer>
+    </div>
+</body>
+
+</html>
