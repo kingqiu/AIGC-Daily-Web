@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-09-15">
+    <title>AIGC Daily #603 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-09-15 星期二</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/09/14/nvidia-ceo-jensen-huang-tells-trump-were-not-going-to-let-an-ai-slowdown-happen/" target="_blank" rel="noopener noreferrer">英伟达CEO黄仁勋告诉特朗普：“我们不会让人工智能放缓发生”</a>
+                    </div>
+                </div>
+                <p class="article-summary">英伟达CEO黄仁勋公开反对放缓AI发展的呼吁，称不会让AI发展减速发生。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/news/994566/microsoft-humanist-ai-code-of-conduct" target="_blank" rel="noopener noreferrer">微软称“人比人工智能更重要”，此前曾引发安全担忧</a>
+                    </div>
+                </div>
+                <p class="article-summary">微软发布37页「人文AI行为准则」，强调人类利益优先于AI，引发行业安全治理讨论。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.leiphone.com/category/industrynews/gVsESfQelkqfh9wY.html" target="_blank" rel="noopener noreferrer">全球AI大厂集体呼吁“限速” 360：AI安全不能靠企业自审，需第三方攻防把关</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic、OpenAI、xAI、谷歌DeepMind等头部AI厂商罕见达成共识，集体呼吁对前沿AI实施「全球限速」。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.technologyreview.com/2026/09/14/1144048/the-ai-industry-has-taken-a-doomer-turn-what-now/" target="_blank" rel="noopener noreferrer">AI行业已转向悲观论调。接下来会怎样？</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic CEO Dario Amodei 周末发了一篇长文《We Must Pace the Frontier》，呼吁放慢 AI 发展节奏。这不是普通人的呼吁——Dario 手上握着 Anthropic 这个前沿实验室，他比大多数人都清楚当前 AI 到底走到了哪一步。<br><br>MIT Technology Review 把这一周定义为 AI 行业的&quot;doomer turn&quot;（悲观转向）。Dario 的文章像一颗石子扔进湖面，连锁反应很快：其他 AI 公司高管、硅谷投资人、华盛顿政客陆续表态，整个行业突然开始讨论&quot;是不是该踩刹车&quot;。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/09/14/openai-buys-smartphone-camera-maker-glass-imaging-for-300-million-report-says/" target="_blank" rel="noopener noreferrer">据报道，OpenAI以3亿美元收购智能手机摄像头制造商Glass Imaging</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI 花 3 亿美元收购了 Glass Imaging——一家由前苹果工程师创办的手机相机公司，核心人物正是当年主导开发 iPhone Portrait Mode 的团队。<br><br>这则收购值得玩味的地方在于：OpenAI 模型能力已经够强了，它缺的是什么？显然是端侧硬件和影像能力。Portrait Mode 是过去十年消费影像领域最成功的 AI 应用之一，把这个团队收进来，意味着 Sam Altman 在押注&quot;AI + 影像&quot;会成为下一个超级入口。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.latent.space/p/recursive" target="_blank" rel="noopener noreferrer">《人类的最后一项发明》—— Recursive 公司的理查德·索彻</a>
+                    </div>
+                </div>
+                <p class="article-summary">Richard Socher 是 NLP 领域的 OG——MetaMind 创始人、Salesforce 前首席科学家、You.com CEO，现在又创办了新公司 Recursive，专注 RSI（Recursive Superintelligence），估值已达 50 亿美元。这篇深度访谈的核心问题不是&quot;AI 什么时候能超越人类&quot;，而是&quot;什么样的系统架构能让 AI 持续自我改进&quot;。<br><br>Socher 对 AGI 和 RSI 做了关键区分。他不追求一步到位的超级智能，而是关注 AI 系统能否在真实环境中不断学习、修正、改进自身——&quot;递归&quot;意味着每一代系统的输出都成为下一代系统的训练素材。这种思路对当前 LLM&quot;训完即冻结&quot;的范式构成了直接挑战，也为 AI Agent 的终极形态提供了一个严肃的愿景。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.lennysnewsletter.com/p/how-grok-bot-designers-use-ai-agents" target="_blank" rel="noopener noreferrer">Grok Bot 设计师如何利用 AI 代理构建个人网站和产品原型 | John Bai &amp; Peng Zheng</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文聚焦于SpaceXAI团队的设计师如何借助AI代理——Grok Bot——实现从灵感到原型的全链路自动化。两位设计师通过现场演示展示了在健身房远程操控Figma、仅凭一张照片即可更新个人作品集、以及把淋浴时的偶发想法快速转化为可交互原型的工作流程。其核心观点在于：AI代理不仅是执行指令的工具，更是创意协作的“第二大脑”，能够在多模态输入（图像、语音、文字）与设计系统之间建立实时映射，从而把零散的想法快速落地成可测试的产品。文中提供的关键论据包括：1）Grok Bot通过自然语言指令直接驱动Figma的组件库，实现跨设备协同；2）基于图像识别与风格迁移的自动排版，显著缩短作品集维护时间；3）即时生成原型并进行自动化的可用性评估，帮助团队在迭代早期捕捉潜在问题。作者进一步指出，AI代理的上下文感知能力与持续学习机制将在未来成为设计团队的核心竞争力。本文对AI从业者的阅读价值在于：①实战案例揭示AI在实际设计流程中的落地路径；②对多模态AI系统的架构思路提供了可复制的参考；③启发如何将AI代理嵌入个人创作生态，从而提升创意产出的效率与质量。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/fchollet/status/2099596582631157983" target="_blank" rel="noopener noreferrer">François Chollet</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;You cannot separate &quot;this person genuinely believes X, therefore they want Y&quot; and &quot;Y is in this person&#39;s interest&quot;. People will almost always align their beliefs and their interests.<br><br>You can be sincere *and* self-interested, and that&#39;s usually the default.&quot;</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/bindureddy/status/2099519883385991437" target="_blank" rel="noopener noreferrer">Bindu Reddy</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Already our very own open source models are handling 20% of our workloads<br><br>About 100x cheaper than Anthropic and OpenAI</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/levie/status/2099550035239424465" target="_blank" rel="noopener noreferrer">Aaron Levie</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Protecting enterprise data in a world where agents are using our systems 100X more than people ever did is going to be one of the more complex security and governance challenges of the 21st century.<br><br>Importantly, security and productivity gains are inexorably linked in the world of AI. If you give an agent too much unfettered information access, it will be difficult to truly control and protect your data; and conversely, if you lock everything down completely, you won’t get any real produc...</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/alibaba/open-code-review" target="_blank" rel="noopener noreferrer">alibaba/open-code-review</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 25.6K<br><br>今天给你推荐一个阿里开源的代码审查神器——OpenCodeReview，25.6K Star 的实力派选手。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-09-15 07:09:02</p>
+        </footer>
+    </div>
+</body>
+
+</html>
