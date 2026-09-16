@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-09-17">
+    <title>AIGC Daily #607 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-09-17 星期四</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/09/16/anthropic-and-openai-want-to-embed-safety-evaluators-will-they-really-be-independent/" target="_blank" rel="noopener noreferrer">Anthropic和OpenAI计划纳入安全评估人员。他们真的能保持独立吗？</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic与OpenAI宣布将在AI实验室内部嵌入独立安全评估人员，以加强模型安全监督，这是AI安全治理的重大机制创新。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/09/16/your-ai-agents-can-now-control-your-google-home-devices/" target="_blank" rel="noopener noreferrer">您的AI代理现在可以控制您的Google Home设备</a>
+                    </div>
+                </div>
+                <p class="article-summary">Google推出Google Home MCP服务器Early Access，允许Claude、ChatGPT等AI代理通过自然语言控制智能家居设备。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/3986065030789896?f=rss" target="_blank" rel="noopener noreferrer">诺和诺德与Anthropic将合作使用Claude推进药物研发</a>
+                    </div>
+                </div>
+                <p class="article-summary">丹麦制药巨头诺和诺德宣布与Anthropic达成合作，将使用Claude辅助药物研发工作流程，标志着AI在制药领域的深度应用。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/ai-artificial-intelligence/996234/anthropic-one-claude-cowork-docs-slides" target="_blank" rel="noopener noreferrer">Claude推出自己的文档和幻灯片功能，剑指Gemini</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic今天扔出了一颗重磅炸弹——正式推出 Claude Docs 和 Claude Slides，让你在对话里就能直接生成文档和PPT，并且支持导出、编辑和分享。这本质上就是 Anthropic 向 Google Workspace 正面开战的信号弹。<br><br>过去 Claude 一直以&quot;对话&quot;为核心，产品形态偏向 ChatGPT；但现在看来，Anthropic 显然意识到，光聊天不够，必须把工作流的最后一公里——文档和演示——也吃掉，才能真正留住企业用户。这两个功能都是用户呼声极高的，Anthropic 选在这个节点落地，时机踩得挺准。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/tech/996310/google-home-mcp-integration-agentic-ai-smart-home-price-release-date" target="_blank" rel="noopener noreferrer">谷歌现在将允许任何AI代理控制你的智能家居</a>
+                    </div>
+                </div>
+                <p class="article-summary">Google今天宣布把智能家居完全开放给 AI agent——Claude、Open Claw 等第三方工具可以通过标准化的 Model Context Protocol（MCP），直接读取你家里的设备数据，甚至控制灯、空调、门锁。<br><br>MCP 这个协议最早是 Anthropic 提出来的，去年还只是个小众标准；不到一年，Google 这种巨头居然主动接入，足以看出 MCP 正在成为 AI agent 时代的&quot;USB 接口&quot;——所有 AI、硬件、应用都在向它靠拢。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.lennysnewsletter.com/p/muse-review-the-personal-ai-agent" target="_blank" rel="noopener noreferrer">Muse评测：正确把握消费者用户体验的个人AI助手</a>
+                    </div>
+                </div>
+                <p class="article-summary">Lenny&#39;s Newsletter 对 Meta 旗下 Muse 个人 AI Agent 做了一次深度体验。作者把日历、邮件、孩子的混乱课表全部交给 Muse，它一次性生成了一份比 Claude 或 Codex 做出来的都漂亮的家庭日程 PDF。核心问题是：消费级 AI Agent 的 UX 到底应该长什么样？Muse 的思路不是把 AI 塞进聊天框等你下指令，而是直接理解你的生活上下文、主动产出可用的成品。这和开发者视角的 Agent 完全不同——开发者关心 tool use 和 planning 链路，而 Muse 关心&quot;用户打开后 30 秒能拿到什么&quot;。值得读是因为个人 Agent 是 Agent 落地的下一个战场，这篇文章给了一个非常具体的体验标杆，也能帮你反思 Agent 产品设计的分界线。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/demishassabis/status/2100230524383981702" target="_blank" rel="noopener noreferrer">Demis Hassabis</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;For 20+ years @ShaneLegg and I&#39;ve discussed AGI’s potential impact on the economy, science &amp; society. With the DeepMind Institute, we&#39;re expanding interdisciplinary research on key questions for the AI era. We hope it spurs the discussions needed to get the next steps right: https://t.co/Bqf10G3Xep&quot;<br><br>**解读**: Hassabis宣布成立DeepMind Institute，跨学科研究AGI对经济、科学、社会的影响。二十多年前他和Shane Legg就在讨论AGI，现在正式投入资源做系统性研究。这意味着DeepMind从纯技术研发开始向政策、社会层面延伸，为AGI落地做思想准备。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/garrytan/status/2100339347669279149" target="_blank" rel="noopener noreferrer">Garry Tan</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;I can use any harness I want and it&#39;s the same personality and full memory of my personal AGI&quot;<br><br>**解读**: YC总裁Garry Tan说他的&quot;个人AGI&quot;可以在任何harness上跑，性格和记忆完全一致。这暗示一个趋势：AI人格和记忆正在脱离具体产品，变成可跨平台迁移的&quot;个人资产&quot;。类似苹果打通设备生态，可能是下一代AI产品的竞争焦点。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/GaryMarcus/status/2100218138067652729" target="_blank" rel="noopener noreferrer">Gary Marcus</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;And yet so far as I know not one new actual mathematical insight<br><br>What this really reveals is that Altman doesn’t know the first thing about math.</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2609.16305" target="_blank" rel="noopener noreferrer">BLINDSPOT：长期工具使用智能体的安全与拒绝校准基准</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出了BLINDSPOT基准，专门评估长期交互场景下工具使用智能体的安全性和行为校准问题。研究发现现有评估方法过于简化Agent行为，仅关注任务成功或攻击成功，而忽视了智能体在多轮交互中的拒绝行为、授权演变和环境反馈等关键安全维度。该基准为Agent系统的安全性评估提供了系统性框架。<br><br>**与AI Agent的关联**: 直接针对AI Agent的核心挑战——长期工具使用交互中的安全性问题。研究揭示了Agent系统在长时序任务中可能出现的安全隐患，对构建可靠、安全的自主智能体系统具有重要指导意义，是Agent安全研究领域的关键基准工作。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2609.16760" target="_blank" rel="noopener noreferrer">面向LLM智能体的轮次级多尺度密度比估计</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出了一种新的轮次级多尺度密度比估计方法，用于优化LLM智能体的后训练过程。研究针对多智能体场景下的对齐问题（如PPO方法的局限性），创新性地将密度比估计扩展到轮次级别，实现更细粒度的策略优化。该方法能有效提升Agent在复杂多步任务和工具交互中的表现。<br><br>**与AI Agent的关联**: 专注于LLM Agent的后训练技术，直接解决多智能体系统中Agent行为对齐和优化的核心问题。提出的方法对于训练更高效、更可靠的自主智能体具有重要价值，特别是涉及工具使用和多步推理的复杂Agent应用场景。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/cloudflare/security-audit-skill" target="_blank" rel="noopener noreferrer">cloudflare/security-audit-skill</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 7.0K<br><br>如果你经常担心代码里的安全漏洞，又觉得手动审计太繁琐、传统扫描器误报太多，那 Cloudflare 这个 security-audit-skill 值得试试。它本质上是一个让 coding agent 摇身变成安全审计员的 skill，专为多阶段、覆盖式的漏洞挖掘设计。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-09-17 07:22:26</p>
+        </footer>
+    </div>
+</body>
+
+</html>
