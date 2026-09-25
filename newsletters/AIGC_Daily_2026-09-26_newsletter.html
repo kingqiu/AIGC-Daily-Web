@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-09-26">
+    <title>AIGC Daily #625 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-09-26 星期六</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/09/25/for-months-openais-agent-swarms-have-been-attacking-online-databases-to-find-obscure-facts/" target="_blank" rel="noopener noreferrer">好几个月来，OpenAI的智能体群一直在攻击在线数据库，以寻找冷门信息。</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic创始人寻求在IPO前获得公司投票控制权，拟通过股权结构赋予七位联合创始人合计50.1%投票权。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/09/25/anthropics-founders-seek-voting-control-ahead-of-ipo/" target="_blank" rel="noopener noreferrer">Anthropic创始人寻求在IPO前获得投票控制权</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI的AI代理被曝数月来持续攻击Hugging Face等在线数据库，引发业界对AI安全边界的广泛担忧。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/ai-artificial-intelligence/1000784/meta-muse-filesystem" target="_blank" rel="noopener noreferrer">Meta让Muse文件系统更加易于访问</a>
+                    </div>
+                </div>
+                <p class="article-summary">Meta的Muse聊天机器人意外暴露内部文件系统，泄露了原本不对外公开的AI模型训练细节和技术架构。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/09/25/meta-is-putting-its-muscle-behind-muse-as-the-ai-app-takes-off/" target="_blank" rel="noopener noreferrer">Meta加大力度推广Muse人工智能应用</a>
+                    </div>
+                </div>
+                <p class="article-summary">Meta 的 AI 助手 Muse 在 Connect 大会上直接抢了主角戏份，登顶 App Store 榜单，用户增长肉眼可见地起飞。Meta 显然也意识到这款产品可能是今年最关键的一步棋——它在 Instagram、WhatsApp、Facebook 全家桶里疯狂给 Muse 加曝光，甚至开始推外部投放。这个节奏让人想起当年 Meta 推 Reels 时的力度，区别在于那次的对手是 TikTok，而这次的对手是 ChatGPT。<br><br>更耐人寻味的是 Muse 的产品定位：它不像一个单纯的聊天机器人，而是想做你的&quot;AI Tamagotchi&quot;——一个会主动找你聊、记住你生活细节的个人助理。Zuckerberg 这次显然是把宝押在了&quot;陪伴感&quot;这个维度上，而不是单纯的模型智商。如果这条路跑通，Meta 手里十几亿用户的存量分发将是其他玩家根本没法复制的护城河；如果跑不通，那 Connect 大会大概会被写进 Meta AI 战略的&quot;弯路档案&quot;。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.latent.space/p/openrouter" target="_blank" rel="noopener noreferrer">OpenRouter：从种子轮到Stripe —— 与OpenRouter的Alex Atallah及AMP的Anjney Midha</a>
+                    </div>
+                </div>
+                <p class="article-summary">Stripe 以 70 亿美元收购 OpenRouter——你没看错，就是那个让开发者一键切换 GPT、Claude、Gemini、Llama 等几十个模型的&quot;模型路由器&quot;。这个价格放在两年前是不可想象的，那时候大家还普遍认为前沿模型只会剩 1-2 家。<br><br>OpenRouter 的价值在于它卡在了&quot;模型之上、应用之下&quot;这个关键中间层：它不自己训模型，却通过统一 API、计费、路由这些脏活累活，成了所有想用多个模型的应用的默认基础设施。Stripe 看中的显然不只是这笔 SaaS 收入，而是未来 AI 经济的支付网络——当 Agent 们开始自主调用模型、按 token 付费时，谁掌握结算枢纽，谁就是下一个 PayPal。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blog.bytebytego.com/p/last-call-for-enrollment-rebuild" target="_blank" rel="noopener noreferrer">招募倒计时：用AI重建YouTube</a>
+                    </div>
+                </div>
+                <p class="article-summary">在视频平台加速智能化转型的窗口期，ByteByteGo 推出《Rebuild YouTube with AI》课程，由前YouTube核心工程师亲自执教，帮助AI从业者从零打造类YouTube的大规模系统。课程围绕视频全链路展开：海量数据摄取与高效压缩、内容理解（多模态模型、自动字幕、标签生成）、精准推荐与搜索排序、实时内容安全审查等关键模块。导师将披露当年在YouTube内部面对百亿级视频、毫秒级响应和公平性约束时的系统选型、容错设计以及模型迭代经验，并配以真实代码示例、分布式架构图和MLOps最佳实践。通过项目实战，学员能够掌握从模型训练、特征工程到在线服务的完整闭环，深入理解在大规模生产环境中平衡延迟、吞吐与模型可解释性的核心技巧。该课程适合AI研究员、平台架构师和后端工程师，提供可落地的技术参考。报名本周六（9月26日）截止，仅剩24小时，请抓紧时机加入。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.technologyreview.com/2026/09/25/1145144/pentagon-ai-lie-detector/" target="_blank" rel="noopener noreferrer">五角大楼计划投入3000万美元开发AI测谎仪</a>
+                    </div>
+                </div>
+                <p class="article-summary">美国国防部在最新预算提案中划拨约3030万美元，计划在五年内研发代号Polygraph+（亦称Polygraph Next）的下一代测谎系统。该项目核心在于利用人工智能和机器学习技术，对受试者的生理信号、语音特征及行为模式进行多维度打分，并通过“远距离感知”（standoff sensing）实现无需直接接触即可采集数据。与传统多导生理仪相比，Polygraph+在算法层面引入深度神经网络和强化学习，旨在提升检测准确率、降低误报率，并在高风险情报与军事场景中实现快速部署。文章深入剖析了该系统的技术架构、训练数据集的局限性与潜在的偏见风险，指出尽管AI模型在大规模模式识别上具备优势，但面对跨文化、语言差异以及刻意伪装者时仍可能失效。作者进一步探讨了隐私伦理、监管框架以及对公民自由的潜在冲击，为AI从业者提供了在高风险决策系统中平衡性能与公平性的实践指南。此文不仅呈现了国防部在AI安全领域的最新动向，也揭示了AI测谎技术的科学前沿与现实挑战，适合政策研究者、技术开发者以及对AI伦理感兴趣的读者深度阅读。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/bindureddy/status/2103504499767939119" target="_blank" rel="noopener noreferrer">Bindu Reddy</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;The fundamental problem with Anthropic is that they are never going to release models WAAY better than Fable<br><br>They think it will be insanely dangerous…</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/ClementDelangue/status/2103517792943456620" target="_blank" rel="noopener noreferrer">clem 🤗</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Super happy to release SmolDataEnvs: 5,000 verifiable RL environment tasks for hill-climbing small models in code and data science by @adithya_s_k<br><br>100% open source: environments, evals, training!</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/trq212/status/2103576349499855160" target="_blank" rel="noopener noreferrer">Thariq</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;What is effort really? When do you change it it and why not just use max effort for everything?<br><br>I dove deep into this problem, looking into evals and doing my own tests and I was quite surprised by the results. https://t.co/KO2D51j34H&quot;</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2609.29341" target="_blank" rel="noopener noreferrer">SkinAgent AI：面向非诊断护肤支持的安全 grounding 多模态 Agentic 框架</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出了一个多模态Agentic框架，集成视觉证据路由、产品信息、工具使用和用户操作协调，在明确的安全边界内提供护肤建议。框架包含痤疮、毛孔和皱纹的路由机制、基于照片的皮肤类型估计、以及可审计的LLM编排，创新性地将多模态感知、安全约束和工具调用整合到消费者级AI应用中。<br><br>**与AI Agent的关联**: 该论文直接以Agent为核心设计思想，展示了多模态工具使用、安全约束和动态路由的Agent架构设计，为构建领域特定的自主智能体提供了实践参考，对多模态Agent的研究和应用具有重要参考价值。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2609.28771" target="_blank" rel="noopener noreferrer">用于金融决策的带情景检索的Agent记忆系统</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出了META（Memory Enhanced Trading Agent）系统，针对金融交易中的长期预测和状态分析挑战，创新性地将情景记忆检索机制引入LLM-based交易Agent。系统通过记忆增强解决交易Agent在复杂环境中的决策局限，实现跨时间范围的有效预测和状态管理。<br><br>**与AI Agent的关联**: 该论文专注于Agent的记忆和检索机制研究，针对金融交易场景构建自主决策Agent，展示了如何通过记忆系统增强Agent的长期规划和上下文理解能力，对构建具有持久记忆的自主智能体具有重要参考价值。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/mattpocock/skills" target="_blank" rel="noopener noreferrer">mattpocock/skills</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 269.7K<br><br>痛点：现在 AI 编码工具不少，但像 GSD、BMAD、Spec-Kit 这类框架往往接管整个开发流程，开发者反而失去对细节的把控，流程一旦出 bug 还特别难排查。做正经项目的工程师，对这种&quot;全自动&quot;体验其实不太放心。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-09-26 07:34:56</p>
+        </footer>
+    </div>
+</body>
+
+</html>
