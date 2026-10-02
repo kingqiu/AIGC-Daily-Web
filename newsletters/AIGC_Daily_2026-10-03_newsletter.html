@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-10-03">
+    <title>AIGC Daily #639 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-10-03 星期六</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/ai-artificial-intelligence/1004096/openai-chatgpt-dots-hands-on-agent" target="_blank" rel="noopener noreferrer">OpenAI的Dot智能体是一款企业级软件，同时也能帮你订餐。</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI发布企业级代理平台Dots，可执行复杂工作任务并支持餐饮订购等日常生活服务。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/tech/1004330/meta-muse-ai-gadgets-home-link" target="_blank" rel="noopener noreferrer">Meta开源代码，让你打造Muse AI设备</a>
+                    </div>
+                </div>
+                <p class="article-summary">Meta宣布开源Muse AI智能体代码，允许开发者自行制作搭载该公司AI代理的硬件设备。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://aibusiness.com/agentic-ai/meta-expands-muse-to-small-businesses" target="_blank" rel="noopener noreferrer">Meta 将 Muse 扩展至小型企业</a>
+                    </div>
+                </div>
+                <p class="article-summary">Meta将Muse AI智能体扩展至小企业市场，标志着AI代理在商业运营中的应用加速。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://openai.com/index/practical-guide-building-gpt-6" target="_blank" rel="noopener noreferrer">GPT-6系列模型指南</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI悄悄上线了一份《GPT-6 家族模型指南》，教创业公司怎么选模型、调推理强度、写提示词和 skills、协调工具调用、以及为生产环境做workflow准备。<br><br>这份指南的份量比标题暗示的要重得多——它意味着 GPT-6 已经不只是 demo 阶段，而是正式进入落地部署了。更关键的是，OpenAI 把重点放在了&quot;怎么用好&quot;而不是&quot;参数多大&quot;上：推理深度的调节、skills 的编排、多工具协同，这些都是真实业务里才会遇到的问题。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/tech/1004295/apple-limit-mac-disk-access-ai-agents" target="_blank" rel="noopener noreferrer">Apple将限制Mac磁盘访问，因AI代理“大幅”增加风险</a>
+                    </div>
+                </div>
+                <p class="article-summary">苹果宣布将收紧 Mac 的「完整磁盘访问」权限，理由很直接：AI agent 让这项高权限变得「substantially」更危险了。<br><br>这是一件被低估的大事。完整磁盘访问一直是 macOS 上最高级别的权限之一，相当于把你的电脑钥匙交出去。Apple 现在专门为 AI agent 的场景加设关卡，说明它们判断——agent 类工具对用户数据的潜在威胁已经到了必须系统级应对的程度。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.latent.space/p/airbnb" target="_blank" rel="noopener noreferrer">由内而外的AI：Airbnb的幕后重建与全流程客户体验革新</a>
+                    </div>
+                </div>
+                <p class="article-summary">这篇文章讲的是前 Meta Llama 负责人 Ahmad Al-Dahle 如何从零开始把 Airbnb &quot;由内而外&quot;地改造成一家 AI-native 公司。与那些只把 AI 当作前端聊天框的产品不同，Airbnb 的改造是双向的——一方面重塑内部团队的开发流程，另一方面彻底改写面向客人的体验。Al-Dahle 带着训练基础模型的思维进入消费产品领域，思考的不是&quot;加个 chatbot&quot;，而是如何让 AI 从搜索、推荐到运营全链路渗透。<br><br>文章最有价值的部分在于它展示了一种&quot;模型人才转产品&quot;的转型路径：当一个顶尖模型团队负责人去操盘一家全球性平台时，他会怎么思考 AI 的落地优先级？哪些环节该自动化，哪些该保留人类的判断力？这些来自一线的判断远比任何白皮书都有参考意义。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://artificialcorner.com/p/claude-gemini" target="_blank" rel="noopener noreferrer">我通过将Claude连接到Google Gemini让它变得更智能。以下是具体方法。</a>
+                    </div>
+                </div>
+                <p class="article-summary">这篇文章的核心问题很简单但很实用：能不能让 Claude 调用 Gemini 的能力，组合出一个&quot;比两者都强&quot;的工作流？作者给出了一个相当工程化的答案——通过 API 连接，让 Claude 在遇到自己不擅长的任务时，自动把请求转交给 Gemini 处理，再把结果整合回来。<br><br>最有启发的不是技术本身，而是文中对两个模型能力边界的细致对比：Gemini 在哪些场景下确实优于 Claude（比如超长上下文、多模态理解），而在哪些场景下 Claude 仍然领先。把&quot;哪个模型更好&quot;这个问题拆成&quot;各自强在哪里、怎么串起来用&quot;，才是多模型时代的正确思考方式。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/fchollet/status/2106075605494268394" target="_blank" rel="noopener noreferrer">François Chollet</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Summary of the Keras community call --<br><br>1. New pluggable backend plan, upcoming MLX and PaddlePaddle backends; new backends are installed as add-on libraries</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/bindureddy/status/2106016508598186421" target="_blank" rel="noopener noreferrer">Bindu Reddy</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Rumors about SSI, Ilya&#39;s start-up are swirling<br><br>They have a breakthrough to announce</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/ClementDelangue/status/2106037207631008033" target="_blank" rel="noopener noreferrer">clem 🤗</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Decision models now run on device in llama.cpp. Free, fast, private!<br><br>llama serve -hf ggml-org/Kev-4B-GGUF https://t.co/ApnQQaKB4Z&quot;</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2609.38349" target="_blank" rel="noopener noreferrer">MILO：通过编排式多智能体演进实现自动化测试框架发现</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 本文提出了MILO，一个自动化发现AI Agent测试框架的系统。当前Agentic系统依赖复杂的测试框架（harness），其设计空间庞大且随模型更新需重复设计。传统自动化方法仅优化单一组件或陷入局部最优。MILO采用多智能体协作演化策略，通过多个Agent协同探索框架组件（提示、技能、状态机）的组合空间，利用编排机制避免贪婪陷阱，实现高效自动化搜索，显著降低人工设计成本。<br><br>**与AI Agent的关联**: 该研究直接面向AI Agent工程实践，解决Agent系统性能评估和优化中的核心痛点。自动化harness发现为Agent开发者提供了可扩展的工具支持，使不同模型和任务能快速获得优化的测试框架，对提升Agent开发效率和应用部署具有重要的实际价值。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2610.00015" target="_blank" rel="noopener noreferrer">从提案到验证效应：Praxa——面向治理AI Agent执行的证据绑定测试框架</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: Praxa提出了一个结构化的Agent执行治理框架，将Agent动作生命周期明确划分为提案（proposal）、授权（authority）、调度（dispatch）、外部效应验证（verified effect）和推广（promotion）五个阶段。通过确定性准入控制、代理执行、外部回读、对账审查等机制，确保每个阶段的承诺与实际效果一致。该框架提供四类证据通道，实现可审计、可验证的Agent行为控制。<br><br>**与AI Agent的关联**: 随着AI Agent在关键领域部署，可控性和可验证性成为核心需求。Praxa通过显式建模Agent执行状态转换，为构建可信、负责任的Agent系统提供了架构级解决方案。这种证据绑定的治理方法对Agent安全部署、审计追溯和多Agent协调具有重要参考价值。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/JuliusBrussee/caveman" target="_blank" rel="noopener noreferrer">JuliusBrussee/caveman</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 109.1K<br><br>如果每天跟 Claude Code、Cursor 这类 AI 编程 Agent 打交道,月底账单一定让你肉疼——废话太多,几行代码能搞定的事非要写&quot;我理解您的需求,让我为您分析&quot;。caveman 就是来解决这个的。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-10-03 07:32:11</p>
+        </footer>
+    </div>
+</body>
+
+</html>
