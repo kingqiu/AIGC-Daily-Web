@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-10-08">
+    <title>AIGC Daily #649 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-10-08 星期四</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/4016408854663042?f=rss" target="_blank" rel="noopener noreferrer">OpenAI面向全球所有ChatGPT用户全面上线GPT-6</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI正式面向全球ChatGPT用户上线GPT-6模型，集成Astra安全技术并强化滥用防护能力。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/tech/1007113/microsoft-windows-copilot-ai-control-search-hybrid-intelligence" target="_blank" rel="noopener noreferrer">微软让Copilot获得对Windows和文件的更多控制权</a>
+                    </div>
+                </div>
+                <p class="article-summary">Microsoft在Windows和Surface活动上宣布升级Copilot系统，赋予其访问本地文件和跨系统执行操作的能力。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/10/07/nous-research-confirms-it-hit-1-5b-valuation-launches-ai-agents-for-business-users/" target="_blank" rel="noopener noreferrer">Nous Research确认估值达15亿美元，面向企业用户推出AI代理产品</a>
+                    </div>
+                </div>
+                <p class="article-summary">Nous Research完成9000万美元B轮融资，估值达15亿美元，其Hermes Agent产品正式面向商业用户推出AI代理服务。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://huggingface.co/blog/nvidia/nemotron-ioi-and-imo-2026" target="_blank" rel="noopener noreferrer">**一个模型家族，两枚金牌：面向IOI和IMO的Nemotron微调**</a>
+                    </div>
+                </div>
+                <p class="article-summary">NVIDIA 在 Hugging Face 披露了 Nemotron 的一次后训练进展：同一模型家族分别面向国际信息学奥林匹克（IOI）和国际数学奥林匹克（IMO）做微调，两项任务都拿到了“金牌级”结果。比起某次测试多出的几个百分点，这条消息更直接地展示了通用模型经过针对性强化后，可以站上代码与高难数学两条高峰。<br><br>值得注意的是，它的价值不只是“又拿了一个金牌”，而是两个金牌级结果来自一个模型家族。竞赛推理要求的不只是知识记忆，还有长链条分析、严格约束下的表达，以及在限时规则里找到可用解法，这些都很考验后训练和评测设计。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/ai-artificial-intelligence/1007276/openai-chatgpt-intelligent-ui-gpt-6" target="_blank" rel="noopener noreferrer">ChatGPT的“智能界面”更新让回复充满图片、图表和按钮</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI 正在随 GPT-6 上线，把 ChatGPT 的“Intelligent UI”推给所有用户。过去你问一个问题，常常得到一整页文字；现在，模型会把图片、图表、按钮等元素直接组织进回答，让答案不只是“看完”，还可以顺手继续操作。<br><br>这次真正有意思的，不只是画面变漂亮，而是聊天框正在变成一层可生成的软件界面。你可以在同一段对话里先看图、再比较信息，复杂答案也不再完全受纯文本排版限制。对于 AI 产品来说，这一步影响的可能不是模型会不会答题，而是人愿不愿意相信它、能不能把工作真正接下去。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.latent.space/p/stacklok" target="_blank" rel="noopener noreferrer">云原生平台能否让智能体在桌面环境之外保持可靠运行？</a>
+                    </div>
+                </div>
+                <p class="article-summary">Agent 跑在本地桌面工具上已经够呛了，那放到云端呢？两位 Kubernetes 联合创始人 Craig McLuckie 和 Joe Beda 认为，Agent 的下一代基础设施应该是 cloud-native 的——他们正在打造一个完整的&quot;云原生 harness&quot;，让 Agent 在云端也能像在本地一样可靠运行。<br><br>文章最有价值的地方在于把云原生的思维模型（隔离、编排、可观测、弹性）映射到 Agent 场景：Agent 不再是跑在终端里的脚本，而是需要调度、权限、状态管理的&quot;服务&quot;。他们聊到了为什么现有的桌面方案扩展性不够，以及云原生架构如何解决 Agent 长时间运行、多步骤执行中的可靠性问题。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://artificialcorner.com/p/claude-pyramid-writer" target="_blank" rel="noopener noreferrer">我用麦肯锡框架让Claude成为了更好的写作者。方法如下</a>
+                    </div>
+                </div>
+                <p class="article-summary">想让 Claude 写出像你自己写的东西，但又觉得 prompt 里塞一堆&quot;模仿 XX 风格&quot;的指令很笨？作者做了一件聪明的事：把麦肯锡培训新顾问用的 Pyramid Principle（金字塔原理）框架，变成了一套 Claude 写作 skill。<br><br>文章最精彩的部分是拆解了如何把一个咨询界的结构化思维框架，&quot;翻译&quot;成 LLM 能稳定遵循的 prompt 工程——不是简单的指令拼接，而是把框架的逻辑层次（MECE、结论先行、层层支撑）编码成系统提示的一部分。结果是 Claude 的输出在结构清晰度和论证逻辑上肉眼可见地提升。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/bindureddy/status/2107849711424315673" target="_blank" rel="noopener noreferrer">Bindu Reddy</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Stop focusing on boring personal agents that are apparently gonna book tickets 🙄<br><br>Who cares? Those booking sites block these AI agents anyway</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/a16z/status/2107873596509208914" target="_blank" rel="noopener noreferrer">a16z</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Texas just froze new data center permits:<br><br>- Its queue went from 63 GW to 474 GW in 18 months, more than 5x record peak demand</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/DrJimFan/status/2107842520390701212" target="_blank" rel="noopener noreferrer">Jim Fan</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;It is increasingly clear that humanity will solve the Riemann hypothesis before we pass the Physical Turing Test - you come back to a clean home after a wild Sunday party, and you can&#39;t tell whether a human or a robot did the job.<br><br>We are not Moravec&#39;s paradox-pilled enough.&quot;</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/manaflow-ai/cmux" target="_blank" rel="noopener noreferrer">manaflow-ai/cmux</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 27.8K<br><br>如果你经常同时跑好几个 AI coding agent（比如 Claude Code、Codex 之类的），那你大概率体会过这种痛苦：终端标签页开了一长排，水平标签挤得连字都看不清，想找某个会话得来回翻半天；agent 跑完了也不知道，只能盯着屏幕干等。cmux 就是专门来解决这个问题的。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-10-08 07:27:51</p>
+        </footer>
+    </div>
+</body>
+
+</html>
