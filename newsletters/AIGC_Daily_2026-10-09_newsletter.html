@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-10-09">
+    <title>AIGC Daily #651 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-10-09 星期五</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/10/08/google-brings-agentic-ai-to-gemini-starting-with-businesses/" target="_blank" rel="noopener noreferrer">Google将代理AI引入Gemini，首先面向企业</a>
+                    </div>
+                </div>
+                <p class="article-summary">Google在Gemini at Work活动中推出企业级AI代理，可跨应用执行任务并分配给子代理工作，标志着Gemini向通用AI助手重大升级。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/10/08/anthropic-changes-usage-policy-to-ban-model-abuse-and-election-interference/" target="_blank" rel="noopener noreferrer">Anthropic修改使用政策，禁止模型滥用和选举干预</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic更新使用政策，首次明确禁止用户对Claude的持续虐待行为，同时新增选举干扰、武器开发和监控等高风险用例限制。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://aibusiness.com/responsible-ai/anthropic-opens-cybersecurity-program-applications" target="_blank" rel="noopener noreferrer">Anthropic开放网络安全项目申请，发布更便宜的Haiku</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic推出网络安全计划并发布更便宜的Claude Haiku模型，为企业提供可用于防御性安全应用的AI模型。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/tech/1007904/google-gemini-ai-agent-enterprise" target="_blank" rel="noopener noreferrer">Google 正在推出面向工作任务的一站式 Gemini 智能体</a>
+                    </div>
+                </div>
+                <p class="article-summary">Google 在昨天的 Gemini at Work 活动上发布了一个&quot;通用型&quot; AI Agent —— 一个能在各种 App 和设备后台跨场景帮你干活的智能助手。这不是简单的 Chatbot 升级，而是 Google 把 AI Agent 推进工作场景的一次重要尝试：它能在多个应用之间穿梭、自动完成任务，而不是等你一句一句下指令。<br><br>为什么这件事值得关注？因为 Google 这次明显是把&quot;AI 帮你工作&quot;作为商业化的核心方向来推，直接对标 OpenAI 的 ChatGPT Agent 和 Anthropic 的 Computer Use。Agent 赛道现在是所有大厂的必争之地，谁先把 Agent 真正塞进企业的工作流，谁就能拿到下一波 AI 商业化的船票。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/ai-artificial-intelligence/1008521/anthropic-open-source-oss-scanner" target="_blank" rel="noopener noreferrer">Anthropic面向开源项目推出免费AI安全扫描服务</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic 昨天上线了一个叫 OSS Scanner 的免费服务，专门帮开源项目做安全漏洞扫描。简单说，就是把 Claude 的代码安全能力开放给整个开源生态，项目方选择加入后，Anthropic 会定期用 AI 做深度安全审计。<br><br>这件事为什么重要？因为开源软件的安全问题已经被讨论很多年了，但真正愿意投入资源、用最先进 AI 去大规模扫的开源项目少之又少。Anthropic 这一手相当聪明——一方面在 AI 安全领域树立了&quot;负责任&quot;的形象，另一方面也是把 Claude 的能力实实在在地用到了有意义的场景里。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://newsletter.pragmaticengineer.com/p/the-pulse-new-trend-of-building-internal" target="_blank" rel="noopener noreferrer">脉动：科技公司打造“内部氛围编码应用”的新趋势</a>
+                    </div>
+                </div>
+                <p class="article-summary">这篇文章聚焦一个正在科技公司内部蔓延的新趋势：用 AI &quot;vibe-coding&quot; 快速搭建内部小工具。Pragmatic Engineer 观察到，从初创公司到大厂，越来越多的工程师和产品经理开始用 LLM 生成代码，几小时内就搓出一个原型——不再是走完整的需求评审、排期、开发流程，而是&quot;先跑起来再说&quot;。文章深入探讨了这种现象背后的驱动力：AI 编码工具降低了写代码的门槛，让最懂业务的人能直接把想法变成可用的内部应用。<br><br>最有价值的部分是对&quot;vibe-coding 内部应用&quot;的分类与风险分析。作者区分了几种典型场景——临时数据仪表盘、跨部门工作流自动化、内部知识库查询工具等，每种场景对应的技术选型和 Agent 能力要求都不同。文章还尖锐地指出了隐患：当这些&quot;野路子&quot;应用越来越多，它们绕过了传统的 code review、权限管理和安全审计，可能成为公司内部的数据安全盲区。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.technologyreview.com/2026/10/08/1145920/climate-tech-companies-list/" target="_blank" rel="noopener noreferrer">我们为何关注这些气候科技公司</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文围绕MIT Technology Review发布的2026年‘气候技术公司值得关注’榜单展开，系统阐释了编辑团队的筛选方法与行业趋势。文章指出，全球气候危机与政策资本双重驱动促使技术创新成为实现碳达峰、碳中和的关键。通过量化技术成熟度、商业化路径及融资动态，榜单突出三大前沿方向：①基于机器学习的新能源预测与智能调度平台，可提升可再生能源渗透率并增强电网弹性；②AI加速的材料研发推动高能量密度电池和绿氢技术，显著降低储能成本；③数字孪生与碳足迹追踪系统在工业链中的深度应用，实现精准碳排放管理与供应链脱碳。针对上榜企业，文章剖析其核心技术壁垒、商业模式创新以及在不同政策环境下的适配策略，帮助读者快速识别行业热点与技术拐点。对AI从业者而言，本文提供了跨学科合作的典型案例，展示深度学习、强化学习等算法在气候领域的转化路径，同时警示数据获取、模型可解释性和监管合规等挑战。整体上，文章兼具宏观视角与微观案例，兼具深度洞察与实践指南，是了解气候技术创新生态、把握AI赋能绿色转型机会的必读之作。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="http://arxiv.org/abs/2610.10507v1" target="_blank" rel="noopener noreferrer">RECAST：通过自适应证据路由学习计算正确上下文</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: RECAST提出了一种创新方法，使语言模型能够通过自适应证据路由从多个异构信息源中智能计算和聚合证据。与传统RAG仅依赖固定相似性检索不同，RECAST训练模型学习在何时以及如何路由证据到不同的计算操作（如过滤、聚合），从而解决证据隐含在多个源中需跨源推导的问题。该方法弥合了检索与推理计算之间的鸿沟，为复杂推理任务提供了新的技术路径。<br><br>**与AI Agent的关联**: 该研究对AI Agent领域具有重要价值。它推动了Agent自主工具使用能力的发展，使Agent不仅能检索信息，还能主动执行计算和聚合操作。RECAST的自适应路由机制为构建更智能的自主Agent提供了关键技术支撑，增强了Agent在复杂环境中的决策能力和多步推理能力，对提升Agent系统的实用性和自主性具有重要意义。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/heygen-com/hyperframes" target="_blank" rel="noopener noreferrer">heygen-com/hyperframes</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 59.2K<br><br>用代码做视频时，你可能也遇到过这种麻烦：动画跑得起来，却很难每次得到一致的结果；想让 agent 自动改稿、批量出片，又不能一直依赖手工拖时间轴。HyperFrames 正适合这类场景，它将 HTML、CSS、媒体素材和可定位动画组合起来，生成确定性的 MP4，产品演示、数据可视化短片和 AI 视频都能拿来做。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-10-09 07:23:56</p>
+        </footer>
+    </div>
+</body>
+
+</html>
