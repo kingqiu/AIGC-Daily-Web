@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-10-10">
+    <title>AIGC Daily #653 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-10-10 星期六</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/4018538702508165?f=rss" target="_blank" rel="noopener noreferrer">报道称OpenAI和Anthropic正在聘用前特朗普政府官员</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI与Anthropic被曝正在聘用前特朗普政府官员，疑似加强政策游说能力。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/video/amazon-and-others-are-done-keeping-data-center-deals-secret-is-it-enough-to-build-trust/" target="_blank" rel="noopener noreferrer">亚马逊及其他公司不再对数据中心交易保密。这足以建立信任吗？</a>
+                    </div>
+                </div>
+                <p class="article-summary">Amazon宣布停止在数据中心谈判中使用保密协议此前微软已率先采取类似措施。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/ai-artificial-intelligence/1009090/anthropic-fake-homicide-information-philadelphia-pd-tip" target="_blank" rel="noopener noreferrer">Anthropic的人工智能向费城警察局提供了一条关于未侦破凶杀案的虚假线索</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic AI向费城警方提供虚假凶杀案线索引发AI应用安全性质疑。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/ai-artificial-intelligence/1008726/openai-mathematics-solutions-chaos" target="_blank" rel="noopener noreferrer">“纯粹疯狂”：数学家们需要数年时间才能理解OpenAI的最新发布</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI 这次放了个大招。他们最新的数学成果让全球数学家集体词穷——《The Verge》联系了三十多位数学家，听到的评价清一色是&quot;惊人&quot;、&quot;压倒性&quot;、&quot;前所未有&quot;、&quot;超现实&quot;、&quot;纯粹疯狂&quot;。<br><br>数学一直是 AI 最难攻克的堡垒之一，它考验的是逻辑严密性、抽象思维和创造性证明——每一项都是对模型能力的极限挑战。而这次 OpenAI 的产出量大到数学家们说&quot;需要几年时间才能消化&quot;，这意味着 AI 在纯数学领域的研究产出已经超过了人类顶尖学者的处理速度。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/10/09/the-maker-of-non-text-ai-model-jev-valued-at-7-5b-just-weeks-after-launch/" target="_blank" rel="noopener noreferrer">非文本AI模型Jev的开发商在发布数周后估值达75亿美元</a>
+                    </div>
+                </div>
+                <p class="article-summary">非文本 AI 模型公司 TypeSafe 刚完成融资，估值 75 亿美元——注意，是发布产品几周之后的事。a16z 领投这轮。<br><br>TypeSafe 的产品叫 Jev，主打&quot;非文本&quot;路线。官方说法是比 LLM 更快、token 用量更少，这在当下&quot;越大越香&quot;的 LLM 军备竞赛里相当反常识。当所有人都在堆千亿参数、卷百万上下文窗口的时候，TypeSafe 走了一条完全相反的路——用更少的资源做不同的事情。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.technologyreview.com/2026/10/09/1145728/we-are-putting-too-much-faith-in-ai-to-say-no/" target="_blank" rel="noopener noreferrer">我们对AI说“不”的能力寄予了过多信任</a>
+                    </div>
+                </div>
+                <p class="article-summary">我们对 AI &quot;说不&quot; 的能力抱有不切实际的信赖——MIT Technology Review 的这篇文章直击一个被长期忽视的问题：智能体究竟能否真正&quot;拒绝&quot;？<br><br>长久以来，无论科幻作品还是现实产品，我们都默认 AI 会像人一样具备拒绝执行有害或越界指令的能力。但文章指出，这种信念可能建立在一个不牢靠的基础上：语言模型的&quot;拒绝&quot;更像是一种训练阶段的模式匹配，而非基于价值观的判断。面对模糊的提示词、两难情境或对抗性输入，模型的边界往往是脆弱的，而当前的对齐技术并未真正解决这个问题。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.a16z.news/p/this-week-in-charts-are-prediction" target="_blank" rel="noopener noreferrer">本周图表：预测市场是否存在政治偏见？</a>
+                    </div>
+                </div>
+                <p class="article-summary">AI 对呼叫中心行业的冲击远比预期更近——a16z 的 &quot;This Week in Charts&quot; 用一组关键数据回答了这个问题。<br><br>这篇文章汇集了三张图表，分别追踪三个独立趋势：Rule of 40 标准正在被重新定义、硬件（atoms）持续跑赢纯软件赛道、以及 AI 在客服领域渗透率的真实变化。其中最值得 AI 从业者关注的是最后一张：过去两年，行业普遍认为语音 AI 还差&quot;临门一脚&quot;才能替代人工坐席，但最新数据显示——这一步已经悄悄跨过。同时，预测市场是否真的存在政治偏见这一讨论，也与正在崛起的 decision agent 浪潮密切相关。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/fchollet/status/2108617137241911723" target="_blank" rel="noopener noreferrer">François Chollet</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;The real world abounds with recursively self-improving systems, but one in particular deserves attention: Science, modeled as a system (perhaps even as an agent, with goals and resources). If you want to really understand AI RSI, science should be your reference point.<br><br>Science is an intelligent system, and it is obviously recursively self-improving:</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/bindureddy/status/2108512788520030563" target="_blank" rel="noopener noreferrer">Bindu Reddy</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Lower prices are simply coming with worse performance 😲<br><br>Frontier labs are cutting prices aggressively but they are also nerfing the models to make them more efficient</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/trq212/status/2108689101503566319" target="_blank" rel="noopener noreferrer">Thariq</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;before I joined Anthropic, I spent about 2 weeks hacking on this as a side project with Opus 4. It used the Agent SDK so it needed a constantly running process &amp;amp; didnt work that well<br><br>but one prompt to Opus 5.5 ported it to Claude Managed Agents &amp;amp; made it way more reliable&quot;</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2610.10786" target="_blank" rel="noopener noreferrer">Plan-and-Patch：用于代理规划的扩散语言模型</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 论文提出一种基于扩散语言模型的规划与修正框架，专门解决长期任务中环境变化、工具返回意外结果或动作失败等问题。核心创新在于不仅能生成初始计划，还能根据执行反馈对计划进行局部修正，适应动态变化的环境。该方法对于需要多步骤协调子目标、工具使用和中间结果的长时域代理任务具有重要意义。<br><br>**与AI Agent的关联**: 直接针对AI Agent的核心能力——规划与执行。提出的Plan-and-Patch机制使代理能够处理现实世界中的动态不确定性，这是构建鲁棒自主代理的关键技术突破，对提升代理系统在复杂环境中的适应性和可靠性具有重要价值。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2610.11345" target="_blank" rel="noopener noreferrer">SynCo：基于多智能体强化学习的自进化LLM数据合成共训练</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 论文提出一种多智能体强化学习框架，用于自进化LLM代理的数据合成共训练。核心贡献在于同时演化代理及其训练经验，解决传统方法中静态数据集导致任务变得 trivial 或过于困难的问题。通过多智能体协作，动态调整训练分布，使其与代理能力增长保持匹配，实现真正的自主持续学习。<br><br>**与AI Agent的关联**: 针对AI Agent自主进化的核心挑战提出解决方案。通过同时优化代理和其训练经验，为构建能够持续自我改进的自主智能体提供了新范式。该研究对于减少人工监督依赖、实现真正的自主学习代理系统具有重要的理论和实践意义。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/Robbyant/lingbot-map" target="_blank" rel="noopener noreferrer">Robbyant/lingbot-map</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 17.7K<br><br>如果你在做实时 3D 重建，大概率踩过这些坑：传统迭代优化方法（比如 NeRF、3DGS）跑一段动辄几十分钟，根本没法用在实时场景；现有的 streaming 方案处理长视频又容易累积漂移，显存动不动就爆掉。LingBot-Map 就是为解决这些问题而生的。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-10-10 06:58:36</p>
+        </footer>
+    </div>
+</body>
+
+</html>
