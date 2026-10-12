@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-10-13">
+    <title>AIGC Daily #659 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-10-13 星期二</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/4023488810782851?f=rss" target="_blank" rel="noopener noreferrer">历经14个月，Meta推出具备“前沿级能力”的Muse Wonder AI模型</a>
+                    </div>
+                </div>
+                <p class="article-summary">Meta发布Muse Wonder模型，具备“前沿级能力”，在代码编写和复杂任务处理上可与ChatGPT、Claude等头部模型竞争。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blogs.nvidia.com/blog/ocp-global-summit-vera-rubin-scale-ai-factories/" target="_blank" rel="noopener noreferrer">OCP全球峰会：在生态系统广泛采用之际，NVIDIA开放Vera Rubin架构助力全球AI工厂规模化扩展</a>
+                    </div>
+                </div>
+                <p class="article-summary">NVIDIA在OCP全球峰会上宣布开放Vera Rubin架构，以开放标准助力全球AI工厂规模化建设。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/news/1009465/microsoft-maia-300-chip-improvements-rollout" target="_blank" rel="noopener noreferrer">微软新AI芯片降低对英伟达GPU的依赖</a>
+                    </div>
+                </div>
+                <p class="article-summary">Microsoft发布第三代Maia AI芯片Maia 300，将作为其产品和云服务的主要AI推理系统，减少对NVIDIA GPU的依赖。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.wired.com/story/muse-wonder-puts-meta-back-at-the-ai-frontier/" target="_blank" rel="noopener noreferrer">Muse Wonder 将 Meta 重新带回 AI 前沿</a>
+                    </div>
+                </div>
+                <p class="article-summary">Meta 这次是真的急了，也真的出手了。Muse Wonder 是 Meta 重组 Superintelligence Labs 之后发布的首款真正意义上的 frontier 模型。比起之前主打低延迟、轻量化的 Muse Spark，Wonder 系列明显更大、更强，在多项基准测试中直接对标业界顶级模型。Wired 的报道特别提到，它还内置了防止 agent 失控的新机制——这个细节很值得玩味，毕竟过去一年各家 agent 跑偏、反复死循环的案例实在太多了，Meta 显然也吸取了教训。<br><br>更重要的是战略层面的信号：在 Llama 之后沉寂了相当长一段时间，Meta 一直被外界质疑掉队了。这次 Wonder 的发布，相当于正式宣告——我要回来打擂台。结合最近挖人、重组实验室的一系列动作，扎克伯格显然不甘心只做开源阵营的老大，而是要重新站到 frontier model 的牌桌上来。接下来 OpenAI、Google、Anthropic 该认真对待这个对手了。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/4023487777132417?f=rss" target="_blank" rel="noopener noreferrer">微软准备在数据中心大规模部署自研芯片，规模达数吉瓦</a>
+                    </div>
+                </div>
+                <p class="article-summary">微软这次放了个大招，宣布要在数据中心部署数吉瓦（gigawatt）规模的自家 Maia 芯片，最新一代 Maia 300 明年开始部署。这批芯片专为 AI 推理设计——也就是模型真正干活的那一步。<br><br>先说这个数字有多猛。1 GW 大约相当于一个大型核电机组的输出，微软准备拿这么多电力专门跑自家 AI。背后逻辑很清晰：与其继续被 Nvidia 卡脖子、抢购 H100，不如自建一套从硬件到软件的完整链条。这条路 Google 已经走了很多年（TPU 已经是行业标杆），微软现在算是正式入局。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.latent.space/p/claude-dynamic-workflows" target="_blank" rel="noopener noreferrer">Anthropic的动态工作流如何协调Claude智能体</a>
+                    </div>
+                </div>
+                <p class="article-summary">当一个项目大到单个 Claude Agent 装不下的时候，应该怎么办？Anthropic 在 AI Engineer New York 上给出了答案：Dynamic Workflows——一套让多个 Agent 协同工作的编排机制，直接从 Unix 和 Linux 的设计哲学里取经。<br><br>文章最有价值的部分，是 Anthropic 对&quot;为什么不直接堆 Agent 就完事了&quot;的反思。简单堆叠多 Agent 会让开发者淹没在协调开销里，这和早期 Unix 系统试图把所有功能塞进一个巨型二进制文件的教训如出一辙。文中将 Unix 的&quot;组合优于集成&quot;原则映射到 Agent 世界：每个 Agent 应该有明确的小职责，之间通过清晰、可组合的接口协作，而不是写一个无所不能的超级 Agent。这种思路对正在做多智能体编排的人来说几乎是现成的架构蓝图。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/levie/status/2109711062757216738" target="_blank" rel="noopener noreferrer">Aaron Levie</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;What a crazy time in AI with Meta now jumping fully into the frontier. Now that there are multiple players pushing the state of the art, this is going to lead to a further acceleration of advances, as well as the lowering cost of tokens for even the highest levels of capability. &lt;https://t.co/w2p4pEMInH&gt;&quot;<br><br>**解读**: Levie 对 Meta 全力押注前沿模型表示兴奋——多个玩家在 SOTA 上同台竞争，技术迭代会进一步加速，token 成本也会被压到更低。对开发者和创业者来说，这意味着同样的钱能买到更强的能力，AI 应用层的机会窗口反而在变大。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/GaryMarcus/status/2109775449429877229" target="_blank" rel="noopener noreferrer">Gary Marcus</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;🚨Final nail in the coffin of the AI IPOs? 🚨<br><br>“The ten highest-quality models carry 14% of developer tokens, down from 55% last year, as cheaper, &quot;good enough&quot; models win on volume.”</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/a16z/status/2109735992743850393" target="_blank" rel="noopener noreferrer">a16z</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;.\@flexport CEO Ryan Petersen on the Charlie Munger advice he passes on to AI founders: &quot;The key to success is dumb competition.&quot;<br><br>&quot;One of my favorite things that Charlie told me at one of these dinners at his house was when I told him about Flexport, he was like, &#39;Oh, you have a great business because the key to success is dumb competition.&#39;&quot;</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/open-webui/open-webui" target="_blank" rel="noopener noreferrer">open-webui/open-webui</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 154.9K<br><br>如果你在本地用 Ollama 跑模型，或者手头攒了一堆 OpenAI 兼容 API 的 key，大概率会遇到个头疼事：没有一个趁手的聊天界面。命令行太原始，自己撸 Web UI 又太折腾，每次换模型都得改配置。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-10-13 07:19:57</p>
+        </footer>
+    </div>
+</body>
+
+</html>
