@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-10-14">
+    <title>AIGC Daily #661 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-10-14 星期三</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/4024518873124745?f=rss" target="_blank" rel="noopener noreferrer">Anthropic将披露最新营收���据</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic本周将首次向机构投资者披露第三季度财务数据，正为可能成为史上规模最大的AI公司IPO做准备。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://aibusiness.com/agentic-ai/meta-joins-enterprise-agent-race-with-muse-wonder" target="_blank" rel="noopener noreferrer">Meta携Muse Wonder加入企业代理竞争，面临信任鸿沟</a>
+                    </div>
+                </div>
+                <p class="article-summary">Meta推出Muse Wonder正式进军企业AI代理市场，但面临企业信任度不足的挑战。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.wired.com/story/openai-and-anthropic-tell-british-lawmakers-regulate-us/" target="_blank" rel="noopener noreferrer">OpenAI和Anthropic告诉英国立法者：请监管我们</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI与Anthropic共同向英国议员呼吁加强AI监管，显示头部AI公司正主动寻求政府介入。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/ai-artificial-intelligence/1009862/google-releases-gemini-4-argon" target="_blank" rel="noopener noreferrer">谷歌终于发布Gemini 4 Argon</a>
+                    </div>
+                </div>
+                <p class="article-summary">Google 终于坐不住了。沉寂大半年后，他们本周正式推出 Gemini 4 Argon——这是 Gemini 系列迭代以来最具野心的旗舰模型。官方宣称它能正面硬刚业界最强的对手，在博士级推理（GPQA Diamond）、代码能力、多模态理解等核心基准上全面对标前沿水平。<br><br>更值得注意的是，Argon 并不是一颗孤立的棋子。配合发布的还有 Gemini 4 Argon for Robotics 机器人版本，以及一份详尽的安全责任报告。这意味着 Google 在同一波发布里同时押注了&quot;通用智能&quot;和&quot;物理 AI&quot;两条赛道——既要做最强的语言模型，也要做最强的机器人底座。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://deepmind.google/blog/gemini-4-argon-for-robotics/" target="_blank" rel="noopener noreferrer">Gemini 4 Argon 机器人技术版</a>
+                    </div>
+                </div>
+                <p class="article-summary">跟 Gemini 4 Argon 一起亮相的，还有 DeepMind 专为机器人打造的 Gemini 4 Argon for Robotics 版本。这个版本不是 API 层面的简单微调，而是把视觉-语言-动作模型深度整合，让机器人能理解复杂指令、处理真实世界的视觉噪声，并在执行中实时纠错。<br><br>具体能力上，它支持更长视野的任务规划、多步推理和物理常识推理——这些恰恰是当前机器人落地最头疼的几块拼图。无论是仓库搬运、家庭服务、工业装配还是自动驾驶，DeepMind 都想让 Argon Robotics 成为机器人领域的&quot;通用底座&quot;，也就是大家心心念念的那个&quot;机器人的 GPT 时刻&quot;。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.latent.space/p/dyna" target="_blank" rel="noopener noreferrer">Dyna-2：具有一小时级自主能力的通用具身智能体 — Jason Ma，Dyna Robotics</a>
+                    </div>
+                </div>
+                <p class="article-summary">Dyna Robotics 的首席科学家 Jason Ma 在 Latent Space 做了一场深度对谈，核心是他们对 World Action Models 的押注，以及对&quot;通用物理代理&quot;这件事的定义。跟多数机器人公司聚焦单任务演示不同，Dyna 的野心是&quot;小时级自主&quot;——让机器人在最小人为干预下连续执行跨度长达数小时的任务。<br><br>这种长时自主能力是当前 embodied AI 的硬骨头：动作序列一拉长，错误呈指数级累积；环境稍有变化策略就可能崩盘。文章会带你拆解 World Action Models 是怎么回应这些挑战的，以及从研究 demo 走到工业部署中间还缺哪几块拼图。Jason 还谈到了 Dyna 选择押注这条路线而非纯模仿学习的原因。如果你关心机器人的真实进展，或者想知道&quot;通用物理代理&quot;现在到底走到哪一步，这期 podcast 的信息密度值得你专门抽时间听完。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blog.bytebytego.com/p/how-the-math-used-in-19th-century" target="_blank" rel="noopener noreferrer">19世纪热物理学中的数学方法如何帮助大语言模型理解句子</a>
+                    </div>
+                </div>
+                <p class="article-summary">Transformer 里的 positional encoding 看起来是个&quot;理所当然&quot;的设计——但如果你突然被问&quot;为什么 attention 自己抓不住词序&quot;，大概率会语塞。ByteByteGo 这篇做了一个很巧的切入：把 19 世纪的热传导方程和现代 LLM 的位置编码做了类比，从物理直觉讲清楚为什么模型必须被显式喂位置信息。<br><br>文章不停留在 RoPE 或 sinusoidal encoding 的公式层面，而是从&quot;为什么必须有这个组件&quot;讲起，再延伸到 Transformer 处理序列时的根本假设。文章里有一个清晰的比喻——把句子当作一根金属棒，把词当作棒上的温度点，热扩散的过程刚好对应信息在序列上的传递。如果你写过 transformer 但从没认真想过位置编码背后的设计动机，或者想找一个能给别人讲清楚的解释，这篇很合适。属于工程师友好型——读完之后再回去读《Attention Is All You Need》原文，你会有完全不同的体感。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-10-14 07:10:03</p>
+        </footer>
+    </div>
+</body>
+
+</html>
