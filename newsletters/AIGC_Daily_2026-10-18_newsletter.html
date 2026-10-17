@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-10-18">
+    <title>AIGC Daily #669 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-10-18 星期日</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/10/17/replit-is-no-longer-working-with-anthropic-ceo-says/" target="_blank" rel="noopener noreferrer">Replit首席执行官司表示，公司将OpenAI作为默认选项，优先于Anthropic</a>
+                    </div>
+                </div>
+                <p class="article-summary">Replit将OpenAI设为默认模型提供商，取代Anthropic成为其平台的首选AI服务。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/10/17/meta-removes-language-that-raised-scraping-and-ai-training-concerns/" target="_blank" rel="noopener noreferrer">Meta移除引发数据抓取和AI训练担忧的条款</a>
+                    </div>
+                </div>
+                <p class="article-summary">Meta更新服务条款，移除允许其抓取新闻网站内容用于AI模型训练的条款。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blogs.nvidia.com/blog/local-ai-rtx-spark-windows-laptops-celebration/" target="_blank" rel="noopener noreferrer">RTX Spark点燃全球庆典 新款Windows PC纷至沓来</a>
+                    </div>
+                </div>
+                <p class="article-summary">NVIDIA RTX Spark笔记本电脑正式上市，搭载Blackwell RTX显卡和高达128GB统一内存，起售价2399美元。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.interconnects.ai/p/meta-shakes-up-the-frontiers-open" target="_blank" rel="noopener noreferrer">Meta颠覆前沿战略：开放与封闭并行</a>
+                    </div>
+                </div>
+                <p class="article-summary">Meta 这周动静不小，一口气在&quot;开源&quot;和&quot;闭源&quot;两条线都甩出了新牌。Interconnects AI 用一句&quot;US open weights are back!&quot;概括了这次发布的分量。<br><br>具体来说，Meta 既拿出了新的开放权重模型，让开发者可以本地部署、微调；同时也没放下闭源路线，继续在自有的最强版本上往前走。这种&quot;两手都要&quot;的打法在过去一年其实挺少见——美国公司在开放权重这件事上明显更谨慎了，毕竟训练成本在那儿摆着。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/ai-artificial-intelligence/1013195/ai-agents-blocked-web" target="_blank" rel="noopener noreferrer">网站正在对AI代理关闭大门</a>
+                    </div>
+                </div>
+                <p class="article-summary">The Verge 最近一篇深度报道讲了一个正在发生的趋势：网站正在集体对 AI Agent 关门。<br><br>OpenAI、Meta、Google、Instinct 这些公司都在拼命推 Agent 产品，号称能让 AI 替你订餐、购物、查资料。但现实是——网站这一端并不买账。越来越多的站点开始主动屏蔽自动化访问，做 UA 识别、IP 限流、上 Cloudflare 验证码……手段五花八门。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.technologyreview.com/2026/10/16/1145840/prima-implant-restores-sight-macular-degeneration-patients/" target="_blank" rel="noopener noreferrer">这种植入物可以为黄斑变性患者恢复视力。</a>
+                    </div>
+                </div>
+                <p class="article-summary">本文聚焦于PRIMA视网膜植入系统在地理萎缩（geographic atrophy）患者中的突破性应用。文章指出，全球已有超过500万人因光感受器逐渐死亡而陷入无法逆转的视力丧失，而PRIMA利用微型光电二极管阵列直接捕获入射光，并经由内部电路将其转化为神经冲动，绕过受损的光感受器，实现视功能的重建。核心证据包括：①欧洲药品管理局（EMA）已于今年七月批准该系统；②美国FDA正进入审评阶段；③临床试验数据显示，受试者在阅读、面孔辨认和低光环境下的视力显著提升，平均LogMAR视力提升0.2以上，且手术并发症发生率低于5%。作者进一步剖析了该系统的硬件架构、功耗管理以及与残余视网膜网络的适配策略，并指出未来可结合AI驱动的图像重建算法，对捕获的视觉信息进行实时去噪和增强，从而提升感知质量。本文的价值在于为AI从业者提供跨学科视角，展示深度学习在神经假体信号解码、残余组织适配以及个性化视觉恢复中的潜在作用，同时呈现了从技术研发、临床验证到监管审批的完整闭环，对推动高端医疗AI落地具有重要参考意义。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/bindureddy/status/2111485137427030019" target="_blank" rel="noopener noreferrer">Bindu Reddy</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;DeepSeek Flash just dropped an upgrade....<br><br>My bet is it surpasses Muse Wonder but will fall short of Argon</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/a16z/status/2111536578338378169" target="_blank" rel="noopener noreferrer">a16z</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Gavin Baker on the other side of Ben&#39;s bandwidth story: at the peak of the 2000 bubble, 97% of America&#39;s fiber sat dark, and today there are no dark GPUs.<br><br>&quot;I had, depending on how you look at it, the privilege and the misfortune of being a tech investor during the year 2000 bubble, which was really a telecom bubble.&quot;</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/GaryMarcus/status/2111599422547374313" target="_blank" rel="noopener noreferrer">Gary Marcus</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Totally disgusted with Anthropic at this point.<br><br>Their proposed bill undermines everything they ever said and gives them considerable exemption from liability, eg an incidents in causing half a billion dollars of damage or killing dozens of people.&quot;</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/stablyai/orca" target="_blank" rel="noopener noreferrer">stablyai/orca</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 95.4K<br><br>如果你同时在用 Codex、ClaudeCode、OpenCode 这些 AI 编程助手，肯定体验过这种痛苦：好几个终端窗口切来切去，想看看哪个 agent 跑得怎么样了得一个个 tab 翻，AI 在后台跑着任务又不敢关电脑走开。Orca 就是为了解决这个&quot;多 agent 管理混乱&quot;的痛点而生的。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-10-18 07:58:01</p>
+        </footer>
+    </div>
+</body>
+
+</html>
