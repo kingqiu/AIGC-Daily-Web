@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-11-01">
+    <title>AIGC Daily #699 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-11-01 星期日</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.leiphone.com/category/industrynews/es0ZV9LsDEsG7QLE.html" target="_blank" rel="noopener noreferrer">阿里巴巴与 Apple 达成合作，将千问集成至 Apple 智能</a>
+                    </div>
+                </div>
+                <p class="article-summary">阿里巴巴与Apple达成合作，千问模型将集成至Apple Intelligence，中国用户可通过Siri、写作工具及视觉智能调用千问能力，预计12月随iOS 27.3正式推出。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.wired.com/story/an-ai-agent-did-brain-surgery-on-live-mouse/" target="_blank" rel="noopener noreferrer">AI智能体向活小鼠脑内注射药物</a>
+                    </div>
+                </div>
+                <p class="article-summary">WIRED 报道称，一家生物科技初创公司让 AI agent 参与了一次活体小鼠实验：模型不只是回答研究问题，而是参与选择基因疗法，并完成向大脑注入治疗的操作。这个看点不在“AI 做了脑部手术”这句更抓眼球的标题，而在于研究链条开始出现可自主推进的闭环——从提出候选方案到调用实验设备，再到对活体对象执行精细操作。<br><br>如果结果能够复现，它展示的是 AI scientist 的一种现实雏形：agent 不只读论文、写代码，还能把生物医学知识转成实验动作，并接受真实世界反馈。不过，小鼠实验距离临床应用仍有监管、伦理、安全性和可靠性等多道门槛，更不能把一次成功等同于 AI 已经能独立做神经科学手术。我的判断是，科研 agent 的竞争正在从“会查资料”升级到“敢让机器动手”，验证能力也会比模型炫技更关键。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://latent.space/p/ainews-google-admits-ai-mode-hurts-search-revenue-15-500b-drop-worst-since-2004-ipo-ai-bear-market-c/" target="_blank" rel="noopener noreferrer">【AI新闻】谷歌承认AI模式损害搜索收入；股价下跌15%，市值蒸发5000亿美元，创自2004年IPO以来最惨烈跌幅。AI熊市即将来临？</a>
+                    </div>
+                </div>
+                <p class="article-summary">Latent Space 最新的 AI 行业分析把一个比模型榜单更棘手的问题摆上桌面：Google 已承认，AI Mode 正在对 Search revenue 造成压力。报道标题同时给出约 15% 的市场下挫和约 5000 亿美元缩水，并将其称为 Google 自 2004 年上市以来最严重的冲击。这里需要分清两层账：搜索广告收入是否真的被 AI 答案分流是一回事，二级市场对增长预期的重新定价则是另一回事。<br><br>为什么重要？因为 Google 恰恰是最有条件把生成式 AI 做成搜索默认入口的公司，如今连它也被迫面对“回答越直接，点击与广告越少”的结构性矛盾。AI Mode 若提高使用体验，却削弱商业点击，短期收入与长期用户黏性之间就可能出现冲突。Google 的应对不只是技术选择，也是整个互联网广告商业模式的定价实验：AI 搜索究竟会成为新增长曲线，还是先自我蚕食旧业务，值得接下来几个季度的数据验证。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://latent.space/p/arca/" target="_blank" rel="noopener noreferrer">智能体提示人类：利用智能体完成长期金融任务</a>
+                    </div>
+                </div>
+                <p class="article-summary">这篇 Latent Space 对话讨论了一个常被 Agent 演示掩盖的问题：当任务从“回答一次”拉长到数天，Agent 究竟靠什么保持工作状态？Arca 的 AI 负责人以金融工作为例，介绍 persistent memory、定制 harness，以及跨天运行的 agentic workflow，让 Agent 不必每次从空白上下文重新开始。<br><br>标题“Agents Prompt People”点出了关系的反转：Agent 不只是被动接受人的 prompt，也会主动提醒、推动流程，并在关键处请求人做判断。真正决定可靠性的并非某个模型名称，而是外围 harness——怎样组织上下文、工具、状态、权限、检查点与人工介入。文章还把长流程拆成可恢复的环节，说明金融等高风险领域为何既适合 Agent 落地，也最容易暴露“看似完成、实际失控”的问题。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.lennysnewsletter.com/p/community-wisdom-the-biggest-sources" target="_blank" rel="noopener noreferrer">🧠 社区智慧：PM最大的干扰来源、招聘初级PM时用案例研究还是行为面试、为AI驱动开发构建产品框架，以及更多内容</a>
+                    </div>
+                </div>
+                <p class="article-summary">这篇 Community Wisdom 不是一份冷冰冰的 AI 工具清单，而是从产品经理与开发者的真实经验里，拆解 AI 驱动开发如何改变团队工作方式。其中与 Agent 最相关的部分，是 building a product harness for AI-driven development：当 coding agent 不再只接收一句任务，而要持续理解产品背景、约束、决策记录与验收标准时，真正被设计的是包裹 Agent 的“工作系统”。<br><br>这个视角比“哪个模型或 IDE 最强”更重要。文章把需求、上下文、反馈回路和人工决策放进同一套 harness 中，让 Agent 能执行较长的开发链条，而不是生成一段代码后重新等人接力。另一个有启发性的侧面是 PM 的 interruption 来源与 junior PM 招聘：随着可委托的执行工作增加，团队评价人的标准可能从“亲手做了多少”转向“能否提出好问题、提供正确上下文并判断结果”。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/bindureddy/status/2116541518207148146" target="_blank" rel="noopener noreferrer">Bindu Reddy</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;AI is hitting a human wall which will cause the bubble to burst 💥<br><br>Most humans and companies that they work in don’t view AI favorably</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/levie/status/2116652002830963114" target="_blank" rel="noopener noreferrer">Aaron Levie</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;This is one of the better litmus tests for whether you’re pushing your use of AI enough or not.<br><br>Up until maybe six months ago probably the best you could do with AI was pull off something you already would produce, but just doing it a little faster. But now we’re entering a point where the output of working with AI can and should dramatically exceed what you would been able to do before, in a fraction of the time.</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/a16z/status/2116523102821908595" target="_blank" rel="noopener noreferrer">a16z</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;The hiring hangover is shaking off<br><br>Job postings vs. pre-pandemic, roughly:
+- Engineering up 45%
+- Healthcare up 30%
+- Manufacturing up 25%
+- HR back to even</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2610.37935" target="_blank" rel="noopener noreferrer">SkillMem：用于潜在多智能体推理的紧凑型外部技能记忆</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 本文提出了SkillMem框架，通过将每个可复用技能表示为小型外部潜在记忆来解决多智能体系统中的效率和存储问题。传统方法将技能存储为文本或KV状态，导致重复处理或大量存储开销。SkillMem引入连续表示的外部潜在记忆，使多智能体能够在保持推理和通信效率的同时复用技能，显著降低了延迟和存储成本。<br><br>**与AI Agent的关联**: 该工作直接针对多智能体系统的核心挑战——技能复用和通信效率。其提出的外部潜在记忆机制为构建更高效的多智能体系统提供了新的基础设施，对提升Agent的推理效率和多Agent协作能力具有重要价值。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2610.37923" target="_blank" rel="noopener noreferrer">VerifiedLab：利用已知知识应对未知问题</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: VerifiedLab引入了一个多智能体框架，旨在支持实验室研究场景中的机器可读知识记录和自动化。研究Agent需要从面向人类的记录迁移到机器可解析的格式。该框架通过多智能体协作实现实验验证、知识管理和自动化推理，为AI Agent在科学研究中的应用提供了标准化基础设施。<br><br>**与AI Agent的关联**: 该工作是AI Agent在科学研究领域的重要应用示范，展示了多智能体系统在实际科学研究中的潜力。其提出的多智能体协作范式为构建能够执行复杂科学实验的Agent系统提供了参考，对推动Agent在科学发现中的应用具有重要意义。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/Orkas-AI/Orkas" target="_blank" rel="noopener noreferrer">Orkas-AI/Orkas</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 6.1K<br><br>代码、调研、项目并行，拆任务、催进度、记上下文都太累？Orkas 很对味。它是 MIT 开源、local-first 的桌面多智能体应用。向 Commander 说目标，它会拆成待办，调度 16 个内置专家及现有 coding agents 协作。项目能保存目标、规则、记忆和文件；Auto-advance 自动接棒，定时自动化按小时、日、周或月运行。支持 macOS、Windows 和自己的 API key。相比一次问答式工具，Orkas 更像驻留本地的 AI 团队：数据留在本机，协作、记忆和自动执行也装进同一工作流，能持续交付项目成果。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-11-01 08:06:16</p>
+        </footer>
+    </div>
+</body>
+
+</html>
