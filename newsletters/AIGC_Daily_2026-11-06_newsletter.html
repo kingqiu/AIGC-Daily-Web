@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-11-06">
+    <title>AIGC Daily #709 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-11-06 星期五</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/ai-artificial-intelligence/1027652/anthropic-claude-plaid-personal-finance" target="_blank" rel="noopener noreferrer">Claude AI 可直接连接您的银行账户</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic为Claude推出个人财务管理功能，可通过Plaid平台连接银行账户，帮助用户追踪消费和理财。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/11/05/meta-says-us-users-can-now-video-chat-with-their-muse-ai-avatar/" target="_blank" rel="noopener noreferrer">Meta表示美国用户现在可以与Muse AI头像进行视频聊天</a>
+                    </div>
+                </div>
+                <p class="article-summary">Meta在美国地区推出Muse AI头像视频聊天功能，用户可与定制化动画形象进行实时互动。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/tech/1028015/meta-muse-ai-voice-mode-expressive-avatar" target="_blank" rel="noopener noreferrer">Muse 现已推出语音模式</a>
+                    </div>
+                </div>
+                <p class="article-summary">Meta为Muse AI助手新增语音对话模式，用户可与AI代理进行实时语音交流。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blogs.nvidia.com/blog/vera-cpu-highest-throughput-fastest-agents/" target="_blank" rel="noopener noreferrer">Vera实现两全其美：最高吞吐量与最快代理</a>
+                    </div>
+                </div>
+                <p class="article-summary">NVIDIA 最新的官方发布把 Vera CPU 推到 AI agent 的主舞台。它瞄准的是一个很容易被忽略的现实：agent 不只是生成答案，还要检索信息、查询数据库、写代码、跑测试，并把结果转成实际行动；这些环节都要经过 CPU，模型推理只是其中一段。<br><br>Vera 的卖点是“最高吞吐、最快 agent”，本质上是针对高频工具调用、任务编排和 CPU-GPU 数据搬运做优化。NVIDIA 想卖的不是某个聊天机器人，而是一整套让 agent 更快执行任务的系统能力。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/11/05/airbnb-says-its-launching-an-ai-travel-agent-in-the-first-half-of-2027/" target="_blank" rel="noopener noreferrer">Airbnb表示将于2027年上半年推出AI旅行助手</a>
+                    </div>
+                </div>
+                <p class="article-summary">Airbnb 给出了明确时间表：计划在 2027 年上半年推出 AI travel agent。它不只负责聊天，而是覆盖行前规划、方案比较、预订管理，以及入住后的持续协助。换句话说，Airbnb 正试着把原来由搜索框、列表和客服各自完成的流程，交给一个能贯穿整段旅程的 agent。<br><br>这件事值得关注，不只是因为又多了个“旅行 chatbot”。旅游是少数同时涉及复杂决策、实时库存和真金白银交易的场景，agent 一旦可用，影响会从推荐一路深入到下单、改期和售后。Airbnb 自己掌握房源、价格与订单信息，理论上比通用模型更接近闭环。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://newsletter.pragmaticengineer.com/p/scaling-slack-and-github-with-maude" target="_blank" rel="noopener noreferrer">莫德·勒梅尔：Slack 与 GitHub 的规模化实践</a>
+                    </div>
+                </div>
+                <p class="article-summary">这篇访谈把“如何规模化”从服务器架构一路推到 AI 辅助的软件工程：Maude Lemaire 回顾在 Slack 与 GitHub 扩张时，如何识别组织和技术系统中的瓶颈；后来到了 Cursor，她又把同一套思路用于改善产品性能。它最值得注意的不是某个工具用法，而是人在环路中的位置——重复、检索和初步实现可以交给 coding agent，但架构取舍、风险判断与最终责任仍需工程师掌握。<br><br>对正在做 Agent 的人来说，这是一篇很有分量的“系统工程版”推荐：Agent 并不是替代团队能力，而是在一个成熟工程流程里放大既有判断。文章能帮你重新划分哪些工作适合自动化、哪些检查不能外包，并从大规模产品演进理解，性能问题往往也来自协作与系统设计，而非单点代码不够快。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://artificialcorner.com/p/claude-job-search" target="_blank" rel="noopener noreferrer">我用一项技能把Claude变成了求职猎人。以下是复制方法</a>
+                    </div>
+                </div>
+                <p class="article-summary">文章实测了一个具体但可迁移的 Agent 范式：只给 Claude 一项 Skill，让它读取简历，按地点与岗位搜索招聘网站和雇主官网，并在每天早晨只推送新增职位。重点不是“让 AI 帮你找工作”这个猎奇外壳，而是展示一个长期运行、个人化、依赖外部信息的任务，怎样被拆成稳定工作流：读取目标、搜集候选、去重、按偏好筛选、定时触发与通知。<br><br>作者还把搭建过程和容易失效的环节摊开，包括不同站点的数据质量、重复结果、筛选噪声，以及简历信息交给自动化流程后的隐私问题。这让文章不只是一份可复制的教程，也提醒读者：一个看起来会“主动行动”的 Agent，底层仍然是若干接口、规则和状态共同约束；体验是否省心，取决于错误处理与每日信息量控制。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2611.05512" target="_blank" rel="noopener noreferrer">SlackBench: 基于真实代码仓库协作项目的智能体基准测试</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出了首个针对真实知识工作场景的AI Agent基准测试框架，填补了现有基准测试依赖合成数据或孤立任务的空白。该测试基于真实的协作项目，模拟多参与方动态交互、信息分散在对话、代码和决策演化中的复杂场景，要求Agent能够处理需要跨多个信息源推理的长期工作问题，为评估Agent在真实职场环境中的表现提供了可靠方法论。<br><br>**与AI Agent的关联**: 直接针对AI Agent在实际工作场景中的应用评估，解决了Agent从实验室走向真实应用的关键评估问题。该基准测试能够客观衡量Agent在复杂协作任务中的能力边界，为Agent系统的改进提供实证依据，对推动Agent从原型验证走向实际部署具有重要指导价值。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2611.05791" target="_blank" rel="noopener noreferrer">FlyHash：用于LLM Agent记忆的仿生高效哈希方法</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 创新性地将果蝇嗅觉回路的稀疏随机投影和赢者通吃竞争机制引入LLM Agent的记忆系统，提出了一种不同于传统密集向量嵌入的新型记忆索引方法。该方法利用局部敏感哈希的生物计算机制，在保持检索精度的同时显著提升Agent跨会话信息检索效率，为解决长期运行Agent面临的信息遗忘和检索瓶颈提供了全新技术路径。<br><br>**与AI Agent的关联**: 针对LLM Agent持续运行时的核心挑战——外部记忆存储与检索，提供了仿生智能的计算方案。该研究不仅在技术实现上具有创新性，更为Agent记忆系统的架构设计开辟了新方向，对提升Agent在长时序任务中的信息保持能力和响应准确性具有重要应用前景。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/scenario-labs/skills" target="_blank" rel="noopener noreferrer">scenario-labs/skills</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 3.0K<br><br>如果你想让 Claude Code、Cursor、Codex 等 AI coding agent 真正产出可交付的游戏与影视素材，却总被“该选哪个模型、成本多高、角色和品牌能否前后一致”折腾，这套 Scenario Agent Skills 正对症。它通过 Scenario MCP server，将图片、视频、音频、纹理、skybox、3D asset 和自定义模型训练接入 agent，并支持 70 多种编程工具；调用前先估价、选择合适模型，再保持人物与视觉风格连续。expert teams 还能协同操作 Blender、Maya、ZBrush、Unreal 和 Unity，把创意直接推进到专业制作流程。它不只是生成单张图片的 API 封装，而是将模型选型、预算控制、一致性与 DCC 自动化串成完整工作流，尤其适合独立团队和复杂内容生产。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-11-06 06:50:06</p>
+        </footer>
+    </div>
+</body>
+
+</html>
