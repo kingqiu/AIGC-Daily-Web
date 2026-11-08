@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-11-09">
+    <title>AIGC Daily #715 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-11-09 星期一</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://thehackernews.com/2026/11/google-warns-llmjacking-attacks-are.html" target="_blank" rel="noopener noreferrer">**谷歌警告：LLM劫持攻击导致部分企业云服务费用损失高达100万美元**</a>
+                    </div>
+                </div>
+                <p class="article-summary">Google警告LLMjacking攻击正在给部分企业造成高达100万美元的云服务费用损失，提醒企业加强AI安全防护。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.leiphone.com/category/industrynews/oxR5pn9S7tI1IfF5.html" target="_blank" rel="noopener noreferrer">腾讯的 Agent 布局，不止 WorkBuddy</a>
+                    </div>
+                </div>
+                <p class="article-summary">腾讯加速Agent领域布局，继WorkBuddy后又有多款AI Agent产品即将发布，强化企业级AI应用生态。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/11/08/nvidia-says-its-investigating-ceo-jensen-huangs-relationship-with-possible-chinese-spy/" target="_blank" rel="noopener noreferrer">英伟达将调查CEO黄仁勋与疑似中国间谍的关系</a>
+                    </div>
+                </div>
+                <p class="article-summary">Nvidia董事会宣布对CEO黄仁勋与疑似中国间谍Alice Huang的关系展开正式调查，公司治理面临重大考验。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/ai-artificial-intelligence/1029552/apple-siri-ai-agentic" target="_blank" rel="noopener noreferrer">苹果正加速推进Siri向AI代理演进</a>
+                    </div>
+                </div>
+                <p class="article-summary">据 The Verge 援引 Bloomberg 的 Mark Gurman 报道，苹果 CEO John Ternus 正要求 AI 负责人 Craig Federighi 加快 Siri 路线图，目标是把 Siri 做成能对标报道所称的 OpenAI Dots、Meta Muse 等产品的 AI agent。这里的关键不只是给 Siri 接入更强模型，而是让助手跨应用执行任务，从“回答问题”走向“替你办事”。<br><br>这条消息值得盯住，因为 Siri 一直被外界视为苹果补课生成式 AI 的关键入口；如果苹果也把 agent 当作下一轮平台竞争的核心，App 生态、搜索入口和设备协同都可能重新排序。眼下报道仍属于路线图与内部推动，商业化时间和具体能力尚未公布。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/ai-artificial-intelligence/1029562/nvidia-investigating-jensen-huang-relationship-chinese-spy" target="_blank" rel="noopener noreferrer">英伟达正在调查黄仁勋与中国间谍的关系</a>
+                    </div>
+                </div>
+                <p class="article-summary">英伟达已宣布就 CEO Jensen Huang 与 Megaspeed 高管 Alice Huang 的关系展开内部调查。The Verge 报道称，Alice Huang 曾被中国国家安全部招募；调查将聚焦两人的关系及其是否涉及不当行为。需要强调的是，这目前是公司调查和媒体披露，不是司法定罪，也不能把“被招募”直接等同于间谍结论。<br><br>为什么重要？因为 Jensen Huang 不只是芯片公司 CEO，也是全球 AI 算力叙事最核心的代言人。任何围绕其个人关系、商业往来或信息流动的疑问，都会触及出口管制、政府关系和 AI 供应链中“技术如何流动”的敏感区。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://thesequence.substack.com/p/the-sequence-radar-issue-967-last" target="_blank" rel="noopener noreferrer">《序列雷达》第967期：上周AI动态：模型更聪明了，资金却更紧张了。</a>
+                    </div>
+                </div>
+                <p class="article-summary">这期 Radar 把视线从“模型又涨了几个点”拉回更现实的一层：当 Google、OpenAI 与 Thinking Machines 继续推进技术边界时，资本市场对 AI 指数级增长的乐观预期也开始松动。核心问题不是 AI 是否仍在进步，而是进步速度、投入强度与商业回报能否继续匹配。<br><br>文章最有价值之处，是同时观察模型能力与资金情绪：一方面，新模型和智能系统让能力曲线继续上探；另一方面，Wall Street 开始追问巨额投入究竟何时兑现。这种对照提醒读者，benchmark 提升不会自动变成可持续的商业结果，资本市场对“AI 一切都会加速”的信仰，可能比技术迭代本身更早遭遇周期检验。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.lennysnewsletter.com/p/what-it-actually-takes-to-build-frontier" target="_blank" rel="noopener noreferrer">为什么产品经理突然再次变得有价值 | Tulsee Doshi（Gemini产品负责人）</a>
+                    </div>
+                </div>
+                <p class="article-summary">Google Gemini 负责人 Tulsee Doshi 讨论的不是“如何写提示词”，而是一个更根本的问题：当基础模型逼近前沿，Product Manager 为什么突然又成了 AI 产品的关键角色。答案在于，模型能力越强，产品判断越不能依赖拍脑袋，而要把任务定义、评测与真实用户反馈严密闭环。<br><br>访谈最有价值的观点，是“evals and vibes both matter”：可量化的 evals 提供稳定性，直觉与用户体感则捕捉指标尚未定义的质量。Doshi 还分享了 60-20-20 的交付框架，用它解释怎样在不牺牲核心体验的前提下快速试验、迭代，并抢在技术曲线之前上线。对正在开发 Agent 或 LLM 应用的团队，这套方法比追逐某个新模型更实用——真正稀缺的往往不是调用模型，而是判断什么值得做、如何证明做对了。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/bindureddy/status/2119465118782406718" target="_blank" rel="noopener noreferrer">Bindu Reddy</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;PREDICTION - Small models will dominate AI<br><br>With compute being super scarce and expensive</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/garrytan/status/2119492448200405110" target="_blank" rel="noopener noreferrer">Garry Tan</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Out of curiosity I am doing some open source eval work on harnesses with frontier models and here’s what is coming back so far https://t.co/chXfmck26f&quot;<br><br>**解读**: Garry Tan 透露，他正用开源评测框架测试前沿模型，初步结果即将公布。值得关注的是，模型竞争正从“刷题分数”转向真实任务环境；不过评测设计本身也会影响排名。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/GaryMarcus/status/2119408004764504458" target="_blank" rel="noopener noreferrer">Gary Marcus</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;jobs have barely moved; productivity has barely changed.<br><br>and yet we just listen to CEOs who pull numbers out of a hat.&quot;</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="http://arxiv.org/abs/2611.08403v1" target="_blank" rel="noopener noreferrer">StepBack：用于高效测试时推理的步骤级错误定位重采样方法</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: StepBack是一种新颖的步骤级错误定位重采样方法，用于提升链式推理效率。该方法通过分析少量草稿轨迹，在推理步骤级别精准定位错误位置，并仅对该位置进行重采样，而非重采样整个推理轨迹。这避免了传统自一致性方法需要采样大量完整轨迹的高成本问题，显著降低了测试时推理的计算开销。<br><br>**与AI Agent的关联**: StepBack直接提升了Agent的推理规划能力。AI Agent需要强大的推理能力来处理复杂任务，该方法通过高效的错误检测和纠正机制，使Agent能够在有限的计算资源下进行更深层次的推理，对提升自主智能体的决策质量和效率具有重要实用价值。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/dsx-ai-factory/nvke" target="_blank" rel="noopener noreferrer">dsx-ai-factory/nvke</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 803<br><br>在自有 NVIDIA GPU 裸金属服务器上提供 Kubernetes 服务时，常需处理控制面部署、多租户隔离和集群运维。NVIDIA Kubernetes Engine（NVKE）让团队部署 management plane，即可创建多个 workload cluster；各集群均有独立的 Kubernetes control plane、etcd 和 node pool，客户通过 Kubernetes API 与 kubectl 使用。项目提供无需 GPU、无需 NVIDIA 账号的本地 quickstart，以模拟机完整体验，也能装到真实基础设施。相比通用集群管理工具，它更聚焦 NVIDIA GPU 场景，把裸金属资源转成可交付、彼此隔离的托管 Kubernetes 服务，上手路径更完整。需要注意，当前仍是 Preview，API 和行为可能变化，暂不建议用于生产。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-11-09 05:17:08</p>
+        </footer>
+    </div>
+</body>
+
+</html>
