@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-11-12">
+    <title>AIGC Daily #721 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-11-12 星期四</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://aibusiness.com/generative-ai/anthropic-launches-new-ai-models" target="_blank" rel="noopener noreferrer">随着IPO临近，Anthropic发布新AI模型和工作场所工具</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic在IPO前发布新AI模型和工作工具，强化企业市场布局，为历史性上市做最后冲刺准备。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/p/4064610635781257?f=rss" target="_blank" rel="noopener noreferrer">8点1氪丨英伟达及黄仁勋遭股东集体诉讼，市值两天蒸发2.85万亿；Anthropic正式启动IPO路演；阿里拟分拆平头哥独立上市</a>
+                    </div>
+                </div>
+                <p class="article-summary">英伟达及CEO黄仁勋遭股东集体诉讼，指控涉嫌欺诈股东，市值两天蒸发2.85万亿元。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://aibusiness.com/generative-ai/openai-s-businesses-in-chatgpt-targets-enterprise-trust" target="_blank" rel="noopener noreferrer">OpenAI在ChatGPT领域的商业布局瞄准企业信任市场</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI推出ChatGPT企业版Business Profiles，直接对标Google Business Profile，进军电商垂直市场。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/" target="_blank" rel="noopener noreferrer">Gemini Decisions API：快速、精准的多模态决策</a>
+                    </div>
+                </div>
+                <p class="article-summary">Google 正式推出 Gemini Decisions API，底层由 Gemini Decision 模型驱动，定位不是再做一个“会聊天”的模型，而是把多模态信息快速转成可供应用执行的决策。它强调两件事：速度与校准——既要在低延迟内完成判断，也要让系统知道答案有多大把握。对开发者而言，这类接口的价值很直接：把图片、文本等输入变成结构化决策，减少从模型输出到业务规则之间那段脆弱的提示词工程。<br><br>为什么重要？因为 AI 应用的下一段竞争，不只是谁的模型更聪明，而是谁能把不确定性更可靠地封装进 API。购物、客服、内容审核和工业流程都可能受益于这种“可调用、可校准”的决策层。不过，API 变快只是起点，真正决定落地效果的仍是错误成本、阈值设置和人工兜底。Google 这次发布的意义，是把 agent 从演示阶段往可嵌入产品的基础设施又推了一步。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://therundownai.beehiiv.com/p/openai-invites-brands-to-set-up-shop-in-chatgpt" target="_blank" rel="noopener noreferrer">OpenAI邀请品牌入驻ChatGPT</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI 开始邀请品牌进入 ChatGPT“开店”，把聊天窗口从回答问题的工具进一步推向发现商品、了解服务和完成交易的入口。这个动作的分量，不只在于多了一个购物场景，而在于 ChatGPT 正尝试成为一层新的商业界面：用户不必先跳出对话去搜索、比较和跳转，品牌也不必只争搜索排名，而是要让产品信息以适合 AI 理解和调用的方式出现在对话里。<br><br>这会重新分配流量的入口，也会改变品牌做内容的尺度。过去 SEO 面向关键词与点击，如今品牌还要为“被模型推荐、被代理执行”准备结构化信息、商品数据和交易链路。真正值得警惕的是，如果入口由模型控制，推荐的透明度、用户授权和品牌选择空间都会成为新问题。我的判断是，ChatGPT 商业化正在从“塞广告”走向“接管任务”，而交易只是这种变化最直观的第一步。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.lennysnewsletter.com/p/claude-code-obsidian-my-familys-ai" target="_blank" rel="noopener noreferrer">Claude Code + Obsidian：我的家庭 AI 大脑 | Scott Farrar</a>
+                    </div>
+                </div>
+                <p class="article-summary">这篇内容不是展示“让 Claude Code 帮我做一件事”，而是追问：一个通用 coding agent 能否成为长期在线的家庭大脑。Scott Farrar 把 Claude Code 与 Obsidian 组合起来，让系统追踪家电信息、追保险报价、推动装修与家庭项目；真正值得看的并非工具清单，而是角色分工——Obsidian 保存可持续读取、可人工检查的状态，Claude Code 负责理解需求、组织信息并推进任务。<br><br>这篇文章最有价值的地方，是把 Agent 从一次性的问答窗口改写成一个持续维护家庭上下文的工作系统。你会看到“记录—调用—行动—回写”的闭环如何面对多线程杂务，也更能体会权限、人工确认和可追溯性为什么比炫技更关键。对正在搭建个人助理、家庭知识库或自动化 Agent 的读者，这是一份具体但不依赖宏大叙事的实践样本：先让 Agent 围绕一个真实对象持续工作，再讨论它是否足够“智能”。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/gemini-for-healthcare/" target="_blank" rel="noopener noreferrer">谷歌云推出医疗健康领域Gemini模型。</a>
+                    </div>
+                </div>
+                <p class="article-summary">这篇 Google Cloud 的发布文章，核心问题不是医疗模型又刷新了哪项 benchmark，而是 LLM 怎样从聊天助手变成嵌入医疗组织流程的工作系统。文章围绕统一临床数据、自动化工作流与减轻行政负担展开，把评价标准从“回答得像不像医生”拉回“任务是否完成、流程是否少一道人工搬运”。<br><br>它最值得读的地方，是把医疗 Agent 的讨论重心放在真实部署上：模型能力只是起点，真正困难的是让数据、工具、权限与责任边界共同组成可运行的流程。对医疗 AI 感兴趣的人，可以借它观察企业级 Agent 的共通问题——哪些步骤适合自动化，哪些必须保留人工复核，结果怎样进入既有系统并留下审计痕迹；也会更清醒地理解，“减轻行政负担”为何比生成一段看似专业的医疗建议更接近实际价值。想了解 LLM 应用如何进入复杂行业，而不是停留在 demo，这篇值得读。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/bindureddy/status/2120530415891120431" target="_blank" rel="noopener noreferrer">Bindu Reddy</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;In blind tests DeepSeek matches  Carbon / Opus on 95% of agentic loops<br><br>It’s 40x cheaper and is way more attractive.</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/demishassabis/status/2120565316619284734" target="_blank" rel="noopener noreferrer">Demis Hassabis</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Super proud to announce AlphaGenome 2 - our new DNA sequence model! 🧬 It predicts the impact of DNA variants in different specific cell types - unlocking crucial information for understanding complex diseases. Available for academic research via our API: https://t.co/dEyrvpTxIl&quot;<br><br>**解读**: Demis Hassabis 宣布，AlphaGenome 2能预测DNA变异在不同细胞类型中的影响，为复杂疾病研究提供关键线索，并已向学术研究者开放API。基础模型正进一步深入生命科学。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/a16z/status/2120564069010931746" target="_blank" rel="noopener noreferrer">a16z</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Agents now make up the majority of web traffic, write more than half of new articles published online, and generate most of the code pushed to production.<br><br>This is what the early stage of a platform shift looks like: adoption is measurable, but the business models it enables mostly aren’t visible yet.</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2611.13196" target="_blank" rel="noopener noreferrer">从流程模型到可组合的Agent工作流：结合BPMN、Agent与企业知识</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出Recursive Capability Composition方法，使Agent能够执行业务流程并将其暴露为可复用的Agentic Tools。通过BPMN（业务流程模型与标记法）将分散在prompt、工具调用和应用逻辑中的决策显式化，解决复杂Agent应用难以理解、监控和改进的问题，实现业务流程与Agent系统的深度融合。<br><br>**与AI Agent的关联**: 直接解决多Agent系统协调的关键挑战，将企业级流程管理引入Agent工作流设计，为构建可解释、可复用的Agent应用提供新范式，对Agent工程化落地具有重要指导价值。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2611.13254" target="_blank" rel="noopener noreferrer">可靠的长期LLM Agent：基于轨迹的实证研究——错误从何而来及何种控制能捕获它们</a>
+                    </div>
+                </div>
+                <p class="article-summary">**核心贡献**: 提出episode record方法，将候选故障追溯到其起源、传播、检测、响应和后果的完整链路。系统分析长期任务中LLM Agent失败的原因，不仅记录症状，还揭示错误如何进入、在何种状态下传播、以及哪些控制机制可以捕获，为Agent可靠性研究提供方法论基础。<br><br>**与AI Agent的关联**: 针对长期Agent任务可靠性的核心问题，提供细粒度的错误分析和控制框架，帮助研究者理解和改进Agent在复杂任务中的表现，对提升Agent系统的实际可用性具有关键意义。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/shadcn/improve" target="_blank" rel="noopener noreferrer">shadcn/improve</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 10.8K<br><br>面对陌生或臃肿的代码库，最费时的常是判断改什么、先改哪里，而非动手。shadcn/improve 用 Agent Skill 审计仓库、发现问题并写实施计划，自己绝不改代码。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-11-12 07:10:06</p>
+        </footer>
+    </div>
+</body>
+
+</html>
