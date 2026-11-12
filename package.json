@@ -1,0 +1,10 @@
+{
+  "name": "aigc-daily-web",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build-static.cjs"
+  },
+  "dependencies": {
+    "sharp": "0.35.5"
+  }
+}
