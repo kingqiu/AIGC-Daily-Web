@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-11-14">
+    <title>AIGC Daily #725 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-11-14 星期六</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/p/4067443683120000?f=rss" target="_blank" rel="noopener noreferrer">8点1氪丨英伟达宣布CEO黄仁勋辞职，特朗普：建议库克接任；腾讯“裁员50%”？知情人士回应；宣扬错误婚恋观，德芙代运营方被罚80万</a>
+                    </div>
+                </div>
+                <p class="article-summary">英伟达宣布CEO黄仁勋辞职，CFO科莱特·克雷斯出任临时CEO，此举震动AI行业，VC和创始人担忧初创公司融资将受影响。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/ai-artificial-intelligence/1033425/openai-chatgpt-wallet" target="_blank" rel="noopener noreferrer">ChatGPT钱包让OpenAI的Dots代理能够为您完成购买</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI推出ChatGPT Wallet功能，允许AI代理代表用户进行购物支付，目前仅向美国Pro订阅用户开放。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.leiphone.com/category/industrynews/U7WtbV9kyb90UuZ0.html" target="_blank" rel="noopener noreferrer">中金公司与蚂蚁集团达成战略合作 共探AI赋能财富管理</a>
+                    </div>
+                </div>
+                <p class="article-summary">中金公司与蚂蚁集团签署战略合作协议，双方将在金融大模型技术创新、AI赋能财富管理等领域开展合作。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://openai.com/index/introducing-chatgpt-wallet" target="_blank" rel="noopener noreferrer">推出 ChatGPT 钱包</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI 推出 ChatGPT Wallet，把支付能力直接装进 ChatGPT Work、Codex 和 dots 等 agent 场景：用户批准后，agent 可以代为完成购买，并沿用现有银行卡的消费者保护机制。目前，这项能力先向美国 Pro 用户有限开放。<br><br>这不只是给 ChatGPT 加一个付款按钮，而是把“聊天—决策—执行—结算”串成闭环。过去 agent 常常停在给建议、列购物车或生成代码，真正难的是在交易发生时既获得授权，又不把风险一股脑交给模型。Wallet 给出的答案很克制：人确认、银行卡保护机制兜底，先把责任边界写进产品。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://huggingface.co/blog/ggml-org/llama-cpp-v1" target="_blank" rel="noopener noreferrer">llama.cpp v1.0.0：为本地AI生态系统打造更坚实的基础</a>
+                    </div>
+                </div>
+                <p class="article-summary">llama.cpp 正式发布 v1.0.0。ggml-org 在 Hugging Face 上把它定义为“本地 AI 生态更强的基础设施”。对开发者来说，这个项目的价值不只在于“把模型塞进电脑”，而是把量化、推理与不同硬件的适配，做成一套可以反复复用的底层能力。<br><br>当大模型能力逐渐接近，推理成本、响应速度和敏感数据能否留在设备端，开始决定产品能不能规模化。llama.cpp 让同一套开源工具服务 CPU、GPU 和边缘设备，也为个人开发者、私有化部署与离线应用提供另一条路。1.0.0 的意义，是这个生态从“能跑就行”的实验阶段，走向更值得长期依赖的平台阶段。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://thesequence.substack.com/p/the-sequence-robotics-issue-971-robots" target="_blank" rel="noopener noreferrer">The Sequence Robotics - 第971期：机器人应该在工作中学习</a>
+                    </div>
+                </div>
+                <p class="article-summary">这篇 The Sequence Robotics 长文讨论一个很现实的问题：机器人能否在进入真实工作环境后持续进步。Tutor Intelligence 的尝试，是把机器人完成的有价值工作、人类提供的指导和仿真训练共同转化为新的智能，而不是依赖一套离线、封闭的数据集。<br><br>文章最有价值之处，在于把“边工作边学习”拆成数据从哪里来、人类指导如何进入训练循环，以及仿真经验怎样跨越 sim-to-real 鸿沟这三个关键问题。真实任务不只是采集数据，也是发现失败模式、修正策略并更新能力的过程；人类则从验收者变成训练系统的一部分。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blog.bytebytego.com/p/free-live-masterclass-building-ai" target="_blank" rel="noopener noreferrer">免费直播大师班：打造能在现实世界中运行的AI代理</a>
+                    </div>
+                </div>
+                <p class="article-summary">这篇文章围绕一个比“让模型调用几个工具”更实际的问题：AI Agent 如何在真实环境中可靠工作。它给出的工程骨架包括四部分——context 让 Agent 理解当前状态，tools 让它采取行动，guardrails 限制行动边界，checks 则验证行动结果。<br><br>其核心判断是，Agent 的失败通常不能只靠修改 prompt 解决。可靠性来自一条完整闭环：先获得足够且相关的上下文，再选择合适工具执行，最后检查结果并决定是否重试、升级给人或停止。任何一个环节缺失，都可能让看似聪明的 Agent 在 Demo 中顺利运转，却在生产环境中失控。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/fchollet/status/2121324900166361143" target="_blank" rel="noopener noreferrer">François Chollet</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Some people make a big show of being humble, wielding conspicuous humility as a status symbol. I&#39;m pretty sure that&#39;s not how humility works.&quot;<br><br>**解读**: Chollet 认为，真正谦逊的人不会把“谦逊”当成身份符号；有些人高调炫耀谦逊，反而暴露了追逐地位的需求。这话有意思在于，它提醒AI圈别把姿态当立场，观点本身才值得听。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/bindureddy/status/2121234197604126904" target="_blank" rel="noopener noreferrer">Bindu Reddy</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Jensen can come back<br><br>If he didn’t commit any crimes and did not know Alice was a spy, there is no reason to quit.</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/garrytan/status/2121352628915593422" target="_blank" rel="noopener noreferrer">Garry Tan</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;What if your own personal agent could recursively self improve as you use it? You can. I made the idea-minder skill to do exactly that.<br><br>https://t.co/5urR635nwf&quot;</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/tailscale/tailcat" target="_blank" rel="noopener noreferrer">tailscale/tailcat</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 9.4K<br><br>跨机器传文件、建安全通道，却不想开放公网端口或部署 VPN？可以试试 Tailcat：它复用 Tailscale 数据平面，把 netcat 式通信装进 WireGuard 加密隧道，借 magicsock 做 NAT 穿透与 DERP 中继。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-11-14 07:21:02</p>
+        </footer>
+    </div>
+</body>
+
+</html>
