@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-11-16">
+    <title>AIGC Daily #729 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-11-16 星期一</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/p/4067755181003654?f=rss" target="_blank" rel="noopener noreferrer">黄仁勋吃了上市太早的亏</a>
+                    </div>
+                </div>
+                <p class="article-summary">英伟达联合创始人兼CEO黄仁勋宣布辞职，结束长达33年的掌舵生涯，CFO Colette Kress出任临时CEO。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/ai-artificial-intelligence/1033984/congress-export-rules-ai-chips-china" target="_blank" rel="noopener noreferrer">国会希望在英伟达间谍丑闻后收紧AI芯片出口规则</a>
+                    </div>
+                </div>
+                <p class="article-summary">美国国会拟进一步收紧AI芯片出口限制，此前因黄仁勋与疑似向中国输送芯片的公司高管关系引发国安担忧。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://openai.com/index/step-toward-defining-the-standard-model" target="_blank" rel="noopener noreferrer">迈向在格点上定义标准模型的一步</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI发布GPT-6 Astra研究成果，探索标准模型在晶格上的非微扰定义，推动AI与基础物理交叉研究。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://openai.com/index/our-new-blog-for-science" target="_blank" rel="noopener noreferrer">我们的新科学博客</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI 上线了一个面向科学研究的全新博客，准备持续发布三类内容：新的研究发现、可直接上手的方法，以及一线研究人员用 AI 推进科学发现的亲身记录。它并非一次性发布新模型或论文合集，更像是把散落在实验室、产品团队和外部合作中的进展，搬到一个统一的官方入口。<br><br>这件事的重要性，不只是“多了一个内容频道”。AI for Science 正从论文里的概念进入药物、材料和实验自动化等真实流程，但一项结果能否被复现、一种方法能否被其他团队接手，往往比演示视频更能决定行业进步速度。OpenAI 主动公开方法与一线经验，也在尝试把模型能力、科学家资源和研究生态连接起来。我的判断是，接下来真正值得观察的不是它能喊出多大口号，而是能否持续拿出可验证、可迁移的研究成果，并允许同行继续追问。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.lennysnewsletter.com/p/metas-muse-how-we-launched-the-most" target="_blank" rel="noopener noreferrer">Meta的Muse：我们如何推出今年最成功的消费产品 | 莫娜·萨兰塔科斯</a>
+                    </div>
+                </div>
+                <p class="article-summary">在 Lenny&#39;s Newsletter 的一期对谈中，Meta 的 Mona Sarantakos 复盘了消费级 AI 产品 Muse 的诞生过程。她把 Muse 称作今年最成功的消费级 AI 产品，并用了“增长最快的消费级 AI 产品”这样的说法，同时透露团队如何从周末围绕 OpenClaw 的一次快速尝试，推进到正式上线。最抓人的不是又一张模型榜单，而是团队把代理式工作流做成了消费者愿意反复打开的产品。<br><br>这条经验之所以值得看，是因为消费级 AI 的胜负已经越来越不只取决于模型分数。产品定义、触达渠道、首次体验和迭代速度，往往决定一个能力究竟停在 demo，还是长成日常习惯。Meta 拥有强大的社交分发能力，Muse 若真能快速起量，也会提醒其他团队：会做产品，可能和会做模型同样重要。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://thesequence.substack.com/p/the-sequence-radar-issue-972-last" target="_blank" rel="noopener noreferrer">The Sequence Radar - 第972期：上周AI要闻：那只“看不见的手”穿上了皮夹克</a>
+                    </div>
+                </div>
+                <p class="article-summary">这期 The Sequence Radar 把镜头从模型本身移开，转向一个更大的问题：过去几年所谓的「AI 市场」有多少是自然长出来的，又有多少是被 Jensen Huang 亲手设计出来的。他不只定芯片节奏（Blackwell、Rubin 这样的更新周期），还顺带定义了需求侧——数十万亿美元的资本开支、hyperscaler 的采购逻辑、以及一级市场对「算力稀缺」的普遍信仰。<br><br>文章里最值得反复读的观点是：AI 产业链其实是围绕一个人搭建起来的「看不见的手穿皮夹克」——供应链按他的路线图排产，云厂商按他的订单扩张，投资人按他的发布会日历做预算。于是当监管、竞争压力或替代路线开始撬动这个结构时，真正需要重新定价的并不是某一家公司，而是整套关于「算力会继续指数增长」的假设。这对做 Agent 的人尤其有启发：agentic 产品的成本曲线目前仍搭在这条曲线上，而这条曲线是被承诺出来的，不是被证明出来的。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://artificialcorner.com/p/claude-job-interview-prep" target="_blank" rel="noopener noreferrer">帮你准备任何工作面试的 Claude + NotebookLM 技巧</a>
+                    </div>
+                </div>
+                <p class="article-summary">这是一篇很具体、可以直接抄作业的实战文章：把 Claude 和 NotebookLM 组合成一个「面试准备」技能，让模型接管求职前最耗人的那段准备工作——研究公司背景、拆解岗位描述、推测面试官会问什么，再针对你的简历生成真正能说出口的回答。<br><br>流程的设计挺聪明：不是让模型凭记忆编，而是先用职位链接和 CV 建立一个可追溯的资料库（放进 NotebookLM），让回答建立在检索来的材料之上；再让 Claude 做岗位匹配与问题生成，最后产出包含 STAR 故事在内的完整话术。作者也点出了这条链路最脆弱的地方——引用看起来像真的、职位描述里的隐含要求经常被过度解读、以及模型默认你比简历上写得更强。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/fchollet/status/2122016531878215790" target="_blank" rel="noopener noreferrer">François Chollet</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;It was pretty obvious at the time -- the early 2026 market panic about SaaS was BS&quot;<br><br>**解读**: Chollet 认为，2026年初关于SaaS被AI颠覆的市场恐慌是胡扯。他关注的是模型能否以少量样本适应新任务，而非把一次产品冲击夸大成整个软件行业的末日。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/bindureddy/status/2121993785190322188" target="_blank" rel="noopener noreferrer">Bindu Reddy</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;The 80% margin on Nvidia chips is clearly unsustainable in the long run<br><br>Jensen’s customers are all making their own chips</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/GaryMarcus/status/2121927725783126384" target="_blank" rel="noopener noreferrer">Gary Marcus</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;anthropic is here to fleece humanity, not save it.&quot;<br><br>**解读**: Gary Marcus 讽刺 Anthropic 的目标是“收割人类而非拯救人类”，延续了他对闭源模型公司逐利叙事的批评。措辞虽重，却折射出外界对高估值、持续涨价与AGI宏大承诺之间的信任缺口。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/dream-num/univer" target="_blank" rel="noopener noreferrer">dream-num/univer</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 25.6K<br><br>如果你正想在 TypeScript 应用里嵌入一套可编辑、可计算、可协作的 Office，却不想从零打造表格和文档引擎，Univer 值得放进候选清单。它提供开源的 Sheets、Docs 与 Univer Office SDK，将文档编辑、公式计算、协同协作、文件处理等能力整合进产品，也方便接入自有应用或 AI agent。借助 Quick Start、文档、API Reference 和 Showcase 可以快速上手，并基于可扩展的开源核心按需组合。相比只做预览器或单一在线文档的工具，Univer 更像一套可定制的 AI Office 基础设施，让人和 agent 在同一工作空间内共同处理内容，25.6K Stars 也印证了其社区认可度。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-11-16 07:06:19</p>
+        </footer>
+    </div>
+</body>
+
+</html>
