@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-11-18">
+    <title>AIGC Daily #733 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-11-18 星期三</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/4074453370819718?f=rss" target="_blank" rel="noopener noreferrer">Anthropic上市后，亚马逊和谷歌将合计持股约28%</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic IPO后亚马逊和谷歌将合计持股约28%，260亿美元私募配售凸显AI投资热潮。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/tech/1035756/google-spark-ai-tasks-free" target="_blank" rel="noopener noreferrer">Google的Spark AI代理更名为“Tasks”——现免费开放</a>
+                    </div>
+                </div>
+                <p class="article-summary">Google将Spark AI agent更名为Tasks并免费开放，由Gemini 4 Hydrogen模型驱动。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://openai.com/index/introducing-chatgpt-for-sales" target="_blank" rel="noopener noreferrer">ChatGPT销售版正式发布</a>
+                    </div>
+                </div>
+                <p class="article-summary">OpenAI推出ChatGPT for Sales插件及30余个新合作插件，助力销售团队研究潜在客户和更新CRM。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/11/17/nvidia-says-its-open-source-ai-strategy-remains-intact-after-jensen-huangs-exit/" target="_blank" rel="noopener noreferrer">Nvidia称，黄仁勋离职后开源AI战略依然不变</a>
+                    </div>
+                </div>
+                <p class="article-summary">在黄仁勋突然离任后，英伟达临时CEO公开表态，给市场吃下一颗定心丸：公司现有的开源AI战略保持不变，并重申计划收购Hugging Face。前者关系到英伟达会不会继续支持开放模型与工具生态，后者则可能把模型仓库、数据集、开发工具和GPU算力进一步接到同一套体系里。表面看，这是人事变动后的路线确认，背后却是整个AI基础设施版图的重新排位。<br><br>英伟达早已不只是卖GPU的公司，CUDA、开放模型和Hugging Face这类开发者入口，共同构成了它最难复制的生态。此次表态至少说明，管理层没有因为领导层更替而收缩开源承诺；但收购计划能否顺利推进，又会牵动开发者信任、监管审查和合作伙伴的站位。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/4074448234828929?f=rss" target="_blank" rel="noopener noreferrer">英伟达：2027财年第三季度营收1158亿美元，同比增长103%</a>
+                    </div>
+                </div>
+                <p class="article-summary">英伟达公布2027财年第三季度业绩：营收1158亿美元，同比增长103%；净利润653亿美元，同比增长105%；GAAP和非GAAP毛利率分别为74.8%和74.9%，摊薄每股收益为2.70和2.68美元。公司预计第四季度营收为1261亿至1339亿美元，高于市场预期，董事会还批准了新增1500亿美元股票回购授权。单季收入突破千亿美元，已经不只是“AI很热”的注脚。<br><br>这些数字之所以重要，是因为它们说明大模型训练和推理带来的算力需求，正在变成稳定、可观的现金流。GPU不再只是科技公司押注未来的筹码，而是支撑整个AI应用开发的现实成本；接近75%的毛利率，也显示英伟达仍握有相当强的定价权。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://thesequence.substack.com/p/the-sequence-knowledge-issue-973" target="_blank" rel="noopener noreferrer">序列知识 - 第973期：学习RSI：世界模型作为自我改进智能体的训练场</a>
+                    </div>
+                </div>
+                <p class="article-summary">这篇文章追问一个决定 Agent 能否持续变强的根本问题：智能体怎样自主获得“有用经验”，而不是依赖人类不断标注、示范和重试。文章以 Google DeepMind 的 SIMA 2 为切口，把世界模型（world model）视为自我改进代理的训练场，讨论递归自我改进（RSI）如何从“预测环境”走向“规划行动、检验结果并更新策略”的学习闭环。<br><br>最有价值之处，是它没有把世界模型等同于可靠的现实替代品，而是强调经验质量本身才是瓶颈：模拟环境如果生成大量容易、重复或与目标无关的轨迹，只会让 Agent 在一个失真的游戏里变得熟练。文章进一步指向更棘手的问题——如何让新策略创造新任务，再让结果反过来扩展训练分布，使系统能够选择值得探索的方向，并识别哪些失败包含可迁移的信息。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://latent.space/p/cloudflare/" target="_blank" rel="noopener noreferrer">Cloudflare加入&quot;Jevolution&quot;潮流 自诩为&quot;Neolab&quot;</a>
+                    </div>
+                </div>
+                <p class="article-summary">Cloudflare已从内容加速的CDN巨头转型为边缘AI平台，并通过自研SystemOne模型在毫秒级完成决策与数据拉取，公开定位为“Neolab”。文章核心观点指出，边缘计算与AI推理的深度融合将重新定义云计算的时效性和成本结构——借助全球分布的PoP节点和低延迟网络，Cloudflare在用户最近处实现本地化决策，突破传统云服务的往返时延瓶颈。作者通过对比Workers平台的函数计算模式与SystemOne在实际业务Benchmark中的毫秒级性能数据，证明该方案已在生产环境落地，并具备更低带宽消耗与更高可用性。文中进一步阐述Neolab的商业模型——以“模型即服务（MaaS）+边缘即服务（EaaS）”组合，为开发者提供从模型训练、微调到部署的一体化工具链，形成差异化竞争壁垒。对AI从业者而言，本文深入剖析边缘AI落地路径、技术布局及生态扩展意图，并给出云‑边协同、实时推断与AI安全合规的思考框架，是洞察下一代AI计算格局的宝贵参考资料。<br><br>---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/ag-ui-protocol/ag-ui" target="_blank" rel="noopener noreferrer">ag-ui-protocol/ag-ui</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 20.0K<br><br>如果你正在把 AI Agent 接入聊天界面、流式工作台或多代理应用，常会碰到一个麻烦：不同框架输出 token、调用工具、共享状态、等待人工确认的方式各不相同，前端只能写一堆定制适配。AG-UI 就是为这类场景而来的开放协议，用统一、基于事件的双向数据流，把 Agent 的生成、工具调用、状态更新、人工介入乃至子 Agent 协作传到客户端，并让前端按统一事件渲染和回传操作。项目以 TypeScript 为主，提供 npm 的 @ag-ui/core、Python 包 ag-ui-protocol，以及规范、文档和可运行示例，接入路径比较清晰。它不同于绑定某个模型或 Agent 框架的 SDK，更像一个前后端都能采用的“插座标准”：换框架不必重写 UI，也能让现有应用更容易拥抱 Agent，值得关注。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-11-18 07:20:41</p>
+        </footer>
+    </div>
+</body>
+
+</html>
