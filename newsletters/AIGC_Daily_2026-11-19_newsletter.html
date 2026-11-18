@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-11-19">
+    <title>AIGC Daily #735 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-11-19 星期四</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/11/18/palmer-luckey-warns-ai-powered-cyberattacks-are-outpacing-defenses-its-time-to-start-running/" target="_blank" rel="noopener noreferrer">Palmer Luckey warns AI-powered cyberattacks are outpacing defenses: ‘It’s time to start running’</a>
+                    </div>
+                </div>
+                <p class="article-summary">Palmer Luckey warns AI-powered cyberattacks are outpacing defenses: ‘It’s time to start running’</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/11/18/sam-altman-warns-against-a-future-where-ai-not-humans-calls-the-shots/" target="_blank" rel="noopener noreferrer">Sam Altman warns against a future where AI, not humans, calls the shots</a>
+                    </div>
+                </div>
+                <p class="article-summary">Sam Altman warns against a future where AI, not humans, calls the shots</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/policy/1036749/trump-ai-chip-data-center-us-philippines-pax-silica" target="_blank" rel="noopener noreferrer">Trump’s latest land grab is an AI hub in the Philippines</a>
+                    </div>
+                </div>
+                <p class="article-summary">Trump’s latest land grab is an AI hub in the Philippines</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://deepmind.google/blog/introducing-gemini-4-neon/" target="_blank" rel="noopener noreferrer">推出 Gemini 4 Neon</a>
+                    </div>
+                </div>
+                <p class="article-summary">Google DeepMind 正式发布 Gemini 4 Neon，为 Gemini 4 产品线带来一个全新的型号选择。这个动作最直接的意义，是前沿模型竞争已经不只是“谁最聪明”，还包括谁能针对不同延迟、成本和任务偏好，做出更细的产品切分。Neon 的出现，让开发者可以期待在同一代模型中寻找更适合日常调用或特定工作流的版本。<br><br>不过，型号变多不等于体验自动变好。官方发布之后，真正值得看的不是演示效果，而是它在复杂推理、工具调用、长任务稳定性上的实际表现，以及 API 定价、上下文长度和可用性是否形成足够清楚的差异。如果这些指标没有拉开，Neon 更像一次品牌扩张；一旦能在速度与能力之间给出更好的交换比，它就可能成为高频应用的务实选择。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.technologyreview.com/2026/11/18/1148650/ai-hype-index-ai-is-everywhere/" target="_blank" rel="noopener noreferrer">The AI Hype Index: AI is everywhere</a>
+                    </div>
+                </div>
+                <p class="article-summary">这篇文章追问：当 AI 从聊天框走进搜索结果、消费产品和现实空间，“无处不在”究竟是技术成熟与用户价值的证明，还是一场由资本、竞争和叙事共同推动的部署热潮？MIT Technology Review 的 AI Hype Index 不满足于展示 AI 有多普遍，而是把“存在”与“有用”拆开审视。<br><br>最值得注意的观察是，AI 扩张背后常有强大的供给端动力。Google 强推 AI Overviews，即使它会侵蚀传统广告收入；人形机器人被搬进公寓清洁场景，也说明厂商可能正用高成本、尚不稳定的系统抢先占位。于是，“产品已经上线”不能直接推出“用户更需要它”，“机器能够行动”也不能推出“系统足够可靠”。文章对这股热潮保持冷静，提醒读者同时计算产品体验、商业账本与部署摩擦。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://thesequence.substack.com/p/the-sequence-learning-loop-issue-1d5" target="_blank" rel="noopener noreferrer">The Sequence Learning Loop - Issue #974: Last Week in AI: The Systems Behind Fable, AlphaGenome, and ChatGPT Wallet</a>
+                    </div>
+                </div>
+                <p class="article-summary">How intelligence becomes useful work</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/bindureddy/status/2123172142959464735" target="_blank" rel="noopener noreferrer">Bindu Reddy</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Astra 6.2 - Day Two Vibes<br><br>- bad model in the real world 
+- users simply don’t re-engage with it 
+- it’s way cheaper in practice than 6.1 
+- it’s much worse than what the benchmarks show</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/garrytan/status/2123146532497268847" target="_blank" rel="noopener noreferrer">Garry Tan</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Y Combinator: &quot;The largest concentration of founder talent in one place. No other single place gives this much signal.&quot;&quot;<br><br>**解读**: Garry Tan 强调，YC 的最大价值不是课程，而是把高密度的创始人聚在一起，让创业信号彼此放大。AI 创业也一样：模型趋同时，谁能更快找到真实需求、组建互补团队，谁就更可能先跑出来。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/a16z/status/2123089603876028819" target="_blank" rel="noopener noreferrer">a16z</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;First Person Labs is building Second, which creates a continuously updated model of your preferences, priorities, and goals that you own and can make available to the AI agents you choose.<br><br>CEO and cofounder Ken Liu&#39;s view: personal AI becomes more useful when it can connect information across your life, recognize what matters, and carry that understanding between tools without making you explain yourself all over again.</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2611.21799" target="_blank" rel="noopener noreferrer">Chain-of-Thought Controllability Can Reduce Chain-of-Thought Monitorability</a>
+                    </div>
+                </div>
+                <p class="article-summary">---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2611.21647" target="_blank" rel="noopener noreferrer">FieldGuide: A Corpus Map for Token-Efficient Agentic Document Exploration</a>
+                    </div>
+                </div>
+                <p class="article-summary">---<br><br>## ⭐ 开源热榜</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/google-research/paper-orchestra" target="_blank" rel="noopener noreferrer">google-research/paper-orchestra</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 4.2K<br><br>手握研究想法和实验日志，却不知怎样整理成可投稿论文？PaperOrchestra 专为这种“写作断点”而生，适合想快速产出规范初稿的研究者与开发者。它由 Google Cloud AI Research 推出，以 Python 实现，把大纲、文献综述、分节写作、内容润色和绘图交给不同智能体协作完成：系统从非结构化材料出发，自动检索、筛选并整合文献，生成图表与概念图，最终组装成 LaTeX 稿件。使用时按仓库示例配置模型，准备想法和实验记录后运行即可。相比常见的“一键写论文”工具，它更像一支专业写作团队，角色分工清晰、流程可扩展，既减少机械劳动，也便于人工审阅与二次开发。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-11-19 07:08:27</p>
+        </footer>
+    </div>
+</body>
+
+</html>
