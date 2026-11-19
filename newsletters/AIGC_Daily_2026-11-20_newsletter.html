@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-11-20">
+    <title>AIGC Daily #737 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-11-20 星期五</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/4076665115480966?f=rss" target="_blank" rel="noopener noreferrer">Anthropic七位联合创始人掌握多数投票权</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic七位联合创始人掌握多数投票权</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/tech/1038227/apple-ai-agent-engineer-job-listing" target="_blank" rel="noopener noreferrer">Apple is hiring engineers to build its own AI 智能体</a>
+                    </div>
+                </div>
+                <p class="article-summary">Apple is hiring engineers to build its own AI agent</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/11/19/google-gives-gemini-the-ability-to-use-your-mac-for-you/" target="_blank" rel="noopener noreferrer">Google gives Gemini the ability to use your Mac for you</a>
+                    </div>
+                </div>
+                <p class="article-summary">Google gives Gemini the ability to use your Mac for you</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/tech/1037902/google-gemini-macos-ai-computer-use" target="_blank" rel="noopener noreferrer">Gemini on Mac can now use your computer</a>
+                    </div>
+                </div>
+                <p class="article-summary">Google 的 Gemini macOS 应用现在加入了 computer use。按 The Verge 报道，它不只回答问题，而是能在获得授权后跨本地文件、桌面应用和网页执行多步骤任务，比如整理资料、在应用间搬运信息，或完成一串原本需要手动切换窗口的操作。这相当于把 Gemini 从“聊天窗口”推进到能直接参与工作的桌面代理。<br><br>真正重要的不是它能多点几下，而是 computer use 正从概念演示变成应用里的实际能力。macOS 拥有更深层的文件和应用权限，一旦接入，效率提升与隐私风险会被同时放大。具体权限边界、误操作恢复和跨应用成功率，仍决定它是省事助手还是新的麻烦制造者。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://techcrunch.com/2026/11/19/metas-ai-agent-muse-is-mixing-up-conversations-and-exposing-private-data-report-says/" target="_blank" rel="noopener noreferrer">Meta’s AI 智能体 Muse is mixing up conversations and could be exposing private data, report says</a>
+                    </div>
+                </div>
+                <p class="article-summary">Meta 的 AI 代理 Muse 被曝存在严重的“串线”问题：据 TechCrunch 报道，一些员工发现，Muse 会凭空显示他们从未发过的育儿请求、从未征求的职业建议，甚至出现并非本人下单的商品订单和银行账户余额。问题不只是回答不准确，而是不同会话或外部数据可能被错误关联并回传，直接触及个人隐私与企业内部信息边界。<br><br>这类故障对 AI 代理的杀伤力远大于普通聊天机器人。聊天机器人答错一道题，用户还能纠错；能接触消息、订单和账户的代理一旦混淆上下文，错误就可能变成泄密、误操作，甚至被恶意利用。报道尚未给出完整影响范围，但这已经提醒所有人：代理拥有越多权限，记忆隔离和身份校验就越不能靠“差不多”。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://newsletter.pragmaticengineer.com/p/the-pulse-is-amazons-writing-culture" target="_blank" rel="noopener noreferrer">The Pulse: Is Amazon’s writing culture collapsing because of AI?</a>
+                    </div>
+                </div>
+                <p class="article-summary">这篇文章讨论一个比“AI 会不会写得更像人”更棘手的问题：当生成式 AI 和 coding agents 深度介入文档、邮件与内部协作，Amazon 赖以减少歧义的写作文化，会不会被表面流畅的文字侵蚀？作者没有把答案简化成“写得更多”，而是追问组织是否还保留了在成文前厘清事实、形成判断并暴露分歧的过程。<br><br>Amazon 的长篇书面沟通常被当作强制思考机制，而非单纯的信息传递。AI 的介入让起草成本骤降，也让“看起来完整”的文本更容易批量生产；如果读者不再核验证据、追问假设，沟通效率可能反而变成认知债务。对正在部署内部 agents 的团队，这篇文章提供的重要视角是：不能只测生成速度、格式与语气，还要设计审阅、引用、决策留痕和责任归属，否则自动化只会更快地复制组织原有的模糊性。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://blog.google/innovation-and-ai/products/gemini-app/gemini-lower-memory-devices/" target="_blank" rel="noopener noreferrer">The Gemini app is now available on lower-memory Android devices.</a>
+                    </div>
+                </div>
+                <p class="article-summary">这篇文章看似只是 Google 宣布 Gemini app 支持内存更低的 Android 设备，真正值得关注的却是 conversational agent 的“最后一公里”：当模型能力逐渐商品化，决定使用范围与体验下限的，往往不是又多了多少分，而是能否在普通设备上稳定运行。<br><br>官方给出的关键信息是，低内存机型也能使用 Gemini Live 与自定义图像生成。相较宏大的模型发布，这是一篇具体的部署工程案例：内存占用、启动速度、实时语音链路与功能降级，都会影响 agent 是只存在于少数旗舰机上的演示，还是成为日常可用的入口。对做移动端或端云协同的团队，它提供了直接提醒——资源预算必须和响应时延、发热、耗电、隐私一起设计，核心交互能否在受限环境中可靠完成，比堆叠功能更重要。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2611.23388" target="_blank" rel="noopener noreferrer">QDA: Closed-Loop LLM Quantization Design with Agents</a>
+                    </div>
+                </div>
+                <p class="article-summary">---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2611.23570" target="_blank" rel="noopener noreferrer">Safe to Omit, Worth Omitting? Keeping the Answer and Cutting Latency When an LLM Agent Skips Another&#39;s Message</a>
+                    </div>
+                </div>
+                <p class="article-summary">---<br><br>## ⭐ 开源热榜</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/mvanhorn/last30days-skill" target="_blank" rel="noopener noreferrer">mvanhorn/last30days-skill</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 70.8K<br><br>做技术选型、产品调研或热点追踪时，麻烦常在于从 Reddit、X、YouTube 等平台的信息碎片中拼出全貌。last30days-skill 会检索这些社区、Hacker News、Polymarket 与网页，聚焦最近 30 天的讨论，再合成为有依据的摘要。Claude Code 可通过 marketplace 安装并自动更新，其他 50+ Agent Skills 宿主也能用 npx skills add 一键接入。它不依赖编辑精选，而以 upvotes、likes 和真实资金下注为线索排序，更贴近社区真实关注与共识。适合需要快速、可验证情报的开发者，能少翻资料，也少被 AI 幻觉带偏。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-11-20 07:20:19</p>
+        </footer>
+    </div>
+</body>
+
+</html>
