@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聚焦 AI Agent 领域最新动态 - 2026-11-21">
+    <title>AIGC Daily #739 | 两克伴AIGC日报</title>
+
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Orange Brand Theme */
+            --primary: #FF8C42;
+            --primary-dark: #FF6B35;
+            --primary-light: #FFB380;
+
+            /* Text Colors */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #fafafa;
+
+            /* Border Colors */
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+
+            /* Spacing System */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+        }
+
+        /* ==================== Layout ==================== */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        /* ==================== Header with Logo ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-sm);
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+
+        .header .date {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Hero Image ==================== */
+        .hero-image {
+            width: 100%;
+            margin: var(--space-lg) 0 var(--space-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-caption {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ==================== Sections ==================== */
+        .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            font-size: clamp(20px, 3vw, 22px);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==================== Article Cards ==================== */
+        .article {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .article:hover {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transform: translateX(2px);
+        }
+
+        .article-title-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            margin-bottom: 12px;
+        }
+
+        .article-icon {
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 2px;
+            opacity: 0.6;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title a {
+            font-size: clamp(17px, 2.5vw, 19px);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .article-summary {
+            font-size: clamp(15px, 2vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 22px;
+        }
+
+        /* ==================== Horizontal Rule ==================== */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== Mobile Optimizations ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header {
+                gap: 12px;
+                margin-bottom: var(--space-lg);
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                margin: var(--space-md) 0;
+                border-radius: 8px;
+            }
+
+            .hero-caption {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin-top: var(--space-lg);
+            }
+
+            .article {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ==================== Print Styles ==================== */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            .hero-image {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .article {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="../img/AIGC_logo.png" alt="AIGC日报 Logo">
+            </div>
+            <div class="header-text">
+                <h1>两克伴AIGC日报</h1>
+                <div class="date">2026-11-21 星期六</div>
+            </div>
+        </header>
+<!-- Content Sections -->
+                <section class="section">
+            <h2 class="section-header">📰 行业动态</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/policy/1038892/trump-foreign-data-centers-tax" target="_blank" rel="noopener noreferrer">Trump threatens ‘tremendous tax’ for moving AI data centers outside the US</a>
+                    </div>
+                </div>
+                <p class="article-summary">Trump threatens ‘tremendous tax’ for moving AI data centers outside the US</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://36kr.com/newsflashes/4078019778548608?f=rss" target="_blank" rel="noopener noreferrer">Coinbase计划于2027年上半年推出自有预测市场合约</a>
+                    </div>
+                </div>
+                <p class="article-summary">Coinbase计划于2027年上半年推出自有预测市场合约</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/ai-artificial-intelligence/1038390/signal-blocking-ai-agent-screenshots-mobile-app" target="_blank" rel="noopener noreferrer">Signal is blocking Gemini and Siri AI from reading your screen</a>
+                    </div>
+                </div>
+                <p class="article-summary">Signal is blocking Gemini and Siri AI from reading your screen</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🔥 今日焦点</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.theverge.com/ai-artificial-intelligence/1010051/anthropic-riemann-hypothesis-millennium-prize-problem" target="_blank" rel="noopener noreferrer">Anthropic mathematician claims to have solved prestigious Millennium Prize problem with Claude</a>
+                    </div>
+                </div>
+                <p class="article-summary">Anthropic 内部数学家 Levent Alpöge 宣称，他在 Claude 帮助下证明了黎曼猜想——数学界最著名、也最难的 Millennium Prize Problem 之一。若论证最终成立，这将是足以改写数学史的突破；更值得玩味的是，Claude 在其中不只是替人写代码或查资料，而被当作探索证明思路的协作者。<br><br>这条消息需要先降温：目前它是个人提出的一项主张，不等于 Anthropic 已完成同行评审，也不代表黎曼猜想已经被学界正式“解决”。黎曼猜想关乎素数分布，一旦成立，影响会深入数论及部分密码学理论，但它也不会在某天让现有加密系统突然失效。对普通用户更近的影响，是 AI 正在触碰曾被视为纯人类智力极限的任务。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://research.google/blog/how-google-duplex-evolved-to-also-call-businesses-for-you-in-gemini/" target="_blank" rel="noopener noreferrer">How Google Duplex evolved to also call businesses for you in Gemini</a>
+                    </div>
+                </div>
+                <p class="article-summary">Google 把 Duplex 的边界又往外推了一步：这项最早以“替人打电话订餐”为人所知的技术，如今进入 Gemini，可替用户致电商家，围绕具体需求提问、收集答案，再把结果带回对话。也就是说，语音代理不再只负责完成一笔预约，而是开始替人处理更开放的信息与协调任务。<br><br>这很重要，因为 AI 助手竞争正在从“回答得准不准”转向“能不能把事情办完”。当模型能主动开口、听懂答复并跨多个电话推进任务，搜索、客服、采购和本地服务都可能被重写；用户交出的也不再是一段提示词，而是一次真实代理行动。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📚 深度长文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://newsletter.theaiedge.io/p/how-rag-stays-in-sync-with-its-sources" target="_blank" rel="noopener noreferrer">How 检索增强生成 Stays in Sync with Its Sources</a>
+                    </div>
+                </div>
+                <p class="article-summary">这篇文章把 RAG 从“向量库 + 相似度检索”的常见演示，拉回一个更棘手的问题：当源文档持续变化时，Agent 还能不能引用“当前且有权访问”的事实。它沿着文档编辑、重新索引、版本发布、权限变更与答案缓存，追踪一条知识从源头到用户面前的完整链路。<br><br>最有价值的观点是，RAG 的核心不是找到最像的 chunk，而是保证引用的是正确版本。若索引更新滞后、版本切换不原子、删除未向下游传播，或权限没有同时作用于检索层与缓存层，Agent 不会只是“搜不到”，而可能流畅复述旧政策，甚至泄露无权内容。把版本、权限与 cache invalidation 当作产品协议，而非事后运维补丁，是文章最实用的提醒。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://www.technologyreview.com/2026/11/20/1149399/the-most-misunderstood-graph-in-ai-just-got-a-major-update/" target="_blank" rel="noopener noreferrer">The most misunderstood graph in AI just got a major update</a>
+                    </div>
+                </div>
+                <p class="article-summary">这篇深度文章更新了 AI 领域那张最常被误读的图：METR 的任务时间跨度，用 Agent 能可靠完成多长、复杂的现实任务来衡量自治边界，通常以 50% 成功率对应的任务长度表示。它不是单次 benchmark，也不应被直接当成 AGI 到来的倒计时。<br><br>新报告给出的信号是双面的：部分 AI 能力仍沿近似指数曲线持续提升，Agent 能稳定推进的任务边界也在后移；但在需要判断、审慎取舍和理解模糊目标的任务上，模型明显弱于编码。换句话说，Agent 能连续写几小时代码，不等于它能在陌生业务里正确决定“下一步”，更不等于可以放心获得付款、删改数据等不可逆权限。</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🐦 Ta们说</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/ClementDelangue/status/2123873347393970488" target="_blank" rel="noopener noreferrer">clem 🤗</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;American open-source AI isn&#39;t dead yet 😝😝😝<br><br>@thinkymachines is releasing Inkling 2 Mini as apache 2.0 today and getting to the pareto frontier for open agent models.</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/demishassabis/status/2123871861843075099" target="_blank" rel="noopener noreferrer">Demis Hassabis</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Fantastic to be collaborating with Merck on designing a new cancer drug - another important proof point of the rapid progress we’re making at Iso on reimagining drug discovery!&quot;<br><br>**解读**: Demis Hassabis宣布与默克合作设计新抗癌药，并称这是Iso快速推进药物发现的又一证明。值得关注的是，AI制药正从早期分子筛选走向药企真实研发流程，商业验证比演示更关键。</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://x.com/a16z/status/2123830231601684542" target="_blank" rel="noopener noreferrer">a16z</a>
+                    </div>
+                </div>
+                <p class="article-summary">&gt; &quot;Ruby on Rails creator DHH says Linux&#39;s historical weaknesses now make it ideal for interfacing with agents:<br><br>&quot;Every single thing that made Linux hard to use in the past, oh, it&#39;s very terminal-heavy, it&#39;s got a bunch of config files that are hard to figure out, and it&#39;s got inscrutable error messages. These are the three things agents love.&quot;</p>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">📄 重点论文</h2>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2611.23890" target="_blank" rel="noopener noreferrer">EVA-RSI: Recursive Self-Improvement of Video Evaluators for Judging Temporal Quality</a>
+                    </div>
+                </div>
+                <p class="article-summary">---</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2611.23483" target="_blank" rel="noopener noreferrer">SpecLook: Speculating Where to Look for Fast and Reliable Agentic MLLMs</a>
+                    </div>
+                </div>
+                <p class="article-summary">---<br><br>## ⭐ 开源热榜</p>
+            </article>
+            <article class="article">
+                <div class="article-title-wrapper">
+                    <span class="article-icon">🔸</span>
+                    <div class="article-title">
+                        <a href="https://github.com/firecrawl/firecrawl" target="_blank" rel="noopener noreferrer">firecrawl/firecrawl</a>
+                    </div>
+                </div>
+                <p class="article-summary">⭐ 205.3K<br><br>做 AI Agent 时，最头疼的往往不是模型，而是如何把网页、搜索结果和第三方数据稳定地变成模型可用的上下文。Firecrawl 就是为这件事打造的知识基础设施：支持搜索、网页抓取与内容清洗，还能通过统一 API 访问 550+ 数据源。仓库提供 TypeScript SDK、Firecrawl Local 和自托管服务；本地只需运行一个二进制文件，就能把网站转为干净 Markdown，并以 MCP Server 或本地 API 接入 Agent，也能直接使用 Firecrawl Cloud 获得规模化能力。相比普通爬虫或单一抓取工具，它把数据获取、内容结构化和 Agent 集成放在同一套方案中，开源、自托管与 Cloud 随选，很适合搭建 RAG、深度研究及工作流自动化。</p>
+            </article>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>本资讯由两克伴AI助手自动生成，聚焦 AI Agent领域最新动态</p>
+            <p style="margin-top: 8px;">生成时间：2026-11-21 08:30:28</p>
+        </footer>
+    </div>
+</body>
+
+</html>
